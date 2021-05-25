@@ -6,6 +6,7 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "InteractionWidgetComponent.h"
 #include "Kismet/KismetSystemLibrary.h"
+#include "Components/CapsuleComponent.h"
 
 // Sets default values
 AMainCharacter::AMainCharacter()
@@ -13,10 +14,16 @@ AMainCharacter::AMainCharacter()
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	capsuleColl = GetCapsuleComponent();
 	cameraComponent = CreateDefaultSubobject<UCameraComponent>("Camera Component");
-	cameraComponent->SetupAttachment(GetMesh());
+	cameraComponent->SetupAttachment(capsuleColl);
 	cameraComponent->bUsePawnControlRotation = true;
 
+	//GetMesh()->SetupAttachment(cameraComponent);
+	
+	//GetMesh()->AttachToComponent(cameraComponent, FAttachmentTransformRules::KeepWorldTransform);
+
+	
 
 }
 
@@ -24,6 +31,20 @@ AMainCharacter::AMainCharacter()
 void AMainCharacter::BeginPlay()
 {
 	Super::BeginPlay();
+	GetMesh()->AttachToComponent(cameraComponent, FAttachmentTransformRules::KeepWorldTransform);
+	standCameraHeight = cameraComponent->GetRelativeLocation().Z;
+	crouchCameraHeight = standCameraHeight * crouchScale;
+
+	standCapsuleHeight = capsuleColl->GetScaledCapsuleHalfHeight();
+	crouchCapsuleHeight = capsuleColl->GetScaledCapsuleHalfHeight() * crouchScale;
+
+	if (crouchCurveFloat)
+	{
+		FOnTimelineFloat timelineProgress;
+		timelineProgress.BindUFunction(this, FName("TimelineProgressCrouch"));
+		crouchCurveTimeline.AddInterpFloat(crouchCurveFloat, timelineProgress);
+		crouchCurveTimeline.SetLooping(false);
+	}
 
 	GetCharacterMovement()->MaxWalkSpeed = walkSpeed;
 	GetCharacterMovement()->MaxWalkSpeedCrouched = crouchSpeed;
@@ -36,6 +57,23 @@ void AMainCharacter::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 	PerformCheck();
+	crouchCurveTimeline.TickTimeline(DeltaTime);
+
+	if (movement == EMovement::Standing && isSprintingKeyDown && GetVelocity().Size() > 0.5f && !GetCharacterMovement()->IsFalling())
+	{
+		stamina -= staminaDepletion * DeltaTime;
+		stamina = FMath::Clamp(stamina, 0.f, 100.f);
+	}
+	else
+	{
+		stamina += staminaRegen * DeltaTime;
+		stamina = FMath::Clamp(stamina, 0.f, 100.f);
+	}
+
+	if (stamina < 1.f && movement == EMovement::Standing)
+	{
+		GetCharacterMovement()->MaxWalkSpeed = walkSpeed;
+	}
 
 }
 
@@ -54,6 +92,9 @@ void AMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 
 	PlayerInputComponent->BindAction("Crouch", IE_Pressed, this, &AMainCharacter::CrouchPressed);
 	PlayerInputComponent->BindAction("Crouch", IE_Released, this, &AMainCharacter::CrouchReleased);
+
+	PlayerInputComponent->BindAction("Sprint", IE_Pressed, this, &AMainCharacter::SprintPressed);
+	PlayerInputComponent->BindAction("Sprint", IE_Released, this, &AMainCharacter::SprintReleased);
 
 }
 
@@ -193,9 +234,24 @@ float AMainCharacter::GetRemainingInteractTime()
 	return GetWorldTimerManager().GetTimerRemaining(timerHandleInteract);
 }
 
+
+
 #pragma endregion 
 
 #pragma region Movement
+
+void AMainCharacter::TimelineProgressCrouch(float val)
+{
+	FVector camLoc = cameraComponent->GetRelativeLocation();
+	camLoc.Z = FMath::Lerp(standCameraHeight, crouchCameraHeight, val);
+	cameraComponent->SetRelativeLocation(camLoc);
+
+	float height = FMath::Lerp(standCapsuleHeight, crouchCapsuleHeight, val);
+	capsuleColl->SetCapsuleHalfHeight(height);
+
+	
+}
+
 void AMainCharacter::MoveForward(float val)
 {
 	AddMovementInput(GetActorForwardVector(), val);
@@ -219,12 +275,103 @@ void AMainCharacter::LookUp(float val)
 
 void AMainCharacter::CrouchPressed()
 {
-	Crouch();
+	isCrouchingKeyDown = true;
+
+	if (movement != EMovement::Standing || GetCharacterMovement()->IsFalling())
+		return;
+
+
+	//crouch
+	SetMovement(EMovement::Crouching);
+	
+
 }
 
 void AMainCharacter::CrouchReleased()
 {
-	UnCrouch();
+	isCrouchingKeyDown = false;
+
+	if (movement != EMovement::Crouching || GetCharacterMovement()->IsFalling())
+		return;
+
+	SetMovement(EMovement::Standing);
+
+
+}
+
+void AMainCharacter::SprintPressed()
+{
+	isSprintingKeyDown = true;
+
+	if (movement != EMovement::Standing || GetCharacterMovement()->IsFalling())
+		return;
+
+	GetCharacterMovement()->MaxWalkSpeed = sprintSpeed;
+}
+
+void AMainCharacter::SprintReleased()
+{
+	isSprintingKeyDown = false;
+
+	if (movement != EMovement::Standing || GetCharacterMovement()->IsFalling())
+		return;
+
+	GetCharacterMovement()->MaxWalkSpeed = walkSpeed;
+}
+
+void AMainCharacter::BeginCrouch()
+{
+	// crouch
+
+	crouchCurveTimeline.Play();
+	GetCharacterMovement()->MaxWalkSpeed = crouchSpeed;
+	
+}
+
+void AMainCharacter::EndCrouch()
+{
+	// stand
+	crouchCurveTimeline.Reverse();
+	
+
+
+	if (isSprintingKeyDown && stamina > 10.f)
+	{
+		GetCharacterMovement()->MaxWalkSpeed = sprintSpeed;
+	}
+	else
+	{
+		GetCharacterMovement()->MaxWalkSpeed = walkSpeed;
+	}
+}
+
+
+void AMainCharacter::SetMovement(EMovement newMovement)
+{
+
+	movement = newMovement;
+
+	switch (newMovement)
+	{
+	case EMovement::Crouching:
+		BeginCrouch();
+		break;
+	case EMovement::Standing:
+		EndCrouch();
+		break;
+	}
+}
+
+void AMainCharacter::ResolveMovement()
+{
+	if (isCrouchingKeyDown)
+	{
+		SetMovement(EMovement::Crouching);
+	}
+	else
+	{
+		SetMovement(EMovement::Standing);
+	}
 }
 
 #pragma endregion 
