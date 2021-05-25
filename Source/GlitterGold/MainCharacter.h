@@ -4,7 +4,19 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "Components/TimelineComponent.h"
 #include "MainCharacter.generated.h"
+
+
+class UCurveFloat;
+
+UENUM()
+enum EMovement
+{
+	Standing    UMETA(DisplayName = "Standing"),
+	Crouching   UMETA(DisplayName = "Crouching")
+};
+
 
 USTRUCT()
 struct FInteractionData
@@ -48,6 +60,12 @@ public:
 
 	float GetRemainingInteractTime();
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Movement")
+	float stamina = 100.f;
+
+	UFUNCTION()
+	void TimelineProgressCrouch(float val);
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -86,7 +104,7 @@ private:
 		float walkSpeed = 600.0f;
 
 	UPROPERTY(EditAnywhere, Category = "Movement")
-		float crawlSpeed = 50.0f;
+		float sprintSpeed = 900.0f;
 
 	UPROPERTY(EditAnywhere, Category = "Movement")
 		float crouchSpeed = 50.0f;
@@ -94,16 +112,51 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Movement")
 		float crouchScale = 0.5f;
 
-	UPROPERTY(EditAnywhere, Category = "Movement")
-		float crawlScale = 0.5f;
+
+	
+	float crouchCameraHeight;
+	float standCameraHeight;
+	float standCapsuleHeight;
+	float crouchCapsuleHeight;
+
+	bool isCrouchHeld = false;
+
+	bool isCrouching = false;
+
+	FTimeline crouchCurveTimeline;
+
+	UPROPERTY(EditAnywhere, Category = "Timeline")
+	UCurveFloat* crouchCurveFloat;
 
 	void MoveForward(float  val);
 	void MoveRight(float  val);
 	void Turn(float  val);
 	void LookUp(float  val);
-
 	void CrouchPressed();
 	void CrouchReleased();
+	void BeginCrouch();
+	void EndCrouch();
+	void SprintPressed();
+	void SprintReleased();
+	void SetMovement(EMovement newMovement);
+
+	UPROPERTY(EditAnywhere, Category = "Movement")
+		float staminaRegen = 2;
+
+	UPROPERTY(EditAnywhere, Category = "Movement")
+		float staminaDepletion = 3;
+
+
+	bool isSprintingKeyDown = false;
+	bool isCrouchingKeyDown = false;
+	TEnumAsByte <EMovement> movement = EMovement::Standing;
+	class UCapsuleComponent* capsuleColl;
+
+
+	UFUNCTION()
+		void ResolveMovement();
+
+
 
 #pragma endregion 
 
