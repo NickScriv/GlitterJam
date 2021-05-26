@@ -66,6 +66,8 @@ public:
 	UFUNCTION()
 	void TimelineProgressCrouch(float val);
 
+	void NotTest();
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
