@@ -6,7 +6,9 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "InteractionWidgetComponent.h"
 #include "Kismet/KismetSystemLibrary.h"
+#include "Kismet/GameplayStatics.h"
 #include "Components/CapsuleComponent.h"
+#include "GlitterGameModeBase.h"
 
 // Sets default values
 AMainCharacter::AMainCharacter()
@@ -95,6 +97,8 @@ void AMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 
 	PlayerInputComponent->BindAction("Sprint", IE_Pressed, this, &AMainCharacter::SprintPressed);
 	PlayerInputComponent->BindAction("Sprint", IE_Released, this, &AMainCharacter::SprintReleased);
+
+	PlayerInputComponent->BindAction("TestNot", IE_Pressed, this, &AMainCharacter::NotTest);
 
 }
 
@@ -250,6 +254,12 @@ void AMainCharacter::TimelineProgressCrouch(float val)
 	capsuleColl->SetCapsuleHalfHeight(height);
 
 	
+}
+
+void AMainCharacter::NotTest()
+{
+	AGlitterGameModeBase* gameMode = Cast<AGlitterGameModeBase>(UGameplayStatics::GetGameMode(this));
+	gameMode->AddNotification(FText::FromString("Notification!"));
 }
 
 void AMainCharacter::MoveForward(float val)
