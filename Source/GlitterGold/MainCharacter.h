@@ -114,12 +114,14 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Movement")
 		float crouchScale = 0.5f;
 
-
+	UPROPERTY(EditAnywhere)
+		float sphereCastRange = 125.f;
 	
 	float crouchCameraHeight;
 	float standCameraHeight;
 	float standCapsuleHeight;
 	float crouchCapsuleHeight;
+	bool stuckOnCrouch = false;
 
 	bool isCrouchHeld = false;
 

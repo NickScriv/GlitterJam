@@ -77,6 +77,20 @@ void AMainCharacter::Tick(float DeltaTime)
 		GetCharacterMovement()->MaxWalkSpeed = walkSpeed;
 	}
 
+	FVector top = GetActorLocation();
+	top.Z += capsuleColl->GetScaledCapsuleHalfHeight();
+	FVector endTrace = top + (GetActorUpVector() * sphereCastRange);
+	TArray<AActor*> actorsToIgnore;
+
+	actorsToIgnore.Add(this);
+	FHitResult hit;
+
+	if (stuckOnCrouch && movement == EMovement::Crouching && !UKismetSystemLibrary::SphereTraceSingle(this, top, endTrace, capsuleColl->GetScaledCapsuleRadius(), UEngineTypes::ConvertToTraceType(ECC_Visibility), false, actorsToIgnore, EDrawDebugTrace::None, hit, true))
+	{
+		stuckOnCrouch = false;
+		SetMovement(EMovement::Standing);
+	}
+
 }
 
 // Called to bind functionality to input
@@ -303,6 +317,19 @@ void AMainCharacter::CrouchReleased()
 
 	if (movement != EMovement::Crouching || GetCharacterMovement()->IsFalling())
 		return;
+
+	FVector top = GetActorLocation();
+	top.Z += capsuleColl->GetScaledCapsuleHalfHeight();
+	FVector endTrace = top + (GetActorUpVector() * sphereCastRange);
+	TArray<AActor*> actorsToIgnore;
+
+	actorsToIgnore.Add(this);
+	FHitResult hit;
+	if (UKismetSystemLibrary::SphereTraceSingle(this, top, endTrace, capsuleColl->GetScaledCapsuleRadius(), UEngineTypes::ConvertToTraceType(ECC_Visibility), false, actorsToIgnore, EDrawDebugTrace::None, hit, true))
+	{
+		stuckOnCrouch = true;
+		return;
+	}
 
 	SetMovement(EMovement::Standing);
 
