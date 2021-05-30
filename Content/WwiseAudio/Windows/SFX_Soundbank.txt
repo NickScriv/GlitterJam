@@ -1,0 +1,51 @@
+Event	ID	Name			Wwise Object Path	Notes
+	128625444	Door_Close			\Default Work Unit\SFX Events\Doors\Door_Close	
+	377921503	Stop_Run_Heavy			\Default Work Unit\SFX Events\Stamina\Stop_Run_Heavy	
+	535830432	Door_Open			\Default Work Unit\SFX Events\Doors\Door_Open	
+	1047608429	Start_Run			\Default Work Unit\SFX Events\Stamina\Start_Run	
+	2141040177	Stop_Run_Gentle			\Default Work Unit\SFX Events\Stamina\Stop_Run_Gentle	
+	3140010222	Stamina_Depleted			\Default Work Unit\SFX Events\Stamina\Stamina_Depleted	
+	3157003241	Test			\Default Work Unit\Test	
+
+Switch Group	ID	Name			Wwise Object Path	Notes
+	2384895876	Stamina_SwitchGroup			\Default Work Unit\SFX\Stamina_SwitchGroup	
+	3003400238	Footsteps_Movement_SwitchGroup			\Default Work Unit\SFX\Footsteps\Footsteps_Movement_SwitchGroup	
+	3591549221	Footsteps_Surface_Type			\Default Work Unit\SFX\Footsteps\Footsteps_Surface_Type	
+
+Switch	ID	Name	Switch Group			Notes
+	137101767	Low_Stamina	Stamina_SwitchGroup			
+	1086848559	Med_Stamina	Stamina_SwitchGroup			
+	2215259642	Depleted_Stamina	Stamina_SwitchGroup			
+	3010251139	High_Stamina	Stamina_SwitchGroup			
+	340271938	Walking	Footsteps_Movement_SwitchGroup			
+	499013305	Crouching	Footsteps_Movement_SwitchGroup			
+	3863236874	Running	Footsteps_Movement_SwitchGroup			
+	2058049674	Wood	Footsteps_Surface_Type			
+	2637588553	Tile	Footsteps_Surface_Type			
+
+Game Parameter	ID	Name			Wwise Object Path	Notes
+	1647820939	Stamina_Level			\Default Work Unit\Gameplay Parameters\Stamina_Level	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	57717829	Depleted Stamina	C:\Users\nicho\OneDrive\Documents\Horror Game Jam\Horror_GameJam\.cache\Windows\SFX\Depleted_Stamina_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Stamina\Depleted Stamina		1629268
+	178903615	High_Door_Open_1	C:\Users\nicho\OneDrive\Documents\Horror Game Jam\Horror_GameJam\.cache\Windows\SFX\High_Door_Open_1_EE57C8E1.wem		\Actor-Mixer Hierarchy\Default Work Unit\Doors\Door Close\High Door Close\High_Door_Open_1		529392
+	180724148	Med Stamina	C:\Users\nicho\OneDrive\Documents\Horror Game Jam\Horror_GameJam\.cache\Windows\SFX\Med_Stamina_Breathing_D79FB2B7.wem		\Actor-Mixer Hierarchy\Default Work Unit\Stamina\Heavy Breathing Switch\Med Stamina		1673692
+	204190487	Low_Door_Open_1	C:\Users\nicho\OneDrive\Documents\Horror Game Jam\Horror_GameJam\.cache\Windows\SFX\Low_Door_Open_1_9D1584DB.wem		\Actor-Mixer Hierarchy\Default Work Unit\Doors\Door Open\Low Door Open\Low_Door_Open_1		441192
+	483375584	Door_Close_2	C:\Users\nicho\OneDrive\Documents\Horror Game Jam\Horror_GameJam\.cache\Windows\SFX\Door_Close_2_B8454FB9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Doors\Door Close\Door Close\Door_Close_2		524480
+	520793624	High_Door_Open_3	C:\Users\nicho\OneDrive\Documents\Horror Game Jam\Horror_GameJam\.cache\Windows\SFX\High_Door_Open_3_F340491B.wem		\Actor-Mixer Hierarchy\Default Work Unit\Doors\Door Open\High Door Open\High_Door_Open_3		441192
+	572467715	High_Door_Open_1	C:\Users\nicho\OneDrive\Documents\Horror Game Jam\Horror_GameJam\.cache\Windows\SFX\High_Door_Open_1_6934C515.wem		\Actor-Mixer Hierarchy\Default Work Unit\Doors\Door Open\High Door Open\High_Door_Open_1		441192
+	585635104	High_Door_Open_2	C:\Users\nicho\OneDrive\Documents\Horror Game Jam\Horror_GameJam\.cache\Windows\SFX\High_Door_Open_2_6742F08F.wem		\Actor-Mixer Hierarchy\Default Work Unit\Doors\Door Close\High Door Close\High_Door_Open_2		529392
+	586082498	Low_Door_Open_3	C:\Users\nicho\OneDrive\Documents\Horror Game Jam\Horror_GameJam\.cache\Windows\SFX\Low_Door_Open_3_9D1584DB.wem		\Actor-Mixer Hierarchy\Default Work Unit\Doors\Door Open\Low Door Open\Low_Door_Open_3		441192
+	634015941	High_Door_Open_2	C:\Users\nicho\OneDrive\Documents\Horror Game Jam\Horror_GameJam\.cache\Windows\SFX\High_Door_Open_2_9D1584DB.wem		\Actor-Mixer Hierarchy\Default Work Unit\Doors\Door Open\High Door Open\High_Door_Open_2		441192
+	648660458	Low Stamina	C:\Users\nicho\OneDrive\Documents\Horror Game Jam\Horror_GameJam\.cache\Windows\SFX\Low_Stamina_Breathing_D79FB2B7.wem		\Actor-Mixer Hierarchy\Default Work Unit\Stamina\Heavy Breathing Switch\Low Stamina		1455492
+	711518939	Low_Door_Open_1	C:\Users\nicho\OneDrive\Documents\Horror Game Jam\Horror_GameJam\.cache\Windows\SFX\Low_Door_Open_1_6742F08F.wem		\Actor-Mixer Hierarchy\Default Work Unit\Doors\Door Close\Low Door Close\Low_Door_Open_1		529392
+	720861378	Low_Door_Open_2	C:\Users\nicho\OneDrive\Documents\Horror Game Jam\Horror_GameJam\.cache\Windows\SFX\Low_Door_Open_2_B43AA1EA.wem		\Actor-Mixer Hierarchy\Default Work Unit\Doors\Door Open\Low Door Open\Low_Door_Open_2		441192
+	733641677	Low_Door_Open_3	C:\Users\nicho\OneDrive\Documents\Horror Game Jam\Horror_GameJam\.cache\Windows\SFX\Low_Door_Open_3_6742F08F.wem		\Actor-Mixer Hierarchy\Default Work Unit\Doors\Door Close\Low Door Close\Low_Door_Open_3		529392
+	759301855	Stop Med Stamina	C:\Users\nicho\OneDrive\Documents\Horror Game Jam\Horror_GameJam\.cache\Windows\SFX\Stop_Med_Stamina_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Stamina\Run Stop Switch\Stop Med Stamina		1124692
+	858817638	Stop Low Stamina	C:\Users\nicho\OneDrive\Documents\Horror Game Jam\Horror_GameJam\.cache\Windows\SFX\Stop_Low_Stamina_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Stamina\Run Stop Switch\Stop Low Stamina		1110040
+	934296180	Low_Door_Open_2	C:\Users\nicho\OneDrive\Documents\Horror Game Jam\Horror_GameJam\.cache\Windows\SFX\Low_Door_Open_2_D5812706.wem		\Actor-Mixer Hierarchy\Default Work Unit\Doors\Door Close\Low Door Close\Low_Door_Open_2		529392
+	973861806	Door_Close_1	C:\Users\nicho\OneDrive\Documents\Horror Game Jam\Horror_GameJam\.cache\Windows\SFX\Door_Close_1_8A14D8D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\Doors\Door Close\Door Close\Door_Close_1		524480
+	1023230645	High_Door_Open_3	C:\Users\nicho\OneDrive\Documents\Horror Game Jam\Horror_GameJam\.cache\Windows\SFX\High_Door_Open_3_1ECCD5CF.wem		\Actor-Mixer Hierarchy\Default Work Unit\Doors\Door Close\High Door Close\High_Door_Open_3		529392
+	1032139791	High Stamina	C:\Users\nicho\OneDrive\Documents\Horror Game Jam\Horror_GameJam\.cache\Windows\SFX\High_Stamina_Breathing_D79FB2B7.wem		\Actor-Mixer Hierarchy\Default Work Unit\Stamina\Heavy Breathing Switch\High Stamina		1781648
+	1032380085	Stop High Stamina	C:\Users\nicho\OneDrive\Documents\Horror Game Jam\Horror_GameJam\.cache\Windows\SFX\Stop_High_Stamina_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Stamina\Run Stop Switch\Stop High Stamina		904196
+

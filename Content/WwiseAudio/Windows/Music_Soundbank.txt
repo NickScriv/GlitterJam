@@ -1,0 +1,40 @@
+Event	ID	Name			Wwise Object Path	Notes
+	1238538214	Play_Ambient_Music			\Default Work Unit\Music Events\Play_Ambient_Music	
+	3237721180	Play_Chase_Music			\Default Work Unit\Music Events\Play_Chase_Music	
+
+State Group	ID	Name			Wwise Object Path	Notes
+	3388762225	Music_Sections			\Default Work Unit\Music States\Music_Sections	
+
+State	ID	Name	State Group			Notes
+	77978275	Ambient	Music_Sections			
+	417490929	Chase	Music_Sections			
+	748895195	None	Music_Sections			
+
+Game Parameter	ID	Name			Wwise Object Path	Notes
+	1444042553	Danger_Warning			\Default Work Unit\Gameplay Parameters\Danger_Warning	
+	3056858324	Num_of_Keys			\Default Work Unit\Gameplay Parameters\Num_of_Keys	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	99083120	Ambient_lvl_4_bip	C:\Users\nicho\OneDrive\Documents\Horror Game Jam\Horror_GameJam\.cache\Windows\SFX\Ambient_lvl_5_bip_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music Switch\Ambient Music\Ambient Segment\Ambient_lvl_4_bip		4325520
+	106975492	Chase_GTR	C:\Users\nicho\OneDrive\Documents\Horror Game Jam\Horror_GameJam\.cache\Windows\SFX\Chase_GTR_2_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music Switch\Chase Music\Chase Segment\Chase_GTR		4003792
+	156816729	Chase_lvl_2	C:\Users\nicho\OneDrive\Documents\Horror Game Jam\Horror_GameJam\.cache\Windows\SFX\Chase_lvl_2_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music Switch\Chase Music\Chase Segment\Chase_lvl_2		3741648
+	190703147	Hits	C:\Users\nicho\OneDrive\Documents\Horror Game Jam\Horror_GameJam\.cache\Windows\SFX\Hit_1_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music Switch\Ambient Music\Ambient Segment\Hits		3014800
+	285995141	Chase_lvl_4	C:\Users\nicho\OneDrive\Documents\Horror Game Jam\Horror_GameJam\.cache\Windows\SFX\Chase_lvl_4_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music Switch\Chase Music\Chase Segment\Chase_lvl_4		3217360
+	302750057	Ambient_lvl_3_bip	C:\Users\nicho\OneDrive\Documents\Horror Game Jam\Horror_GameJam\.cache\Windows\SFX\Ambient_lvl_3_bip_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music Switch\Ambient Music\Ambient Segment\Ambient_lvl_3_bip		6160528
+	322751928	Ambient_lvl_1_bip	C:\Users\nicho\OneDrive\Documents\Horror Game Jam\Horror_GameJam\.cache\Windows\SFX\Ambient_lvl_1_bip_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music Switch\Ambient Music\Ambient Segment\Ambient_lvl_1_bip		6363136
+	344272922	Ambient_Texture	C:\Users\nicho\OneDrive\Documents\Horror Game Jam\Horror_GameJam\.cache\Windows\SFX\Ambient_Texture_1_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music Switch\Ambient Music\Ambient Segment\Ambient_Texture		6625280
+	459888732	Hits	C:\Users\nicho\OneDrive\Documents\Horror Game Jam\Horror_GameJam\.cache\Windows\SFX\Hit_2_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music Switch\Ambient Music\Ambient Segment\Hits		2430944
+	467909461	Chase_Riser_1	C:\Users\nicho\OneDrive\Documents\Horror Game Jam\Horror_GameJam\.cache\Windows\SFX\Chase_Riser_1_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music Switch\Stingers\Chase_Riser_1\Chase_Riser_1		2693120
+	470295403	Chase_GTR	C:\Users\nicho\OneDrive\Documents\Horror Game Jam\Horror_GameJam\.cache\Windows\SFX\Chase_GTR_1_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music Switch\Chase Music\Chase Segment\Chase_GTR		4003840
+	478063899	Ambient_Texture	C:\Users\nicho\OneDrive\Documents\Horror Game Jam\Horror_GameJam\.cache\Windows\SFX\Ambient_Texture_3_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music Switch\Ambient Music\Ambient Segment\Ambient_Texture		6363136
+	493548223	Ambient_Texture	C:\Users\nicho\OneDrive\Documents\Horror Game Jam\Horror_GameJam\.cache\Windows\SFX\Ambient_Texture_2_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music Switch\Ambient Music\Ambient Segment\Ambient_Texture		5838800
+	574944029	Chase_GTR	C:\Users\nicho\OneDrive\Documents\Horror Game Jam\Horror_GameJam\.cache\Windows\SFX\Chase_GTR_3_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music Switch\Chase Music\Chase Segment\Chase_GTR		4265936
+	598530453	Hit_1_bip	C:\Users\nicho\OneDrive\Documents\Horror Game Jam\Horror_GameJam\.cache\Windows\SFX\Hit_1_bip_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music Switch\Chase Music\Chase Segment\Hit_1_bip		3014800
+	720407512	Ambient_lvl_2_bip	C:\Users\nicho\OneDrive\Documents\Horror Game Jam\Horror_GameJam\.cache\Windows\SFX\Ambient_lvl_2_bip_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music Switch\Ambient Music\Ambient Segment\Ambient_lvl_2_bip		5898384
+	734978773	Danger_Noise	C:\Users\nicho\OneDrive\Documents\Horror Game Jam\Horror_GameJam\.cache\Windows\SFX\Danger_Noise_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music Switch\Ambient Music\Ambient Segment\Danger_Noise		2693072
+	747247419	Ambient_lvl_4_bip	C:\Users\nicho\OneDrive\Documents\Horror Game Jam\Horror_GameJam\.cache\Windows\SFX\Ambient_lvl_4_bip_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music Switch\Ambient Music\Ambient Segment\Ambient_lvl_4_bip		4325520
+	909171406	Chase_lvl_1	C:\Users\nicho\OneDrive\Documents\Horror Game Jam\Horror_GameJam\.cache\Windows\SFX\Chase_lvl_1_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music Switch\Chase Music\Chase Segment\Chase_lvl_1		1644496
+	939032011	Chase_lvl_3	C:\Users\nicho\OneDrive\Documents\Horror Game Jam\Horror_GameJam\.cache\Windows\SFX\Chase_lvl_3_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music Switch\Chase Music\Chase Segment\Chase_lvl_3		3217360
+	981694688	Safety_Stinger_1	C:\Users\nicho\OneDrive\Documents\Horror Game Jam\Horror_GameJam\.cache\Windows\SFX\Safety_Stinger_1_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music Switch\Stingers\Safety_Stinger_1\Safety_Stinger_1		2430928
+	1010404745	Ambient_Piano_bip	C:\Users\nicho\OneDrive\Documents\Horror Game Jam\Horror_GameJam\.cache\Windows\SFX\Ambient_Piano_bip_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music Switch\Ambient Music\Ambient Segment\Ambient_Piano_bip		3145872
+
