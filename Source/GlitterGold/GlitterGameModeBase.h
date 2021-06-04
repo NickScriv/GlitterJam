@@ -21,12 +21,19 @@ private:
 
 	class UHUDUserWidget* HUDWidget;
 
+	UPROPERTY(EditAnywhere)
+		TSubclassOf<class UKillScreenUserWidget> killScreenWidgetClass;
+
+	class UKillScreenUserWidget* KillScreenWidget;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 public:
 	void AddNotification(FText content);
+
+	void EndGame();
 
 	
 };

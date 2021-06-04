@@ -1,8 +1,0 @@
-Event	ID	Name			Wwise Object Path	Notes
-	128625444	door_close			\Default Work Unit\door_close	
-	1537061107	wind			\Default Work Unit\wind	
-
-In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	321884462	Wind_Loop	C:\Users\nicho\Downloads\Test\.cache\Windows\SFX\Wind_Loop_D79FB2B7.wem		\Actor-Mixer Hierarchy\Default Work Unit\Wind_Loop		2998864
-	1042342690	Door_Close_1	C:\Users\nicho\Downloads\Test\.cache\Windows\SFX\Door_Close_1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Door_Close_1		524480
-

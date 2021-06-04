@@ -36,8 +36,6 @@ private:
 
 	int32 openSoundID;
 
-	UPROPERTY()
-		UAudioComponent* audioComponent = nullptr;
 
 	UPROPERTY(EditAnywhere)
 		float doorSpeed = 0.8f;

@@ -61,12 +61,12 @@ void UDoorOpenClose::OpenDoor()
 {
 	if (open)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("WOWO"));
-		FAkAudioDevice::Get()->PostEvent("wind", this->GetOwner());
+		FAkAudioDevice::Get()->PostEvent("Door_Close", this->GetOwner());
 	}
 	else
 	{
-		FAkAudioDevice::Get()->PostEvent("wind", this->GetOwner());
+		
+		FAkAudioDevice::Get()->PostEvent("Door_Open", this->GetOwner());
 	}
 	open = !open;
 	FocusDoor(nullptr);

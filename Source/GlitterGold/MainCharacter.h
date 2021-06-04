@@ -63,10 +63,21 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Movement")
 	float stamina = 100.f;
 
+	UPROPERTY(EditAnywhere, Category = "Death")
+		float deathRotTime = 5.f;
+
+	UPROPERTY(EditAnywhere, Category = "Death")
+		float monsterOffsetLookAt = 100.f;
+
+	UPROPERTY(EditAnywhere, Category = "Death")
+		float monsterOffsetLookAtCrouch = 50.f;
+
 	UFUNCTION()
 	void TimelineProgressCrouch(float val);
 
 	void NotTest();
+
+	void Died(class AMonster* monster);
 
 protected:
 	// Called when the game starts or when spawned
@@ -98,6 +109,9 @@ protected:
 
 private:	
 
+	bool died = false;
+	FRotator rotateDeath;
+
 	UPROPERTY(EditDefaultsOnly)
 		class UCameraComponent* cameraComponent;
 
@@ -116,7 +130,38 @@ private:
 
 	UPROPERTY(EditAnywhere)
 		float sphereCastRange = 125.f;
-	
+
+	UPROPERTY(EditAnywhere)
+		float footStepTimeWalk = .5f;
+
+	UPROPERTY(EditAnywhere)
+		float footStepTimeSprint = .3f;
+
+	UPROPERTY(EditAnywhere)
+		float footStepTimeCrouch = .8f;
+
+	UPROPERTY(EditAnywhere)
+		float crouchLoudness = .4f;
+
+	UPROPERTY(EditAnywhere)
+		float walkLoudness = .8f;
+
+	UPROPERTY(EditAnywhere)
+		float sprintLoudness = 1.5f;
+
+	UPROPERTY(EditAnywhere)
+		class USoundBase* footSound;
+
+	FTimerHandle timerFootstep;
+	bool playFootStep = true;
+
+	UFUNCTION()
+	void PlayFootStep();
+
+	void ProcessFootStep();
+
+	bool IsSprinting();
+
 	float crouchCameraHeight;
 	float standCameraHeight;
 	float standCapsuleHeight;
