@@ -4,11 +4,13 @@
 
 #include "CoreMinimal.h"
 #include "Components/SceneComponent.h"
+#include "../Plugins/Wwise/Source/AkAudio/Classes/AkGameplayStatics.h"
+#include "../Plugins/Wwise/Source/AkAudio/Classes/AkComponent.h"
 #include "DoorOpenClose.generated.h"
 
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
-class GLITTERGOLD_API UDoorOpenClose : public USceneComponent
+class GLITTERGOLD_API UDoorOpenClose : public UAkComponent
 {
 	GENERATED_BODY()
 
@@ -32,8 +34,8 @@ private:
 	float initialYaw;
 	float currentYaw;
 
-	UPROPERTY()
-		UAudioComponent* audioComponent = nullptr;
+	int32 openSoundID;
+
 
 	UPROPERTY(EditAnywhere)
 		float doorSpeed = 0.8f;

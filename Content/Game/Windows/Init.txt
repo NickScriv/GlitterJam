@@ -1,0 +1,34 @@
+Switch Group	ID	Name			Wwise Object Path	Notes
+	4259316	Amb_lvl_4_Switch			\Default Work Unit\Music\Ambient\Amb_lvl_4_Switch	
+	1278489004	Downstairs_Stairwell_Upstairs_Switch			\Default Work Unit\Music\Ambient\Downstairs_Stairwell_Upstairs_Switch	
+	2384895876	Stamina_SwitchGroup			\Default Work Unit\SFX\Stamina_SwitchGroup	
+
+Switch	ID	Name	Switch Group			Notes
+	141331489	lvl2	Amb_lvl_4_Switch			
+	141331490	lvl1	Amb_lvl_4_Switch			
+	769052060	Upstairs	Downstairs_Stairwell_Upstairs_Switch			
+	1655400308	Stairwell	Downstairs_Stairwell_Upstairs_Switch			
+	4106209011	Downstairs	Downstairs_Stairwell_Upstairs_Switch			
+	137101767	Low_Stamina	Stamina_SwitchGroup			
+	1086848559	Med_Stamina	Stamina_SwitchGroup			
+	2215259642	Depleted_Stamina	Stamina_SwitchGroup			
+	3010251139	High_Stamina	Stamina_SwitchGroup			
+
+State Group	ID	Name			Wwise Object Path	Notes
+	3388762225	Music_Sections			\Default Work Unit\Music States\Music_Sections	
+
+State	ID	Name	State Group			Notes
+	77978275	Ambient	Music_Sections			
+	417490929	Chase	Music_Sections			
+	748895195	None	Music_Sections			
+	779278001	Death	Music_Sections			
+
+Audio Bus	ID	Name			Wwise Object Path	Notes
+	393239870	SFX			\Default Work Unit\Master Audio Bus\SFX	
+	3803692087	Master Audio Bus			\Default Work Unit\Master Audio Bus	
+	3991942870	Music			\Default Work Unit\Master Audio Bus\Music	
+
+Audio Devices	ID	Name	Type				Notes
+	2317455096	No_Output	No Output			
+	3859886410	System	System			
+

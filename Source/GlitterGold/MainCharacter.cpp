@@ -9,6 +9,9 @@
 #include "Kismet/GameplayStatics.h"
 #include "Components/CapsuleComponent.h"
 #include "GlitterGameModeBase.h"
+#include "Perception/AISense_Hearing.h"
+#include "Monster.h"
+#include "Kismet/KismetMathLibrary.h"
 
 // Sets default values
 AMainCharacter::AMainCharacter()
@@ -49,7 +52,6 @@ void AMainCharacter::BeginPlay()
 	}
 
 	GetCharacterMovement()->MaxWalkSpeed = walkSpeed;
-	GetCharacterMovement()->MaxWalkSpeedCrouched = crouchSpeed;
 	
 }
 
@@ -59,7 +61,16 @@ void AMainCharacter::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 	PerformCheck();
+
+	
 	crouchCurveTimeline.TickTimeline(DeltaTime);
+
+	if (died)
+	{
+		FRotator res = FMath::RInterpTo(cameraComponent->GetComponentRotation(), rotateDeath, DeltaTime, deathRotTime);
+
+		cameraComponent->SetWorldRotation(res);
+	}
 
 	if (movement == EMovement::Standing && isSprintingKeyDown && GetVelocity().Size() > 0.5f && !GetCharacterMovement()->IsFalling())
 	{
@@ -75,6 +86,8 @@ void AMainCharacter::Tick(float DeltaTime)
 	if (stamina < 1.f && movement == EMovement::Standing)
 	{
 		GetCharacterMovement()->MaxWalkSpeed = walkSpeed;
+		GetWorldTimerManager().SetTimer(timerFootstep, this, &AMainCharacter::PlayFootStep, footStepTimeWalk, true);
+
 	}
 
 	FVector top = GetActorLocation();
@@ -90,6 +103,8 @@ void AMainCharacter::Tick(float DeltaTime)
 		stuckOnCrouch = false;
 		SetMovement(EMovement::Standing);
 	}
+
+	ProcessFootStep();
 
 }
 
@@ -112,7 +127,7 @@ void AMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	PlayerInputComponent->BindAction("Sprint", IE_Pressed, this, &AMainCharacter::SprintPressed);
 	PlayerInputComponent->BindAction("Sprint", IE_Released, this, &AMainCharacter::SprintReleased);
 
-	PlayerInputComponent->BindAction("TestNot", IE_Pressed, this, &AMainCharacter::NotTest);
+	//PlayerInputComponent->BindAction("TestNot", IE_Pressed, this, &AMainCharacter::NotTest);
 
 }
 
@@ -266,24 +281,101 @@ void AMainCharacter::TimelineProgressCrouch(float val)
 
 	float height = FMath::Lerp(standCapsuleHeight, crouchCapsuleHeight, val);
 	capsuleColl->SetCapsuleHalfHeight(height);
-
-	
 }
 
 void AMainCharacter::NotTest()
 {
 	AGlitterGameModeBase* gameMode = Cast<AGlitterGameModeBase>(UGameplayStatics::GetGameMode(this));
-	gameMode->AddNotification(FText::FromString("Notification!"));
+
+	if(gameMode)
+		gameMode->AddNotification(FText::FromString("Notification!"));
+}
+
+void AMainCharacter::Died(AMonster* monster)
+{
+	if ((movement == EMovement::Crouching))
+	{
+		monsterOffsetLookAt = 0;
+	}
+	
+	SetMovement(EMovement::Standing);
+	DisableInput(UGameplayStatics::GetPlayerController(this, 0));
+	FVector monsterLookAt = monster->GetActorLocation();
+	monsterLookAt = FVector(monsterLookAt.X, monsterLookAt.Y , monsterLookAt.Z + monsterOffsetLookAt);
+	rotateDeath = UKismetMathLibrary::FindLookAtRotation(cameraComponent->GetComponentLocation(), monsterLookAt);
+	cameraComponent->bUsePawnControlRotation = false;
+	GetCharacterMovement()->DisableMovement();
+	died = true;
+	
+}
+
+void AMainCharacter::PlayFootStep()
+{
+	UGameplayStatics::PlaySoundAtLocation(this, footSound, GetActorLocation());
+
+	if (EMovement::Crouching == movement)
+	{
+		UAISense_Hearing::ReportNoiseEvent(this, GetActorLocation(), crouchLoudness, this, 0, FName("Noise"));
+	}
+	else if(IsSprinting())
+	{
+		UAISense_Hearing::ReportNoiseEvent(this, GetActorLocation(), sprintLoudness, this, 0, FName("Noise"));
+	}
+	else
+	{
+		UAISense_Hearing::ReportNoiseEvent(this, GetActorLocation(), walkLoudness, this, 0, FName("Noise"));
+	}
+}
+
+void AMainCharacter::ProcessFootStep()
+{
+	FVector vel = GetVelocity();
+
+	if ((vel.X > 2.f || vel.X < -2.f || vel.Y > 2.f || vel.Y < -2.f))
+	{
+		if (playFootStep)
+		{
+			float footTime;
+
+			if (movement == EMovement::Crouching)
+			{
+				footTime = footStepTimeCrouch;
+			}
+			else if (IsSprinting())
+			{
+				footTime = footStepTimeSprint;
+			}
+			else
+			{
+				footTime = footStepTimeWalk;
+			}
+			GetWorldTimerManager().SetTimer(timerFootstep, this, &AMainCharacter::PlayFootStep, footTime, true);
+			playFootStep = false;
+		}
+
+	}
+	else
+	{
+		GetWorldTimerManager().ClearTimer(timerFootstep);
+		playFootStep = true;
+	}
+}
+
+bool AMainCharacter::IsSprinting()
+{
+	return stamina > 1 && isSprintingKeyDown;
 }
 
 void AMainCharacter::MoveForward(float val)
 {
 	AddMovementInput(GetActorForwardVector(), val);
+	ProcessFootStep();
 }
 
 void AMainCharacter::MoveRight(float val)
 {
 	AddMovementInput(GetActorRightVector(), val);
+	ProcessFootStep();
 }
 
 void AMainCharacter::Turn(float val)
@@ -344,6 +436,7 @@ void AMainCharacter::SprintPressed()
 		return;
 
 	GetCharacterMovement()->MaxWalkSpeed = sprintSpeed;
+	GetWorldTimerManager().SetTimer(timerFootstep, this, &AMainCharacter::PlayFootStep, footStepTimeSprint, true);
 }
 
 void AMainCharacter::SprintReleased()
@@ -354,6 +447,7 @@ void AMainCharacter::SprintReleased()
 		return;
 
 	GetCharacterMovement()->MaxWalkSpeed = walkSpeed;
+	GetWorldTimerManager().SetTimer(timerFootstep, this, &AMainCharacter::PlayFootStep, footStepTimeWalk, true);
 }
 
 void AMainCharacter::BeginCrouch()
@@ -362,6 +456,7 @@ void AMainCharacter::BeginCrouch()
 
 	crouchCurveTimeline.Play();
 	GetCharacterMovement()->MaxWalkSpeed = crouchSpeed;
+	GetWorldTimerManager().SetTimer(timerFootstep, this, &AMainCharacter::PlayFootStep, footStepTimeCrouch, true);
 	
 }
 
@@ -375,10 +470,12 @@ void AMainCharacter::EndCrouch()
 	if (isSprintingKeyDown && stamina > 10.f)
 	{
 		GetCharacterMovement()->MaxWalkSpeed = sprintSpeed;
+		GetWorldTimerManager().SetTimer(timerFootstep, this, &AMainCharacter::PlayFootStep, footStepTimeSprint, true);
 	}
 	else
 	{
 		GetCharacterMovement()->MaxWalkSpeed = walkSpeed;
+		GetWorldTimerManager().SetTimer(timerFootstep, this, &AMainCharacter::PlayFootStep, footStepTimeWalk, true);
 	}
 }
 

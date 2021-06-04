@@ -21,6 +21,7 @@ void UDoorOpenClose::BeginPlay()
 	Super::BeginPlay();
 
 	
+	
 	if ((interaction = Cast<UInteractionWidgetComponent>(GetOwner()->GetComponentByClass(UInteractionWidgetComponent::StaticClass()))) == nullptr)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Interaction is null!!!"));
@@ -58,6 +59,15 @@ void UDoorOpenClose::TickComponent(float DeltaTime, ELevelTick TickType, FActorC
 
 void UDoorOpenClose::OpenDoor()
 {
+	if (open)
+	{
+		FAkAudioDevice::Get()->PostEvent("Door_Close", this->GetOwner());
+	}
+	else
+	{
+		
+		FAkAudioDevice::Get()->PostEvent("Door_Open", this->GetOwner());
+	}
 	open = !open;
 	FocusDoor(nullptr);
 	
