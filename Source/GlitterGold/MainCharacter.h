@@ -150,6 +150,9 @@ private:
 		float sprintLoudness = 1.5f;
 
 	UPROPERTY(EditAnywhere)
+		float heavyBreathThreshold = 40.f;
+
+	UPROPERTY(EditAnywhere)
 		class USoundBase* footSound;
 
 	FTimerHandle timerFootstep;
@@ -172,6 +175,18 @@ private:
 
 	bool isCrouching = false;
 
+
+	bool canSprint = true;
+
+	int32 heavySprintEvent = -1;
+	int32 gentleSprintEvent = -1;
+	int32 depletedSprintEvent = -1;
+	int32 startSprintEvent = -1;
+	
+	FTimerDelegate sprintKeyDelayCallback;
+	FTimerHandle sprintKeyDelay;
+	FTimerHandle timerStamina;
+
 	FTimeline crouchCurveTimeline;
 
 	UPROPERTY(EditAnywhere, Category = "Timeline")
@@ -188,6 +203,9 @@ private:
 	void SprintPressed();
 	void SprintReleased();
 	void SetMovement(EMovement newMovement);
+	void RegainStamina();
+	float CalculateRestTime(float oldMin, float oldMax, float newMin, float newMax);
+
 
 	UPROPERTY(EditAnywhere, Category = "Movement")
 		float staminaRegen = 2;
@@ -198,12 +216,15 @@ private:
 
 	bool isSprintingKeyDown = false;
 	bool isCrouchingKeyDown = false;
+	bool canPressSprint = true;
 	TEnumAsByte <EMovement> movement = EMovement::Standing;
 	class UCapsuleComponent* capsuleColl;
 
 
 	UFUNCTION()
 		void ResolveMovement();
+
+	bool AreStaminaEventsPlaying();
 
 
 

@@ -4,13 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "Components/SceneComponent.h"
-#include "../Plugins/Wwise/Source/AkAudio/Classes/AkGameplayStatics.h"
-#include "../Plugins/Wwise/Source/AkAudio/Classes/AkComponent.h"
 #include "DoorOpenClose.generated.h"
 
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
-class GLITTERGOLD_API UDoorOpenClose : public UAkComponent
+class GLITTERGOLD_API UDoorOpenClose : public USceneComponent
 {
 	GENERATED_BODY()
 

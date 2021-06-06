@@ -1,0 +1,380 @@
+C:\Unreal Projects\Glitter\Plugins\Wwise\Intermediate\Build\Win64\UE4Editor\Development\AkAudio\Definitions.AkAudio.h
+C:/Unreal Projects/Glitter/Plugins/Wwise/Intermediate/Build/Win64/UE4Editor/Inc/AkAudio/AkAcousticPortal.gen.cpp
+D:\Unreal\UE_4.26\Engine\Source\Runtime\CoreUObject\Public\UObject/GeneratedCppIncludes.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\CoreUObject\Public\UObject/MetaData.h
+C:\Unreal Projects\Glitter\Plugins\Wwise\Source\AkAudio/Classes/AkAcousticPortal.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\Engine\Classes\GameFramework/Volume.h
+D:\Unreal\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\Volume.generated.h
+c:\unreal projects\glitter\plugins\wwise\source\akaudio\classes\OcclusionObstructionService/AkPortalOcclusionObstructionService.h
+C:\Unreal Projects\Glitter\Plugins\Wwise\Source\AkAudio\Public\AkInclude.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\Core\Public\Windows/AllowWindowsPlatformTypes.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\Core\Public\Windows/WindowsHWrapper.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\Core\Public\Windows/PreWindowsApi.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\Core\Public\Windows/MinWindows.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\Windows.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\sdkddkver.h
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023\INCLUDE\excpt.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\windef.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\minwindef.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnt.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\kernelspecs.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\basetsd.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\guiddef.h
+c:\program files (x86)\windows kits\10\include\10.0.16299.0\shared\pshpack4.h
+c:\program files (x86)\windows kits\10\include\10.0.16299.0\shared\poppack.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\pshpack4.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\poppack.h
+c:\program files (x86)\windows kits\10\include\10.0.16299.0\shared\pshpack4.h
+c:\program files (x86)\windows kits\10\include\10.0.16299.0\shared\pshpack2.h
+c:\program files (x86)\windows kits\10\include\10.0.16299.0\shared\poppack.h
+c:\program files (x86)\windows kits\10\include\10.0.16299.0\shared\pshpack2.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\pshpack2.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\poppack.h
+c:\program files (x86)\windows kits\10\include\10.0.16299.0\shared\poppack.h
+c:\program files (x86)\windows kits\10\include\10.0.16299.0\shared\pshpack8.h
+c:\program files (x86)\windows kits\10\include\10.0.16299.0\shared\poppack.h
+c:\program files (x86)\windows kits\10\include\10.0.16299.0\shared\pshpack1.h
+c:\program files (x86)\windows kits\10\include\10.0.16299.0\shared\poppack.h
+c:\program files (x86)\windows kits\10\include\10.0.16299.0\shared\pshpack1.h
+c:\program files (x86)\windows kits\10\include\10.0.16299.0\shared\poppack.h
+c:\program files (x86)\windows kits\10\include\10.0.16299.0\shared\poppack.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\apiset.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\ktmtypes.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winbase.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\apisetcconv.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\minwinbase.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\processenv.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\fileapi.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\debugapi.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\utilapiset.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\handleapi.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\errhandlingapi.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\fibersapi.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\namedpipeapi.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\profileapi.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\heapapi.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\ioapiset.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\synchapi.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\interlockedapi.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\processthreadsapi.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\sysinfoapi.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\memoryapi.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\enclaveapi.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\threadpoollegacyapiset.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\threadpoolapiset.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\jobapi.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\jobapi2.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\wow64apiset.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\libloaderapi.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\securitybaseapi.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\namespaceapi.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\systemtopologyapi.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\processtopologyapi.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\securityappcontainer.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\realtimeapiset.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\winerror.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\timezoneapi.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\wingdi.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\pshpack1.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\poppack.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\pshpack2.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\poppack.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\pshpack4.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\poppack.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\pshpack4.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\poppack.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winuser.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\pshpack2.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\poppack.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\tvout.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnls.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\datetimeapi.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\stringapiset.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnls.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\wincon.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\consoleapi.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winver.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\verrsrc.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winreg.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\reason.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\winnetwk.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\wnnc.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared\stralign.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\imm.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um\ime_cmodes.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\Core\Public\Windows/PostWindowsApi.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\Core\Public\Windows/AllowWindowsPlatformAtomics.h
+c:\unreal projects\glitter\plugins\wwise\source\akaudio\classes\AkUEFeatures.h
+C:\Unreal Projects\Glitter\Plugins\Wwise\ThirdParty\include\AK/AkWwiseSDKVersion.h
+C:\Unreal Projects\Glitter\Plugins\Wwise\ThirdParty\include\AK/SoundEngine/Common/AkSoundEngine.h
+C:\Unreal Projects\Glitter\Plugins\Wwise\ThirdParty\include\AK/SoundEngine/Common/AkSoundEngineExport.h
+C:\Unreal Projects\Glitter\Plugins\Wwise\ThirdParty\include\AK/AkPlatforms.h
+C:\Unreal Projects\Glitter\Plugins\Wwise\ThirdParty\include\AK/SoundEngine/Platforms/Windows/AkTypes.h
+C:\Unreal Projects\Glitter\Plugins\Wwise\ThirdParty\include\AK/SoundEngine/Common/AkTypes.h
+C:\Unreal Projects\Glitter\Plugins\Wwise\ThirdParty\include\AK/SoundEngine/Common/IAkPlugin.h
+C:\Unreal Projects\Glitter\Plugins\Wwise\ThirdParty\include\AK/SoundEngine/Common/AkCommonDefs.h
+C:\Unreal Projects\Glitter\Plugins\Wwise\ThirdParty\include\AK/SoundEngine/Common/AkSpeakerConfig.h
+C:\Unreal Projects\Glitter\Plugins\Wwise\ThirdParty\include\AK/SoundEngine/Common/AkSpeakerVolumes.h
+C:\Unreal Projects\Glitter\Plugins\Wwise\ThirdParty\include\AK/SoundEngine/Platforms/Generic/AkSpeakerVolumes.h
+C:\Unreal Projects\Glitter\Plugins\Wwise\ThirdParty\include\AK/Tools/Common/AkPlatformFuncs.h
+C:\Unreal Projects\Glitter\Plugins\Wwise\ThirdParty\include\AK/SoundEngine/Common/AkAtomic.h
+C:\Unreal Projects\Glitter\Plugins\Wwise\ThirdParty\include\AK/SoundEngine/Platforms/Windows/AkAtomic.h
+C:\Unreal Projects\Glitter\Plugins\Wwise\ThirdParty\include\AK/Tools/Win32/AkPlatformFuncs.h
+C:\Unreal Projects\Glitter\Plugins\Wwise\ThirdParty\include\AK/Tools/Common/AkAssert.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\ucrt\math.h
+C:\Unreal Projects\Glitter\Plugins\Wwise\ThirdParty\include\AK/SoundEngine/Common/IAkPluginMemAlloc.h
+C:\Unreal Projects\Glitter\Plugins\Wwise\ThirdParty\include\AK/SoundEngine/Common/AkMemoryMgr.h
+C:\Unreal Projects\Glitter\Plugins\Wwise\ThirdParty\include\AK/Tools/Common/AkArray.h
+C:\Unreal Projects\Glitter\Plugins\Wwise\ThirdParty\include\AK/Tools/Common/AkObject.h
+C:\Unreal Projects\Glitter\Plugins\Wwise\ThirdParty\include\AK/Tools/Common/AkString.h
+C:\Unreal Projects\Glitter\Plugins\Wwise\ThirdParty\include\AK/Tools/Common/AkFNVHash.h
+C:\Unreal Projects\Glitter\Plugins\Wwise\ThirdParty\include\AK/Tools/Common/AkHashList.h
+C:\Unreal Projects\Glitter\Plugins\Wwise\ThirdParty\include\AK/Tools/Common/AkKeyDef.h
+C:\Unreal Projects\Glitter\Plugins\Wwise\ThirdParty\include\AK/SoundEngine/Common/IAkRTPCSubscriber.h
+C:\Unreal Projects\Glitter\Plugins\Wwise\ThirdParty\include\AK/SoundEngine/Common/AkFPUtilities.h
+C:\Unreal Projects\Glitter\Plugins\Wwise\ThirdParty\include\AK/Tools/Common/AkLock.h
+C:\Unreal Projects\Glitter\Plugins\Wwise\ThirdParty\include\AK/Tools/Win32/AkLock.h
+C:\Unreal Projects\Glitter\Plugins\Wwise\ThirdParty\include\AK/Tools/Common/AkMonitorError.h
+C:\Unreal Projects\Glitter\Plugins\Wwise\ThirdParty\include\AK/SoundEngine/Common/IAkProcessorFeatures.h
+C:\Unreal Projects\Glitter\Plugins\Wwise\ThirdParty\include\AK/SoundEngine/Common/IAkPlatformContext.h
+C:\Unreal Projects\Glitter\Plugins\Wwise\ThirdParty\include\AK/SoundEngine/Common/AkMidiTypes.h
+C:\Unreal Projects\Glitter\Plugins\Wwise\ThirdParty\include\AK/SoundEngine/Common/AkCallback.h
+C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\ucrt\math.h
+C:\Unreal Projects\Glitter\Plugins\Wwise\ThirdParty\include\AK/SoundEngine/Platforms/Windows/AkWinSoundEngine.h
+C:\Unreal Projects\Glitter\Plugins\Wwise\ThirdParty\include\AK/SoundEngine/Platforms/Windows/AkPlatformContext.h
+C:\Unreal Projects\Glitter\Plugins\Wwise\ThirdParty\include\AK/SpatialAudio/Common/AkSpatialAudio.h
+C:\Unreal Projects\Glitter\Plugins\Wwise\ThirdParty\include\AK/SpatialAudio/Common/AkSpatialAudioTypes.h
+C:\Unreal Projects\Glitter\Plugins\Wwise\ThirdParty\include\AK/Tools/Common/AkKeyArray.h
+C:\Unreal Projects\Glitter\Plugins\Wwise\ThirdParty\include\AK/Tools/Common/AkSet.h
+C:\Unreal Projects\Glitter\Plugins\Wwise\ThirdParty\include\AK/Plugin/AkReflectGameData.h
+C:\Unreal Projects\Glitter\Plugins\Wwise\ThirdParty\include\AK/IBytes.h
+C:\Unreal Projects\Glitter\Plugins\Wwise\ThirdParty\include\AK/SoundEngine/Common/AkModule.h
+C:\Unreal Projects\Glitter\Plugins\Wwise\ThirdParty\include\AK/SoundEngine/Common/IAkStreamMgr.h
+C:\Unreal Projects\Glitter\Plugins\Wwise\ThirdParty\include\AK/SoundEngine/Common/AkStreamMgrModule.h
+C:\Unreal Projects\Glitter\Plugins\Wwise\ThirdParty\include\AK/MusicEngine/Common/AkMusicEngine.h
+C:\Unreal Projects\Glitter\Plugins\Wwise\ThirdParty\include\AK/Comm/AkCommunication.h
+C:\Unreal Projects\Glitter\Plugins\Wwise\ThirdParty\include\AK/SoundEngine/Common/AkQueryParameters.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\Core\Public\Windows/HideWindowsPlatformTypes.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\Core\Public\Windows/HideWindowsPlatformAtomics.h
+C:\Unreal Projects\Glitter\Plugins\Wwise\Source\AkAudio\Public\AkAudioDevice.h
+c:\unreal projects\glitter\plugins\wwise\source\akaudio\classes\AkBankManager.h
+c:\unreal projects\glitter\plugins\wwise\source\akaudio\classes\AkGameplayTypes.h
+c:\unreal projects\glitter\plugins\wwise\source\akaudio\classes\Platforms/AkUEPlatform.h
+c:\unreal projects\glitter\plugins\wwise\source\akaudio\classes\platforms\AkPlatform_Windows/AkWindowsPlatform.h
+c:\unreal projects\glitter\plugins\wwise\source\akaudio\classes\Platforms/AkPlatformBase.h
+c:\unreal projects\glitter\plugins\wwise\source\akaudio\classes\platforms\akplatform_windows\AkWindowsInitializationSettings.h
+c:\unreal projects\glitter\plugins\wwise\source\akaudio\classes\InitializationSettings/AkInitializationSettings.h
+c:\unreal projects\glitter\plugins\wwise\intermediate\build\win64\ue4editor\inc\akaudio\AkInitializationSettings.generated.h
+c:\unreal projects\glitter\plugins\wwise\intermediate\build\win64\ue4editor\inc\akaudio\AkWindowsInitializationSettings.generated.h
+c:\unreal projects\glitter\plugins\wwise\intermediate\build\win64\ue4editor\inc\akaudio\AkGameplayTypes.generated.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\CoreUObject/Public/UObject/StrongObjectPtr.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\Engine\Classes\Engine/StreamableManager.h
+c:\unreal projects\glitter\plugins\wwise\source\akaudio\classes\AkEnvironmentIndex.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\Core\Public\Math/GenericOctree.h
+d:\unreal\ue_4.26\engine\source\runtime\core\public\math\GenericOctreePublic.h
+d:\unreal\ue_4.26\engine\source\runtime\core\public\math\GenericOctree.inl
+c:\unreal projects\glitter\plugins\wwise\source\akaudio\classes\OcclusionObstructionService/AkOcclusionObstructionService.h
+c:\unreal projects\glitter\plugins\wwise\intermediate\build\win64\ue4editor\inc\akaudio\AkAcousticPortal.generated.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\CoreUObject\Public\Serialization/ArchiveUObjectFromStructuredArchive.h
+C:/Unreal Projects/Glitter/Plugins/Wwise/Intermediate/Build/Win64/UE4Editor/Inc/AkAudio/AkAcousticTexture.gen.cpp
+C:\Unreal Projects\Glitter\Plugins\Wwise\Source\AkAudio/Classes/AkAcousticTexture.h
+c:\unreal projects\glitter\plugins\wwise\source\akaudio\classes\AkAudioType.h
+c:\unreal projects\glitter\plugins\wwise\intermediate\build\win64\ue4editor\inc\akaudio\AkAudioType.generated.h
+c:\unreal projects\glitter\plugins\wwise\intermediate\build\win64\ue4editor\inc\akaudio\AkAcousticTexture.generated.h
+C:/Unreal Projects/Glitter/Plugins/Wwise/Intermediate/Build/Win64/UE4Editor/Inc/AkAudio/AkAcousticTextureSetComponent.gen.cpp
+C:\Unreal Projects\Glitter\Plugins\Wwise\Source\AkAudio/Classes/AkAcousticTextureSetComponent.h
+c:\unreal projects\glitter\plugins\wwise\source\akaudio\classes\AkSettings.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\AssetRegistry\Public\AssetRegistryModule.h
+d:\unreal\ue_4.26\engine\source\runtime\assetregistry\public\AssetRegistry/AssetRegistryModule.h
+d:\unreal\ue_4.26\engine\source\runtime\assetregistry\public\AssetRegistry/IAssetRegistry.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\CoreUObject\Public\Misc/AssetRegistryInterface.h
+D:\Unreal\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\AssetRegistry\IAssetRegistry.generated.h
+c:\unreal projects\glitter\plugins\wwise\source\akaudio\classes\AkRtpc.h
+c:\unreal projects\glitter\plugins\wwise\intermediate\build\win64\ue4editor\inc\akaudio\AkRtpc.generated.h
+c:\unreal projects\glitter\plugins\wwise\intermediate\build\win64\ue4editor\inc\akaudio\AkSettings.generated.h
+c:\unreal projects\glitter\plugins\wwise\intermediate\build\win64\ue4editor\inc\akaudio\AkAcousticTextureSetComponent.generated.h
+C:/Unreal Projects/Glitter/Plugins/Wwise/Intermediate/Build/Win64/UE4Editor/Inc/AkAudio/AkAmbientSound.gen.cpp
+C:\Unreal Projects\Glitter\Plugins\Wwise\Source\AkAudio/Classes/AkAmbientSound.h
+c:\unreal projects\glitter\plugins\wwise\intermediate\build\win64\ue4editor\inc\akaudio\AkAmbientSound.generated.h
+C:/Unreal Projects/Glitter/Plugins/Wwise/Intermediate/Build/Win64/UE4Editor/Inc/AkAudio/AkAndroidInitializationSettings.gen.cpp
+C:\Unreal Projects\Glitter\Plugins\Wwise\Source\AkAudio/Classes/Platforms/AkPlatform_Android/AkAndroidInitializationSettings.h
+c:\unreal projects\glitter\plugins\wwise\intermediate\build\win64\ue4editor\inc\akaudio\AkAndroidInitializationSettings.generated.h
+C:/Unreal Projects/Glitter/Plugins/Wwise/Intermediate/Build/Win64/UE4Editor/Inc/AkAudio/AkAndroidPlatformInfo.gen.cpp
+C:\Unreal Projects\Glitter\Plugins\Wwise\Source\AkAudio/Classes/Platforms/AkPlatform_Android/AkAndroidPlatformInfo.h
+C:\Unreal Projects\Glitter\Plugins\Wwise\Source\AkAudio\Classes\Platforms/AkPlatformInfo.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\Engine\Classes\Engine/GameEngine.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\Slate\Public\Widgets/SViewport.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime/MovieSceneCapture/Public/MovieSceneCaptureHandle.h
+D:\Unreal\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\GameEngine.generated.h
+c:\unreal projects\glitter\plugins\wwise\intermediate\build\win64\ue4editor\inc\akaudio\AkPlatformInfo.generated.h
+c:\unreal projects\glitter\plugins\wwise\intermediate\build\win64\ue4editor\inc\akaudio\AkAndroidPlatformInfo.generated.h
+C:/Unreal Projects/Glitter/Plugins/Wwise/Intermediate/Build/Win64/UE4Editor/Inc/AkAudio/AkAssetBase.gen.cpp
+C:\Unreal Projects\Glitter\Plugins\Wwise\Source\AkAudio/Classes/AkAssetBase.h
+c:\unreal projects\glitter\plugins\wwise\intermediate\build\win64\ue4editor\inc\akaudio\AkAssetBase.generated.h
+C:/Unreal Projects/Glitter/Plugins/Wwise/Intermediate/Build/Win64/UE4Editor/Inc/AkAudio/AkAudio.init.gen.cpp
+C:/Unreal Projects/Glitter/Plugins/Wwise/Intermediate/Build/Win64/UE4Editor/Inc/AkAudio/AkAudioBank.gen.cpp
+C:\Unreal Projects\Glitter\Plugins\Wwise\Source\AkAudio/Classes/AkAudioBank.h
+c:\unreal projects\glitter\plugins\wwise\intermediate\build\win64\ue4editor\inc\akaudio\AkAudioBank.generated.h
+C:/Unreal Projects/Glitter/Plugins/Wwise/Intermediate/Build/Win64/UE4Editor/Inc/AkAudio/AkAudioEvent.gen.cpp
+C:\Unreal Projects\Glitter\Plugins\Wwise\Source\AkAudio/Classes/AkAudioEvent.h
+c:\unreal projects\glitter\plugins\wwise\intermediate\build\win64\ue4editor\inc\akaudio\AkAudioEvent.generated.h
+C:/Unreal Projects/Glitter/Plugins/Wwise/Intermediate/Build/Win64/UE4Editor/Inc/AkAudio/AkAudioInputComponent.gen.cpp
+C:\Unreal Projects\Glitter\Plugins\Wwise\Source\AkAudio/Classes/AkAudioInputComponent.h
+c:\unreal projects\glitter\plugins\wwise\source\akaudio\classes\AkComponent.h
+c:\unreal projects\glitter\plugins\wwise\source\akaudio\classes\OcclusionObstructionService/AkComponentOcclusionObstructionService.h
+c:\unreal projects\glitter\plugins\wwise\source\akaudio\classes\AkGameObject.h
+c:\unreal projects\glitter\plugins\wwise\intermediate\build\win64\ue4editor\inc\akaudio\AkGameObject.generated.h
+c:\unreal projects\glitter\plugins\wwise\intermediate\build\win64\ue4editor\inc\akaudio\AkComponent.generated.h
+c:\unreal projects\glitter\plugins\wwise\intermediate\build\win64\ue4editor\inc\akaudio\AkAudioInputComponent.generated.h
+C:/Unreal Projects/Glitter/Plugins/Wwise/Intermediate/Build/Win64/UE4Editor/Inc/AkAudio/AkAudioSession.gen.cpp
+C:\Unreal Projects\Glitter\Plugins\Wwise\Source\AkAudio/Classes/InitializationSettings/AkAudioSession.h
+c:\unreal projects\glitter\plugins\wwise\intermediate\build\win64\ue4editor\inc\akaudio\AkAudioSession.generated.h
+C:/Unreal Projects/Glitter/Plugins/Wwise/Intermediate/Build/Win64/UE4Editor/Inc/AkAudio/AkAudioType.gen.cpp
+C:/Unreal Projects/Glitter/Plugins/Wwise/Intermediate/Build/Win64/UE4Editor/Inc/AkAudio/AkAuxBus.gen.cpp
+C:\Unreal Projects\Glitter\Plugins\Wwise\Source\AkAudio/Classes/AkAuxBus.h
+c:\unreal projects\glitter\plugins\wwise\intermediate\build\win64\ue4editor\inc\akaudio\AkAuxBus.generated.h
+C:/Unreal Projects/Glitter/Plugins/Wwise/Intermediate/Build/Win64/UE4Editor/Inc/AkAudio/AkCheckBox.gen.cpp
+C:\Unreal Projects\Glitter\Plugins\Wwise\Source\AkAudio/Classes/AkWaapiUMG/Components/AkCheckBox.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\UMG\Public\Components/ContentWidget.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\UMG\Public\Components/PanelWidget.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\UMG\Public\Components/PanelSlot.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\UMG\Public\Components/Visual.h
+D:\Unreal\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\UMG\Visual.generated.h
+D:\Unreal\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\UMG\PanelSlot.generated.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\UMG\Public\Components/Widget.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\UMG\Public\Components/SlateWrapperTypes.h
+D:\Unreal\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\UMG\SlateWrapperTypes.generated.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\UMG\Public\Slate/WidgetTransform.h
+D:\Unreal\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\UMG\WidgetTransform.generated.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\Engine\Classes\GameFramework/PlayerController.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\Engine\Classes\GameFramework/OnlineReplStructs.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\CoreUObject\Public\UObject/CoreOnline.h
+D:\Unreal\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\OnlineReplStructs.generated.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\Engine\Classes\GameFramework/PlayerMuteList.h
+D:\Unreal\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\PlayerMuteList.generated.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\Engine\Classes\Camera/PlayerCameraManager.h
+D:\Unreal\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\PlayerCameraManager.generated.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\Engine\Classes\Components/InputComponent.h
+D:\Unreal\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\InputComponent.generated.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\Engine\Classes\GameFramework/ForceFeedbackEffect.h
+D:\Unreal\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\ForceFeedbackEffect.generated.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\Engine\Classes\GameFramework/UpdateLevelVisibilityLevelInfo.h
+D:\Unreal\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\UpdateLevelVisibilityLevelInfo.generated.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\ApplicationCore\Public\GenericPlatform/IInputInterface.h
+D:\Unreal\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\PlayerController.generated.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\UMG\Public\Blueprint/WidgetNavigation.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\SlateCore\Public\Types/NavigationMetaData.h
+D:\Unreal\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\UMG\WidgetNavigation.generated.h
+D:\Unreal\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\UMG\Widget.generated.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\UMG\Public\Blueprint/UserWidget.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\UMG\Public\Components/NamedSlotInterface.h
+D:\Unreal\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\UMG\NamedSlotInterface.generated.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\Engine\Classes\Engine/LocalPlayer.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\Engine\Classes\Engine/Player.h
+D:\Unreal\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\Player.generated.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\Engine\Public\Subsystems/LocalPlayerSubsystem.h
+D:\Unreal\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\LocalPlayerSubsystem.generated.h
+D:\Unreal\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\LocalPlayer.generated.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\Slate\Public\Widgets/Layout/Anchors.h
+D:\Unreal\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Slate\Anchors.generated.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\Core\Public\Logging/MessageLog.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\Core\Public\Logging/TokenizedMessage.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\UMG\Public\Animation/WidgetAnimation.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\MovieScene\Public\MovieSceneSequence.h
+d:\unreal\ue_4.26\engine\source\runtime\moviescene\public\MovieSceneSignedObject.h
+D:\Unreal\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\MovieScene\MovieSceneSignedObject.generated.h
+d:\unreal\ue_4.26\engine\source\runtime\moviescene\public\MovieSceneTrack.h
+d:\unreal\ue_4.26\engine\source\runtime\moviescene\public\MovieSceneSection.h
+d:\unreal\ue_4.26\engine\source\runtime\moviescene\public\MovieSceneFwd.h
+d:\unreal\ue_4.26\engine\source\runtime\moviescene\public\MovieSceneSequenceID.h
+D:\Unreal\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\MovieScene\MovieSceneSequenceID.generated.h
+d:\unreal\ue_4.26\engine\source\runtime\moviescene\public\KeyParams.h
+d:\unreal\ue_4.26\engine\source\runtime\moviescene\public\MovieScene.h
+d:\unreal\ue_4.26\engine\source\runtime\moviescene\public\MovieSceneSpawnable.h
+D:\Unreal\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\MovieScene\MovieSceneSpawnable.generated.h
+d:\unreal\ue_4.26\engine\source\runtime\moviescene\public\MovieSceneBinding.h
+D:\Unreal\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\MovieScene\MovieSceneBinding.generated.h
+d:\unreal\ue_4.26\engine\source\runtime\moviescene\public\MovieScenePossessable.h
+D:\Unreal\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\MovieScene\MovieScenePossessable.generated.h
+d:\unreal\ue_4.26\engine\source\runtime\moviescene\public\MovieSceneObjectBindingID.h
+D:\Unreal\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\MovieScene\MovieSceneObjectBindingID.generated.h
+d:\unreal\ue_4.26\engine\source\runtime\moviescene\public\MovieSceneFrameMigration.h
+D:\Unreal\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\MovieScene\MovieSceneFrameMigration.generated.h
+d:\unreal\ue_4.26\engine\source\runtime\moviescene\public\MovieSceneTimeController.h
+D:\Unreal\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\MovieScene\MovieScene.generated.h
+d:\unreal\ue_4.26\engine\source\runtime\moviescene\public\Evaluation/Blending/MovieSceneBlendType.h
+D:\Unreal\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\MovieScene\MovieSceneBlendType.generated.h
+d:\unreal\ue_4.26\engine\source\runtime\moviescene\public\Evaluation/MovieSceneCompletionMode.h
+D:\Unreal\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\MovieScene\MovieSceneCompletionMode.generated.h
+d:\unreal\ue_4.26\engine\source\runtime\moviescene\public\Generators/MovieSceneEasingFunction.h
+D:\Unreal\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\MovieScene\MovieSceneEasingFunction.generated.h
+d:\unreal\ue_4.26\engine\source\runtime\moviescene\public\Evaluation/MovieSceneEvaluationCustomVersion.h
+d:\unreal\ue_4.26\engine\source\runtime\moviescene\public\EntitySystem/MovieSceneEntityBuilder.h
+d:\unreal\ue_4.26\engine\source\runtime\moviescene\public\EntitySystem/MovieSceneEntityIDs.h
+d:\unreal\ue_4.26\engine\source\runtime\moviescene\public\EntitySystem/MovieSceneEntitySystemTypes.h
+d:\unreal\ue_4.26\engine\source\runtime\moviescene\public\EntitySystem/MovieSceneEntityManager.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\Core\Public\Misc/InlineValue.h
+d:\unreal\ue_4.26\engine\source\runtime\moviescene\public\Evaluation/MovieScenePlayback.h
+d:\unreal\ue_4.26\engine\source\runtime\moviescene\public\Evaluation/MovieSceneSequenceTransform.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\Core\Public\Algo/AllOf.h
+d:\unreal\ue_4.26\engine\source\runtime\moviescene\public\evaluation\MovieSceneTimeTransform.h
+D:\Unreal\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\MovieScene\MovieSceneTimeTransform.generated.h
+d:\unreal\ue_4.26\engine\source\runtime\moviescene\public\evaluation\MovieSceneTimeWarping.h
+D:\Unreal\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\MovieScene\MovieSceneTimeWarping.generated.h
+D:\Unreal\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\MovieScene\MovieSceneSequenceTransform.generated.h
+d:\unreal\ue_4.26\engine\source\runtime\moviescene\public\EntitySystem/MovieSceneEntityFactoryTypes.h
+d:\unreal\ue_4.26\engine\source\runtime\moviescene\public\EntitySystem/MovieSceneComponentTypeHandler.h
+d:\unreal\ue_4.26\engine\source\runtime\moviescene\public\EntitySystem/MovieSceneComponentTypeInfo.h
+d:\unreal\ue_4.26\engine\source\runtime\moviescene\public\EntitySystem/MovieSceneComponentDebug.h
+d:\unreal\ue_4.26\engine\source\runtime\moviescene\public\EntitySystem/MovieSceneComponentPtr.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\Core\Public\Algo/AnyOf.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\Core\Public\Algo/NoneOf.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\Core\Public\Algo/Common.h
+d:\unreal\ue_4.26\engine\source\runtime\moviescene\public\EntitySystem/MovieSceneComponentRegistry.h
+d:\unreal\ue_4.26\engine\source\runtime\moviescene\public\EntitySystem/MovieSceneEntityFactory.h
+d:\unreal\ue_4.26\engine\source\runtime\moviescene\public\EntitySystem/MovieSceneEntityRange.h
+d:\unreal\ue_4.26\engine\source\runtime\moviescene\public\EntitySystem/MovieSceneEntitySystemTask.h
+d:\unreal\ue_4.26\engine\source\runtime\moviescene\public\EntitySystem/EntityAllocationIterator.h
+d:\unreal\ue_4.26\engine\source\runtime\moviescene\public\EntitySystem/MovieSceneComponentAccessors.h
+d:\unreal\ue_4.26\engine\source\runtime\moviescene\public\EntitySystem/MovieSceneSystemTaskDependencies.h
+d:\unreal\ue_4.26\engine\source\runtime\moviescene\public\EntitySystem/MovieSceneSequenceInstanceHandle.h
+d:\unreal\ue_4.26\engine\source\runtime\moviescene\public\EntitySystem/MovieSceneEntitySystemDirectedGraph.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\Core\Public\Misc/GeneratedTypeName.h
+D:\Unreal\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\MovieScene\MovieSceneSection.generated.h
+d:\unreal\ue_4.26\engine\source\runtime\moviescene\public\Compilation/MovieSceneSegmentCompiler.h
+d:\unreal\ue_4.26\engine\source\runtime\moviescene\public\Evaluation/MovieSceneSegment.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\Core\Public\UObject/SequencerObjectVersion.h
+D:\Unreal\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\MovieScene\MovieSceneSegment.generated.h
+d:\unreal\ue_4.26\engine\source\runtime\moviescene\public\MovieSceneTrackEvaluationField.h
+d:\unreal\ue_4.26\engine\source\runtime\moviescene\public\Evaluation/MovieSceneEvaluationTree.h
+D:\Unreal\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\MovieScene\MovieSceneTrackEvaluationField.generated.h
+D:\Unreal\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\MovieScene\MovieSceneTrack.generated.h
+D:\Unreal\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\MovieScene\MovieSceneSequence.generated.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\UMG\Public\Animation/WidgetAnimationBinding.h
+D:\Unreal\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\UMG\WidgetAnimationBinding.generated.h
+D:\Unreal\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\UMG\WidgetAnimation.generated.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\UMG\Public\Blueprint/WidgetBlueprintGeneratedClass.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\UMG\Public\Binding/DynamicPropertyPath.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\PropertyPath\Public\PropertyPathHelpers.h
+d:\unreal\ue_4.26\engine\source\runtime\propertypath\public\PropertyTypeCompatibility.h
+D:\Unreal\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\PropertyPath\PropertyPathHelpers.generated.h
+D:\Unreal\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\UMG\DynamicPropertyPath.generated.h
+D:\Unreal\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\UMG\WidgetBlueprintGeneratedClass.generated.h
+D:\Unreal\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\UMG\UserWidget.generated.h
+D:\Unreal\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\UMG\PanelWidget.generated.h
+D:\Unreal\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\UMG\ContentWidget.generated.h
+c:\unreal projects\glitter\plugins\wwise\source\akaudio\classes\akwaapiumg\components\AkSlider.h
+c:\unreal projects\glitter\plugins\wwise\source\akaudio\classes\akwaapiumg\components\AkItemProperties.h
+c:\unreal projects\glitter\plugins\wwise\source\akaudio\classes\akwaapiumg\components\SAkItemProperties.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\Core\Public\Misc/TextFilter.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\Core\Public\Misc/TextFilterExpressionEvaluator.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\Core\Public\Misc/ExpressionParser.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\Core\Public\Misc/TextFilterUtils.h
+D:\Unreal\UE_4.26\Engine\Source\Runtime\Slate\Public\Widgets/Input/SSearchBox.h
+c:\unreal projects\glitter\plugins\wwise\intermediate\build\win64\ue4editor\inc\akaudio\AkItemProperties.generated.h
+c:\unreal projects\glitter\plugins\wwise\intermediate\build\win64\ue4editor\inc\akaudio\AkSlider.generated.h
+c:\unreal projects\glitter\plugins\wwise\source\akaudio\classes\akwaapiumg\components\AkItemBoolProperties.h
+c:\unreal projects\glitter\plugins\wwise\source\akaudio\classes\akwaapiumg\components\SAkItemBoolProperties.h
+c:\unreal projects\glitter\plugins\wwise\intermediate\build\win64\ue4editor\inc\akaudio\AkItemBoolProperties.generated.h
+c:\unreal projects\glitter\plugins\wwise\intermediate\build\win64\ue4editor\inc\akaudio\AkCheckBox.generated.h
+C:/Unreal Projects/Glitter/Plugins/Wwise/Intermediate/Build/Win64/UE4Editor/Inc/AkAudio/AkComponent.gen.cpp

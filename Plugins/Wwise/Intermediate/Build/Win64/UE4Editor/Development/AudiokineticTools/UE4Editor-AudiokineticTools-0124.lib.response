@@ -1,0 +1,14 @@
+/NOLOGO
+/errorReport:prompt
+/MACHINE:x64
+/SUBSYSTEM:WINDOWS
+/DEF
+/NAME:"UE4Editor-AudiokineticTools-0124.dll"
+/IGNORE:4221
+/NODEFAULTLIB
+"C:\Unreal Projects\Glitter\Intermediate\Build\Win64\GlitterGoldEditor\Development\UnrealEd\SharedPCH.UnrealEd.ShadowErrors.h.obj"
+"C:\Unreal Projects\Glitter\Plugins\Wwise\Intermediate\Build\Win64\UE4Editor\Development\AudiokineticTools\Module.AudiokineticTools.cpp.obj"
+"C:\Unreal Projects\Glitter\Plugins\Wwise\Intermediate\Build\Win64\UE4Editor\Development\AudiokineticTools\Module.AudiokineticTools.gen.cpp.obj"
+"C:\Unreal Projects\Glitter\Plugins\Wwise\Intermediate\Build\Win64\UE4Editor\Development\AudiokineticTools\Default.rc2.res"
+/OUT:"C:\Unreal Projects\Glitter\Plugins\Wwise\Intermediate\Build\Win64\UE4Editor\Development\AudiokineticTools\UE4Editor-AudiokineticTools-0124.lib"
+/INCLUDE:IMPLEMENT_MODULE_AudiokineticTools

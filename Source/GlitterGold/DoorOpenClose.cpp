@@ -3,6 +3,8 @@
 
 #include "DoorOpenClose.h"
 #include "InteractionWidgetComponent.h"
+#include "../Plugins/Wwise/Source/AkAudio/Classes/AkGameplayStatics.h"
+#include "../Plugins/Wwise/Source/AkAudio/Classes/AkComponent.h"
 
 // Sets default values for this component's properties
 UDoorOpenClose::UDoorOpenClose()
