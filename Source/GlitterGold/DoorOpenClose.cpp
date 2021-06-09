@@ -3,8 +3,8 @@
 
 #include "DoorOpenClose.h"
 #include "InteractionWidgetComponent.h"
-/*#include "../Plugins/Wwise/Source/AkAudio/Classes/AkGameplayStatics.h"
-#include "../Plugins/Wwise/Source/AkAudio/Classes/AkComponent.h"*/
+//#include "../Plugins/Wwise/Source/AkAudio/Classes/AkGameplayStatics.h"
+#include "../Plugins/Wwise/Source/AkAudio/Classes/AkComponent.h"
 
 // Sets default values for this component's properties
 UDoorOpenClose::UDoorOpenClose()
@@ -61,7 +61,7 @@ void UDoorOpenClose::TickComponent(float DeltaTime, ELevelTick TickType, FActorC
 
 void UDoorOpenClose::OpenDoor()
 {
-	/*if (open)
+	if (open)
 	{
 		FAkAudioDevice::Get()->PostEvent("Door_Close", this->GetOwner());
 	}
@@ -69,7 +69,7 @@ void UDoorOpenClose::OpenDoor()
 	{
 		
 		FAkAudioDevice::Get()->PostEvent("Door_Open", this->GetOwner());
-	}*/
+	}
 	open = !open;
 	FocusDoor(nullptr);
 	

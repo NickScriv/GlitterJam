@@ -9,8 +9,8 @@
 #include "MainCharacter.h"
 #include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetMathLibrary.h"
-/*#include "../Plugins/Wwise/Source/AkAudio/Classes/AkGameplayStatics.h"
-#include "../Plugins/Wwise/Source/AkAudio/Classes/AkComponent.h"*/
+//#include "../Plugins/Wwise/Source/AkAudio/Classes/AkGameplayStatics.h"
+#include "../Plugins/Wwise/Source/AkAudio/Classes/AkComponent.h"
 
 // Sets default values
 AMonster::AMonster()
@@ -25,7 +25,7 @@ void AMonster::BeginPlay()
 {
 	Super::BeginPlay();
 
-	//passiveEvent = FAkAudioDevice::Get()->PostEvent("Play_Enemy_Passive_Sounds", this);
+	passiveEvent = FAkAudioDevice::Get()->PostEvent("Play_Enemy_Passive_Sounds", this);
 }
 
 void AMonster::KillPlayer()
@@ -40,7 +40,7 @@ void AMonster::KillPlayer()
 			player->Died(this);
 			controller->SetFocus(player);
 
-			//FAkAudioDevice::Get()->PostEvent("Death_Music", this);
+			FAkAudioDevice::Get()->PostEvent("Death_Music", this);
 			player->StopPlayerSounds();
 			FVector playerLookAt = GetActorLocation();
 			rotateKill= UKismetMathLibrary::FindLookAtRotation(GetActorLocation(), player->GetActorLocation());
@@ -61,24 +61,24 @@ void AMonster::StopMonsterSounds()
 	UE_LOG(LogTemp, Warning, TEXT("passive: %d"), passiveEvent);
 	UE_LOG(LogTemp, Warning, TEXT("caution: %d"), cautionEvent);
 	UE_LOG(LogTemp, Warning, TEXT("chase: %d"), chaseEvent);
-	/*FAkAudioDevice::Get()->StopPlayingID(passiveEvent, 300);
+	FAkAudioDevice::Get()->StopPlayingID(passiveEvent, 300);
 	FAkAudioDevice::Get()->StopPlayingID(cautionEvent, 300);
-	FAkAudioDevice::Get()->StopPlayingID(chaseEvent, 300);*/
+	FAkAudioDevice::Get()->StopPlayingID(chaseEvent, 300);
 }
 
 void AMonster::PlayMosnterSoundEvent(FString event)
 {
 	if (event == "Play_Enemy_Passive_Sounds")
 	{
-		//passiveEvent = FAkAudioDevice::Get()->PostEvent(*event, this);
+		passiveEvent = FAkAudioDevice::Get()->PostEvent(*event, this);
 	}
 	else if (event == "Play_Enemy_Caution_Sounds")
 	{
-		//cautionEvent = FAkAudioDevice::Get()->PostEvent(*event, this);
+		cautionEvent = FAkAudioDevice::Get()->PostEvent(*event, this);
 	}
 	else
 	{
-		//chaseEvent = FAkAudioDevice::Get()->PostEvent(*event, this);
+		chaseEvent = FAkAudioDevice::Get()->PostEvent(*event, this);
 	}
 }
 

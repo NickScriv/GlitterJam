@@ -5,7 +5,7 @@
 //#include "../Plugins/Wwise/Source/AkAudio/Classes/AkGameplayStatics.h"
 #include "Monster.h"
 #include "AIController.h"
-//#include "../Plugins/Wwise/Source/AkAudio/Classes/AkComponent.h"
+#include "../Plugins/Wwise/Source/AkAudio/Classes/AkComponent.h"
 
 UBTService_ChangeMusic::UBTService_ChangeMusic()
 {
@@ -25,7 +25,7 @@ void UBTService_ChangeMusic::OnBecomeRelevant(UBehaviorTreeComponent& OwnerComp,
 		return;
 	
 
-	//FAkAudioDevice::Get()->PostEvent(*musicChange, monster);
+	FAkAudioDevice::Get()->PostEvent(*musicChange, monster);
 }
 
 

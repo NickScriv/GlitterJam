@@ -15,7 +15,6 @@ void UAnimNotify_EndGame::Notify(USkeletalMeshComponent* MeshComp, UAnimSequence
 	if(gameMode)
 		gameMode->EndGame();
 
-	//ghvuy
 
 }
 
