@@ -72,6 +72,8 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Death")
 		float monsterOffsetLookAtCrouch = 50.f;
 
+	void StopPlayerSounds();
+
 	UFUNCTION()
 	void TimelineProgressCrouch(float val);
 
@@ -150,6 +152,12 @@ private:
 		float sprintLoudness = 1.5f;
 
 	UPROPERTY(EditAnywhere)
+		float maxNormalRestTime = 3.f;
+
+	UPROPERTY(EditAnywhere)
+		float depletedRestTime = 3.5f;
+
+	UPROPERTY(EditAnywhere)
 		float heavyBreathThreshold = 40.f;
 
 	UPROPERTY(EditAnywhere)
@@ -182,15 +190,14 @@ private:
 	int32 gentleSprintEvent = -1;
 	int32 depletedSprintEvent = -1;
 	int32 startSprintEvent = -1;
-	
-	FTimerDelegate sprintKeyDelayCallback;
-	FTimerHandle sprintKeyDelay;
-	FTimerHandle timerStamina;
 
 	FTimeline crouchCurveTimeline;
 
 	UPROPERTY(EditAnywhere, Category = "Timeline")
 	UCurveFloat* crouchCurveFloat;
+
+	UPROPERTY(EditAnywhere, Category = "Stamina")
+		UCurveFloat* restTimeCurveFloat;
 
 	void MoveForward(float  val);
 	void MoveRight(float  val);
@@ -204,13 +211,12 @@ private:
 	void SprintReleased();
 	void SetMovement(EMovement newMovement);
 	void RegainStamina();
-	float CalculateRestTime(float oldMin, float oldMax, float newMin, float newMax);
 
 
-	UPROPERTY(EditAnywhere, Category = "Movement")
+	UPROPERTY(EditAnywhere, Category = "Stamina")
 		float staminaRegen = 2;
 
-	UPROPERTY(EditAnywhere, Category = "Movement")
+	UPROPERTY(EditAnywhere, Category = "Stamina")
 		float staminaDepletion = 3;
 
 
@@ -226,7 +232,14 @@ private:
 
 	bool AreStaminaEventsPlaying();
 
+	float restTimer = 0.2f;
+	float restCountDown = 0.f;
 
+	UPROPERTY(EditAnywhere, Category = "Movement")
+	float crouchDelayTimer = 0.35f;
+	
+	float crouchDelayCountdown = 0.f;
+	bool canCrouch = true;
 
 #pragma endregion 
 

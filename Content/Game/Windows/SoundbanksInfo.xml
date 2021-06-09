@@ -1,21 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="12" SoundbankVersion="140">
 	<RootPaths>
-		<ProjectRoot>D:\Downloads\Test 2\</ProjectRoot>
-		<SourceFilesRoot>D:\Downloads\Test 2\.cache\Windows\</SourceFilesRoot>
+		<ProjectRoot>D:\Downloads\WwiseGlitter\Test 2\</ProjectRoot>
+		<SourceFilesRoot>D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\</SourceFilesRoot>
 		<SoundBanksRoot>C:\Unreal Projects\Glitter\Content\Game\Windows\</SoundBanksRoot>
 		<ExternalSourcesInputFile></ExternalSourcesInputFile>
-		<ExternalSourcesOutputRoot>D:\Downloads\Test 2\GeneratedSoundBanks\Windows</ExternalSourcesOutputRoot>
+		<ExternalSourcesOutputRoot>D:\Downloads\WwiseGlitter\Test 2\GeneratedSoundBanks\Windows</ExternalSourcesOutputRoot>
 	</RootPaths>
 	<DialogueEvents/>
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="393239870" Language="SFX" Hash="334760198">
+		<SoundBank Id="393239870" Language="SFX" Hash="3233135375">
 			<ObjectPath>\SoundBanks\Default Work Unit\SFX</ObjectPath>
 			<ShortName>SFX</ShortName>
 			<Path>SFX.bnk</Path>
 			<IncludedEvents>
+				<Event Id="1550503061" Name="Death_Music" ObjectPath="\Events\Default Work Unit\Music Events\Death_Music">
+					<ActionSetState>
+						<ActionSetStateEntry Id="77978275" Name="Ambient" ObjectPath="\States\Default Work Unit\Music States\Music_Sections\Ambient"/>
+						<ActionSetStateEntry Id="779278001" Name="Death" ObjectPath="\States\Default Work Unit\Music States\Music_Sections\Death"/>
+					</ActionSetState>
+				</Event>
 				<Event Id="128625444" Name="Door_Close" ObjectPath="\Events\Default Work Unit\SFX Events\Doors\Door_Close">
 					<IncludedMemoryFiles>
 						<File Id="178903615" Language="SFX">
@@ -998,6 +1004,9 @@
 				<StateGroup Id="417490929" Name="Chase" ObjectPath="\States\Default Work Unit\Music States\Music_Sections\Chase">
 					<States/>
 				</StateGroup>
+				<StateGroup Id="779278001" Name="Death" ObjectPath="\States\Default Work Unit\Music States\Music_Sections\Death">
+					<States/>
+				</StateGroup>
 			</StateGroups>
 			<SwitchGroups>
 				<SwitchGroup Id="2384895876" Name="Stamina_SwitchGroup" ObjectPath="\Switches\Default Work Unit\SFX\Stamina_SwitchGroup">
@@ -1029,7 +1038,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="1355168291" Language="SFX" Hash="2715911882">
+		<SoundBank Id="1355168291" Language="SFX" Hash="1929089712">
 			<ObjectPath>Init</ObjectPath>
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
@@ -1040,7 +1049,7 @@
 				<AuxBus Id="1102545430" Name="RvbZone_Narrow_Rooms" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\RvbZone_Narrow_Rooms"/>
 			</IncludedAuxBusses>
 		</SoundBank>
-		<SoundBank Id="3991942870" Language="SFX" Hash="704196625">
+		<SoundBank Id="3991942870" Language="SFX" Hash="1992886070">
 			<ObjectPath>\SoundBanks\Default Work Unit\Music</ObjectPath>
 			<ShortName>Music</ShortName>
 			<Path>Music.bnk</Path>
@@ -1051,272 +1060,12 @@
 						<ActionSetStateEntry Id="779278001" Name="Death" ObjectPath="\States\Default Work Unit\Music States\Music_Sections\Death"/>
 					</ActionSetState>
 				</Event>
-				<Event Id="1238538214" Name="Play_Ambient_Music" ObjectPath="\Events\Default Work Unit\Music Events\Play_Ambient_Music">
-					<IncludedMemoryFiles>
-						<File Id="362801264" Language="SFX">
-							<ShortName>Heartbeat_Danger.wav</ShortName>
-							<Path>SFX\Heartbeat_Danger_CAFAEEC9.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-					<ActionSetState>
-						<ActionSetStateEntry Id="77978275" Name="Ambient" ObjectPath="\States\Default Work Unit\Music States\Music_Sections\Ambient"/>
-					</ActionSetState>
-				</Event>
 				<Event Id="3237721180" Name="Play_Chase_Music" ObjectPath="\Events\Default Work Unit\Music Events\Play_Chase_Music">
 					<ActionSetState>
 						<ActionSetStateEntry Id="417490929" Name="Chase" ObjectPath="\States\Default Work Unit\Music States\Music_Sections\Chase"/>
 					</ActionSetState>
 				</Event>
 				<Event Id="2932040671" Name="PLAY_MUSIC" ObjectPath="\Events\Default Work Unit\Music Events\PLAY_MUSIC">
-					<IncludedMemoryFiles>
-						<File Id="52307656" Language="SFX">
-							<ShortName>usds_Soft_Stairwell_Stinger.wav</ShortName>
-							<Path>SFX\usds_Soft_Stairwell_Stinger_D79FB2B7.wem</Path>
-						</File>
-						<File Id="52751577" Language="SFX">
-							<ShortName>us_Hit_2.wav</ShortName>
-							<Path>SFX\us_Hit_2_D79FB2B7.wem</Path>
-						</File>
-						<File Id="58008412" Language="SFX">
-							<ShortName>usK3_Ambient_var2.wav</ShortName>
-							<Path>SFX\usK3_Ambient_var2_D79FB2B7.wem</Path>
-						</File>
-						<File Id="59974996" Language="SFX">
-							<ShortName>ds_AmbStingers_Percussion.wav</ShortName>
-							<Path>SFX\ds_AmbStingers_Percussion_D79FB2B7.wem</Path>
-						</File>
-						<File Id="124515639" Language="SFX">
-							<ShortName>Chase_Stinger_1.wav</ShortName>
-							<Path>SFX\Chase_Stinger_1_D79FB2B7.wem</Path>
-						</File>
-						<File Id="127153478" Language="SFX">
-							<ShortName>usK2_Ambient_Main.wav</ShortName>
-							<Path>SFX\usK2_Ambient_Main_D79FB2B7.wem</Path>
-						</File>
-						<File Id="127459953" Language="SFX">
-							<ShortName>K1_Chase.wav</ShortName>
-							<Path>SFX\K1_Chase_D79FB2B7.wem</Path>
-						</File>
-						<File Id="160081236" Language="SFX">
-							<ShortName>usK0_Ambient_var2.wav</ShortName>
-							<Path>SFX\usK0_Ambient_var2_D79FB2B7.wem</Path>
-						</File>
-						<File Id="185291948" Language="SFX">
-							<ShortName>us_Ambient_Variation.wav</ShortName>
-							<Path>SFX\us_Ambient_Variation_D79FB2B7.wem</Path>
-						</File>
-						<File Id="190703147" Language="SFX">
-							<ShortName>Hit_1.wav</ShortName>
-							<Path>SFX\Hit_1_D79FB2B7.wem</Path>
-						</File>
-						<File Id="256343376" Language="SFX">
-							<ShortName>Ambient_Stinger_1.wav</ShortName>
-							<Path>SFX\Ambient_Stinger_1_D79FB2B7.wem</Path>
-						</File>
-						<File Id="264900686" Language="SFX">
-							<ShortName>ds_AmbStingers_Piano.wav</ShortName>
-							<Path>SFX\ds_AmbStingers_Piano_D79FB2B7.wem</Path>
-						</File>
-						<File Id="304732448" Language="SFX">
-							<ShortName>dsK1_Ambient_var2.wav</ShortName>
-							<Path>SFX\dsK1_Ambient_var2_D79FB2B7.wem</Path>
-						</File>
-						<File Id="372904452" Language="SFX">
-							<ShortName>K3_Chase_var3.wav</ShortName>
-							<Path>SFX\K3_Chase_var3_D79FB2B7.wem</Path>
-						</File>
-						<File Id="386796326" Language="SFX">
-							<ShortName>K2_Chase.wav</ShortName>
-							<Path>SFX\K2_Chase_D79FB2B7.wem</Path>
-						</File>
-						<File Id="443822615" Language="SFX">
-							<ShortName>K3_Chase_var2.wav</ShortName>
-							<Path>SFX\K3_Chase_var2_D79FB2B7.wem</Path>
-						</File>
-						<File Id="445973861" Language="SFX">
-							<ShortName>K2_Chase_var1.wav</ShortName>
-							<Path>SFX\K2_Chase_var1_D79FB2B7.wem</Path>
-						</File>
-						<File Id="459039161" Language="SFX">
-							<ShortName>dsK3_Ambient_var1.wav</ShortName>
-							<Path>SFX\dsK3_Ambient_var1_D79FB2B7.wem</Path>
-						</File>
-						<File Id="459888732" Language="SFX">
-							<ShortName>Hit_2.wav</ShortName>
-							<Path>SFX\Hit_2_D79FB2B7.wem</Path>
-						</File>
-						<File Id="470041319" Language="SFX">
-							<ShortName>usK3_Ambient_var1.wav</ShortName>
-							<Path>SFX\usK3_Ambient_var1_D79FB2B7.wem</Path>
-						</File>
-						<File Id="511732289" Language="SFX">
-							<ShortName>dsK3_Ambient_var2.wav</ShortName>
-							<Path>SFX\dsK3_Ambient_var2_D79FB2B7.wem</Path>
-						</File>
-						<File Id="548278599" Language="SFX">
-							<ShortName>usK3_Ambient_var3.wav</ShortName>
-							<Path>SFX\usK3_Ambient_var3_D79FB2B7.wem</Path>
-						</File>
-						<File Id="557835650" Language="SFX">
-							<ShortName>dsK1_Ambient_var3.wav</ShortName>
-							<Path>SFX\dsK1_Ambient_var3_D79FB2B7.wem</Path>
-						</File>
-						<File Id="581376605" Language="SFX">
-							<ShortName>K3_Chase.wav</ShortName>
-							<Path>SFX\K3_Chase_D79FB2B7.wem</Path>
-						</File>
-						<File Id="592916229" Language="SFX">
-							<ShortName>usK1_Ambient_var1.wav</ShortName>
-							<Path>SFX\usK1_Ambient_var1_D79FB2B7.wem</Path>
-						</File>
-						<File Id="597712010" Language="SFX">
-							<ShortName>dsK2_Ambient_var1.wav</ShortName>
-							<Path>SFX\dsK2_Ambient_var1_D79FB2B7.wem</Path>
-						</File>
-						<File Id="650866039" Language="SFX">
-							<ShortName>us_Ambient_Drums.wav</ShortName>
-							<Path>SFX\us_Ambient_Drums_D79FB2B7.wem</Path>
-						</File>
-						<File Id="661429792" Language="SFX">
-							<ShortName>K0_Chase.wav</ShortName>
-							<Path>SFX\K0_Chase_D79FB2B7.wem</Path>
-						</File>
-						<File Id="812302212" Language="SFX">
-							<ShortName>Stairwell_Stinger_Main.wav</ShortName>
-							<Path>SFX\Stairwell_Stinger_Main_D79FB2B7.wem</Path>
-						</File>
-						<File Id="834039059" Language="SFX">
-							<ShortName>usK1_Ambient_Main.wav</ShortName>
-							<Path>SFX\usK1_Ambient_Main_D79FB2B7.wem</Path>
-						</File>
-						<File Id="836089256" Language="SFX">
-							<ShortName>Danger_Warning.wav</ShortName>
-							<Path>SFX\Danger_Warning_D79FB2B7.wem</Path>
-						</File>
-						<File Id="856878704" Language="SFX">
-							<ShortName>us_Hit_1.wav</ShortName>
-							<Path>SFX\us_Hit_1_D79FB2B7.wem</Path>
-						</File>
-						<File Id="871097600" Language="SFX">
-							<ShortName>dsK3_Ambient_var3.wav</ShortName>
-							<Path>SFX\dsK3_Ambient_var3_D79FB2B7.wem</Path>
-						</File>
-						<File Id="879219535" Language="SFX">
-							<ShortName>usK0_Ambient_var1.wav</ShortName>
-							<Path>SFX\usK0_Ambient_var1_D79FB2B7.wem</Path>
-						</File>
-						<File Id="885480240" Language="SFX">
-							<ShortName>dsK0_Ambient_Main.wav</ShortName>
-							<Path>SFX\dsK0_Ambient_Main_D79FB2B7.wem</Path>
-						</File>
-						<File Id="910620019" Language="SFX">
-							<ShortName>dsK2_Ambient_Main.wav</ShortName>
-							<Path>SFX\dsK2_Ambient_Main_D79FB2B7.wem</Path>
-						</File>
-						<File Id="914667342" Language="SFX">
-							<ShortName>usK0_Ambient_Main.wav</ShortName>
-							<Path>SFX\usK0_Ambient_Main_D79FB2B7.wem</Path>
-						</File>
-						<File Id="938940762" Language="SFX">
-							<ShortName>us_Ambient_Clock.wav</ShortName>
-							<Path>SFX\us_Ambient_Clock_D79FB2B7.wem</Path>
-						</File>
-						<File Id="939900804" Language="SFX">
-							<ShortName>K3_Chase_var1.wav</ShortName>
-							<Path>SFX\K3_Chase_var1_D79FB2B7.wem</Path>
-						</File>
-						<File Id="940296019" Language="SFX">
-							<ShortName>dsK1_Ambient_var1.wav</ShortName>
-							<Path>SFX\dsK1_Ambient_var1_D79FB2B7.wem</Path>
-						</File>
-						<File Id="942124005" Language="SFX">
-							<ShortName>Death_Stinger 3.wav</ShortName>
-							<Path>SFX\Death_Stinger 3_D79FB2B7.wem</Path>
-						</File>
-						<File Id="944440999" Language="SFX">
-							<ShortName>usK3_Ambient_Main.wav</ShortName>
-							<Path>SFX\usK3_Ambient_Main_D79FB2B7.wem</Path>
-						</File>
-						<File Id="991098013" Language="SFX">
-							<ShortName>us_Ambient_Intro.wav</ShortName>
-							<Path>SFX\us_Ambient_Intro_D79FB2B7.wem</Path>
-						</File>
-						<File Id="1053847306" Language="SFX">
-							<ShortName>Secret_Room_Stinger.wav</ShortName>
-							<Path>SFX\Secret_Room_Stinger_D79FB2B7.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-					<SwitchContainers>
-						<SwitchContainer SwitchValue="{3D8EBFBE-378E-4664-9EA3-7798E4D24468}">
-							<Media>
-								<File Id="58008412"/>
-								<File Id="127153478"/>
-								<File Id="127459953"/>
-								<File Id="190703147"/>
-								<File Id="372904452"/>
-								<File Id="386796326"/>
-								<File Id="443822615"/>
-								<File Id="445973861"/>
-								<File Id="459888732"/>
-								<File Id="470041319"/>
-								<File Id="548278599"/>
-								<File Id="581376605"/>
-								<File Id="661429792"/>
-								<File Id="834039059"/>
-								<File Id="939900804"/>
-							</Media>
-						</SwitchContainer>
-						<SwitchContainer SwitchValue="{D38B038D-A977-436F-86C0-E9BA2000ACCD}">
-							<Media>
-								<File Id="942124005"/>
-							</Media>
-						</SwitchContainer>
-						<SwitchContainer SwitchValue="{0DD2B4CF-CF59-4829-9306-C3424BE57286}">
-							<Children>
-								<SwitchContainer SwitchValue="{5060CC3F-421B-4AE0-A468-8DA736EBF6AC}">
-									<Media>
-										<File Id="59974996"/>
-										<File Id="190703147"/>
-										<File Id="264900686"/>
-										<File Id="304732448"/>
-										<File Id="459039161"/>
-										<File Id="459888732"/>
-										<File Id="511732289"/>
-										<File Id="557835650"/>
-										<File Id="597712010"/>
-										<File Id="836089256"/>
-										<File Id="871097600"/>
-										<File Id="885480240"/>
-										<File Id="910620019"/>
-										<File Id="940296019"/>
-									</Media>
-								</SwitchContainer>
-								<SwitchContainer SwitchValue="{0CBFA3BB-9A76-4E1A-A2F5-D93D291DB4BA}">
-									<Media>
-										<File Id="52307656"/>
-										<File Id="812302212"/>
-									</Media>
-								</SwitchContainer>
-								<SwitchContainer SwitchValue="{E9207CC0-6DC0-437C-9E99-404CFFCBC1F0}">
-									<Media>
-										<File Id="52751577"/>
-										<File Id="127153478"/>
-										<File Id="160081236"/>
-										<File Id="185291948"/>
-										<File Id="592916229"/>
-										<File Id="650866039"/>
-										<File Id="834039059"/>
-										<File Id="856878704"/>
-										<File Id="879219535"/>
-										<File Id="914667342"/>
-										<File Id="938940762"/>
-										<File Id="944440999"/>
-										<File Id="991098013"/>
-									</Media>
-								</SwitchContainer>
-							</Children>
-						</SwitchContainer>
-					</SwitchContainers>
 					<ActionSetState>
 						<ActionSetStateEntry Id="748895195" Name="None" ObjectPath="\States\Default Work Unit\Music States\Music_Sections\None"/>
 					</ActionSetState>
@@ -1350,6 +1099,10 @@
 				<File Id="59974996" Language="SFX">
 					<ShortName>ds_AmbStingers_Percussion.wav</ShortName>
 					<Path>SFX\ds_AmbStingers_Percussion_D79FB2B7.wem</Path>
+				</File>
+				<File Id="114987710" Language="SFX">
+					<ShortName>Secret_Room_AmbPluck.wav</ShortName>
+					<Path>SFX\Secret_Room_AmbPluck_D79FB2B7.wem</Path>
 				</File>
 				<File Id="124515639" Language="SFX">
 					<ShortName>Chase_Stinger_1.wav</ShortName>
@@ -1387,6 +1140,14 @@
 					<ShortName>dsK1_Ambient_var2.wav</ShortName>
 					<Path>SFX\dsK1_Ambient_var2_D79FB2B7.wem</Path>
 				</File>
+				<File Id="313028623" Language="SFX">
+					<ShortName>us_Danger_Warning.wav</ShortName>
+					<Path>SFX\us_Danger_Warning_D79FB2B7.wem</Path>
+				</File>
+				<File Id="338744272" Language="SFX">
+					<ShortName>Secret_Room_BassPluck.wav</ShortName>
+					<Path>SFX\Secret_Room_BassPluck_D79FB2B7.wem</Path>
+				</File>
 				<File Id="372904452" Language="SFX">
 					<ShortName>K3_Chase_var3.wav</ShortName>
 					<Path>SFX\K3_Chase_var3_D79FB2B7.wem</Path>
@@ -1414,6 +1175,10 @@
 				<File Id="470041319" Language="SFX">
 					<ShortName>usK3_Ambient_var1.wav</ShortName>
 					<Path>SFX\usK3_Ambient_var1_D79FB2B7.wem</Path>
+				</File>
+				<File Id="472131563" Language="SFX">
+					<ShortName>Secret_Room_Loop.wav</ShortName>
+					<Path>SFX\Secret_Room_Loop_D79FB2B7.wem</Path>
 				</File>
 				<File Id="511732289" Language="SFX">
 					<ShortName>dsK3_Ambient_var2.wav</ShortName>
@@ -1451,6 +1216,10 @@
 					<ShortName>Stairwell_Stinger_Main.wav</ShortName>
 					<Path>SFX\Stairwell_Stinger_Main_D79FB2B7.wem</Path>
 				</File>
+				<File Id="829882316" Language="SFX">
+					<ShortName>Secret_Room_Sine_var3.wav</ShortName>
+					<Path>SFX\Secret_Room_Sine_var3_D79FB2B7.wem</Path>
+				</File>
 				<File Id="834039059" Language="SFX">
 					<ShortName>usK1_Ambient_Main.wav</ShortName>
 					<Path>SFX\usK1_Ambient_Main_D79FB2B7.wem</Path>
@@ -1479,6 +1248,10 @@
 					<ShortName>dsK2_Ambient_Main.wav</ShortName>
 					<Path>SFX\dsK2_Ambient_Main_D79FB2B7.wem</Path>
 				</File>
+				<File Id="914421488" Language="SFX">
+					<ShortName>Secret_Room_Sine_var4.wav</ShortName>
+					<Path>SFX\Secret_Room_Sine_var4_D79FB2B7.wem</Path>
+				</File>
 				<File Id="914667342" Language="SFX">
 					<ShortName>usK0_Ambient_Main.wav</ShortName>
 					<Path>SFX\usK0_Ambient_Main_D79FB2B7.wem</Path>
@@ -1503,9 +1276,17 @@
 					<ShortName>usK3_Ambient_Main.wav</ShortName>
 					<Path>SFX\usK3_Ambient_Main_D79FB2B7.wem</Path>
 				</File>
+				<File Id="960208997" Language="SFX">
+					<ShortName>Secret_Room_Sine_var1.wav</ShortName>
+					<Path>SFX\Secret_Room_Sine_var1_D79FB2B7.wem</Path>
+				</File>
 				<File Id="991098013" Language="SFX">
 					<ShortName>us_Ambient_Intro.wav</ShortName>
 					<Path>SFX\us_Ambient_Intro_D79FB2B7.wem</Path>
+				</File>
+				<File Id="1001795503" Language="SFX">
+					<ShortName>Secret_Room_Sine_var2.wav</ShortName>
+					<Path>SFX\Secret_Room_Sine_var2_D79FB2B7.wem</Path>
 				</File>
 				<File Id="1053847306" Language="SFX">
 					<ShortName>Secret_Room_Stinger.wav</ShortName>

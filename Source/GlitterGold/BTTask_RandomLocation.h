@@ -20,9 +20,6 @@ public:
 	float radius;
 
 	UPROPERTY(EditAnywhere)
-		float walkSpeed;
-
-	UPROPERTY(EditAnywhere)
 	FBlackboardKeySelector  bbKey;
 
 

@@ -51,13 +51,33 @@ public:
 
 	void KillPlayer();
 
+	void StopMonsterSounds();
+
+	void PlayMosnterSoundEvent(FString event);
+
+	int32 passiveEvent = -1;
+	int32 cautionEvent = -1;
+	int32 chaseEvent = -1;
+
 protected:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
 
 private:
 	
 	FRotator rotateKill;
 
+	
+	
+
 
 };
+
+
+
+
+
+

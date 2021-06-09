@@ -12,8 +12,8 @@
 #include "Perception/AISense_Hearing.h"
 #include "Monster.h"
 #include "Kismet/KismetMathLibrary.h"
-#include "../Plugins/Wwise/Source/AkAudio/Classes/AkGameplayStatics.h"
-#include "../Plugins/Wwise/Source/AkAudio/Classes/AkComponent.h"
+/*#include "../Plugins/Wwise/Source/AkAudio/Classes/AkGameplayStatics.h"
+#include "../Plugins/Wwise/Source/AkAudio/Classes/AkComponent.h"*/
 
 // Sets default values
 AMainCharacter::AMainCharacter()
@@ -34,29 +34,32 @@ void AMainCharacter::BeginPlay()
 	GetMesh()->AttachToComponent(cameraComponent, FAttachmentTransformRules::KeepWorldTransform);
 	standCameraHeight = cameraComponent->GetRelativeLocation().Z;
 	crouchCameraHeight = standCameraHeight * crouchScale;
-
 	standCapsuleHeight = capsuleColl->GetScaledCapsuleHalfHeight();
 	crouchCapsuleHeight = capsuleColl->GetScaledCapsuleHalfHeight() * crouchScale;
 
 	if (crouchCurveFloat)
 	{
+	
 		FOnTimelineFloat timelineProgress;
 		timelineProgress.BindUFunction(this, FName("TimelineProgressCrouch"));
 		crouchCurveTimeline.AddInterpFloat(crouchCurveFloat, timelineProgress);
 		crouchCurveTimeline.SetLooping(false);
 	}
 
+	if (!restTimeCurveFloat)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Rest time curve not intialized!"));
+		
+	}
+
 	GetCharacterMovement()->MaxWalkSpeed = walkSpeed;
 
-	/*FAkAudioDevice::Get()->PostEvent("PLAY_MUSIC", this->GetOwner());
-	FAkAudioDevice::Get()->PostEvent("Play_Ambient_Music", this->GetOwner());*/
+	/*FAkAudioDevice::Get()->PostEvent("PLAY_MUSIC", this);
+	FAkAudioDevice::Get()->PostEvent("Play_Ambient_Music", this);*/
 
-	sprintKeyDelayCallback.BindLambda([this]()
-	{
-		canPressSprint = true;
-	});
 	
-	FAkAudioDevice::Get()->SetRTPCValue(*FString("Footsteps_Movement_Type"), 2, 500, this);
+	/*FAkAudioDevice::Get()->SetRTPCValue(*FString("Footsteps_Movement_Type"), 2, 500, this);
+	FAkAudioDevice::Get()->SetRTPCValue(*FString("Downstair_Upstairs_Stairwell"), 1, 300, this);*/
 }
 
 // Called every frame
@@ -65,9 +68,22 @@ void AMainCharacter::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 	PerformCheck();
-
 	
 	crouchCurveTimeline.TickTimeline(DeltaTime);
+
+	restCountDown += DeltaTime;
+	if(restCountDown >= restTimer)
+	{
+		restCountDown = FMath::Clamp(restCountDown, 0.f, restTimer);
+		canSprint = true;
+	}
+
+	crouchDelayCountdown += DeltaTime;
+	if (crouchDelayCountdown >= crouchDelayTimer)
+	{
+		crouchDelayCountdown = FMath::Clamp(crouchDelayCountdown, 0.f, crouchDelayTimer);
+		canCrouch = true;
+	}
 
 	if (died)
 	{
@@ -90,14 +106,15 @@ void AMainCharacter::Tick(float DeltaTime)
 	if (stamina < 1.f && movement == EMovement::Standing)
 	{
 		GetCharacterMovement()->MaxWalkSpeed = walkSpeed;
-		FAkAudioDevice::Get()->SetRTPCValue(*FString("Footsteps_Movement_Type"), 2, 500, this);
+		//FAkAudioDevice::Get()->SetRTPCValue(*FString("Footsteps_Movement_Type"), 2, 500, this);
 		GetWorldTimerManager().SetTimer(timerFootstep, this, &AMainCharacter::PlayFootStep, footStepTimeWalk, true);
 
-		depletedSprintEvent = FAkAudioDevice::Get()->PostEvent("Stamina_Depleted", this);
+		//depletedSprintEvent = FAkAudioDevice::Get()->PostEvent("Stamina_Depleted", this);
 		stamina = 1.f;
 		canSprint = false;
-		GetWorldTimerManager().SetTimer(timerStamina, this, &AMainCharacter::RegainStamina, 3.5f, false);
-
+		//GetWorldTimerManager().SetTimer(timerStamina, this, &AMainCharacter::RegainStamina, depletedRestTime, false);
+		restTimer = depletedRestTime;
+		restCountDown = 0.f;
 	}
 
 	FVector top = GetActorLocation();
@@ -116,7 +133,7 @@ void AMainCharacter::Tick(float DeltaTime)
 
 	ProcessFootStep();
 
-	FAkAudioDevice::Get()->SetRTPCValue(*FString("Stamina_Level"), stamina, 500, this);
+	//FAkAudioDevice::Get()->SetRTPCValue(*FString("Stamina_Level"), stamina, 500, this);
 
 }
 
@@ -311,6 +328,8 @@ float AMainCharacter::GetRemainingInteractTime()
 
 #pragma region Movement
 
+
+
 void AMainCharacter::TimelineProgressCrouch(float val)
 {
 	FVector camLoc = cameraComponent->GetRelativeLocation();
@@ -325,7 +344,7 @@ void AMainCharacter::TimelineProgressCrouch(float val)
 void AMainCharacter::PlayFootStep()
 {
 	//UGameplayStatics::PlaySoundAtLocation(this, footSound, GetActorLocation());
-	FAkAudioDevice::Get()->PostEvent("Play_Footstep", this);
+	//FAkAudioDevice::Get()->PostEvent("Play_Footstep", this);
 
 	if (EMovement::Crouching == movement)
 	{
@@ -408,31 +427,31 @@ void AMainCharacter::CrouchPressed()
 {
 	isCrouchingKeyDown = true;
 
-	if (movement != EMovement::Standing || GetCharacterMovement()->IsFalling())
+	if (movement != EMovement::Standing || GetCharacterMovement()->IsFalling() || !canCrouch)
 		return;
 
+	canCrouch = false;
+	crouchDelayCountdown = 0.f;
+	
 	if(IsSprinting() && stamina > 1.f)
 	{
 		if (stamina < heavyBreathThreshold )
 		{
-			heavySprintEvent = FAkAudioDevice::Get()->PostEvent("Stop_Run_Heavy", this);
+			//heavySprintEvent = FAkAudioDevice::Get()->PostEvent("Stop_Run_Heavy", this);
 			
 		}
 		else 
 		{
 
-			gentleSprintEvent = FAkAudioDevice::Get()->PostEvent("Stop_Run_Gentle", this);
+			//gentleSprintEvent = FAkAudioDevice::Get()->PostEvent("Stop_Run_Gentle", this);
 		}
 
-		float restTime = CalculateRestTime(1.f, 100.f, 0.0f, 3.f);
+		float restTime = restTimeCurveFloat->GetFloatValue(stamina);
 		UE_LOG(LogTemp, Warning, TEXT("%f"), restTime);
 
-		if (restTime >= 0.5f)
-		{
-			canSprint = false;
-			GetWorldTimerManager().SetTimer(timerStamina, this, &AMainCharacter::RegainStamina, restTime, false);
-		}
-		
+		canSprint = false;
+		restTimer = restTime;
+		restCountDown = 0.f;
 	}
 	
 	
@@ -470,20 +489,22 @@ void AMainCharacter::CrouchReleased()
 
 void AMainCharacter::SprintPressed()
 {
-	if (movement != EMovement::Standing || GetCharacterMovement()->IsFalling() || !canPressSprint)
+	if (movement != EMovement::Standing || GetCharacterMovement()->IsFalling())
 		return;
 
 	isSprintingKeyDown = true;
-	canPressSprint = false;
-	GetWorldTimerManager().SetTimer(sprintKeyDelay, sprintKeyDelayCallback, 0.2f, false);
-
+	
+	
+	
+	UE_LOG(LogTemp, Warning, TEXT("Sprint pressed"));
 	if(canSprint)
 	{
+		UE_LOG(LogTemp, Warning, TEXT("can sprint"));
 		GetCharacterMovement()->MaxWalkSpeed = sprintSpeed;
 		PlayFootStep();
 		GetWorldTimerManager().SetTimer(timerFootstep, this, &AMainCharacter::PlayFootStep, footStepTimeSprint, true);
-		FAkAudioDevice::Get()->SetRTPCValue(*FString("Footsteps_Movement_Type"), 3, 500, this);
-		startSprintEvent = FAkAudioDevice::Get()->PostEvent("Start_Run", this);
+		//FAkAudioDevice::Get()->SetRTPCValue(*FString("Footsteps_Movement_Type"), 3, 500, this);
+		//startSprintEvent = FAkAudioDevice::Get()->PostEvent("Start_Run", this);
 	}
 		
 }
@@ -495,22 +516,20 @@ void AMainCharacter::SprintReleased()
 		if (stamina < heavyBreathThreshold )
 		{
 
-			heavySprintEvent = FAkAudioDevice::Get()->PostEvent("Stop_Run_Heavy", this);
+			//heavySprintEvent = FAkAudioDevice::Get()->PostEvent("Stop_Run_Heavy", this);
 		}
 		else 
 		{
 
-			gentleSprintEvent = FAkAudioDevice::Get()->PostEvent("Stop_Run_Gentle", this);
+			//gentleSprintEvent = FAkAudioDevice::Get()->PostEvent("Stop_Run_Gentle", this);
 		}
 
-		float restTime = CalculateRestTime(1.f, 100.f, 0.0f, 3.f);
+		float restTime = restTimeCurveFloat->GetFloatValue(stamina);
+
 		UE_LOG(LogTemp, Warning, TEXT("%f"), restTime);
-
-		if (restTime >= 0.5f)
-		{
-			canSprint = false;
-			GetWorldTimerManager().SetTimer(timerStamina, this, &AMainCharacter::RegainStamina, restTime, false);
-		}
+		canSprint = false;
+		restTimer = restTime;
+		restCountDown = 0.f;
 	}
 	
 	
@@ -522,7 +541,7 @@ void AMainCharacter::SprintReleased()
 		return;
 
 	GetCharacterMovement()->MaxWalkSpeed = walkSpeed;
-	FAkAudioDevice::Get()->SetRTPCValue(*FString("Footsteps_Movement_Type"), 2, 500, this);
+	//FAkAudioDevice::Get()->SetRTPCValue(*FString("Footsteps_Movement_Type"), 2, 500, this);
 	GetWorldTimerManager().SetTimer(timerFootstep, this, &AMainCharacter::PlayFootStep, footStepTimeWalk, true);
 
 	
@@ -534,9 +553,9 @@ void AMainCharacter::BeginCrouch()
 
 	crouchCurveTimeline.Play();
 	GetCharacterMovement()->MaxWalkSpeed = crouchSpeed;
-	FAkAudioDevice::Get()->SetRTPCValue(*FString("Footsteps_Movement_Type"), 1, 500, this);
+	//FAkAudioDevice::Get()->SetRTPCValue(*FString("Footsteps_Movement_Type"), 1, 500, this);
 	GetWorldTimerManager().SetTimer(timerFootstep, this, &AMainCharacter::PlayFootStep, footStepTimeCrouch, true);
-
+	PlayFootStep();
 	
 	
 }
@@ -559,7 +578,7 @@ void AMainCharacter::EndCrouch()
 	}*/
 
 	GetCharacterMovement()->MaxWalkSpeed = walkSpeed;
-	FAkAudioDevice::Get()->SetRTPCValue(*FString("Footsteps_Movement_Type"), 2, 500, this);
+	//FAkAudioDevice::Get()->SetRTPCValue(*FString("Footsteps_Movement_Type"), 2, 500, this);
 	GetWorldTimerManager().SetTimer(timerFootstep, this, &AMainCharacter::PlayFootStep, footStepTimeWalk, true);
 }
 
@@ -582,14 +601,10 @@ void AMainCharacter::SetMovement(EMovement newMovement)
 
 void AMainCharacter::RegainStamina()
 {
+	UE_LOG(LogTemp, Warning, TEXT("can sprint is true"));
 	canSprint = true;
 }
 
-float AMainCharacter::CalculateRestTime(float oldMin, float oldMax, float newMin, float newMax)
-{
-	float newVal =  (((stamina - oldMin) * (newMax - newMin)) / (oldMax - oldMin)) + newMin;
-	return (newMax + newMin) - newVal;
-}
 
 void AMainCharacter::ResolveMovement()
 {
@@ -605,9 +620,16 @@ void AMainCharacter::ResolveMovement()
 
 bool AMainCharacter::AreStaminaEventsPlaying()
 {
-	return !FAkAudioDevice::Get()->IsEventIDActive(startSprintEvent) && !FAkAudioDevice::Get()->IsEventIDActive(heavySprintEvent) && !FAkAudioDevice::Get()->IsEventIDActive(gentleSprintEvent) && !FAkAudioDevice::Get()->IsEventIDActive(depletedSprintEvent);
+	//return !FAkAudioDevice::Get()->IsEventIDActive(startSprintEvent) && !FAkAudioDevice::Get()->IsEventIDActive(heavySprintEvent) && !FAkAudioDevice::Get()->IsEventIDActive(gentleSprintEvent) && !FAkAudioDevice::Get()->IsEventIDActive(depletedSprintEvent);
+	return false;
 }
 
 #pragma endregion 
 
-
+void AMainCharacter::StopPlayerSounds()
+{
+	/*FAkAudioDevice::Get()->StopPlayingID(startSprintEvent, 300);
+	FAkAudioDevice::Get()->StopPlayingID(gentleSprintEvent, 300);
+	FAkAudioDevice::Get()->StopPlayingID(heavySprintEvent, 300);
+	FAkAudioDevice::Get()->StopPlayingID(depletedSprintEvent, 300);*/
+}

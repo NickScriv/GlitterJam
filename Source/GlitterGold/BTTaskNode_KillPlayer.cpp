@@ -10,6 +10,7 @@
 #include "DrawDebugHelpers.h"
 #include "Components/CapsuleComponent.h"
 
+
 EBTNodeResult::Type UBTTaskNode_KillPlayer::ExecuteTask(class UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
 {
 	Super::ExecuteTask(OwnerComp, NodeMemory);
@@ -37,6 +38,7 @@ EBTNodeResult::Type UBTTaskNode_KillPlayer::ExecuteTask(class UBehaviorTreeCompo
 	{
 		if (Cast<AMainCharacter>(hit.Actor))
 		{
+			//monster->StopMonsterSounds();
 			monster->KillPlayer();
 		}
 	}

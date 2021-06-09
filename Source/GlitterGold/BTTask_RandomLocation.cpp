@@ -28,7 +28,6 @@ EBTNodeResult::Type UBTTask_RandomLocation::ExecuteTask(class UBehaviorTreeCompo
 		return EBTNodeResult::Failed;
 	}
 
-	monster->GetCharacterMovement()->MaxWalkSpeed = walkSpeed;
 	OwnerComp.GetBlackboardComponent()->SetValueAsVector(bbKey.SelectedKeyName ,randomLoc.Location);
 
 	return EBTNodeResult::Succeeded;
