@@ -72,3 +72,4 @@ Intermediate/*
 DerivedDataCache/*
 *.pdb
 *.chm
+Plugins/Wwise/
