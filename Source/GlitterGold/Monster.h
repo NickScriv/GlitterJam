@@ -66,6 +66,9 @@ public:
 	int32 cautionEvent = -1;
 	int32 chaseEvent = -1;
 
+	UFUNCTION(BlueprintImplementableEvent)
+		void TracePath();
+
 protected:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -82,6 +85,8 @@ private:
 
 	UFUNCTION()
 	void TriggerFirstEvent(class AActor* overlappedActor, class AActor* otherActor);
+
+	
 
 	
 	

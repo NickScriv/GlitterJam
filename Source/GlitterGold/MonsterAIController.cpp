@@ -116,6 +116,10 @@ void AMonsterAIController::StartMonsterBehavior()
 {
 	
 	RunBehaviorTree(AIBehavior);
-
 	
+	AMonster* monster = Cast<AMonster>(GetPawn());
+
+	if (!monster)
+		return;
+	monster->TracePath();
 }
