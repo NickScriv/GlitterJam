@@ -5,6 +5,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	377921503	Stop_Run_Heavy			\Default Work Unit\SFX Events\Stamina\Stop_Run_Heavy	
 	523050301	Play_Lights_Power_On			\Default Work Unit\SFX Events\Lights\Play_Lights_Power_On	
 	535830432	Door_Open			\Default Work Unit\SFX Events\Doors\Door_Open	
+	757579393	Key_Acquired			\Default Work Unit\SFX Events\Keys\Key_Acquired	
 	1047608429	Start_Run			\Default Work Unit\SFX Events\Stamina\Start_Run	
 	1225062921	Play_Lights_Power_Off			\Default Work Unit\SFX Events\Lights\Play_Lights_Power_Off	
 	1238538214	Play_Ambient_Music			\Default Work Unit\Music Events\Play_Ambient_Music	
@@ -15,8 +16,10 @@ Event	ID	Name			Wwise Object Path	Notes
 	2477713992	Stop_Ambience			\Default Work Unit\SFX Events\Ambience\Stop_Ambience	
 	3140010222	Stamina_Depleted			\Default Work Unit\SFX Events\Stamina\Stamina_Depleted	
 	3237721180	Play_Chase_Music			\Default Work Unit\Music Events\Play_Chase_Music	
+	3638328809	Stop_Door_Unlocking			\Default Work Unit\SFX Events\Doors\Stop_Door_Unlocking	
 	3668695751	Play_Enemy_Footstep			\Default Work Unit\SFX Events\Enemy\Play_Enemy_Footstep	
 	3793582191	Play_Enemy_Passive_Sounds			\Default Work Unit\SFX Events\Enemy\Play_Enemy_Passive_Sounds	
+	4191924555	Play_Door_Unlocking			\Default Work Unit\SFX Events\Doors\Play_Door_Unlocking	
 
 Switch Group	ID	Name			Wwise Object Path	Notes
 	2384895876	Stamina_SwitchGroup			\Default Work Unit\SFX\Stamina_SwitchGroup	
@@ -93,6 +96,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	267050312	Enemy_fs_tile_1	D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\SFX\Enemy_fs_tile_1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemy Sounds\Enemy Footstep Switch\Enemy Tile Footsteps\Enemy_fs_tile_1		234148
 	287037463	Caution_var_6	D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\SFX\Caution_var_6_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemy Sounds\Enemy Caution\Enemy Variations\Enemy Variations (Caution)\Caution_var_6		356516
 	295821180	Enemy_fs_wood_2	D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\SFX\Enemy_fs_wood_2_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemy Sounds\Enemy Footstep Switch\Enemy Wood Footsteps\Enemy_fs_wood_2		496340
+	301772476	Key_Acquired_1	D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\SFX\Key_Acquired_1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Keys\Keys Acquired\Key_Acquired_1		262336
 	349922209	Enemy_fs_wood_3	D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\SFX\Enemy_fs_wood_3_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemy Sounds\Enemy Footstep Switch\Enemy Wood Footsteps\Enemy_fs_wood_3		496340
 	361019455	Enemy_fs_tile_5	D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\SFX\Enemy_fs_tile_5_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemy Sounds\Enemy Footstep Switch\Enemy Tile Footsteps\Enemy_fs_tile_5		234148
 	362204658	Passive_var_6	D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\SFX\Passive_var_6_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemy Sounds\Enemy Passive\Enemy Passive Variations\Passive_var_6		926292
@@ -104,6 +108,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	473463524	Caution_var_8	D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\SFX\Caution_var_8_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemy Sounds\Enemy Caution\Enemy Variations\Enemy Variations (Caution)\Caution_var_8		356516
 	479321780	tile_fs_walk_2	D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\SFX\tile_fs_walk_2_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Footsteps\Footstep Movement Type Switch\Walking Footsteps\Tile Walk\tile_fs_walk_2		262336
 	483375584	Door_Close_2	D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\SFX\Door_Close_2_B8454FB9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Doors\Door Close\Door Close\Door_Close_2		524480
+	486627016	Door_Lock_Opening_1	D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\SFX\Door_Lock_Opening_1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Doors\Door Lock Opening\Door_Lock_Opening_1		730264
 	520793624	High_Door_Open_3	D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\SFX\High_Door_Open_3_F340491B.wem		\Actor-Mixer Hierarchy\Default Work Unit\Doors\Door Open\High Door Open\High_Door_Open_3		441192
 	526855242	Caution_var_3	D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\SFX\Caution_var_3_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemy Sounds\Enemy Caution\Enemy Variations\Enemy Variations (Caution)\Caution_var_3		356516
 	527141422	Enemy_fs_wood_5	D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\SFX\Enemy_fs_wood_5_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemy Sounds\Enemy Footstep Switch\Enemy Wood Footsteps\Enemy_fs_wood_5		496340
@@ -132,6 +137,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	733641677	Low_Door_Open_3	D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\SFX\Low_Door_Open_3_6742F08F.wem		\Actor-Mixer Hierarchy\Default Work Unit\Doors\Door Close\Low Door Close\Low_Door_Open_3		529392
 	759301855	Stop Med Stamina	D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\SFX\Stop_Med_Stamina_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Stamina\Run Stop Switch\Stop Med Stamina		1124692
 	766920340	wood_fs_walk_2	D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\SFX\wood_fs_walk_2_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Footsteps\Footstep Movement Type Switch\Walking Footsteps\Wood Walk\wood_fs_walk_2		262336
+	779639373	Key_Acquired_2	D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\SFX\Key_Acquired_2_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Keys\Keys Acquired\Key_Acquired_2		262336
 	805418482	Chase_var_1	D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\SFX\Chase_var_1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemy Sounds\Enemy Chase\Enemy Variations\Chase_var_1		636316
 	809688070	Caution_var_4	D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\SFX\Caution_var_4_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemy Sounds\Enemy Caution\Enemy Variations\Enemy Variations (Caution)\Caution_var_4		356516
 	822052185	Enemy_fs_wood_4	D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\SFX\Enemy_fs_wood_4_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemy Sounds\Enemy Footstep Switch\Enemy Wood Footsteps\Enemy_fs_wood_4		234196
@@ -140,6 +146,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	858817638	Stop Low Stamina	D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\SFX\Stop_Low_Stamina_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Stamina\Run Stop Switch\Stop Low Stamina		1110040
 	860164930	tile_fs_walk_5	D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\SFX\tile_fs_walk_5_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Footsteps\Footstep Movement Type Switch\Walking Footsteps\Tile Walk\tile_fs_walk_5		262336
 	862842378	tile_fs_crouch_1	D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\SFX\tile_fs_crouch_1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Footsteps\Footstep Movement Type Switch\Crouching Footsteps\Tile Crouch\tile_fs_crouch_1		262336
+	876824865	Player_Death	D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\SFX\Player_Death_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player Death\Player_Death		992360
 	903285620	tile_fs_crouch_4	D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\SFX\tile_fs_crouch_4_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Footsteps\Footstep Movement Type Switch\Crouching Footsteps\Tile Crouch\tile_fs_crouch_4		262336
 	915312894	Caution_var_7	D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\SFX\Caution_var_7_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemy Sounds\Enemy Caution\Enemy Variations\Enemy Variations (Caution)\Caution_var_7		356516
 	915953283	Chase_var_6	D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\SFX\Chase_var_6_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemy Sounds\Enemy Chase\Enemy Variations\Chase_var_6		636316
@@ -147,7 +154,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	920327594	wood_fs_walk_1	D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\SFX\wood_fs_walk_1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Footsteps\Footstep Movement Type Switch\Walking Footsteps\Wood Walk\wood_fs_walk_1		262336
 	934296180	Low_Door_Open_2	D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\SFX\Low_Door_Open_2_D5812706.wem		\Actor-Mixer Hierarchy\Default Work Unit\Doors\Door Close\Low Door Close\Low_Door_Open_2		529392
 	942136021	Passive_var_1	D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\SFX\Passive_var_1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemy Sounds\Enemy Passive\Enemy Passive Variations\Passive_var_1		618676
-	945844893	Enemy Chase Loop	D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\SFX\Chase_Loop_D79FB2B7.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemy Sounds\Enemy Chase\Enemy Chase Loop		4026548
+	945844893	Enemy Chase Loop	D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\SFX\Chase_Loop_C5579977.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemy Sounds\Enemy Chase\Enemy Chase Loop		4185972
 	956539608	tile_fs_run_1	D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\SFX\tile_fs_run_1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Footsteps\Footstep Movement Type Switch\Running Footsteps\Tile Run\tile_fs_run_1		262336
 	963852125	wood_fs_crouch_4	D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\SFX\wood_fs_crouch_4_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Footsteps\Footstep Movement Type Switch\Crouching Footsteps\Wood Crouch\wood_fs_crouch_4		262336
 	973861806	Door_Close_1	D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\SFX\Door_Close_1_8A14D8D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\Doors\Door Close\Door Close\Door_Close_1		524480

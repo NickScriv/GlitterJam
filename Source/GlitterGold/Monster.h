@@ -7,6 +7,7 @@
 #include "Monster.generated.h"
 
 
+
 UENUM()
 enum EPathEnding
 {
@@ -31,13 +32,13 @@ public:
 	// Sets default values for this character's properties
 	AMonster();
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TArray<class APathPoint*> path;
 
 	UPROPERTY(EditAnywhere)
 		TEnumAsByte <EPathEnding>  pathEnding;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 		int32 currentPathIndex = 0;
 
 	UPROPERTY(EditAnywhere)
@@ -46,8 +47,14 @@ public:
 	UPROPERTY(BlueprintReadOnly)
 	bool killedPlayer = false;
 
+	UPROPERTY(BlueprintReadOnly)
+		float inCaution = 0.f;
+
 	UPROPERTY(EditAnywhere)
 	int32 pathDirection = 1;
+
+	UPROPERTY(BlueprintReadOnly)
+	bool startAnimation = false;
 
 	void KillPlayer();
 
@@ -69,6 +76,12 @@ protected:
 private:
 	
 	FRotator rotateKill;
+
+	UPROPERTY(EditAnywhere)
+	class ATriggerVolume* firstEventScare;
+
+	UFUNCTION()
+	void TriggerFirstEvent(class AActor* overlappedActor, class AActor* otherActor);
 
 	
 	

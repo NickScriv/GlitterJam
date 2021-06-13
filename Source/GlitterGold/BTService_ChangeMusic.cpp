@@ -23,7 +23,15 @@ void UBTService_ChangeMusic::OnBecomeRelevant(UBehaviorTreeComponent& OwnerComp,
 
 	if (!monster)
 		return;
-	
+
+	if(musicChange == "Play_Ambient_Music")
+	{
+		monster->inCaution = 0.f;
+	}
+	else if(musicChange == "Play_Chase_Music")
+	{
+		monster->inCaution = 1.f;
+	}
 
 	FAkAudioDevice::Get()->PostEvent(*musicChange, monster);
 }
