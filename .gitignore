@@ -74,3 +74,9 @@ DerivedDataCache/*
 *.chm
 Plugins/Wwise/
 Config/DefaultGame.ini
+Config/DefaultGame.ini
+Content/Game/Windows/Init.txt
+Content/Game/Windows/Music.txt
+Content/Game/Windows/SFX.bnk
+Content/Game/Windows/SFX.txt
+Content/Game/Windows/SoundbanksInfo.xml
