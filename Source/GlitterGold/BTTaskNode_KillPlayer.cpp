@@ -42,7 +42,7 @@ EBTNodeResult::Type UBTTaskNode_KillPlayer::ExecuteTask(class UBehaviorTreeCompo
 			monster->KillPlayer();
 		}
 	}
-	DrawDebugLine(GetWorld(), start, player->GetActorLocation(), FColor::Yellow, false, 2.f);
+	//DrawDebugLine(GetWorld(), start, player->GetActorLocation(), FColor::Yellow, false, 2.f);
 	
 
 	return EBTNodeResult::Succeeded;
