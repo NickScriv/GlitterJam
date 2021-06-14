@@ -9,6 +9,7 @@
 #include "MainCharacter.h"
 #include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetMathLibrary.h"
+#include "Engine/TriggerVolume.h"
 //#include "../Plugins/Wwise/Source/AkAudio/Classes/AkGameplayStatics.h"
 #include "../Plugins/Wwise/Source/AkAudio/Classes/AkComponent.h"
 
@@ -17,7 +18,6 @@ AMonster::AMonster()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-
 }
 
 // Called when the game starts or when spawned
@@ -25,7 +25,25 @@ void AMonster::BeginPlay()
 {
 	Super::BeginPlay();
 
+	firstEventScare->OnActorBeginOverlap.AddDynamic(this, &AMonster::TriggerFirstEvent);
+
 	passiveEvent = FAkAudioDevice::Get()->PostEvent("Play_Enemy_Passive_Sounds", this);
+}
+
+void AMonster::TriggerFirstEvent(AActor* overlappedActor, AActor* otherActor)
+{
+	if (otherActor && otherActor != this)
+	{
+		AMainCharacter* player = Cast<AMainCharacter>(otherActor);
+
+		if (!player)
+		{
+			UE_LOG(LogTemp, Error, TEXT("Player Not found in trigger"));
+			return;
+		}
+
+		startAnimation = true;
+	}
 }
 
 void AMonster::KillPlayer()

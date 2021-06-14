@@ -25,7 +25,7 @@ EBTNodeResult::Type UBTTaskNode_MoveToPlayer::ExecuteTask(class UBehaviorTreeCom
 	}
 
 
-	OwnerComp.GetBlackboardComponent()->SetValueAsVector(bbKey.SelectedKeyName, randomLoc.Location);
+	OwnerComp.GetBlackboardComponent()->SetValueAsVector(bbKey.SelectedKeyName, UGameplayStatics::GetPlayerCharacter(this, 0)->GetActorLocation());
 
 	return EBTNodeResult::Succeeded;
 }

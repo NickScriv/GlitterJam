@@ -20,6 +20,15 @@ class GLITTERGOLD_API AMonsterAIController : public AAIController
 protected:
 	void BeginPlay() override;
 
+public:
+	virtual void GetActorEyesViewPoint(FVector& OutLocation, FRotator& OutRotation) const override;
+
+	UFUNCTION(BlueprintImplementableEvent, Category = "AICBase")
+	void AISightPerceptionViewPoint(FVector& OutLocation, FRotator& OutRotation) const;
+
+	void StartMonsterBehavior();
+	
+
 private:
 	UPROPERTY(EditDefaultsOnly, Category = "Blackboard")
 		class UBehaviorTree* AIBehavior;
@@ -32,18 +41,21 @@ private:
 
 	UPROPERTY(EditAnywhere)
 		float chaseSpeed = 600.f;
-
-
+	
 	UPROPERTY(EditDefaultsOnly, Category = "Blackboard")
 	TSubclassOf<UAISense> hearingSense;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Blackboard")
 	TSubclassOf<UAISense> sightSense;
 
-	UPROPERTY(VisibleAnywhere)
-	class UAIPerceptionComponent* AIPerception;
+	UPROPERTY(EditAnywhere, Category = "Components")
+	UAIPerceptionComponent* AIPerceptionStart = nullptr;
+
+	UPROPERTY(EditAnywhere, Category = "Components")
+	UAIPerceptionComponent* AIPerception = nullptr;
 
 	UFUNCTION()
 	void perceptionUpdated(AActor* Actor, FAIStimulus Stimulus);
-	
+
+	bool firstSeen = false;
 };
