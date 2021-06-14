@@ -6,6 +6,7 @@
 #include "GameFramework/GameModeBase.h"
 #include "GlitterGameModeBase.generated.h"
 
+
 /**
  * 
  */
@@ -18,6 +19,7 @@ private:
 
 	UPROPERTY(EditAnywhere)
 		TSubclassOf<class UHUDUserWidget> HUDWidgetClass;
+
 
 	class UHUDUserWidget* HUDWidget;
 
@@ -34,6 +36,12 @@ public:
 	void AddNotification(FText content);
 
 	void EndGame();
+
+	UPROPERTY(EditAnywhere)
+		TArray<class AMonster*> firstScareEventMonster;
+
+	UPROPERTY(EditAnywhere)
+		TArray<class ATriggerVolume*> firstScareEventTrigger;
 
 	
 };

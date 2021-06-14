@@ -121,5 +121,5 @@ void AMonsterAIController::StartMonsterBehavior()
 
 	if (!monster)
 		return;
-	monster->TracePath();
+	//monster->TracePath();
 }
