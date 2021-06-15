@@ -30,11 +30,11 @@ void AManageEvents::BeginPlay()
 		return;
 	}
 
-	const int32 index = FMath::RandRange(0, firstScareEventMonsters.Num());
+	const int32 index = FMath::RandRange(0, firstScareEventMonsters.Num() - 1);
 
 	for(int32 i = 0; i < firstScareEventMonsters.Num(); i++)
 	{
-		UE_LOG(LogTemp, Error, TEXT("wow"));
+		
 		if(i != index)
 		{
 			firstScareEventMonsters[i]->SetActorHiddenInGame(true);
