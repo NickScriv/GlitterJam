@@ -98,6 +98,12 @@ void UInteractionWidgetComponent::SetInteractableActionText(const FText& newActi
 
 }
 
+void UInteractionWidgetComponent::SetInteractableKeyAction(const FText& newKeyAction)
+{
+	interactableKeyAction = newKeyAction;
+	RefreshWidget();
+}
+
 void UInteractionWidgetComponent::RefreshWidget()
 {
 	if (!bHiddenInGame)

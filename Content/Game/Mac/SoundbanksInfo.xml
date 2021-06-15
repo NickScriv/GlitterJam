@@ -11,7 +11,7 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="393239870" Language="SFX" Hash="947729948">
+		<SoundBank Id="393239870" Language="SFX" Hash="803667808">
 			<ObjectPath>\SoundBanks\Default Work Unit\SFX</ObjectPath>
 			<ShortName>SFX</ShortName>
 			<Path>SFX.bnk</Path>
@@ -108,7 +108,14 @@
 						<ActionSetStateEntry Id="417490929" Name="Chase" ObjectPath="\States\Default Work Unit\Music States\Music_Sections\Chase"/>
 					</ActionSetState>
 				</Event>
-				<Event Id="4191924555" Name="Play_Door_Unlocking" ObjectPath="\Events\Default Work Unit\SFX Events\Doors\Play_Door_Unlocking"/>
+				<Event Id="4191924555" Name="Play_Door_Unlocking" ObjectPath="\Events\Default Work Unit\SFX Events\Doors\Play_Door_Unlocking">
+					<IncludedMemoryFiles>
+						<File Id="486627016" Language="SFX">
+							<ShortName>Door_Lock_Opening_1.wav</ShortName>
+							<Path>SFX\Door_Lock_Opening_1_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="271451359" Name="Play_Enemy_Caution_Sounds" ObjectPath="\Events\Default Work Unit\SFX Events\Enemy\Play_Enemy_Caution_Sounds">
 					<IncludedMemoryFiles>
 						<File Id="68107130" Language="SFX">

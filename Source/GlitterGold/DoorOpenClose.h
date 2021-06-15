@@ -25,22 +25,24 @@ public:
 	UPROPERTY(BlueprintReadOnly)
 	float openTime = 2;
 
+	UPROPERTY(EditAnywhere)
+	bool locked = false;
+
+	bool playerHasKey = false;
+
 private:
 	UPROPERTY(EditAnywhere)
 	float openAngle = 90.f;
 
+	UPROPERTY(EditAnywhere, meta = (EditCondition = locked))
+	float unlockDoorTime = 0.f;
+
 	float initialYaw;
 	float currentYaw;
-
-	int32 openSoundID;
 
 
 	UPROPERTY(EditAnywhere)
 		float doorSpeed = 0.8f;
-
-
-
-	
 
 	UPROPERTY(EditAnywhere)
 	bool open = false;
@@ -52,7 +54,19 @@ private:
 		void InteractDoor(class AMainCharacter* character);
 
 	UFUNCTION()
-		void FocusDoor(class AMainCharacter* character);
+		void BeginFocusDoor(class AMainCharacter* character);
+
+	UFUNCTION()
+		void BeginInteractDoor(class AMainCharacter* character);
+
+	UFUNCTION()
+		void EndFocusDoor(class AMainCharacter* character);
+
+	UFUNCTION()
+		void EndInteractDoor(class AMainCharacter* character);
+
+	UFUNCTION()
+		void PlayerPickedUpKey();
 
 		
 };

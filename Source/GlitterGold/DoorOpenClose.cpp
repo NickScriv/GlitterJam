@@ -32,10 +32,12 @@ void UDoorOpenClose::BeginPlay()
 	
 
 	if (interaction)
-	{
-		
+	{	
 		interaction->OnInteract.AddDynamic(this, &UDoorOpenClose::InteractDoor);
-		interaction->OnBeginFocus.AddDynamic(this, &UDoorOpenClose::FocusDoor);
+		interaction->OnBeginFocus.AddDynamic(this, &UDoorOpenClose::BeginFocusDoor);
+		interaction->OnEndFocus.AddDynamic(this, &UDoorOpenClose::EndFocusDoor);
+		interaction->OnEndInteract.AddDynamic(this, &UDoorOpenClose::EndInteractDoor);
+		interaction->OnBeginInteract.AddDynamic(this, &UDoorOpenClose::BeginInteractDoor);
 	}
 
 	initialYaw = this->GetRelativeRotation().Yaw;
@@ -71,7 +73,7 @@ void UDoorOpenClose::OpenDoor()
 		FAkAudioDevice::Get()->PostEvent("Door_Open", this->GetOwner());
 	}
 	open = !open;
-	FocusDoor(nullptr);
+	BeginFocusDoor(nullptr);
 	
 	currentYaw = this->GetRelativeRotation().Yaw;
 	openTime = 0;
@@ -80,19 +82,72 @@ void UDoorOpenClose::OpenDoor()
 
 void UDoorOpenClose::InteractDoor(class AMainCharacter* character)
 {
+	if(locked && !playerHasKey)
+	{
+		return;	
+	}
+	else if(playerHasKey && locked)
+	{
+		FAkAudioDevice::Get()->PostEvent("Stop_Door_Unlocking", this->GetOwner());
+		locked = false;
+	}
+	
 	if (openTime >= 1)
 		OpenDoor();
 }
 
-void UDoorOpenClose::FocusDoor(class AMainCharacter* character)
+void UDoorOpenClose::BeginFocusDoor(class AMainCharacter* character)
 {
-	if (open)
+	if(!locked)
 	{
-		interaction->SetInteractableActionText(FText::FromString("Close"));
+		if (open)
+		{
+			interaction->SetInteractableActionText(FText::FromString("Close"));
+		}
+		else
+		{
+			interaction->SetInteractableActionText(FText::FromString("Open"));
+		}
+	}
+	else if(playerHasKey)
+	{
+		interaction->SetInteractableActionText(FText::FromString("Unlock"));
+		interaction->SetInteractableKeyAction(FText::FromString(""));
 	}
 	else
 	{
-		interaction->SetInteractableActionText(FText::FromString("Open"));
+		interaction->SetInteractableActionText(FText::FromString(""));
+		interaction->SetInteractableKeyAction(FText::FromString("Locked"));
 	}
+}
+
+void UDoorOpenClose::BeginInteractDoor(AMainCharacter* character)
+{
+	// Start playing unlocking sound
+	if (playerHasKey && locked)
+	{
+		FAkAudioDevice::Get()->PostEvent("Play_Door_Unlocking", this->GetOwner());
+	}
+}
+
+// May not need to do anything here
+void UDoorOpenClose::EndFocusDoor(AMainCharacter* character)
+{
+	
+}
+
+void UDoorOpenClose::EndInteractDoor(AMainCharacter* character)
+{
+	// Stop playing unlocking sound
+	if(playerHasKey && locked)
+	{
+		FAkAudioDevice::Get()->PostEvent("Stop_Door_Unlocking", this->GetOwner());
+	}
+}
+
+void UDoorOpenClose::PlayerPickedUpKey()
+{
+	playerHasKey = true;
+	interaction->interactionTime = unlockDoorTime;
 }
 
