@@ -34,6 +34,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Interaction")
 		FText interactableAction;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Interaction")
+		FText interactableKeyAction = FText::FromString("");
+
 	UPROPERTY(EditDefaultsOnly, BlueprintAssignable)
 		FOnBeginFocus OnBeginFocus;
 
@@ -65,6 +68,9 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Interaction")
 		void SetInteractableActionText(const FText& newAction);
+
+	UFUNCTION(BlueprintCallable, Category = "Interaction")
+		void SetInteractableKeyAction(const FText& newKeyAction);
 
 	void RefreshWidget();
 

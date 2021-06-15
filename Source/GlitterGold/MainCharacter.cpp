@@ -272,7 +272,6 @@ void AMainCharacter::FoundNewInteractable(UInteractionWidgetComponent* interacta
 
 void AMainCharacter::BeginInteraction()
 {
-	//PerformCheck();
 	interactionData.interactKeyHeld = true;
 
 	if (UInteractionWidgetComponent* interactable = interactionData.viewedInteractionItem)
