@@ -160,8 +160,6 @@ private:
 	UPROPERTY(EditAnywhere)
 		float heavyBreathThreshold = 40.f;
 
-	UPROPERTY(EditAnywhere)
-		class USoundBase* footSound;
 
 	FTimerHandle timerFootstep;
 	bool playFootStep = true;
@@ -224,6 +222,8 @@ private:
 	bool isCrouchingKeyDown = false;
 	bool canPressSprint = true;
 	TEnumAsByte <EMovement> movement = EMovement::Standing;
+
+	UPROPERTY()
 	class UCapsuleComponent* capsuleColl;
 
 

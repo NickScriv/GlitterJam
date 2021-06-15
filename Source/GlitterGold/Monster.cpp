@@ -25,7 +25,10 @@ void AMonster::BeginPlay()
 {
 	Super::BeginPlay();
 
-	firstEventScare->OnActorBeginOverlap.AddDynamic(this, &AMonster::TriggerFirstEvent);
+	if(firstEventScare)
+		firstEventScare->OnActorBeginOverlap.AddDynamic(this, &AMonster::TriggerFirstEvent);
+	else
+		UE_LOG(LogTemp, Error, TEXT("Trigger not found for scare event in monster!!"));
 
 	passiveEvent = FAkAudioDevice::Get()->PostEvent("Play_Enemy_Passive_Sounds", this);
 }
@@ -75,10 +78,6 @@ void AMonster::KillPlayer()
 
 void AMonster::StopMonsterSounds()
 {
-	UE_LOG(LogTemp, Warning, TEXT("stop sounds"));
-	UE_LOG(LogTemp, Warning, TEXT("passive: %d"), passiveEvent);
-	UE_LOG(LogTemp, Warning, TEXT("caution: %d"), cautionEvent);
-	UE_LOG(LogTemp, Warning, TEXT("chase: %d"), chaseEvent);
 	FAkAudioDevice::Get()->StopPlayingID(passiveEvent, 300);
 	FAkAudioDevice::Get()->StopPlayingID(cautionEvent, 300);
 	FAkAudioDevice::Get()->StopPlayingID(chaseEvent, 300);

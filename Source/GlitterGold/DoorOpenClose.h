@@ -37,6 +37,9 @@ private:
 	UPROPERTY(EditAnywhere, meta = (EditCondition = locked))
 	float unlockDoorTime = 0.f;
 
+	UPROPERTY(EditAnywhere)
+	class AKeyActor* keyToDoor;
+
 	float initialYaw;
 	float currentYaw;
 
@@ -47,7 +50,7 @@ private:
 	UPROPERTY(EditAnywhere)
 	bool open = false;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY()
 		class UInteractionWidgetComponent* interaction = nullptr;
 
 	UFUNCTION()
@@ -68,5 +71,5 @@ private:
 	UFUNCTION()
 		void PlayerPickedUpKey();
 
-		
+
 };

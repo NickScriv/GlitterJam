@@ -82,6 +82,8 @@ void UInteractionWidgetComponent::Interact()
 
 float UInteractionWidgetComponent::GetInteractPercent()
 {
+	if(FMath::IsNearlyEqual(character->GetRemainingInteractTime(), -1.f, 0.1f))
+		return 0.f;
 	return 1.f - FMath::Abs(character->GetRemainingInteractTime() / interactionTime);
 }
 

@@ -3,7 +3,7 @@
 
 #include "DoorOpenClose.h"
 #include "InteractionWidgetComponent.h"
-//#include "../Plugins/Wwise/Source/AkAudio/Classes/AkGameplayStatics.h"
+#include "KeyActor.h"
 #include "../Plugins/Wwise/Source/AkAudio/Classes/AkComponent.h"
 
 // Sets default values for this component's properties
@@ -38,6 +38,11 @@ void UDoorOpenClose::BeginPlay()
 		interaction->OnEndFocus.AddDynamic(this, &UDoorOpenClose::EndFocusDoor);
 		interaction->OnEndInteract.AddDynamic(this, &UDoorOpenClose::EndInteractDoor);
 		interaction->OnBeginInteract.AddDynamic(this, &UDoorOpenClose::BeginInteractDoor);
+	}
+
+	if(keyToDoor)
+	{
+		keyToDoor->OnPickedUpKey.AddDynamic(this, &UDoorOpenClose::PlayerPickedUpKey);
 	}
 
 	initialYaw = this->GetRelativeRotation().Yaw;
@@ -84,12 +89,14 @@ void UDoorOpenClose::InteractDoor(class AMainCharacter* character)
 {
 	if(locked && !playerHasKey)
 	{
+		// Play locked door sound
 		return;	
 	}
 	else if(playerHasKey && locked)
 	{
 		FAkAudioDevice::Get()->PostEvent("Stop_Door_Unlocking", this->GetOwner());
 		locked = false;
+		interaction->interactionTime = 0.f;
 	}
 	
 	if (openTime >= 1)

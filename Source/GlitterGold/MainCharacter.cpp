@@ -52,6 +52,8 @@ void AMainCharacter::BeginPlay()
 		
 	}
 
+	GetWorldTimerManager().ClearTimer(timerHandleInteract);
+
 	GetCharacterMovement()->MaxWalkSpeed = walkSpeed;
 
 	/*FAkAudioDevice::Get()->PostEvent("PLAY_MUSIC", this);
@@ -326,8 +328,6 @@ float AMainCharacter::GetRemainingInteractTime()
 #pragma endregion 
 
 #pragma region Movement
-
-
 
 void AMainCharacter::TimelineProgressCrouch(float val)
 {

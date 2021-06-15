@@ -2,12 +2,19 @@
 
 
 #include "KeyActor.h"
+#include "InteractionWidgetComponent.h"
 
 // Sets default values
 AKeyActor::AKeyActor()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.bCanEverTick = false;
+
+	keyMesh = CreateDefaultSubobject<UStaticMeshComponent>("Key Mesh");
+	keyMesh->SetupAttachment(RootComponent);
+
+	/*interaction = CreateDefaultSubobject<UInteractionWidgetComponent>("Interaction Component");
+	interaction->SetupAttachment(RootComponent);*/
 
 }
 
@@ -15,13 +22,19 @@ AKeyActor::AKeyActor()
 void AKeyActor::BeginPlay()
 {
 	Super::BeginPlay();
+	if ((interaction = Cast<UInteractionWidgetComponent>(GetComponentByClass(UInteractionWidgetComponent::StaticClass()))) == nullptr)
+	{
+		UE_LOG(LogTemp, Error, TEXT("Interaction is null!!!"));
+		return;
+	}
+
+	interaction->OnInteract.AddDynamic(this, &AKeyActor::PickedUp);
 	
 }
 
-// Called every frame
-void AKeyActor::Tick(float DeltaTime)
+void AKeyActor::PickedUp(class AMainCharacter* character)
 {
-	Super::Tick(DeltaTime);
-
+	OnPickedUpKey.Broadcast();
+	Destroy();
 }
 
