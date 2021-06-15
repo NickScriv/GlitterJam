@@ -95,3 +95,17 @@ Content/Game/Windows/Music.txt
 Content/Game/Windows/SFX.bnk
 Content/Game/Windows/SFX.txt
 Content/Game/Windows/SoundbanksInfo.xml
+Config/DefaultGame.ini
+Content/Game/Mac/Init.bnk
+Content/Game/Mac/Music.bnk
+Content/Game/Mac/Music.txt
+Content/Game/Mac/SFX.bnk
+Content/Game/Mac/SFX.txt
+Content/Game/Mac/SoundbanksInfo.xml
+Content/Game/Windows/Init.bnk
+Content/Game/Windows/Music.bnk
+Content/Game/Windows/Music.txt
+Content/Game/Windows/SFX.bnk
+Content/Game/Windows/SFX.txt
+Content/Game/Windows/SoundbanksInfo.xml
+Content/Levels/MainLevel.umap
