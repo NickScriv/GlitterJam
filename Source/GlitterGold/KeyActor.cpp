@@ -3,6 +3,7 @@
 
 #include "KeyActor.h"
 #include "InteractionWidgetComponent.h"
+#include "../Plugins/Wwise/Source/AkAudio/Classes/AkComponent.h"
 
 // Sets default values
 AKeyActor::AKeyActor()
@@ -35,6 +36,7 @@ void AKeyActor::BeginPlay()
 void AKeyActor::PickedUp(class AMainCharacter* character)
 {
 	OnPickedUpKey.Broadcast();
+	FAkAudioDevice::Get()->PostEvent("Key_Acquired", this);
 	Destroy();
 }
 

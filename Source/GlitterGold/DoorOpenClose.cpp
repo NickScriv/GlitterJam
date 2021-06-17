@@ -90,6 +90,7 @@ void UDoorOpenClose::InteractDoor(class AMainCharacter* character)
 	if(locked && !playerHasKey)
 	{
 		// Play locked door sound
+		FAkAudioDevice::Get()->PostEvent("Locked_Door", this->GetOwner());
 		return;	
 	}
 	else if(playerHasKey && locked)
