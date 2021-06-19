@@ -20,12 +20,13 @@ private:
 	UPROPERTY(EditAnywhere)
 		TSubclassOf<class UHUDUserWidget> HUDWidgetClass;
 
-
+	UPROPERTY()
 	class UHUDUserWidget* HUDWidget;
 
 	UPROPERTY(EditAnywhere)
 		TSubclassOf<class UKillScreenUserWidget> killScreenWidgetClass;
 
+	UPROPERTY()
 	class UKillScreenUserWidget* KillScreenWidget;
 
 protected:

@@ -23,13 +23,13 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	private:
+private:
 
 	UPROPERTY(EditDefaultsOnly)
 	class UStaticMeshComponent* keyMesh;
 
 	UPROPERTY(EditDefaultsOnly)
-		class UInteractionWidgetComponent* interaction;
+	class UInteractionWidgetComponent* interaction;
 
 	UFUNCTION()
 	void PickedUp(class AMainCharacter* character);
