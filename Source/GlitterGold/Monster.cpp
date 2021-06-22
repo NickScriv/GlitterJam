@@ -5,13 +5,14 @@
 #include "Blueprint/AIBlueprintHelperLibrary.h"
 #include "AIController.h"
 #include "BrainComponent.h"
+#include "DrawDebugHelpers.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "MainCharacter.h"
 #include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "Engine/TriggerVolume.h"
-//#include "../Plugins/Wwise/Source/AkAudio/Classes/AkGameplayStatics.h"
 #include "../Plugins/Wwise/Source/AkAudio/Classes/AkComponent.h"
+#include "Components/CapsuleComponent.h"
 
 // Sets default values
 AMonster::AMonster()
@@ -111,6 +112,7 @@ void AMonster::Tick(float DeltaTime)
 		res.Roll = temp.Roll;
 		SetActorRotation(res);
 	}
+
 	
 }
 

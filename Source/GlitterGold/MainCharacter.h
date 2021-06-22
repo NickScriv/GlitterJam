@@ -72,6 +72,10 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Death")
 		float monsterOffsetLookAtCrouch = 50.f;
 
+	int32 numberOfKeys = 0;
+
+	void PickedUpKey();
+
 	void StopPlayerSounds();
 
 	UFUNCTION()
@@ -241,6 +245,8 @@ private:
 	float crouchDelayCountdown = 0.f;
 	bool canCrouch = true;
 
-#pragma endregion 
+#pragma endregion
+
+	
 
 };

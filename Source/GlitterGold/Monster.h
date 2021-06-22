@@ -47,9 +47,6 @@ public:
 	UPROPERTY(BlueprintReadOnly)
 	bool killedPlayer = false;
 
-	UPROPERTY(BlueprintReadOnly)
-		float inCaution = 0.f;
-
 	UPROPERTY(EditAnywhere)
 	int32 pathDirection = 1;
 

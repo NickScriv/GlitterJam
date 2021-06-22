@@ -17,6 +17,8 @@ Event	ID	Name			Wwise Object Path	Notes
 	2477713992	Stop_Ambience			\Default Work Unit\SFX Events\Ambience\Stop_Ambience	
 	3140010222	Stamina_Depleted			\Default Work Unit\SFX Events\Stamina\Stamina_Depleted	
 	3237721180	Play_Chase_Music			\Default Work Unit\Music Events\Play_Chase_Music	
+	3358299437	Pick_Up_Note			\Default Work Unit\SFX Events\Notes\Pick_Up_Note	
+	3626210482	Put_Down_Note			\Default Work Unit\SFX Events\Notes\Put_Down_Note	
 	3638328809	Stop_Door_Unlocking			\Default Work Unit\SFX Events\Doors\Stop_Door_Unlocking	
 	3668695751	Play_Enemy_Footstep			\Default Work Unit\SFX Events\Enemy\Play_Enemy_Footstep	
 	3793582191	Play_Enemy_Passive_Sounds			\Default Work Unit\SFX Events\Enemy\Play_Enemy_Passive_Sounds	
@@ -79,6 +81,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	57717829	Depleted Stamina	D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\SFX\Depleted_Stamina_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Stamina\Depleted Stamina		1629268
 	68107130	Caution_var_1	D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\SFX\Caution_var_1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemy Sounds\Enemy Caution\Enemy Variations\Enemy Variations (Caution)\Caution_var_1		356532
 	82711494	tile_fs_run_2	D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\SFX\tile_fs_run_2_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Footsteps\Footstep Movement Type Switch\Running Footsteps\Tile Run\tile_fs_run_2		262336
+	106886479	Put_Down_Note_2	D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\SFX\Put_Down_Note_2_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Notes\Put Down Note\Put_Down_Note_2		262288
 	116808690	Passive_var_4	D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\SFX\Passive_var_4_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemy Sounds\Enemy Passive\Enemy Passive Variations\Passive_var_4		1142964
 	127938360	tile_fs_crouch_3	D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\SFX\tile_fs_crouch_3_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Footsteps\Footstep Movement Type Switch\Crouching Footsteps\Tile Crouch\tile_fs_crouch_3		262336
 	144836465	Enemy Passive Loop	D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\SFX\Passive_Loop_D79FB2B7.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemy Sounds\Enemy Passive\Enemy Passive Loop		4837324
@@ -103,8 +106,10 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	362204658	Passive_var_6	D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\SFX\Passive_var_6_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemy Sounds\Enemy Passive\Enemy Passive Variations\Passive_var_6		926292
 	362801264	Danger_Heartbeat	D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\SFX\Heartbeat_Danger_CAFAEEC9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Heartbeat\Danger_Heartbeat		1644624
 	377176857	tile_fs_walk_1	D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\SFX\tile_fs_walk_1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Footsteps\Footstep Movement Type Switch\Walking Footsteps\Tile Walk\tile_fs_walk_1		262336
+	378592845	Put_Down_Note_1	D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\SFX\Put_Down_Note_1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Notes\Put Down Note\Put_Down_Note_1		262288
 	385170959	Passive_var_5	D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\SFX\Passive_var_5_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemy Sounds\Enemy Passive\Enemy Passive Variations\Passive_var_5		880820
 	391406086	tile_fs_run_3	D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\SFX\tile_fs_run_3_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Footsteps\Footstep Movement Type Switch\Running Footsteps\Tile Run\tile_fs_run_3		262336
+	411798552	Pickup_Note_1	D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\SFX\Pickup_Note_1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Notes\Pickup Note\Pickup_Note_1		262288
 	427063800	Locked_Door_2	D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\SFX\Locked_Door_2_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Doors\Locked Door\Locked_Door_2		205976
 	432927829	Locked_Door_1	D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\SFX\Locked_Door_1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Doors\Locked Door\Locked_Door_1		205976
 	446270413	Caution_var_5	D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\SFX\Caution_var_5_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemy Sounds\Enemy Caution\Enemy Variations\Enemy Variations (Caution)\Caution_var_5		356516
@@ -151,6 +156,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	860164930	tile_fs_walk_5	D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\SFX\tile_fs_walk_5_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Footsteps\Footstep Movement Type Switch\Walking Footsteps\Tile Walk\tile_fs_walk_5		262336
 	862842378	tile_fs_crouch_1	D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\SFX\tile_fs_crouch_1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Footsteps\Footstep Movement Type Switch\Crouching Footsteps\Tile Crouch\tile_fs_crouch_1		262336
 	876824865	Player_Death	D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\SFX\Player_Death_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player Death\Player_Death		2249244
+	897181935	Pickup_Note_2	D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\SFX\Pickup_Note_2_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Notes\Pickup Note\Pickup_Note_2		262288
 	903285620	tile_fs_crouch_4	D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\SFX\tile_fs_crouch_4_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Footsteps\Footstep Movement Type Switch\Crouching Footsteps\Tile Crouch\tile_fs_crouch_4		262336
 	915312894	Caution_var_7	D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\SFX\Caution_var_7_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemy Sounds\Enemy Caution\Enemy Variations\Enemy Variations (Caution)\Caution_var_7		356516
 	915953283	Chase_var_6	D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\SFX\Chase_var_6_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemy Sounds\Enemy Chase\Enemy Variations\Chase_var_6		636316

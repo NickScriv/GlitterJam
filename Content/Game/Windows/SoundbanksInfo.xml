@@ -11,7 +11,7 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="393239870" Language="SFX" Hash="580670844">
+		<SoundBank Id="393239870" Language="SFX" Hash="846655447">
 			<ObjectPath>\SoundBanks\Default Work Unit\SFX</ObjectPath>
 			<ShortName>SFX</ShortName>
 			<Path>SFX.bnk</Path>
@@ -114,6 +114,18 @@
 						<File Id="761994595" Language="SFX">
 							<ShortName>Locked_Door_3.wav</ShortName>
 							<Path>SFX\Locked_Door_3_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3358299437" Name="Pick_Up_Note" ObjectPath="\Events\Default Work Unit\SFX Events\Notes\Pick_Up_Note">
+					<IncludedMemoryFiles>
+						<File Id="411798552" Language="SFX">
+							<ShortName>Pickup_Note_1.wav</ShortName>
+							<Path>SFX\Pickup_Note_1_10C4C929.wem</Path>
+						</File>
+						<File Id="897181935" Language="SFX">
+							<ShortName>Pickup_Note_2.wav</ShortName>
+							<Path>SFX\Pickup_Note_2_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -572,6 +584,18 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
+				<Event Id="3626210482" Name="Put_Down_Note" ObjectPath="\Events\Default Work Unit\SFX Events\Notes\Put_Down_Note">
+					<IncludedMemoryFiles>
+						<File Id="106886479" Language="SFX">
+							<ShortName>Put_Down_Note_2.wav</ShortName>
+							<Path>SFX\Put_Down_Note_2_10C4C929.wem</Path>
+						</File>
+						<File Id="378592845" Language="SFX">
+							<ShortName>Put_Down_Note_1.wav</ShortName>
+							<Path>SFX\Put_Down_Note_1_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="3140010222" Name="Stamina_Depleted" ObjectPath="\Events\Default Work Unit\SFX Events\Stamina\Stamina_Depleted">
 					<IncludedMemoryFiles>
 						<File Id="57717829" Language="SFX">
@@ -685,6 +709,10 @@
 					<ShortName>tile_fs_run_2.wav</ShortName>
 					<Path>SFX\tile_fs_run_2_10C4C929.wem</Path>
 				</File>
+				<File Id="106886479" Language="SFX">
+					<ShortName>Put_Down_Note_2.wav</ShortName>
+					<Path>SFX\Put_Down_Note_2_10C4C929.wem</Path>
+				</File>
 				<File Id="116808690" Language="SFX">
 					<ShortName>Passive_var_4.wav</ShortName>
 					<Path>SFX\Passive_var_4_10C4C929.wem</Path>
@@ -781,6 +809,10 @@
 					<ShortName>tile_fs_walk_1.wav</ShortName>
 					<Path>SFX\tile_fs_walk_1_10C4C929.wem</Path>
 				</File>
+				<File Id="378592845" Language="SFX">
+					<ShortName>Put_Down_Note_1.wav</ShortName>
+					<Path>SFX\Put_Down_Note_1_10C4C929.wem</Path>
+				</File>
 				<File Id="385170959" Language="SFX">
 					<ShortName>Passive_var_5.wav</ShortName>
 					<Path>SFX\Passive_var_5_10C4C929.wem</Path>
@@ -788,6 +820,10 @@
 				<File Id="391406086" Language="SFX">
 					<ShortName>tile_fs_run_3.wav</ShortName>
 					<Path>SFX\tile_fs_run_3_10C4C929.wem</Path>
+				</File>
+				<File Id="411798552" Language="SFX">
+					<ShortName>Pickup_Note_1.wav</ShortName>
+					<Path>SFX\Pickup_Note_1_10C4C929.wem</Path>
 				</File>
 				<File Id="427063800" Language="SFX">
 					<ShortName>Locked_Door_2.wav</ShortName>
@@ -973,6 +1009,10 @@
 					<ShortName>Player_Death.wav</ShortName>
 					<Path>SFX\Player_Death_10C4C929.wem</Path>
 				</File>
+				<File Id="897181935" Language="SFX">
+					<ShortName>Pickup_Note_2.wav</ShortName>
+					<Path>SFX\Pickup_Note_2_10C4C929.wem</Path>
+				</File>
 				<File Id="903285620" Language="SFX">
 					<ShortName>tile_fs_crouch_4.wav</ShortName>
 					<Path>SFX\tile_fs_crouch_4_10C4C929.wem</Path>
@@ -1103,7 +1143,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="1355168291" Language="SFX" Hash="1068715644">
+		<SoundBank Id="1355168291" Language="SFX" Hash="971468729">
 			<ObjectPath>Init</ObjectPath>
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
@@ -1114,7 +1154,7 @@
 				<AuxBus Id="1102545430" Name="RvbZone_Narrow_Rooms" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\RvbZone_Narrow_Rooms"/>
 			</IncludedAuxBusses>
 		</SoundBank>
-		<SoundBank Id="3991942870" Language="SFX" Hash="3993480655">
+		<SoundBank Id="3991942870" Language="SFX" Hash="4145594283">
 			<ObjectPath>\SoundBanks\Default Work Unit\Music</ObjectPath>
 			<ShortName>Music</ShortName>
 			<Path>Music.bnk</Path>
@@ -1131,6 +1171,7 @@
 						<ActionSetStateEntry Id="779278001" Name="Death" ObjectPath="\States\Default Work Unit\Music States\Music_Sections\Death"/>
 					</ActionSetState>
 				</Event>
+				<Event Id="3358299437" Name="Pick_Up_Note" ObjectPath="\Events\Default Work Unit\SFX Events\Notes\Pick_Up_Note"/>
 				<Event Id="1238538214" Name="Play_Ambient_Music" ObjectPath="\Events\Default Work Unit\Music Events\Play_Ambient_Music">
 					<IncludedMemoryFiles>
 						<File Id="362801264" Language="SFX">
@@ -1451,6 +1492,7 @@
 						<ActionSetStateEntry Id="2973900265" Name="Secret_Room" ObjectPath="\States\Default Work Unit\Music States\Music_Sections\Secret_Room"/>
 					</ActionSetState>
 				</Event>
+				<Event Id="3626210482" Name="Put_Down_Note" ObjectPath="\Events\Default Work Unit\SFX Events\Notes\Put_Down_Note"/>
 				<Event Id="2837384057" Name="STOP_MUSIC" ObjectPath="\Events\Default Work Unit\Music Events\STOP_MUSIC"/>
 			</IncludedEvents>
 			<IncludedAuxBusses>

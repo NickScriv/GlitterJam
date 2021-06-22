@@ -2,6 +2,7 @@
 
 
 #include "NoteActor.h"
+#include "AkAudioDevice.h"
 #include "InteractionWidgetComponent.h"
 #include "NotesUserWidget.h"
 #include "Kismet/GameplayStatics.h"
@@ -50,7 +51,7 @@ void ANoteActor::PickedUpNote(class AMainCharacter* character)
 	}
 	
 	//Play open note sound
-
+	FAkAudioDevice::Get()->PostEvent("Pick_Up_Note", this);
 	canExit = false;
 	GetWorldTimerManager().SetTimer(exitNoteTimer, this, &ANoteActor::CanExitNoteExpire, 1.f, false);
 	BindToInput();
@@ -76,8 +77,8 @@ void ANoteActor::CloseNote()
 	if(!canExit)
 		return;
 	
+	FAkAudioDevice::Get()->PostEvent("Put_Down_Note", this);
 	UGameplayStatics::SetGamePaused(GetWorld(), false);
-	//Play close note sound
 	noteWidget->RemoveFromParent();
 	DisableInput(GetWorld()->GetFirstPlayerController());
 }

@@ -28,7 +28,6 @@ void UInteractionWidgetComponent::BeginFocus()
 	if (!IsActive() || !GetOwner() || !character)
 		return;
 
-	UE_LOG(LogTemp, Warning, TEXT("Begin focus"));
 	OnBeginFocus.Broadcast(character);
 
 	SetHiddenInGame(false);
