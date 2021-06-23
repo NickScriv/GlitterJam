@@ -2,9 +2,12 @@
 
 
 #include "DoorOpenClose.h"
+
+#include "AkAcousticPortal.h"
 #include "InteractionWidgetComponent.h"
 #include "KeyActor.h"
 #include "../Plugins/Wwise/Source/AkAudio/Classes/AkComponent.h"
+#include "Components/BoxComponent.h"
 
 // Sets default values for this component's properties
 UDoorOpenClose::UDoorOpenClose()
@@ -26,10 +29,27 @@ void UDoorOpenClose::BeginPlay()
 	
 	if ((interaction = Cast<UInteractionWidgetComponent>(GetOwner()->GetComponentByClass(UInteractionWidgetComponent::StaticClass()))) == nullptr)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Interaction is null!!!"));
+		UE_LOG(LogTemp, Warning, TEXT("DoorOpenClose: Interaction is null!!!"));
+	}
+
+	if ((portal = Cast<UAkPortalComponent>(GetOwner()->GetComponentByClass(UAkPortalComponent::StaticClass()))) == nullptr)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("DoorOpenClose: Portal is null!!!"));
 	}
 	
-	
+	if(portal)
+	{
+		portal->ClosePortal();
+	}
+
+	if (UBoxComponent* box = Cast<UBoxComponent>(GetOwner()->GetComponentByClass(UBoxComponent::StaticClass())))
+	{
+		if(UStaticMeshComponent* mesh = Cast<UStaticMeshComponent>(GetOwner()->GetComponentByClass(UStaticMeshComponent::StaticClass())))
+		{
+			box->SetWorldLocationAndRotation(mesh->GetComponentLocation(), mesh->GetComponentRotation());
+		}
+		
+	}
 
 	if (interaction)
 	{	
@@ -71,11 +91,12 @@ void UDoorOpenClose::OpenDoor()
 	if (open)
 	{
 		FAkAudioDevice::Get()->PostEvent("Door_Close", this->GetOwner());
+		portal->ClosePortal();
 	}
 	else
 	{
-		
 		FAkAudioDevice::Get()->PostEvent("Door_Open", this->GetOwner());
+		portal->OpenPortal();
 	}
 	open = !open;
 	BeginFocusDoor(nullptr);

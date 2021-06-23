@@ -53,6 +53,9 @@ private:
 	UPROPERTY()
 		class UInteractionWidgetComponent* interaction = nullptr;
 
+	UPROPERTY()
+		class UAkPortalComponent* portal = nullptr;
+
 	UFUNCTION()
 		void InteractDoor(class AMainCharacter* character);
 

@@ -29,6 +29,12 @@ private:
 	UPROPERTY()
 	class UKillScreenUserWidget* KillScreenWidget;
 
+	UPROPERTY(EditAnywhere)
+		TArray<class AMonster*> firstScareEventMonster;
+
+	UPROPERTY(EditAnywhere)
+		TArray<class ATriggerVolume*> firstScareEventTrigger;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -38,11 +44,10 @@ public:
 
 	void EndGame();
 
-	UPROPERTY(EditAnywhere)
-		TArray<class AMonster*> firstScareEventMonster;
+	FString queuedMusic = "Play_Ambient_Music";
 
-	UPROPERTY(EditAnywhere)
-		TArray<class ATriggerVolume*> firstScareEventTrigger;
+	UPROPERTY(BlueprintReadOnly)
+	float monsterInCaution = 0.f;
 
 	
 };

@@ -101,8 +101,19 @@ void AMonsterAIController::perceptionUpdated(AActor* Actor, FAIStimulus Stimulus
 	}
 	else if (senseName == TEXT("AISense_Hearing"))
 	{
-		blackboardComp->SetValueAsBool(FName("IsInvestigating"), Stimulus.WasSuccessfullySensed());
-		blackboardComp->SetValueAsVector(FName("TargetLoc"), Stimulus.StimulusLocation);
+		FHitResult hit;
+		FCollisionQueryParams qParams;
+		
+		if (GetWorld()->LineTraceSingleByChannel(hit, GetPawn()->GetActorLocation(), Stimulus.StimulusLocation, ECC_Visibility, qParams))
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Hit raycast to player: %s"), *hit.Actor->GetName());
+			if (Cast<AMainCharacter>(hit.Actor))
+			{
+				blackboardComp->SetValueAsBool(FName("IsInvestigating"), Stimulus.WasSuccessfullySensed());
+				blackboardComp->SetValueAsVector(FName("TargetLoc"), Stimulus.StimulusLocation);
+			}
+		}
+		
 
 	}
 	else

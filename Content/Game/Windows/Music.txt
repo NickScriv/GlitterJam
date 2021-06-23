@@ -5,6 +5,8 @@ Event	ID	Name			Wwise Object Path	Notes
 	2932040671	PLAY_MUSIC			\Default Work Unit\Music Events\PLAY_MUSIC	
 	2937929224	Play_Secret_Room_Music			\Default Work Unit\Music Events\Play_Secret_Room_Music	
 	3237721180	Play_Chase_Music			\Default Work Unit\Music Events\Play_Chase_Music	
+	3358299437	Pick_Up_Note			\Default Work Unit\SFX Events\Notes\Pick_Up_Note	
+	3626210482	Put_Down_Note			\Default Work Unit\SFX Events\Notes\Put_Down_Note	
 
 Switch Group	ID	Name			Wwise Object Path	Notes
 	1278489004	Downstairs_Stairwell_Upstairs_Switch			\Default Work Unit\Music\Ambient\Downstairs_Stairwell_Upstairs_Switch	
@@ -30,6 +32,7 @@ Game Parameter	ID	Name			Wwise Object Path	Notes
 	3056858324	Num_of_Keys			\Default Work Unit\Gameplay Parameters\Num_of_Keys	
 
 Modulator LFO	ID	Name			Wwise Object Path	Notes
+	817680383	Secret Room LFO			\Default Work Unit\Secret Room LFO	
 	821457399	Secret Room LFO 2			\Default Work Unit\Secret Room LFO 2	
 
 Audio Bus	ID	Name			Wwise Object Path	Notes
@@ -46,6 +49,7 @@ Auxiliary Bus	ID	Name			Wwise Object Path	Notes
 Effect plug-ins	ID	Name	Type				Notes
 	88220550	Wwise Parametric EQ (Custom)	Wwise Parametric EQ			
 	147904098	Wwise RoomVerb (Custom)	Wwise RoomVerb			
+	301594025	Wwise Parametric EQ (Custom)	Wwise Parametric EQ			
 	602546716	Room_Large	Wwise RoomVerb			
 	1159390747	Room_Medium_Tiled	Wwise RoomVerb			
 	1588715066	Echoes_Linear	Wwise Delay			

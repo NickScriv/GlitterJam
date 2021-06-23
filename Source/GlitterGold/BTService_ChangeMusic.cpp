@@ -5,7 +5,9 @@
 //#include "../Plugins/Wwise/Source/AkAudio/Classes/AkGameplayStatics.h"
 #include "Monster.h"
 #include "AIController.h"
+#include "GlitterGameModeBase.h"
 #include "../Plugins/Wwise/Source/AkAudio/Classes/AkComponent.h"
+#include "Kismet/GameplayStatics.h"
 
 UBTService_ChangeMusic::UBTService_ChangeMusic()
 {
@@ -24,13 +26,23 @@ void UBTService_ChangeMusic::OnBecomeRelevant(UBehaviorTreeComponent& OwnerComp,
 	if (!monster)
 		return;
 
+	AGlitterGameModeBase* gameMode = Cast<AGlitterGameModeBase>(UGameplayStatics::GetGameMode(this));
+
+	if(!gameMode)
+	{
+		UE_LOG(LogTemp, Error, TEXT("UBTService_ChangeMusic: No game mode found!"));
+		return;
+	}
+	
 	if(musicChange == "Play_Ambient_Music")
 	{
-		monster->inCaution = 0.f;
+		gameMode->monsterInCaution = 0.f;
+		
+		musicChange = gameMode->queuedMusic;
 	}
 	else if(musicChange == "Play_Chase_Music")
 	{
-		monster->inCaution = 1.f;
+		gameMode->monsterInCaution = 1.f;
 	}
 
 	FAkAudioDevice::Get()->PostEvent(*musicChange, monster);
