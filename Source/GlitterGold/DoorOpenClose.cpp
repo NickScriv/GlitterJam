@@ -217,7 +217,9 @@ void UDoorOpenClose::MonsterReachedNavLink(AActor* MovingActor, const FVector& D
 	{
 		navLinkProxyEnter->ResumePathFollowing(monster);
 		navLinkProxyExit->ResumePathFollowing(monster);
-		OpenDoor();
+		
+		if(!locked && openTime >= 1)
+			OpenDoor();
 	}
 }
 
