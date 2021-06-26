@@ -40,12 +40,17 @@ private:
 	UPROPERTY(EditAnywhere)
 	class AKeyActor* keyToDoor;
 
+	UPROPERTY(EditAnywhere)
+	class ANavLinkProxy* navLinkProxyEnter;
+
+	UPROPERTY(EditAnywhere)
+	class ANavLinkProxy* navLinkProxyExit;
+
 	float initialYaw;
 	float currentYaw;
 
-
 	UPROPERTY(EditAnywhere)
-		float doorSpeed = 0.8f;
+	float doorSpeed = 0.8f;
 
 	UPROPERTY(EditAnywhere)
 	bool open = false;
@@ -74,5 +79,7 @@ private:
 	UFUNCTION()
 		void PlayerPickedUpKey();
 
+	UFUNCTION()
+	void MonsterReachedNavLink(AActor* MovingActor, const FVector& DestinationPoint);
 
 };

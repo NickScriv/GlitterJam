@@ -2,12 +2,15 @@
 
 
 #include "DoorOpenClose.h"
-
 #include "AkAcousticPortal.h"
 #include "InteractionWidgetComponent.h"
+#include "Monster.h"
 #include "KeyActor.h"
 #include "../Plugins/Wwise/Source/AkAudio/Classes/AkComponent.h"
 #include "Components/BoxComponent.h"
+#include "NavModifierComponent.h"
+#include "Engine/TriggerVolume.h"
+#include "Navigation/NavLinkProxy.h"
 
 // Sets default values for this component's properties
 UDoorOpenClose::UDoorOpenClose()
@@ -19,7 +22,6 @@ UDoorOpenClose::UDoorOpenClose()
 	// ...
 }
 
-
 // Called when the game starts
 void UDoorOpenClose::BeginPlay()
 {
@@ -29,12 +31,12 @@ void UDoorOpenClose::BeginPlay()
 	
 	if ((interaction = Cast<UInteractionWidgetComponent>(GetOwner()->GetComponentByClass(UInteractionWidgetComponent::StaticClass()))) == nullptr)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("DoorOpenClose: Interaction is null!!!"));
+		UE_LOG(LogTemp, Error, TEXT("DoorOpenClose: Interaction is null!!!"));
 	}
 
 	if ((portal = Cast<UAkPortalComponent>(GetOwner()->GetComponentByClass(UAkPortalComponent::StaticClass()))) == nullptr)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("DoorOpenClose: Portal is null!!!"));
+		UE_LOG(LogTemp, Error, TEXT("DoorOpenClose: Portal is null!!!"));
 	}
 	
 	if(portal)
@@ -42,13 +44,19 @@ void UDoorOpenClose::BeginPlay()
 		portal->ClosePortal();
 	}
 
-	if (UBoxComponent* box = Cast<UBoxComponent>(GetOwner()->GetComponentByClass(UBoxComponent::StaticClass())))
+	TArray<UActorComponent*> boxes;
+	GetOwner()->GetComponents(UBoxComponent::StaticClass(), boxes);
+	
+	for(UActorComponent* item : boxes)
 	{
-		if(UStaticMeshComponent* mesh = Cast<UStaticMeshComponent>(GetOwner()->GetComponentByClass(UStaticMeshComponent::StaticClass())))
+		UBoxComponent* box = Cast<UBoxComponent>(item);
+		if(box->GetName() == "BoxPortal")
 		{
-			box->SetWorldLocationAndRotation(mesh->GetComponentLocation(), mesh->GetComponentRotation());
+			if (UStaticMeshComponent* mesh = Cast<UStaticMeshComponent>(GetOwner()->GetComponentByClass(UStaticMeshComponent::StaticClass())))
+			{
+				box->SetWorldLocationAndRotation(mesh->GetComponentLocation(), mesh->GetComponentRotation());
+			}
 		}
-		
 	}
 
 	if (interaction)
@@ -64,6 +72,23 @@ void UDoorOpenClose::BeginPlay()
 	{
 		keyToDoor->OnPickedUpKey.AddDynamic(this, &UDoorOpenClose::PlayerPickedUpKey);
 	}
+	
+	if(!navLinkProxyEnter)
+	{
+		UE_LOG(LogTemp, Error, TEXT("DoorOpenClose: Nav link proxy for door is null!!!"));
+		return;
+	}
+
+	if (!navLinkProxyExit)
+	{
+		UE_LOG(LogTemp, Error, TEXT("DoorOpenClose: Nav link proxy for door is null!!!"));
+		return;
+	}
+
+	navLinkProxyEnter->SetSmartLinkEnabled(true);
+	navLinkProxyExit->SetSmartLinkEnabled(true);
+	navLinkProxyEnter->OnSmartLinkReached.AddDynamic(this, &UDoorOpenClose::MonsterReachedNavLink);
+	navLinkProxyExit->OnSmartLinkReached.AddDynamic(this, &UDoorOpenClose::MonsterReachedNavLink);
 
 	initialYaw = this->GetRelativeRotation().Yaw;
 	currentYaw = initialYaw;
@@ -92,11 +117,15 @@ void UDoorOpenClose::OpenDoor()
 	{
 		FAkAudioDevice::Get()->PostEvent("Door_Close", this->GetOwner());
 		portal->ClosePortal();
+		navLinkProxyEnter->SetSmartLinkEnabled(true);
+		navLinkProxyExit->SetSmartLinkEnabled(true);
 	}
 	else
 	{
 		FAkAudioDevice::Get()->PostEvent("Door_Open", this->GetOwner());
 		portal->OpenPortal();
+		navLinkProxyEnter->SetSmartLinkEnabled(false);
+		navLinkProxyExit->SetSmartLinkEnabled(false);
 	}
 	open = !open;
 	BeginFocusDoor(nullptr);
@@ -178,5 +207,15 @@ void UDoorOpenClose::PlayerPickedUpKey()
 {
 	playerHasKey = true;
 	interaction->interactionTime = unlockDoorTime;
+}
+
+void UDoorOpenClose::MonsterReachedNavLink(AActor* MovingActor, const FVector& DestinationPoint)
+{
+	UE_LOG(LogTemp, Warning, TEXT("Something enetered Nav link!!!!!!!!!!!!!"));
+	AMonster* monster = Cast<AMonster>(MovingActor);
+	if(monster)
+	{
+		OpenDoor();
+	}
 }
 
