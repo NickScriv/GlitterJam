@@ -85,8 +85,8 @@ void UDoorOpenClose::BeginPlay()
 		return;
 	}
 
-	navLinkProxyEnter->SetSmartLinkEnabled(true);
-	navLinkProxyExit->SetSmartLinkEnabled(true);
+	/*navLinkProxyEnter->SetSmartLinkEnabled(true);
+	navLinkProxyExit->SetSmartLinkEnabled(true);*/
 	navLinkProxyEnter->OnSmartLinkReached.AddDynamic(this, &UDoorOpenClose::MonsterReachedNavLink);
 	navLinkProxyExit->OnSmartLinkReached.AddDynamic(this, &UDoorOpenClose::MonsterReachedNavLink);
 
@@ -215,6 +215,8 @@ void UDoorOpenClose::MonsterReachedNavLink(AActor* MovingActor, const FVector& D
 	AMonster* monster = Cast<AMonster>(MovingActor);
 	if(monster)
 	{
+		navLinkProxyEnter->ResumePathFollowing(monster);
+		navLinkProxyExit->ResumePathFollowing(monster);
 		OpenDoor();
 	}
 }
