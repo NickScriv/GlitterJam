@@ -113,8 +113,6 @@ void AMonsterAIController::perceptionUpdated(AActor* Actor, FAIStimulus Stimulus
 				blackboardComp->SetValueAsVector(FName("TargetLoc"), Stimulus.StimulusLocation);
 			}
 		}
-		
-
 	}
 	else
 	{

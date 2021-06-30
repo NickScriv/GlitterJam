@@ -11,10 +11,10 @@
 #include "GlitterGameModeBase.h"
 #include "Perception/AISense_Hearing.h"
 #include "Monster.h"
+#include "Flashlight.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "../Plugins/Wwise/Source/AkAudio/Classes/AkGameplayStatics.h"
 #include "../Plugins/Wwise/Source/AkAudio/Classes/AkComponent.h"
-#include "PointInPlayer.h"
 
 // Sets default values
 AMainCharacter::AMainCharacter()
@@ -26,6 +26,8 @@ AMainCharacter::AMainCharacter()
 	cameraComponent = CreateDefaultSubobject<UCameraComponent>("Camera Component");
 	cameraComponent->SetupAttachment(capsuleColl);
 	cameraComponent->bUsePawnControlRotation = true;
+
+	GetMesh()->SetupAttachment(cameraComponent);
 }
 
 // Called when the game starts or when spawned
@@ -64,6 +66,9 @@ void AMainCharacter::BeginPlay()
 	FAkAudioDevice::Get()->PostEvent("PLAY_MUSIC", this);
 	FAkAudioDevice::Get()->PostEvent("Play_Ambient_Music", this);
 	FAkAudioDevice::Get()->SetRTPCValue(*FString("Number_of_Keys"), numberOfKeys, 300, this);
+
+	flashlight = GetWorld()->SpawnActor<AFlashlight>(flashlightClass);
+	flashlight->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform, TEXT("Flashlight"));
 	
 }
 

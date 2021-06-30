@@ -8,6 +8,7 @@
 #include "MainCharacter.generated.h"
 
 
+class AFlashlight;
 class UCurveFloat;
 
 UENUM()
@@ -72,6 +73,12 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Death")
 		float monsterOffsetLookAtCrouch = 50.f;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Movement")
+		float walkSpeed = 600.0f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Movement")
+		float sprintSpeed = 900.0f;
+
 	int32 numberOfKeys = 0;
 
 	void PickedUpKey();
@@ -121,12 +128,14 @@ private:
 	UPROPERTY(EditDefaultsOnly)
 		class UCameraComponent* cameraComponent;
 
-#pragma region Movement
-	UPROPERTY(EditAnywhere, Category = "Movement")
-		float walkSpeed = 600.0f;
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<AFlashlight> flashlightClass;
 
-	UPROPERTY(EditAnywhere, Category = "Movement")
-		float sprintSpeed = 900.0f;
+	UPROPERTY(EditDefaultsOnly)
+	class AFlashlight* flashlight;
+
+#pragma region Movement
+
 
 	UPROPERTY(EditAnywhere, Category = "Movement")
 		float crouchSpeed = 50.0f;
