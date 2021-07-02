@@ -5,6 +5,7 @@
 #include "Components/SpotLightComponent.h"
 #include "InteractionWidgetComponent.h"
 #include "MainCharacter.h"
+#include "../Plugins/Wwise/Source/AkAudio/Classes/AkComponent.h"
 
 // Sets default values
 AFlashlight::AFlashlight()
@@ -21,10 +22,19 @@ AFlashlight::AFlashlight()
 }
 
 void AFlashlight::Toggle()
-{
+{	
 	flashlightOn = !flashlightOn;
+
+	if(flashlightOn)
+	{
+		FAkAudioDevice::Get()->PostEvent("Flashlight_On", this);
+	}
+	else
+	{
+		FAkAudioDevice::Get()->PostEvent("Flashlight_Off", this);
+	}
+	
 	spotLight->SetVisibility(flashlightOn);
-	// Play flashlight toggle sound
 }
 
 
@@ -53,7 +63,7 @@ void AFlashlight::BeginPlay()
 void AFlashlight::PickedUp(AMainCharacter* character)
 {
 	character->SpawnFlashlight();
-	// TODO: Play sound event
+	FAkAudioDevice::Get()->PostEvent("Pickup_Flashlight", this);
 	Destroy();
 }
 

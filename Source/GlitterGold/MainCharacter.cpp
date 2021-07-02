@@ -168,6 +168,8 @@ void AMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 
 	PlayerInputComponent->BindAxis("SwitchArms", this, &AMainCharacter::SwitchArms);
 
+	PlayerInputComponent->BindAction("Flashlight", IE_Pressed, this, &AMainCharacter::FlashlightToggle);
+
 	//PlayerInputComponent->BindAction("TestNot", IE_Pressed, this, &AMainCharacter::NotTest);
 
 }
@@ -176,6 +178,7 @@ void AMainCharacter::SpawnFlashlight()
 	flashlight = GetWorld()->SpawnActor<AFlashlight>(flashlightClass);
 	flashlight->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform, TEXT("Flashlight"));
 	spawnArms = true;
+	hideArms = false;
 }
 
 void AMainCharacter::NotTest()
@@ -625,9 +628,13 @@ void AMainCharacter::SwitchArms(float val)
 	if(!FMath::IsNearlyZero(val) && canSwitch)
 	{
 		canSwitch = false;
-
 		if(spawnArms)
 		{
+			if(flashlight->IsFlashlightOn())
+			{
+				flashlight->Toggle();
+			}
+			
 			spawnArms = false;
 			hideArms = true;
 		}
@@ -658,6 +665,13 @@ bool AMainCharacter::AreStaminaEventsPlaying()
 
 }
 
+void AMainCharacter::FlashlightToggle()
+{
+	if(flashlight && spawnArms)
+	{
+		flashlight->Toggle();
+	}
+}
 
 
 #pragma endregion 

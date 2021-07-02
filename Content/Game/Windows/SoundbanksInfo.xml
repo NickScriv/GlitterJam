@@ -11,7 +11,7 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="393239870" Language="SFX" Hash="846655447">
+		<SoundBank Id="393239870" Language="SFX" Hash="2608640602">
 			<ObjectPath>\SoundBanks\Default Work Unit\SFX</ObjectPath>
 			<ShortName>SFX</ShortName>
 			<Path>SFX.bnk</Path>
@@ -89,6 +89,38 @@
 						<AuxBus Id="741810926" Name="RvbZone_Large_Rooms" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\RvbZone_Large_Rooms"/>
 					</AuxBusSends>
 				</Event>
+				<Event Id="1321059028" Name="Drawers_Close" ObjectPath="\Events\Default Work Unit\SFX Events\Drawers\Drawers_Close">
+					<IncludedMemoryFiles>
+						<File Id="945434381" Language="SFX">
+							<ShortName>Drawer_Close.wav</ShortName>
+							<Path>SFX\Drawer_Close_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3039021168" Name="Drawers_Open" ObjectPath="\Events\Default Work Unit\SFX Events\Drawers\Drawers_Open">
+					<IncludedMemoryFiles>
+						<File Id="221115452" Language="SFX">
+							<ShortName>Drawer_Open.wav</ShortName>
+							<Path>SFX\Drawer_Open_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1126494853" Name="Flashlight_Off" ObjectPath="\Events\Default Work Unit\SFX Events\Flashlight\Flashlight_Off">
+					<IncludedMemoryFiles>
+						<File Id="787668238" Language="SFX">
+							<ShortName>Flashlight_Off.wav</ShortName>
+							<Path>SFX\Flashlight_Off_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2033671033" Name="Flashlight_On" ObjectPath="\Events\Default Work Unit\SFX Events\Flashlight\Flashlight_On">
+					<IncludedMemoryFiles>
+						<File Id="285136759" Language="SFX">
+							<ShortName>Flashlight_On.wav</ShortName>
+							<Path>SFX\Flashlight_On_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="757579393" Name="Key_Acquired" ObjectPath="\Events\Default Work Unit\SFX Events\Keys\Key_Acquired">
 					<IncludedMemoryFiles>
 						<File Id="301772476" Language="SFX">
@@ -126,6 +158,14 @@
 						<File Id="897181935" Language="SFX">
 							<ShortName>Pickup_Note_2.wav</ShortName>
 							<Path>SFX\Pickup_Note_2_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="129602330" Name="Pickup_Flashlight" ObjectPath="\Events\Default Work Unit\SFX Events\Flashlight\Pickup_Flashlight">
+					<IncludedMemoryFiles>
+						<File Id="117001669" Language="SFX">
+							<ShortName>Pickup_Flashlight.wav</ShortName>
+							<Path>SFX\Pickup_Flashlight_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -717,6 +757,10 @@
 					<ShortName>Passive_var_4.wav</ShortName>
 					<Path>SFX\Passive_var_4_10C4C929.wem</Path>
 				</File>
+				<File Id="117001669" Language="SFX">
+					<ShortName>Pickup_Flashlight.wav</ShortName>
+					<Path>SFX\Pickup_Flashlight_10C4C929.wem</Path>
+				</File>
 				<File Id="127938360" Language="SFX">
 					<ShortName>tile_fs_crouch_3.wav</ShortName>
 					<Path>SFX\tile_fs_crouch_3_10C4C929.wem</Path>
@@ -761,6 +805,10 @@
 					<ShortName>tile_fs_walk_4.wav</ShortName>
 					<Path>SFX\tile_fs_walk_4_10C4C929.wem</Path>
 				</File>
+				<File Id="221115452" Language="SFX">
+					<ShortName>Drawer_Open.wav</ShortName>
+					<Path>SFX\Drawer_Open_10C4C929.wem</Path>
+				</File>
 				<File Id="225633521" Language="SFX">
 					<ShortName>wood_fs_walk_5.wav</ShortName>
 					<Path>SFX\wood_fs_walk_5_10C4C929.wem</Path>
@@ -776,6 +824,10 @@
 				<File Id="267050312" Language="SFX">
 					<ShortName>Enemy_fs_tile_1.wav</ShortName>
 					<Path>SFX\Enemy_fs_tile_1_10C4C929.wem</Path>
+				</File>
+				<File Id="285136759" Language="SFX">
+					<ShortName>Flashlight_On.wav</ShortName>
+					<Path>SFX\Flashlight_On_10C4C929.wem</Path>
 				</File>
 				<File Id="287037463" Language="SFX">
 					<ShortName>Caution_var_6.wav</ShortName>
@@ -973,6 +1025,10 @@
 					<ShortName>Key_Acquired_2.wav</ShortName>
 					<Path>SFX\Key_Acquired_2_10C4C929.wem</Path>
 				</File>
+				<File Id="787668238" Language="SFX">
+					<ShortName>Flashlight_Off.wav</ShortName>
+					<Path>SFX\Flashlight_Off_10C4C929.wem</Path>
+				</File>
 				<File Id="805418482" Language="SFX">
 					<ShortName>Chase_var_1.wav</ShortName>
 					<Path>SFX\Chase_var_1_10C4C929.wem</Path>
@@ -1040,6 +1096,10 @@
 				<File Id="942136021" Language="SFX">
 					<ShortName>Passive_var_1.wav</ShortName>
 					<Path>SFX\Passive_var_1_10C4C929.wem</Path>
+				</File>
+				<File Id="945434381" Language="SFX">
+					<ShortName>Drawer_Close.wav</ShortName>
+					<Path>SFX\Drawer_Close_10C4C929.wem</Path>
 				</File>
 				<File Id="945844893" Language="SFX">
 					<ShortName>Chase_Loop.wav</ShortName>
@@ -1143,7 +1203,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="1355168291" Language="SFX" Hash="971468729">
+		<SoundBank Id="1355168291" Language="SFX" Hash="1242774712">
 			<ObjectPath>Init</ObjectPath>
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
@@ -1154,7 +1214,7 @@
 				<AuxBus Id="1102545430" Name="RvbZone_Narrow_Rooms" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\RvbZone_Narrow_Rooms"/>
 			</IncludedAuxBusses>
 		</SoundBank>
-		<SoundBank Id="3991942870" Language="SFX" Hash="4145594283">
+		<SoundBank Id="3991942870" Language="SFX" Hash="4054808244">
 			<ObjectPath>\SoundBanks\Default Work Unit\Music</ObjectPath>
 			<ShortName>Music</ShortName>
 			<Path>Music.bnk</Path>

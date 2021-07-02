@@ -268,6 +268,6 @@ private:
 
 #pragma endregion
 
-	
+	void FlashlightToggle();
 
 };
