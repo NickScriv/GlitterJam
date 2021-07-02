@@ -266,6 +266,12 @@ private:
 	float crouchDelayCountdown = 0.f;
 	bool canCrouch = true;
 
+	float footTimer = walkSpeed;
+
+	float footCountdown = 0.f;
+
+	bool canStep = false;
+
 #pragma endregion
 
 	void FlashlightToggle();

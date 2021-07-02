@@ -60,7 +60,7 @@ void AMainCharacter::BeginPlay()
 	GetCharacterMovement()->MaxWalkSpeed = walkSpeed;
 
 	
-	FAkAudioDevice::Get()->SetRTPCValue(*FString("Footsteps_Movement_Type"), 2, 500, this);
+	FAkAudioDevice::Get()->SetRTPCValue(*FString("Footsteps_Movement_Type"), 2, 200, this);
 	FAkAudioDevice::Get()->SetRTPCValue(*FString("Downstair_Upstairs_Stairwell"), 1, 300, this);
 
 	FAkAudioDevice::Get()->PostEvent("PLAY_MUSIC", this);
@@ -116,8 +116,8 @@ void AMainCharacter::Tick(float DeltaTime)
 	if (stamina < 1.f && movement == EMovement::Standing)
 	{
 		GetCharacterMovement()->MaxWalkSpeed = walkSpeed;
-		FAkAudioDevice::Get()->SetRTPCValue(*FString("Footsteps_Movement_Type"), 2, 500, this);
-		GetWorldTimerManager().SetTimer(timerFootstep, this, &AMainCharacter::PlayFootStep, footStepTimeWalk, true);
+		FAkAudioDevice::Get()->SetRTPCValue(*FString("Footsteps_Movement_Type"), 2, 200, this);
+		//GetWorldTimerManager().SetTimer(timerFootstep, this, &AMainCharacter::PlayFootStep, footStepTimeWalk, true);
 
 		depletedSprintEvent = FAkAudioDevice::Get()->PostEvent("Stamina_Depleted", this);
 		stamina = 1.f;
@@ -142,6 +142,19 @@ void AMainCharacter::Tick(float DeltaTime)
 	}
 
 	ProcessFootStep();
+
+	if(canStep)
+	{
+		footCountdown += DeltaTime;
+
+		if (footCountdown >= footTimer)
+		{
+			footCountdown = FMath::Clamp(crouchDelayCountdown, 0.f, footTimer);
+			footCountdown = 0.0f;
+			PlayFootStep();
+		}
+	}
+	
 
 	FAkAudioDevice::Get()->SetRTPCValue(*FString("Stamina_Level"), stamina, 500, this);
 
@@ -381,35 +394,37 @@ void AMainCharacter::PlayFootStep()
 void AMainCharacter::ProcessFootStep()
 {
 	FVector vel = GetVelocity();
+	float speed = vel.Size();
 
-	if ((vel.X > 2.f || vel.X < -2.f || vel.Y > 2.f || vel.Y < -2.f))
+	if (speed >= 1.f)
 	{
-		if (playFootStep)
+		canStep = true;
+		float footTime;
+
+		if (movement == EMovement::Crouching)
 		{
-			float footTime;
-
-			if (movement == EMovement::Crouching)
-			{
-				footTime = footStepTimeCrouch;
-			}
-			else if (IsSprinting())
-			{
-				footTime = footStepTimeSprint;
-			}
-			else
-			{
-				footTime = footStepTimeWalk;
-			}
-			
-			GetWorldTimerManager().SetTimer(timerFootstep, this, &AMainCharacter::PlayFootStep, footTime, true);
-			playFootStep = false;
+			footTime = footStepTimeCrouch;
 		}
+		else if (speed > walkSpeed + 5.f)
+		{
+			footTime = footStepTimeSprint;
+			UE_LOG(LogTemp, Warning, TEXT("Sprint!!"));
+		}
+		else
+		{
+			footTime = footStepTimeWalk;
+			UE_LOG(LogTemp, Warning, TEXT("walk"));
+		}
+		
+		/*GetWorldTimerManager().SetTimer(timerFootstep, this, &AMainCharacter::PlayFootStep, footTime, true);
+		playFootStep = false;*/
 
+		footTimer = footTime;
 	}
 	else
 	{
 		GetWorldTimerManager().ClearTimer(timerFootstep);
-		playFootStep = true;
+		canStep = false;
 	}
 }
 
@@ -421,13 +436,11 @@ bool AMainCharacter::IsSprinting()
 void AMainCharacter::MoveForward(float val)
 {
 	AddMovementInput(GetActorForwardVector(), val);
-	ProcessFootStep();
 }
 
 void AMainCharacter::MoveRight(float val)
 {
 	AddMovementInput(GetActorRightVector(), val);
-	ProcessFootStep();
 }
 
 void AMainCharacter::Turn(float val)
@@ -519,9 +532,8 @@ void AMainCharacter::SprintPressed()
 	{
 		UE_LOG(LogTemp, Warning, TEXT("can sprint"));
 		GetCharacterMovement()->MaxWalkSpeed = sprintSpeed;
-		PlayFootStep();
-		GetWorldTimerManager().SetTimer(timerFootstep, this, &AMainCharacter::PlayFootStep, footStepTimeSprint, true);
-		FAkAudioDevice::Get()->SetRTPCValue(*FString("Footsteps_Movement_Type"), 3, 500, this);
+		//GetWorldTimerManager().SetTimer(timerFootstep, this, &AMainCharacter::PlayFootStep, footStepTimeSprint, true);
+		FAkAudioDevice::Get()->SetRTPCValue(*FString("Footsteps_Movement_Type"), 3, 200, this);
 		startSprintEvent = FAkAudioDevice::Get()->PostEvent("Start_Run", this);
 	}
 		
@@ -559,8 +571,8 @@ void AMainCharacter::SprintReleased()
 		return;
 
 	GetCharacterMovement()->MaxWalkSpeed = walkSpeed;
-	FAkAudioDevice::Get()->SetRTPCValue(*FString("Footsteps_Movement_Type"), 2, 500, this);
-	GetWorldTimerManager().SetTimer(timerFootstep, this, &AMainCharacter::PlayFootStep, footStepTimeWalk, true);
+	FAkAudioDevice::Get()->SetRTPCValue(*FString("Footsteps_Movement_Type"), 2, 200, this);
+	//GetWorldTimerManager().SetTimer(timerFootstep, this, &AMainCharacter::PlayFootStep, footStepTimeWalk, true);
 
 	
 }
@@ -571,9 +583,8 @@ void AMainCharacter::BeginCrouch()
 
 	crouchCurveTimeline.Play();
 	GetCharacterMovement()->MaxWalkSpeed = crouchSpeed;
-	FAkAudioDevice::Get()->SetRTPCValue(*FString("Footsteps_Movement_Type"), 1, 500, this);
-	GetWorldTimerManager().SetTimer(timerFootstep, this, &AMainCharacter::PlayFootStep, footStepTimeCrouch, true);
-	PlayFootStep();
+	FAkAudioDevice::Get()->SetRTPCValue(*FString("Footsteps_Movement_Type"), 1, 200, this);
+	//GetWorldTimerManager().SetTimer(timerFootstep, this, &AMainCharacter::PlayFootStep, footStepTimeCrouch, true);
 	
 	
 }
@@ -596,8 +607,8 @@ void AMainCharacter::EndCrouch()
 	}*/
 
 	GetCharacterMovement()->MaxWalkSpeed = walkSpeed;
-	FAkAudioDevice::Get()->SetRTPCValue(*FString("Footsteps_Movement_Type"), 2, 500, this);
-	GetWorldTimerManager().SetTimer(timerFootstep, this, &AMainCharacter::PlayFootStep, footStepTimeWalk, true);
+	FAkAudioDevice::Get()->SetRTPCValue(*FString("Footsteps_Movement_Type"), 2, 200, this);
+	//GetWorldTimerManager().SetTimer(timerFootstep, this, &AMainCharacter::PlayFootStep, footStepTimeWalk, true);
 }
 
 
