@@ -67,8 +67,7 @@ void AMainCharacter::BeginPlay()
 	FAkAudioDevice::Get()->PostEvent("Play_Ambient_Music", this);
 	FAkAudioDevice::Get()->SetRTPCValue(*FString("Number_of_Keys"), numberOfKeys, 300, this);
 
-	flashlight = GetWorld()->SpawnActor<AFlashlight>(flashlightClass);
-	flashlight->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform, TEXT("Flashlight"));
+	
 	
 }
 
@@ -167,8 +166,16 @@ void AMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	PlayerInputComponent->BindAction("Sprint", IE_Pressed, this, &AMainCharacter::SprintPressed);
 	PlayerInputComponent->BindAction("Sprint", IE_Released, this, &AMainCharacter::SprintReleased);
 
+	PlayerInputComponent->BindAxis("SwitchArms", this, &AMainCharacter::SwitchArms);
+
 	//PlayerInputComponent->BindAction("TestNot", IE_Pressed, this, &AMainCharacter::NotTest);
 
+}
+void AMainCharacter::SpawnFlashlight()
+{
+	flashlight = GetWorld()->SpawnActor<AFlashlight>(flashlightClass);
+	flashlight->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform, TEXT("Flashlight"));
+	spawnArms = true;
 }
 
 void AMainCharacter::NotTest()
@@ -611,6 +618,25 @@ void AMainCharacter::RegainStamina()
 {
 	UE_LOG(LogTemp, Warning, TEXT("can sprint is true"));
 	canSprint = true;
+}
+
+void AMainCharacter::SwitchArms(float val)
+{
+	if(!FMath::IsNearlyZero(val) && canSwitch)
+	{
+		canSwitch = false;
+
+		if(spawnArms)
+		{
+			spawnArms = false;
+			hideArms = true;
+		}
+		else
+		{
+			spawnArms = true;
+			hideArms = false;
+		}
+	}
 }
 
 

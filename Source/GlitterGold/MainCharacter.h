@@ -79,6 +79,14 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Movement")
 		float sprintSpeed = 900.0f;
 
+	UPROPERTY(BlueprintReadOnly)
+	bool spawnArms = false;
+
+	UPROPERTY(BlueprintReadOnly)
+	bool hideArms = true;
+
+	bool canSwitch = true;
+
 	int32 numberOfKeys = 0;
 
 	void PickedUpKey();
@@ -88,9 +96,13 @@ public:
 	UFUNCTION()
 	void TimelineProgressCrouch(float val);
 
+	void SpawnFlashlight();
+
 	void NotTest();
 
 	void Died(class AMonster* monster);
+	
+	bool IsSprinting();
 
 protected:
 	// Called when the game starts or when spawned
@@ -120,7 +132,8 @@ protected:
 
 #pragma endregion
 
-private:	
+private:
+
 
 	bool died = false;
 	FRotator rotateDeath;
@@ -133,6 +146,7 @@ private:
 
 	UPROPERTY(EditDefaultsOnly)
 	class AFlashlight* flashlight;
+
 
 #pragma region Movement
 
@@ -182,8 +196,6 @@ private:
 
 	void ProcessFootStep();
 
-	bool IsSprinting();
-
 	float crouchCameraHeight;
 	float standCameraHeight;
 	float standCapsuleHeight;
@@ -223,6 +235,7 @@ private:
 	void SetMovement(EMovement newMovement);
 	void RegainStamina();
 
+	void SwitchArms(float val);
 
 	UPROPERTY(EditAnywhere, Category = "Stamina")
 		float staminaRegen = 2;
@@ -238,7 +251,6 @@ private:
 
 	UPROPERTY()
 	class UCapsuleComponent* capsuleColl;
-
 
 	UFUNCTION()
 		void ResolveMovement();

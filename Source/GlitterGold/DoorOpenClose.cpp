@@ -31,7 +31,7 @@ void UDoorOpenClose::BeginPlay()
 	
 	if ((interaction = Cast<UInteractionWidgetComponent>(GetOwner()->GetComponentByClass(UInteractionWidgetComponent::StaticClass()))) == nullptr)
 	{
-		UE_LOG(LogTemp, Error, TEXT("DoorOpenClose: Interaction is null!!!"));
+		UE_LOG(LogTemp, Error, TEXT("DoorOpenClose: Interaction is null for %s"), *GetOwner()->GetName());
 	}
 
 	if ((portal = Cast<UAkPortalComponent>(GetOwner()->GetComponentByClass(UAkPortalComponent::StaticClass()))) == nullptr)
@@ -75,13 +75,13 @@ void UDoorOpenClose::BeginPlay()
 	
 	if(!navLinkProxyEnter)
 	{
-		UE_LOG(LogTemp, Error, TEXT("DoorOpenClose: Nav link proxy for door is null!!!"));
+		UE_LOG(LogTemp, Error, TEXT("DoorOpenClose: Nav link proxy enter for door is null for %s"), *GetOwner()->GetName());
 		return;
 	}
 
 	if (!navLinkProxyExit)
 	{
-		UE_LOG(LogTemp, Error, TEXT("DoorOpenClose: Nav link proxy for door is null!!!"));
+		UE_LOG(LogTemp, Error, TEXT("DoorOpenClose: Nav link proxy exit for door is null for %s"), *GetOwner()->GetName());
 		return;
 	}
 

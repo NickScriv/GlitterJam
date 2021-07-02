@@ -50,7 +50,7 @@ private:
 	float currentYaw;
 
 	UPROPERTY(EditAnywhere)
-	float doorSpeed = 0.8f;
+	float doorSpeed = 0.6f;
 
 	UPROPERTY(EditAnywhere)
 	bool open = false;

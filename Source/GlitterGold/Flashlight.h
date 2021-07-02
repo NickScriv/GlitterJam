@@ -6,6 +6,8 @@
 #include "GameFramework/Actor.h"
 #include "Flashlight.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnPickedUpFlashlight);
+
 UCLASS()
 class GLITTERGOLD_API AFlashlight : public AActor
 {
@@ -14,6 +16,8 @@ class GLITTERGOLD_API AFlashlight : public AActor
 public:	
 	// Sets default values for this actor's properties
 	AFlashlight();
+
+	FOnPickedUpFlashlight OnPickedUpFlashlight;
 
 	void Toggle();
 
@@ -31,6 +35,12 @@ private:
 	UPROPERTY(VisibleAnywhere)
 	class USkeletalMeshComponent* mesh;
 
+	UPROPERTY(EditDefaultsOnly)
+	class UInteractionWidgetComponent* interaction;
+
 	bool flashlightOn = false;
+
+	UFUNCTION()
+	void PickedUp(class AMainCharacter* character);
 
 };

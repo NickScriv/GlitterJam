@@ -3,6 +3,8 @@
 
 #include "Flashlight.h"
 #include "Components/SpotLightComponent.h"
+#include "InteractionWidgetComponent.h"
+#include "MainCharacter.h"
 
 // Sets default values
 AFlashlight::AFlashlight()
@@ -37,6 +39,21 @@ void AFlashlight::BeginPlay()
 	Super::BeginPlay();
 
 	spotLight->SetVisibility(flashlightOn);
+
+	if ((interaction = Cast<UInteractionWidgetComponent>(GetComponentByClass(UInteractionWidgetComponent::StaticClass()))) == nullptr)
+	{
+		UE_LOG(LogTemp, Error, TEXT("Interaction is null!!!"));
+		return;
+	}
+
+	interaction->OnInteract.AddDynamic(this, &AFlashlight::PickedUp);
 	
+}
+
+void AFlashlight::PickedUp(AMainCharacter* character)
+{
+	character->SpawnFlashlight();
+	// TODO: Play sound event
+	Destroy();
 }
 
