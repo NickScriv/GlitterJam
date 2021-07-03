@@ -27,7 +27,8 @@ void ATriggerVolume_StairMusicChange::OnOverlapBegin(AActor* overlappedActor, AA
 
 		if (player)
 		{
-			FAkAudioDevice::Get()->SetRTPCValue(*FString("Downstair_Upstairs_Stairwell"), rtpcValue, 300, this);
+			//FAkAudioDevice::Get()->SetRTPCValue(*FString("Downstairs_Upstairs_Stairwell"), 2, 300, this);
+			FAkAudioDevice::Get()->SetRTPCValue(*FString("Downstairs_Upstairs_Stairwell"), rtpcValue, 300, player);
 			this->SetActorEnableCollision(false);
 			otherTrigger->SetActorEnableCollision(true);
 			UE_LOG(LogTemp, Warning, TEXT("Change level music with value: %i"), rtpcValue);

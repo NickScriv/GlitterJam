@@ -61,11 +61,11 @@ void AMainCharacter::BeginPlay()
 
 	
 	FAkAudioDevice::Get()->SetRTPCValue(*FString("Footsteps_Movement_Type"), 2, 200, this);
-	FAkAudioDevice::Get()->SetRTPCValue(*FString("Downstair_Upstairs_Stairwell"), 1, 300, this);
+	FAkAudioDevice::Get()->SetRTPCValue(*FString("Downstairs_Upstairs_Stairwell"), 1, 300, this);
 
 	FAkAudioDevice::Get()->PostEvent("PLAY_MUSIC", this);
 	FAkAudioDevice::Get()->PostEvent("Play_Ambient_Music", this);
-	FAkAudioDevice::Get()->SetRTPCValue(*FString("Number_of_Keys"), numberOfKeys, 300, this);
+	FAkAudioDevice::Get()->SetRTPCValue(*FString("Num_of_Keys"), 0, 300, this);
 
 	
 	
@@ -635,7 +635,7 @@ void AMainCharacter::RegainStamina()
 
 void AMainCharacter::SwitchArms(float val)
 {
-	if(!FMath::IsNearlyZero(val) && canSwitch)
+	if(!FMath::IsNearlyZero(val) && canSwitch && flashlight)
 	{
 		canSwitch = false;
 		if(spawnArms)
@@ -690,7 +690,7 @@ void AMainCharacter::PickedUpKey()
 {
 	numberOfKeys++;
 	numberOfKeys = FMath::Min(numberOfKeys, 3);
-	FAkAudioDevice::Get()->SetRTPCValue(*FString("Number_of_Keys"), numberOfKeys, 300, this);
+	FAkAudioDevice::Get()->SetRTPCValue(*FString("Num_of_Keys"), numberOfKeys, 300, this);
 	
 }
 

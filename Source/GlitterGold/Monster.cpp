@@ -129,13 +129,20 @@ void AMonster::Tick(float DeltaTime)
 	{
 		if (Cast<AMainCharacter>(hit.Actor))
 		{
+			inLineOfPlayer = true;
 			float dist = hit.Distance;
 			dist = FMath::Clamp(dist, minDistanceAmbience, 700.f);
 			dist = ReverseNumber(ScaleRange(dist, minDistanceAmbience, 700.f, 0.0f, 100.f), 0.0f, 100.f);
-			FAkAudioDevice::Get()->SetRTPCValue(*FString("Danger_Warning"), dist, 200, this);
+			FAkAudioDevice::Get()->SetRTPCValue(*FString("Danger_Warning"), dist, 200, mainPlayer);
 			UE_LOG(LogTemp, Warning, TEXT("Danger warning: %f"), dist);
 		}
+		else if(inLineOfPlayer)
+		{
+			inLineOfPlayer = false;
+			FAkAudioDevice::Get()->SetRTPCValue(*FString("Danger_Warning"), 0, 200, mainPlayer);
+		}
 	}
+
 
 	if (killedPlayer)
 	{

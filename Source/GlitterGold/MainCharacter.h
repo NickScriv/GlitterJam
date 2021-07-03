@@ -145,7 +145,7 @@ private:
 	TSubclassOf<AFlashlight> flashlightClass;
 
 	UPROPERTY(EditDefaultsOnly)
-	class AFlashlight* flashlight;
+	class AFlashlight* flashlight = nullptr;
 
 
 #pragma region Movement

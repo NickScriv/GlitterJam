@@ -56,8 +56,6 @@ public:
 	UPROPERTY(EditAnywhere)
 	float minDistanceAmbience = 300.f;
 
-	UPROPERTY()
-	class AMainCharacter* mainPlayer;
 	
 	void KillPlayer();
 
@@ -83,8 +81,13 @@ private:
 	
 	FRotator rotateKill;
 
+	bool inLineOfPlayer = false;
+
 	UPROPERTY(EditAnywhere)
 	class ATriggerVolume* firstEventScare;
+
+	UPROPERTY()
+		class AMainCharacter* mainPlayer;
 
 	UFUNCTION()
 	void TriggerFirstEvent(class AActor* overlappedActor, class AActor* otherActor);
