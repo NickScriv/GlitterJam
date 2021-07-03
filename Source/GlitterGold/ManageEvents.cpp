@@ -37,13 +37,15 @@ void AManageEvents::BeginPlay()
 		
 		if(i != index)
 		{
-			firstScareEventMonsters[i]->SetActorHiddenInGame(true);
+			/*firstScareEventMonsters[i]->SetActorHiddenInGame(true);
 			firstScareEventMonsters[i]->SetActorEnableCollision(false);
-			firstScareEventMonsters[i]->SetActorTickEnabled(false);
+			firstScareEventMonsters[i]->SetActorTickEnabled(false);*/
+			firstScareEventMonsters[i]->Destroy();
 			
-			firstScareEventTriggers[i]->SetActorHiddenInGame(true);
+			/*firstScareEventTriggers[i]->SetActorHiddenInGame(true);
 			firstScareEventTriggers[i]->SetActorEnableCollision(false);
-			firstScareEventTriggers[i]->SetActorTickEnabled(false);
+			firstScareEventTriggers[i]->SetActorTickEnabled(false);*/
+			firstScareEventTriggers[i]->Destroy();
 		}
 		else
 		{

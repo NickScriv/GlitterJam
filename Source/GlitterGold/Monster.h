@@ -53,6 +53,12 @@ public:
 	UPROPERTY(BlueprintReadOnly)
 	bool startAnimation = false;
 
+	UPROPERTY(EditAnywhere)
+	float minDistanceAmbience = 300.f;
+
+	UPROPERTY()
+	class AMainCharacter* mainPlayer;
+	
 	void KillPlayer();
 
 	void StopMonsterSounds();
@@ -83,12 +89,9 @@ private:
 	UFUNCTION()
 	void TriggerFirstEvent(class AActor* overlappedActor, class AActor* otherActor);
 
-	
+	float ScaleRange(float input, float inputLow, float inputHigh, float outputLow, float outputHigh);
 
-	
-	
-
-
+	float ReverseNumber(float num, float min, float max);
 };
 
 

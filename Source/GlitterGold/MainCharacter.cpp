@@ -117,7 +117,7 @@ void AMainCharacter::Tick(float DeltaTime)
 	{
 		GetCharacterMovement()->MaxWalkSpeed = walkSpeed;
 		FAkAudioDevice::Get()->SetRTPCValue(*FString("Footsteps_Movement_Type"), 2, 200, this);
-		//GetWorldTimerManager().SetTimer(timerFootstep, this, &AMainCharacter::PlayFootStep, footStepTimeWalk, true);
+		//GetWorldTimerManager().SetTimer(timerFootstep, this, &AMainCharacter::Sprint!!PlayFootStep, footStepTimeWalk, true);
 
 		depletedSprintEvent = FAkAudioDevice::Get()->PostEvent("Stamina_Depleted", this);
 		stamina = 1.f;
@@ -379,7 +379,8 @@ void AMainCharacter::PlayFootStep()
 
 	if (EMovement::Crouching == movement)
 	{
-		UAISense_Hearing::ReportNoiseEvent(this, GetActorLocation(), crouchLoudness, this, 0, FName("Noise"));
+		//TODO: Remember to change this back to crouchLoudness instead of 0.0
+		UAISense_Hearing::ReportNoiseEvent(this, GetActorLocation(), 0.0f, this, 0, FName("Noise"));
 	}
 	else if(IsSprinting())
 	{
@@ -408,12 +409,10 @@ void AMainCharacter::ProcessFootStep()
 		else if (speed > walkSpeed + 5.f)
 		{
 			footTime = footStepTimeSprint;
-			UE_LOG(LogTemp, Warning, TEXT("Sprint!!"));
 		}
 		else
 		{
 			footTime = footStepTimeWalk;
-			UE_LOG(LogTemp, Warning, TEXT("walk"));
 		}
 		
 		/*GetWorldTimerManager().SetTimer(timerFootstep, this, &AMainCharacter::PlayFootStep, footTime, true);
