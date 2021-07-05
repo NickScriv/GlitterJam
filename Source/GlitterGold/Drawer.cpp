@@ -5,6 +5,7 @@
 
 #include "AkAudioDevice.h"
 #include "InteractionWidgetComponent.h"
+#include "MainCharacter.h"
 
 // Sets default values
 ADrawer::ADrawer()
@@ -19,7 +20,7 @@ void ADrawer::BeginPlay()
 {
 	Super::BeginPlay();
 
-	if ((interaction = Cast<UInteractionWidgetComponent>(GetOwner()->GetComponentByClass(UInteractionWidgetComponent::StaticClass()))) == nullptr)
+	if ((interaction = Cast<UInteractionWidgetComponent>(GetComponentByClass(UInteractionWidgetComponent::StaticClass()))) == nullptr)
 	{
 		UE_LOG(LogTemp, Error, TEXT("Drawer: Interaction is null for %s"), *GetName());
 		return;
@@ -28,7 +29,7 @@ void ADrawer::BeginPlay()
 	interaction->OnInteract.AddDynamic(this, &ADrawer::InteractDrawer);
 	interaction->OnBeginFocus.AddDynamic(this, &ADrawer::BeginFocusDrawer);
 
-	startLoc = GetActorLocation();
+	startLoc = FVector(0.f, 0.f, 0.f);
 	endLoc = startLoc;
 	endLoc.Y += distanceToOpen;
 
@@ -67,6 +68,7 @@ void ADrawer::InteractDrawer(class AMainCharacter* character)
 
 void ADrawer::BeginFocusDrawer(AMainCharacter* character)
 {
+	
 	if (open)
 	{
 		interaction->SetInteractableActionText(FText::FromString("Close"));
@@ -79,6 +81,19 @@ void ADrawer::BeginFocusDrawer(AMainCharacter* character)
 
 void ADrawer::TimelineProgressOpenClose(float val)
 {
+	FHitResult hit = FHitResult();
+	SetActorRelativeLocation(FMath::Lerp(startLoc, endLoc, val), true, &hit, ETeleportType::None);
+	
+	
+	if(AMainCharacter* player = Cast<AMainCharacter>(hit.Actor))
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Drawer: %s"), *hit.Actor->GetName());
+		FVector unitDirection = (hit.TraceEnd - hit.TraceStart).GetSafeNormal();
+		float dist = FVector::Distance(hit.TraceEnd, hit.TraceStart) - hit.Distance;
+		unitDirection *= dist;
+		player->AddActorWorldOffset(unitDirection);
+	}
+		
 	
 }
 

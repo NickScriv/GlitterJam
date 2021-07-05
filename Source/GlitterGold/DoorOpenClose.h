@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/SceneComponent.h"
+#include "Components/BoxComponent.h"
 #include "DoorOpenClose.generated.h"
 
 

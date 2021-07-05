@@ -3,13 +3,13 @@
 
 #include "DoorOpenClose.h"
 #include "AkAcousticPortal.h"
+#include "MainCharacter.h"
 #include "InteractionWidgetComponent.h"
 #include "Monster.h"
 #include "KeyActor.h"
 #include "../Plugins/Wwise/Source/AkAudio/Classes/AkComponent.h"
 #include "Components/BoxComponent.h"
 #include "NavModifierComponent.h"
-#include "Engine/TriggerVolume.h"
 #include "Navigation/NavLinkProxy.h"
 
 // Sets default values for this component's properties
@@ -108,7 +108,18 @@ void UDoorOpenClose::TickComponent(float DeltaTime, ELevelTick TickType, FActorC
 	}
 	FRotator newRot = FRotator(0.0, FMath::Lerp(currentYaw, initialYaw + (open ? openAngle : 0.0f), openTime), 0.0);
 
-	this->SetRelativeRotation(newRot);
+	FHitResult hit = FHitResult();
+	this->SetRelativeRotation(newRot, true, &hit);
+	
+	if (AMainCharacter* player = Cast<AMainCharacter>(hit.Actor))
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Door: Hit player"));
+		FVector unitDirection = (hit.TraceEnd - hit.TraceStart).GetSafeNormal();
+		float dist = FVector::Distance(hit.TraceEnd, hit.TraceStart) - hit.Distance;
+		unitDirection *= dist;
+		player->AddActorWorldOffset(unitDirection);
+	}
+
 }
 
 void UDoorOpenClose::OpenDoor()

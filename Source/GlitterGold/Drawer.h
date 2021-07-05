@@ -60,4 +60,6 @@ private:
 		UCurveFloat* openCloseCurveFloat;
 
 	void OpenCloseDrawer();
+
+	
 };
