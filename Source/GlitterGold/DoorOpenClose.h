@@ -80,6 +80,7 @@ private:
 	UFUNCTION()
 		void PlayerPickedUpKey();
 
+
 	UFUNCTION()
 	void MonsterReachedNavLink(AActor* MovingActor, const FVector& DestinationPoint);
 

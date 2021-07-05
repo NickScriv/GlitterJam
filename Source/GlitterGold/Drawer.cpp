@@ -81,18 +81,18 @@ void ADrawer::BeginFocusDrawer(AMainCharacter* character)
 
 void ADrawer::TimelineProgressOpenClose(float val)
 {
-	FHitResult hit = FHitResult();
-	SetActorRelativeLocation(FMath::Lerp(startLoc, endLoc, val), true, &hit, ETeleportType::None);
+	//FHitResult hit = FHitResult();
+	SetActorRelativeLocation(FMath::Lerp(startLoc, endLoc, val));
 	
 	
-	if(AMainCharacter* player = Cast<AMainCharacter>(hit.Actor))
+	/*if(AMainCharacter* player = Cast<AMainCharacter>(hit.Actor))
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Drawer: %s"), *hit.Actor->GetName());
+		//UE_LOG(LogTemp, Warning, TEXT("Trace start: %f, %f, %f"), hit.TraceStart.X, hit.TraceStart.Y, hit.TraceStart.Z);
 		FVector unitDirection = (hit.TraceEnd - hit.TraceStart).GetSafeNormal();
 		float dist = FVector::Distance(hit.TraceEnd, hit.TraceStart) - hit.Distance;
 		unitDirection *= dist;
 		player->AddActorWorldOffset(unitDirection);
-	}
+	}*/
 		
 	
 }

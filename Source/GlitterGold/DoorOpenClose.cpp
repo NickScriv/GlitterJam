@@ -9,6 +9,7 @@
 #include "KeyActor.h"
 #include "../Plugins/Wwise/Source/AkAudio/Classes/AkComponent.h"
 #include "Components/BoxComponent.h"
+#include "Components/CapsuleComponent.h"
 #include "NavModifierComponent.h"
 #include "Navigation/NavLinkProxy.h"
 
@@ -27,8 +28,6 @@ void UDoorOpenClose::BeginPlay()
 {
 	Super::BeginPlay();
 
-	
-	
 	if ((interaction = Cast<UInteractionWidgetComponent>(GetOwner()->GetComponentByClass(UInteractionWidgetComponent::StaticClass()))) == nullptr)
 	{
 		UE_LOG(LogTemp, Error, TEXT("DoorOpenClose: Interaction is null for %s"), *GetOwner()->GetName());
@@ -219,6 +218,7 @@ void UDoorOpenClose::PlayerPickedUpKey()
 	playerHasKey = true;
 	interaction->interactionTime = unlockDoorTime;
 }
+
 
 void UDoorOpenClose::MonsterReachedNavLink(AActor* MovingActor, const FVector& DestinationPoint)
 {

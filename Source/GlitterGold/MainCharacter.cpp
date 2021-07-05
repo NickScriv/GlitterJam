@@ -28,6 +28,7 @@ AMainCharacter::AMainCharacter()
 	cameraComponent->bUsePawnControlRotation = true;
 
 	GetMesh()->SetupAttachment(cameraComponent);
+
 }
 
 // Called when the game starts or when spawned
@@ -75,6 +76,10 @@ void AMainCharacter::BeginPlay()
 void AMainCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	FHitResult OutHit;
+	GetCharacterMovement()->SafeMoveUpdatedComponent(FVector(0.f, 0.f, 0.01f), GetActorRotation(), true, OutHit);
+	GetCharacterMovement()->SafeMoveUpdatedComponent(FVector(0.f, 0.f, -0.01f), GetActorRotation(), true, OutHit);
 
 	PerformCheck();
 
