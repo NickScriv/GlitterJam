@@ -107,7 +107,7 @@ void AMainCharacter::Tick(float DeltaTime)
 		cameraComponent->SetWorldRotation(res);
 	}
 
-	if (FMath::IsNearlyEqual(GetCharacterMovement()->MaxWalkSpeed, sprintSpeed, 3.f))
+	if (GetVelocity().Size() > walkSpeed + 5.f)
 	{
 		stamina -= staminaDepletion * DeltaTime;
 		stamina = FMath::Clamp(stamina, 0.f, 100.f);
@@ -116,18 +116,24 @@ void AMainCharacter::Tick(float DeltaTime)
 	{
 		stamina += staminaRegen * DeltaTime;
 		stamina = FMath::Clamp(stamina, 0.f, 100.f);
+
+		/*if(movement == EMovement::Standing)
+		{
+			GetCharacterMovement()->MaxWalkSpeed = walkSpeed;
+		}
+		else
+		{
+			GetCharacterMovement()->MaxWalkSpeed = crouchSpeed;
+		}*/
 	}
 
 	if (stamina < 1.f && movement == EMovement::Standing)
 	{
 		GetCharacterMovement()->MaxWalkSpeed = walkSpeed;
 		FAkAudioDevice::Get()->SetRTPCValue(*FString("Footsteps_Movement_Type"), 2, 200, this);
-		//GetWorldTimerManager().SetTimer(timerFootstep, this, &AMainCharacter::Sprint!!PlayFootStep, footStepTimeWalk, true);
-
 		depletedSprintEvent = FAkAudioDevice::Get()->PostEvent("Stamina_Depleted", this);
 		stamina = 1.f;
 		canSprint = false;
-		//GetWorldTimerManager().SetTimer(timerStamina, this, &AMainCharacter::RegainStamina, depletedRestTime, false);
 		restTimer = depletedRestTime;
 		restCountDown = 0.f;
 	}
@@ -187,6 +193,8 @@ void AMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	PlayerInputComponent->BindAxis("SwitchArms", this, &AMainCharacter::SwitchArms);
 
 	PlayerInputComponent->BindAction("Flashlight", IE_Pressed, this, &AMainCharacter::FlashlightToggle);
+
+	PlayerInputComponent->BindAction("Pause", IE_Pressed, this, &AMainCharacter::TogglePause).bExecuteWhenPaused = true;
 
 	//PlayerInputComponent->BindAction("TestNot", IE_Pressed, this, &AMainCharacter::NotTest);
 
@@ -368,6 +376,7 @@ float AMainCharacter::GetRemainingInteractTime()
 
 void AMainCharacter::TimelineProgressCrouch(float val)
 {
+	UE_LOG(LogTemp, Warning, TEXT("crouch"));
 	FVector camLoc = cameraComponent->GetRelativeLocation();
 	camLoc.Z = FMath::Lerp(standCameraHeight, crouchCameraHeight, val);
 	cameraComponent->SetRelativeLocation(camLoc);
@@ -379,7 +388,6 @@ void AMainCharacter::TimelineProgressCrouch(float val)
 
 void AMainCharacter::PlayFootStep()
 {
-	//UGameplayStatics::PlaySoundAtLocation(this, footSound, GetActorLocation());
 	FAkAudioDevice::Get()->PostEvent("Play_Footstep", this);
 
 	if (EMovement::Crouching == movement)
@@ -536,7 +544,6 @@ void AMainCharacter::SprintPressed()
 	{
 		UE_LOG(LogTemp, Warning, TEXT("can sprint"));
 		GetCharacterMovement()->MaxWalkSpeed = sprintSpeed;
-		//GetWorldTimerManager().SetTimer(timerFootstep, this, &AMainCharacter::PlayFootStep, footStepTimeSprint, true);
 		FAkAudioDevice::Get()->SetRTPCValue(*FString("Footsteps_Movement_Type"), 3, 200, this);
 		startSprintEvent = FAkAudioDevice::Get()->PostEvent("Start_Run", this);
 	}
@@ -597,28 +604,14 @@ void AMainCharacter::EndCrouch()
 {
 	// stand
 	crouchCurveTimeline.Reverse();
-	
-	/*if (isSprintingKeyDown && canSprint)
-	{
-		GetCharacterMovement()->MaxWalkSpeed = sprintSpeed;
-		GetWorldTimerManager().SetTimer(timerFootstep, this, &AMainCharacter::PlayFootStep, footStepTimeSprint, true);
-		startSprintEvent = FAkAudioDevice::Get()->PostEvent("Start_Run", this);
-	}
-	else
-	{
-		GetCharacterMovement()->MaxWalkSpeed = walkSpeed;
-		GetWorldTimerManager().SetTimer(timerFootstep, this, &AMainCharacter::PlayFootStep, footStepTimeWalk, true);
-	}*/
 
 	GetCharacterMovement()->MaxWalkSpeed = walkSpeed;
 	FAkAudioDevice::Get()->SetRTPCValue(*FString("Footsteps_Movement_Type"), 2, 200, this);
-	//GetWorldTimerManager().SetTimer(timerFootstep, this, &AMainCharacter::PlayFootStep, footStepTimeWalk, true);
 }
 
 
 void AMainCharacter::SetMovement(EMovement newMovement)
 {
-
 	movement = newMovement;
 
 	switch (newMovement)
@@ -634,7 +627,6 @@ void AMainCharacter::SetMovement(EMovement newMovement)
 
 void AMainCharacter::RegainStamina()
 {
-	UE_LOG(LogTemp, Warning, TEXT("can sprint is true"));
 	canSprint = true;
 }
 
@@ -685,6 +677,16 @@ void AMainCharacter::FlashlightToggle()
 	if(flashlight && spawnArms)
 	{
 		flashlight->Toggle();
+	}
+}
+
+void AMainCharacter::TogglePause()
+{
+	AGlitterGameModeBase* gameMode = Cast<AGlitterGameModeBase>(UGameplayStatics::GetGameMode(this));
+
+	if (gameMode)
+	{
+		gameMode->TogglePause();
 	}
 }
 

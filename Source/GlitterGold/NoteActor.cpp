@@ -3,6 +3,7 @@
 
 #include "NoteActor.h"
 #include "AkAudioDevice.h"
+#include "GlitterGameModeBase.h"
 #include "InteractionWidgetComponent.h"
 #include "NotesUserWidget.h"
 #include "Kismet/GameplayStatics.h"
@@ -49,6 +50,13 @@ void ANoteActor::PickedUpNote(class AMainCharacter* character)
 		UE_LOG(LogTemp, Error, TEXT("Note widget is null!!!"));
 		return;
 	}
+
+	AGlitterGameModeBase* gameMode = Cast<AGlitterGameModeBase>(UGameplayStatics::GetGameMode(this));
+
+	if (gameMode)
+	{
+		gameMode->isReadingNote = true;
+	}
 	
 	//Play open note sound
 	FAkAudioDevice::Get()->PostEvent("Pick_Up_Note", this);
@@ -56,8 +64,6 @@ void ANoteActor::PickedUpNote(class AMainCharacter* character)
 	GetWorldTimerManager().SetTimer(exitNoteTimer, this, &ANoteActor::CanExitNoteExpire, 1.f, false);
 	BindToInput();
 	UGameplayStatics::SetGamePaused(GetWorld(), true);
-
-	
 	noteWidget->AddToViewport();
 }
 
@@ -76,6 +82,13 @@ void ANoteActor::CloseNote()
 {
 	if(!canExit)
 		return;
+
+	AGlitterGameModeBase* gameMode = Cast<AGlitterGameModeBase>(UGameplayStatics::GetGameMode(this));
+
+	if (gameMode)
+	{
+		gameMode->isReadingNote = false;
+	}
 	
 	FAkAudioDevice::Get()->PostEvent("Put_Down_Note", this);
 	UGameplayStatics::SetGamePaused(GetWorld(), false);

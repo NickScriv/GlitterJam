@@ -2,9 +2,12 @@
 
 
 #include "GlitterGameModeBase.h"
+
+#include "AkAudioDevice.h"
 #include "Blueprint/UserWidget.h"
 #include "HUDUserWidget.h"
 #include "KillScreenUserWidget.h"
+#include "PauseMenuUserWidget.h"
 #include "Engine/World.h"
 #include "Kismet/GameplayStatics.h"
 #include "ManageEvents.h"
@@ -16,6 +19,7 @@ void AGlitterGameModeBase::BeginPlay()
 	HUDWidget->AddToViewport();
 	TArray<AActor*> eventManagers;
 	UGameplayStatics::GetAllActorsOfClass(GetWorld(), AManageEvents::StaticClass(), eventManagers);
+	pauseScreenWidget = CreateWidget<UPauseMenuUserWidget>(GetGameInstance(), pauseWidgetClass);
 
 	if(eventManagers.Num() > 1)
 	{
@@ -38,5 +42,27 @@ void AGlitterGameModeBase::EndGame()
 	KillScreenWidget->AddToViewport();
 	
 	UGameplayStatics::SetGamePaused(GetWorld(), true);
-	
 }
+
+void AGlitterGameModeBase::TogglePause()
+{
+	if(isReadingNote)
+		return;
+	
+	isPaused = !isPaused;
+	UGameplayStatics::SetGamePaused(GetWorld(), isPaused);
+	UE_LOG(LogTemp, Warning, TEXT("outside pause"));
+	if(isPaused)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Add to view pause"));
+		// TODO: Add pause event to pause all other sounds
+		pauseScreenWidget->AddToViewport();
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Add to view unpause"));
+		// TODO: Add unpause event to unpause all other sounds
+		pauseScreenWidget->RemoveFromParent();
+	}
+}
+

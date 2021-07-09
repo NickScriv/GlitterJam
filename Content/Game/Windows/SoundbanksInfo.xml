@@ -1214,7 +1214,7 @@
 				<AuxBus Id="1102545430" Name="RvbZone_Narrow_Rooms" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\RvbZone_Narrow_Rooms"/>
 			</IncludedAuxBusses>
 		</SoundBank>
-		<SoundBank Id="3991942870" Language="SFX" Hash="4054808244">
+		<SoundBank Id="3991942870" Language="SFX" Hash="4032283807">
 			<ObjectPath>\SoundBanks\Default Work Unit\Music</ObjectPath>
 			<ShortName>Music</ShortName>
 			<Path>Music.bnk</Path>

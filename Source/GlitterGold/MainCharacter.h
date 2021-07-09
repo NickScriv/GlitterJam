@@ -276,4 +276,6 @@ private:
 
 	void FlashlightToggle();
 
+	void TogglePause();
+
 };

@@ -24,16 +24,24 @@ private:
 	class UHUDUserWidget* HUDWidget;
 
 	UPROPERTY(EditAnywhere)
-		TSubclassOf<class UKillScreenUserWidget> killScreenWidgetClass;
+	TSubclassOf<class UKillScreenUserWidget> killScreenWidgetClass;
 
 	UPROPERTY()
 	class UKillScreenUserWidget* KillScreenWidget;
 
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<class UPauseMenuUserWidget> pauseWidgetClass;
+
+	UPROPERTY()
+	class UPauseMenuUserWidget* pauseScreenWidget;
+
 	UPROPERTY(EditAnywhere)
-		TArray<class AMonster*> firstScareEventMonster;
+	TArray<class AMonster*> firstScareEventMonster;
 
 	UPROPERTY(EditAnywhere)
 		TArray<class ATriggerVolume*> firstScareEventTrigger;
+
+	bool isPaused = false;
 
 protected:
 	// Called when the game starts or when spawned
@@ -43,11 +51,14 @@ public:
 	void AddNotification(FText content);
 
 	void EndGame();
+	
+	UFUNCTION(BlueprintCallable)
+	void TogglePause();
 
 	FString queuedMusic = "Play_Ambient_Music";
 
 	UPROPERTY(BlueprintReadOnly)
 	float monsterInCaution = 0.f;
 
-	
+	bool isReadingNote = false;
 };
