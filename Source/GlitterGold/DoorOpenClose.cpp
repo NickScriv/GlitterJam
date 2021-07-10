@@ -2,6 +2,9 @@
 
 
 #include "DoorOpenClose.h"
+
+#include "AIController.h"
+#include "AITypes.h"
 #include "AkAcousticPortal.h"
 #include "MainCharacter.h"
 #include "InteractionWidgetComponent.h"
@@ -104,21 +107,18 @@ void UDoorOpenClose::TickComponent(float DeltaTime, ELevelTick TickType, FActorC
 	if (openTime < 1)
 	{
 		openTime += DeltaTime * doorSpeed;
+
+		if(openTime > 0.9 && checkClosed)
+		{
+			if(monsterController)
+				monsterController->ResumeMove(FAIRequestID::CurrentRequest);
+			UE_LOG(LogTemp, Warning, TEXT("Resume Move"));
+			checkClosed = false;
+		}
 	}
 	FRotator newRot = FRotator(0.0, FMath::Lerp(currentYaw, initialYaw + (open ? openAngle : 0.0f), openTime), 0.0);
 
-	FHitResult hit = FHitResult();
-	this->SetRelativeRotation(newRot, true, &hit);
-	
-	if (AMainCharacter* player = Cast<AMainCharacter>(hit.Actor))
-	{
-		UE_LOG(LogTemp, Warning, TEXT("Door: Hit player"));
-		FVector unitDirection = (hit.TraceEnd - hit.TraceStart).GetSafeNormal();
-		float dist = FVector::Distance(hit.TraceEnd, hit.TraceStart) - hit.Distance;
-		unitDirection *= dist;
-		player->AddActorWorldOffset(unitDirection);
-	}
-
+	this->SetRelativeRotation(newRot, true);
 }
 
 void UDoorOpenClose::OpenDoor()
@@ -230,7 +230,15 @@ void UDoorOpenClose::MonsterReachedNavLink(AActor* MovingActor, const FVector& D
 		navLinkProxyExit->ResumePathFollowing(monster);
 		
 		if(!locked && openTime >= 1)
+		{
+			monsterController = Cast<AAIController>(monster->GetController());
+			monsterController->PauseMove(FAIRequestID::CurrentRequest);
+			if (!open)
+				checkClosed = true;
+			
 			OpenDoor();
+		}
+			
 	}
 }
 

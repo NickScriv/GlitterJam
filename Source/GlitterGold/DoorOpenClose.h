@@ -55,6 +55,10 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	bool open = false;
+	
+	bool checkClosed = false;
+
+	class AAIController* monsterController = nullptr;
 
 	UPROPERTY()
 		class UInteractionWidgetComponent* interaction = nullptr;
@@ -79,7 +83,6 @@ private:
 
 	UFUNCTION()
 		void PlayerPickedUpKey();
-
 
 	UFUNCTION()
 	void MonsterReachedNavLink(AActor* MovingActor, const FVector& DestinationPoint);
