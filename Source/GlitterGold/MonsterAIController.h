@@ -58,4 +58,8 @@ private:
 	void perceptionUpdated(AActor* Actor, FAIStimulus Stimulus);
 
 	bool firstSeen = false;
+
+	FTimerHandle timerHandleFirstSeen;
+
+	void SetToDefaultPerception();
 };

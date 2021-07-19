@@ -28,7 +28,11 @@ public:
 		float radius = 20.f;
 
 	UPROPERTY(EditAnywhere)
-		float walkSpeed = 600.f;
+		bool overrideSpeed = false;
+
+	UPROPERTY(EditAnywhere, meta = (EditCondition = overrideSpeed))
+		float walkSpeed = 0.f;
+		
 
 protected:
 	virtual EBTNodeResult::Type ExecuteTask(class UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory) override;

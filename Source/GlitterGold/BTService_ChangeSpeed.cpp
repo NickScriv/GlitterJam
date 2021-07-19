@@ -25,5 +25,6 @@ void UBTService_ChangeSpeed::OnBecomeRelevant(UBehaviorTreeComponent& OwnerComp,
 		return;
 
 	monster->GetCharacterMovement()->MaxWalkSpeed = speed;
+	monster->GetCharacterMovement()->RotationRate.Yaw = rotSpeed;
 
 }

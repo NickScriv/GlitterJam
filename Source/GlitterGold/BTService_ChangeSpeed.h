@@ -14,9 +14,12 @@ class GLITTERGOLD_API UBTService_ChangeSpeed : public UBTService
 {
 	GENERATED_BODY()
 
-	public:
+public:
 	UPROPERTY(EditAnywhere)
 	float speed;
+
+	UPROPERTY(EditAnywhere)
+		float rotSpeed;
 
 	UBTService_ChangeSpeed();
 

@@ -43,7 +43,8 @@ EBTNodeResult::Type UBTTaskNode_FindPathPoint::ExecuteTask(class UBehaviorTreeCo
 
 	//OwnerComp.GetBlackboardComponent()->SetValueAsBool(bbKey_Caution.SelectedKeyName, false);
 
-	monster->GetCharacterMovement()->MaxWalkSpeed = walkSpeed;
+	if(overrideSpeed)
+		monster->GetCharacterMovement()->MaxWalkSpeed = walkSpeed;
 
 	return EBTNodeResult::Succeeded;
 

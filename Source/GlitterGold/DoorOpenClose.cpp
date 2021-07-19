@@ -15,6 +15,7 @@
 #include "Components/CapsuleComponent.h"
 #include "NavModifierComponent.h"
 #include "Navigation/NavLinkProxy.h"
+#include "NavMesh/NavMeshPath.h"
 
 // Sets default values for this component's properties
 UDoorOpenClose::UDoorOpenClose()
@@ -119,6 +120,20 @@ void UDoorOpenClose::TickComponent(float DeltaTime, ELevelTick TickType, FActorC
 	FRotator newRot = FRotator(0.0, FMath::Lerp(currentYaw, initialYaw + (open ? openAngle : 0.0f), openTime), 0.0);
 
 	this->SetRelativeRotation(newRot, true);
+
+	if(monsterController)
+	{
+		UPathFollowingComponent* path = monsterController->GetPathFollowingComponent();
+		if (path)
+		{
+			if (path->IsNextSegmentNavigationLink())
+			{
+				UE_LOG(LogTemp, Warning, TEXT("NEXT is nav link!!"));
+			}
+			
+		}
+	}
+	
 }
 
 void UDoorOpenClose::OpenDoor()
@@ -233,6 +248,7 @@ void UDoorOpenClose::MonsterReachedNavLink(AActor* MovingActor, const FVector& D
 		{
 			monsterController = Cast<AAIController>(monster->GetController());
 			monsterController->PauseMove(FAIRequestID::CurrentRequest);
+			
 			if (!open)
 				checkClosed = true;
 			

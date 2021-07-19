@@ -28,8 +28,6 @@ void AMonsterAIController::BeginPlay()
 	{
 		return;
 	}
-
-	//AIPerception = FindComponentByClass<UAIPerceptionComponent>();
 	
 	TArray<UAIPerceptionComponent*> perceptionComponents;
 	GetComponents<UAIPerceptionComponent>(perceptionComponents);
@@ -88,13 +86,7 @@ void AMonsterAIController::perceptionUpdated(AActor* Actor, FAIStimulus Stimulus
 	{
 		if(!firstSeen && !Stimulus.WasSuccessfullySensed())
 		{
-			firstSeen = true;
-			AIPerceptionStart->SetSenseEnabled(UAISense_Sight::StaticClass(), false);
-			AIPerception->SetSenseEnabled(UAISense_Sight::StaticClass(), true);
-			AIPerceptionStart->SetSenseEnabled(UAISense_Hearing::StaticClass(), false);
-			AIPerception->SetSenseEnabled(UAISense_Hearing::StaticClass(), true);
-			UE_LOG(LogTemp, Warning, TEXT("Change AIPerception"));
-			
+			SetToDefaultPerception();
 		}
 		blackboardComp->SetValueAsBool(FName("CanSeePlayer"), Stimulus.WasSuccessfullySensed());
 		
@@ -121,12 +113,27 @@ void AMonsterAIController::perceptionUpdated(AActor* Actor, FAIStimulus Stimulus
 
 }
 
+void AMonsterAIController::SetToDefaultPerception()
+{
+	if(!firstSeen)
+	{
+		firstSeen = true;
+		AIPerceptionStart->SetSenseEnabled(UAISense_Sight::StaticClass(), false);
+		AIPerception->SetSenseEnabled(UAISense_Sight::StaticClass(), true);
+		AIPerceptionStart->SetSenseEnabled(UAISense_Hearing::StaticClass(), false);
+		AIPerception->SetSenseEnabled(UAISense_Hearing::StaticClass(), true);
+		UE_LOG(LogTemp, Warning, TEXT("Change AIPerception"));
+	}
+}
+
 void AMonsterAIController::StartMonsterBehavior()
 {
 	
 	RunBehaviorTree(AIBehavior);
 	
 	AMonster* monster = Cast<AMonster>(GetPawn());
+
+	GetWorldTimerManager().SetTimer(timerHandleFirstSeen, this, &AMonsterAIController::SetToDefaultPerception, 8.0f,  false);
 
 	if (!monster)
 		return;
