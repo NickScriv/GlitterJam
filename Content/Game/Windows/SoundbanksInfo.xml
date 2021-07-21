@@ -3,7 +3,7 @@
 	<RootPaths>
 		<ProjectRoot>D:\Downloads\WwiseGlitter\Test 2\</ProjectRoot>
 		<SourceFilesRoot>D:\Downloads\WwiseGlitter\Test 2\.cache\Windows\</SourceFilesRoot>
-		<SoundBanksRoot>D:\Unreal Projects\Glitter 4.26 - 2\Content\Game\Windows\</SoundBanksRoot>
+		<SoundBanksRoot>C:\Glitter 4.26 - 2\Content\Game\Windows\</SoundBanksRoot>
 		<ExternalSourcesInputFile></ExternalSourcesInputFile>
 		<ExternalSourcesOutputRoot>D:\Downloads\WwiseGlitter\Test 2\GeneratedSoundBanks\Windows</ExternalSourcesOutputRoot>
 	</RootPaths>
