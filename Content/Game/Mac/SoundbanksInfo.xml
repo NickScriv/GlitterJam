@@ -11,16 +11,18 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="393239870" Language="SFX" Hash="2608640602">
+		<SoundBank Id="393239870" Language="SFX" Hash="1382049387">
 			<ObjectPath>\SoundBanks\Default Work Unit\SFX</ObjectPath>
 			<ShortName>SFX</ShortName>
 			<Path>SFX.bnk</Path>
 			<IncludedEvents>
-				<Event Id="1550503061" Name="Death_Music" ObjectPath="\Events\Default Work Unit\Music Events\Death_Music">
-					<ActionSetState>
-						<ActionSetStateEntry Id="77978275" Name="Ambient" ObjectPath="\States\Default Work Unit\Music States\Music_Sections\Ambient"/>
-						<ActionSetStateEntry Id="779278001" Name="Death" ObjectPath="\States\Default Work Unit\Music States\Music_Sections\Death"/>
-					</ActionSetState>
+				<Event Id="3113414775" Name="Death_Enemy_Sounds" ObjectPath="\Events\Default Work Unit\SFX Events\Enemy\Death_Enemy_Sounds">
+					<IncludedMemoryFiles>
+						<File Id="876824865" Language="SFX">
+							<ShortName>Player_Death.wav</ShortName>
+							<Path>SFX\Player_Death_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
 				</Event>
 				<Event Id="128625444" Name="Door_Close" ObjectPath="\Events\Default Work Unit\SFX Events\Doors\Door_Close">
 					<IncludedMemoryFiles>
@@ -1169,9 +1171,6 @@
 				<StateGroup Id="417490929" Name="Chase" ObjectPath="\States\Default Work Unit\Music States\Music_Sections\Chase">
 					<States/>
 				</StateGroup>
-				<StateGroup Id="779278001" Name="Death" ObjectPath="\States\Default Work Unit\Music States\Music_Sections\Death">
-					<States/>
-				</StateGroup>
 			</StateGroups>
 			<SwitchGroups>
 				<SwitchGroup Id="2384895876" Name="Stamina_SwitchGroup" ObjectPath="\Switches\Default Work Unit\SFX\Stamina_SwitchGroup">
@@ -1214,23 +1213,18 @@
 				<AuxBus Id="1102545430" Name="RvbZone_Narrow_Rooms" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\RvbZone_Narrow_Rooms"/>
 			</IncludedAuxBusses>
 		</SoundBank>
-		<SoundBank Id="3991942870" Language="SFX" Hash="4032283807">
+		<SoundBank Id="3991942870" Language="SFX" Hash="3716386401">
 			<ObjectPath>\SoundBanks\Default Work Unit\Music</ObjectPath>
 			<ShortName>Music</ShortName>
 			<Path>Music.bnk</Path>
 			<IncludedEvents>
 				<Event Id="1550503061" Name="Death_Music" ObjectPath="\Events\Default Work Unit\Music Events\Death_Music">
-					<IncludedMemoryFiles>
-						<File Id="876824865" Language="SFX">
-							<ShortName>Player_Death.wav</ShortName>
-							<Path>SFX\Player_Death_10C4C929.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
 					<ActionSetState>
-						<ActionSetStateEntry Id="77978275" Name="Ambient" ObjectPath="\States\Default Work Unit\Music States\Music_Sections\Ambient"/>
 						<ActionSetStateEntry Id="779278001" Name="Death" ObjectPath="\States\Default Work Unit\Music States\Music_Sections\Death"/>
 					</ActionSetState>
 				</Event>
+				<Event Id="2179654399" Name="Pause_Menu_Off" ObjectPath="\Events\Default Work Unit\Music Events\Pause_Menu_Off"/>
+				<Event Id="3483621035" Name="Pause_Menu_On" ObjectPath="\Events\Default Work Unit\Music Events\Pause_Menu_On"/>
 				<Event Id="3358299437" Name="Pick_Up_Note" ObjectPath="\Events\Default Work Unit\SFX Events\Notes\Pick_Up_Note"/>
 				<Event Id="1238538214" Name="Play_Ambient_Music" ObjectPath="\Events\Default Work Unit\Music Events\Play_Ambient_Music">
 					<IncludedMemoryFiles>

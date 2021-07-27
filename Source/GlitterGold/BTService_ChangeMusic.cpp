@@ -8,6 +8,7 @@
 #include "GlitterGameModeBase.h"
 #include "../Plugins/Wwise/Source/AkAudio/Classes/AkComponent.h"
 #include "Kismet/GameplayStatics.h"
+#include "MainCharacter.h"
 
 UBTService_ChangeMusic::UBTService_ChangeMusic()
 {
@@ -45,7 +46,12 @@ void UBTService_ChangeMusic::OnBecomeRelevant(UBehaviorTreeComponent& OwnerComp,
 		gameMode->monsterInCaution = 1.f;
 	}
 
-	FAkAudioDevice::Get()->PostEvent(*musicChange, monster);
+	
+
+	if (AMainCharacter* player = Cast<AMainCharacter>(UGameplayStatics::GetPlayerCharacter(this, 0)))
+	{
+		FAkAudioDevice::Get()->PostEvent(*musicChange, player);
+	}
 }
 
 

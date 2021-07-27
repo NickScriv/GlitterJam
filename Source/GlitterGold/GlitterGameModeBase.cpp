@@ -5,6 +5,7 @@
 
 #include "AkAudioDevice.h"
 #include "Blueprint/UserWidget.h"
+#include "MainCharacter.h"
 #include "HUDUserWidget.h"
 #include "KillScreenUserWidget.h"
 #include "PauseMenuUserWidget.h"
@@ -44,7 +45,7 @@ void AGlitterGameModeBase::EndGame()
 	UGameplayStatics::SetGamePaused(GetWorld(), true);
 }
 
-void AGlitterGameModeBase::TogglePause()
+void AGlitterGameModeBase::TogglePause(AMainCharacter* character)
 {
 	if(isReadingNote)
 		return;
@@ -56,12 +57,14 @@ void AGlitterGameModeBase::TogglePause()
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Add to view pause"));
 		// TODO: Add pause event to pause all other sounds
+		FAkAudioDevice::Get()->PostEvent("Pause_Menu_On", character);
 		pauseScreenWidget->AddToViewport();
 	}
 	else
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Add to view unpause"));
 		// TODO: Add unpause event to unpause all other sounds
+		FAkAudioDevice::Get()->PostEvent("Pause_Menu_Off", character);
 		pauseScreenWidget->RemoveFromParent();
 	}
 }

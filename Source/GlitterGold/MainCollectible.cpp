@@ -39,7 +39,7 @@ void AMainCollectible::Tick(float DeltaTime)
 void AMainCollectible::PickedUp(class AMainCharacter* character)
 {
 	// Trigger final door
-	FAkAudioDevice::Get()->PostEvent("Pick_Up_Note", this);
+	FAkAudioDevice::Get()->PostEvent("Pickup_Flashlight", this);
 	finalDoor->InitInteraction();
 	Destroy();
 }

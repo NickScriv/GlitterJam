@@ -33,7 +33,7 @@ public:
 
 private:
 	UPROPERTY(EditAnywhere)
-	float openAngle = 90.f;
+	float openAngle;
 
 	UPROPERTY(EditAnywhere, meta = (EditCondition = locked))
 	float unlockDoorTime = 0.f;
@@ -55,6 +55,12 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	bool open = false;
+
+	UPROPERTY(EditAnywhere)
+		class UAkAudioEvent* in_pEventOpen;
+
+	UPROPERTY(EditAnywhere)
+		class UAkAudioEvent* in_pEventClose;
 	
 	bool checkClosed = false;
 

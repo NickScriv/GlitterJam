@@ -80,6 +80,7 @@ void AMonster::KillPlayer()
 			mainPlayer->Died(this);
 			controller->SetFocus(mainPlayer);
 			FAkAudioDevice::Get()->PostEvent("Death_Music", mainPlayer);
+			FAkAudioDevice::Get()->PostEvent("Death_Enemy_Sounds", this);
 			
 			mainPlayer->StopPlayerSounds();
 			FVector playerLookAt = GetActorLocation();

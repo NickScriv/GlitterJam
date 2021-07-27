@@ -16,6 +16,7 @@
 #include "NavModifierComponent.h"
 #include "Navigation/NavLinkProxy.h"
 #include "NavMesh/NavMeshPath.h"
+#include "Door.h"
 
 // Sets default values for this component's properties
 UDoorOpenClose::UDoorOpenClose()
@@ -119,36 +120,48 @@ void UDoorOpenClose::TickComponent(float DeltaTime, ELevelTick TickType, FActorC
 	}
 	FRotator newRot = FRotator(0.0, FMath::Lerp(currentYaw, initialYaw + (open ? openAngle : 0.0f), openTime), 0.0);
 
-	this->SetRelativeRotation(newRot, true);
-
-	if(monsterController)
-	{
-		UPathFollowingComponent* path = monsterController->GetPathFollowingComponent();
-		if (path)
-		{
-			if (path->IsNextSegmentNavigationLink())
-			{
-				UE_LOG(LogTemp, Warning, TEXT("NEXT is nav link!!"));
-			}
-			
-		}
-	}
+	this->SetRelativeRotation(newRot);
 	
 }
 
 void UDoorOpenClose::OpenDoor()
 {
+	//int32 id;
+	ADoor* parent = Cast<ADoor>(this->GetOwner());
 	if (open)
 	{
-		FAkAudioDevice::Get()->PostEvent("Door_Close", this->GetOwner());
-		portal->ClosePortal();
+		if (parent)
+		{
+			parent->PlayOpenCloseSound(in_pEventClose);
+		}
+		//id = FAkAudioDevice::Get()->PostEvent("Door_Close", this->GetOwner());
+
+		/*if (this->GetOwner())
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Door close: %i, name: %s"), id, *this->GetOwner()->GetName());
+		}*/
+		
+		if (portal)
+			portal->ClosePortal();
 		navLinkProxyEnter->SetSmartLinkEnabled(true);
 		navLinkProxyExit->SetSmartLinkEnabled(true);
 	}
 	else
 	{
-		FAkAudioDevice::Get()->PostEvent("Door_Open", this->GetOwner());
-		portal->OpenPortal();
+
+		if (parent)
+		{
+			parent->PlayOpenCloseSound(in_pEventOpen);
+		}
+		
+		/*id = FAkAudioDevice::Get()->PostEvent("Door_Open", this->GetOwner());
+		if (this->GetOwner())
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Door open: %i, name: %s"), id, *this->GetOwner()->GetName());
+		}*/
+
+		if(portal)
+			portal->OpenPortal();
 		navLinkProxyEnter->SetSmartLinkEnabled(false);
 		navLinkProxyExit->SetSmartLinkEnabled(false);
 	}

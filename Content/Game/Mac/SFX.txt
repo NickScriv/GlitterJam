@@ -12,7 +12,6 @@ Event	ID	Name			Wwise Object Path	Notes
 	1225062921	Play_Lights_Power_Off			\Default Work Unit\SFX Events\Lights\Play_Lights_Power_Off	
 	1238538214	Play_Ambient_Music			\Default Work Unit\Music Events\Play_Ambient_Music	
 	1321059028	Drawers_Close			\Default Work Unit\SFX Events\Drawers\Drawers_Close	
-	1550503061	Death_Music			\Default Work Unit\Music Events\Death_Music	
 	1602358412	Play_Footstep			\Default Work Unit\SFX Events\Footsteps\Play_Footstep	
 	1705018554	Locked_Door			\Default Work Unit\SFX Events\Doors\Locked_Door	
 	1708558952	Play_Enemy_Chase_Sounds			\Default Work Unit\SFX Events\Enemy\Play_Enemy_Chase_Sounds	
@@ -20,6 +19,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	2141040177	Stop_Run_Gentle			\Default Work Unit\SFX Events\Stamina\Stop_Run_Gentle	
 	2477713992	Stop_Ambience			\Default Work Unit\SFX Events\Ambience\Stop_Ambience	
 	3039021168	Drawers_Open			\Default Work Unit\SFX Events\Drawers\Drawers_Open	
+	3113414775	Death_Enemy_Sounds			\Default Work Unit\SFX Events\Enemy\Death_Enemy_Sounds	
 	3140010222	Stamina_Depleted			\Default Work Unit\SFX Events\Stamina\Stamina_Depleted	
 	3237721180	Play_Chase_Music			\Default Work Unit\Music Events\Play_Chase_Music	
 	3358299437	Pick_Up_Note			\Default Work Unit\SFX Events\Notes\Pick_Up_Note	

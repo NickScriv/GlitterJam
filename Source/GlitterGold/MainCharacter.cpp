@@ -686,7 +686,7 @@ void AMainCharacter::TogglePause()
 
 	if (gameMode)
 	{
-		gameMode->TogglePause();
+		gameMode->TogglePause(this);
 	}
 }
 

@@ -53,7 +53,7 @@ public:
 	void EndGame();
 	
 	UFUNCTION(BlueprintCallable)
-	void TogglePause();
+	void TogglePause(class AMainCharacter* character);
 
 	FString queuedMusic = "Play_Ambient_Music";
 
