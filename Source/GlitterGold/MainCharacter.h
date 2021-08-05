@@ -9,6 +9,7 @@
 
 
 class AFlashlight;
+class AShotgun;
 class UCurveFloat;
 
 UENUM()
@@ -79,15 +80,35 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Movement")
 		float sprintSpeed = 900.0f;
 
-	UPROPERTY(BlueprintReadOnly)
-	bool spawnArms = false;
+	UPROPERTY(BlueprintReadWrite)
+	bool isShooting = false;
+
+	UPROPERTY(BlueprintReadWrite)
+	bool isAiming = false;
+
+	/*UPROPERTY(BlueprintReadOnly)
+	bool spawnArmsFlashlight = false;
 
 	UPROPERTY(BlueprintReadOnly)
-	bool hideArms = true;
+		bool spawnArmsShotgunt = false;*/
+
+	UPROPERTY(BlueprintReadOnly)
+	int32 currentHandSlot = 0;
+
+	UPROPERTY(BlueprintReadOnly)
+	bool hideArmsFlashlight = true;
+
+	UPROPERTY(BlueprintReadOnly)
+		bool hideArmsShotgun = true;
 
 	bool canSwitch = true;
 
 	int32 numberOfKeys = 0;
+
+	int32 shotgunBulletCount = 1;
+
+
+	FTimerHandle timerHandleShoot;
 
 	void PickedUpKey();
 
@@ -98,11 +119,27 @@ public:
 
 	void SpawnFlashlight();
 
+	void SpawnShotgun();
+
 	void NotTest();
 
 	void Died(class AMonster* monster);
 	
 	bool IsSprinting();
+
+	void HideFlashlight();
+
+	void HideShotgun();
+
+	void ShowFlashlight();
+
+	void ShowShotgun();
+
+	void ShootShotgun();
+
+	void AimPressed();
+
+	void AimReleased();
 
 protected:
 	// Called when the game starts or when spawned
@@ -134,6 +171,8 @@ protected:
 
 private:
 
+	UPROPERTY()
+	class AGlitterGameModeBase* gameMode;
 
 	bool died = false;
 	FRotator rotateDeath;
@@ -146,6 +185,14 @@ private:
 
 	UPROPERTY(EditDefaultsOnly)
 	class AFlashlight* flashlight = nullptr;
+
+	UPROPERTY(EditDefaultsOnly)
+		TSubclassOf<AShotgun> shotgunClass;
+
+	UPROPERTY(EditDefaultsOnly)
+		class AShotgun* shotgun = nullptr;
+
+	TArray<bool> items;
 
 
 #pragma region Movement
@@ -277,5 +324,12 @@ private:
 	void FlashlightToggle();
 
 	void TogglePause();
+
+	int32 GetTargetHandSlot(float val);
+
+	void WrapNumberWithinRange(int32& num, int32 min, int32 max);
+
+	void AimIn();
+	void AimOut();
 
 };

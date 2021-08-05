@@ -7,6 +7,16 @@
 #include "Monster.generated.h"
 
 
+UENUM(BlueprintType)
+enum EDeathStatus
+{
+	DieBackwards    UMETA(DisplayName = "Die Backwards"),
+	DieForwards    UMETA(DisplayName = "Die Forwards"),
+	DieLeft   UMETA(DisplayName = "Die Left"),
+	DieRight    UMETA(DisplayName = "Die Right"),
+	Alive    UMETA(DisplayName = "Alive")
+};
+
 
 UENUM()
 enum EPathEnding
@@ -38,6 +48,9 @@ public:
 	UPROPERTY(EditAnywhere)
 		TEnumAsByte <EPathEnding>  pathEnding;
 
+	UPROPERTY(BlueprintReadOnly)
+		TEnumAsByte <EDeathStatus>  deathStatus = EDeathStatus::Alive;
+
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 		int32 currentPathIndex = 0;
 
@@ -63,6 +76,8 @@ public:
 
 	void PlayMosnterSoundEvent(FString event);
 
+	void TakeDamage(const FVector& shotDir);
+
 	int32 passiveEvent = -1;
 	int32 cautionEvent = -1;
 	int32 chaseEvent = -1;
@@ -81,6 +96,12 @@ private:
 	
 	FRotator rotateKill;
 
+	UPROPERTY(EditAnywhere)
+	float health;
+
+	UPROPERTY()
+	class AGlitterGameModeBase* gameMode;
+
 	bool inLineOfPlayer = false;
 
 	UPROPERTY(EditAnywhere)
@@ -95,6 +116,8 @@ private:
 	float ScaleRange(float input, float inputLow, float inputHigh, float outputLow, float outputHigh);
 
 	float ReverseNumber(float num, float min, float max);
+
+	void KillMonster(FVector shotDir);
 };
 
 

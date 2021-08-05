@@ -12,6 +12,7 @@
 #include "Perception/AISense_Hearing.h"
 #include "Monster.h"
 #include "Flashlight.h"
+#include "Shotgun.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "../Plugins/Wwise/Source/AkAudio/Classes/AkGameplayStatics.h"
 #include "../Plugins/Wwise/Source/AkAudio/Classes/AkComponent.h"
@@ -41,6 +42,10 @@ void AMainCharacter::BeginPlay()
 	standCapsuleHeight = capsuleColl->GetScaledCapsuleHalfHeight();
 	crouchCapsuleHeight = capsuleColl->GetScaledCapsuleHalfHeight() * crouchScale;
 
+	items.Add(true);
+	items.Add(false);
+	items.Add(false);
+
 	if (crouchCurveFloat)
 	{
 	
@@ -68,7 +73,11 @@ void AMainCharacter::BeginPlay()
 	FAkAudioDevice::Get()->PostEvent("Play_Ambient_Music", this);
 	FAkAudioDevice::Get()->SetRTPCValue(*FString("Num_of_Keys"), 0, 300, this);
 
-	
+	gameMode = Cast<AGlitterGameModeBase>(UGameplayStatics::GetGameMode(this));
+
+
+	gameMode->ReticleUI(false);
+	gameMode->AmmoUI(false, shotgunBulletCount);
 	
 }
 
@@ -169,6 +178,9 @@ void AMainCharacter::Tick(float DeltaTime)
 
 	FAkAudioDevice::Get()->SetRTPCValue(*FString("Stamina_Level"), stamina, 500, this);
 
+	if(isShooting)
+	UE_LOG(LogTemp, Warning, TEXT("Shooting!!!"))
+
 }
 
 // Called to bind functionality to input
@@ -192,25 +204,42 @@ void AMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 
 	PlayerInputComponent->BindAxis("SwitchArms", this, &AMainCharacter::SwitchArms);
 
+	/*PlayerInputComponent->BindAction("m", IE_Pressed, this, &AMainCharacter::FlashlightToggle);
+	PlayerInputComponent->BindAction("Flashlight", IE_Pressed, this, &AMainCharacter::FlashlightToggle);*/
+
 	PlayerInputComponent->BindAction("Flashlight", IE_Pressed, this, &AMainCharacter::FlashlightToggle);
 
 	PlayerInputComponent->BindAction("Pause", IE_Pressed, this, &AMainCharacter::TogglePause).bExecuteWhenPaused = true;
 
+	PlayerInputComponent->BindAction("Shoot", IE_Pressed, this, &AMainCharacter::ShootShotgun);
+
+	PlayerInputComponent->BindAction("Aim", IE_Pressed, this, &AMainCharacter::AimPressed);
+	PlayerInputComponent->BindAction("Aim", IE_Released, this, &AMainCharacter::AimReleased);
+
 	//PlayerInputComponent->BindAction("TestNot", IE_Pressed, this, &AMainCharacter::NotTest);
 
 }
+
 void AMainCharacter::SpawnFlashlight()
 {
 	flashlight = GetWorld()->SpawnActor<AFlashlight>(flashlightClass);
 	flashlight->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform, TEXT("Flashlight"));
-	spawnArms = true;
-	hideArms = false;
+	flashlight->SetActorHiddenInGame(true);
+	flashlight->SetOwner(this);
+	items[1] = true;
+}
+
+void AMainCharacter::SpawnShotgun()
+{
+	shotgun = GetWorld()->SpawnActor<AShotgun>(shotgunClass);
+	shotgun->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform, TEXT("Shotgun"));
+	shotgun->SetActorHiddenInGame(true);
+	shotgun->SetOwner(this);
+	items[2] = true;
 }
 
 void AMainCharacter::NotTest()
 {
-	AGlitterGameModeBase* gameMode = Cast<AGlitterGameModeBase>(UGameplayStatics::GetGameMode(this));
-
 	if (gameMode)
 		gameMode->AddNotification(FText::FromString("Notification!"));
 }
@@ -445,6 +474,77 @@ bool AMainCharacter::IsSprinting()
 	return stamina > 1.f && isSprintingKeyDown && canSprint;
 }
 
+void AMainCharacter::HideFlashlight()
+{
+	if(flashlight)
+		flashlight->SetActorHiddenInGame(true);
+}
+
+void AMainCharacter::HideShotgun()
+{
+	if(shotgun)
+		shotgun->SetActorHiddenInGame(true);
+}
+
+void AMainCharacter::ShowFlashlight()
+{
+	if (flashlight)
+		flashlight->SetActorHiddenInGame(false);
+}
+
+void AMainCharacter::ShowShotgun()
+{
+	if(shotgun)
+		shotgun->SetActorHiddenInGame(false);
+}
+
+void AMainCharacter::ShootShotgun()
+{
+	if (shotgun && currentHandSlot == 2 && canSwitch && GetMovementComponent()->Velocity.Size() <= walkSpeed + 0.05f && !isShooting)
+	{
+
+		if (gameMode && gameMode->playerKilled)
+		{
+			return;
+		}
+
+		if (shotgunBulletCount > 0)
+		{
+			// shoot
+			isShooting = true;
+			shotgun->Shoot();
+
+			//shotgunBulletCount--;
+			gameMode->AmmoUI(true, shotgunBulletCount);
+		
+		}
+		else
+		{
+			// TODO: play no ammo sound
+		}
+	}
+}
+
+void AMainCharacter::AimPressed()
+{
+	if (shotgun && currentHandSlot == 2 && canSwitch && GetMovementComponent()->Velocity.Size() <= walkSpeed + 0.05f && !isShooting && !isAiming)
+	{
+		if (gameMode && !gameMode->playerKilled)
+		{
+			AimIn();
+		}
+		
+	}
+}
+
+void AMainCharacter::AimReleased()
+{
+	if (isAiming)
+	{
+		AimOut();
+	}
+}
+
 void AMainCharacter::MoveForward(float val)
 {
 	AddMovementInput(GetActorForwardVector(), val);
@@ -540,7 +640,7 @@ void AMainCharacter::SprintPressed()
 	
 	
 	UE_LOG(LogTemp, Warning, TEXT("Sprint pressed"));
-	if(canSprint)
+	if(canSprint && !isAiming && !isShooting)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("can sprint"));
 		GetCharacterMovement()->MaxWalkSpeed = sprintSpeed;
@@ -630,27 +730,111 @@ void AMainCharacter::RegainStamina()
 	canSprint = true;
 }
 
+//TODO: Remember to change assignment to canSwitch and isShooting and isAiming!!!
 void AMainCharacter::SwitchArms(float val)
 {
-	if(!FMath::IsNearlyZero(val) && canSwitch && flashlight)
-	{
-		canSwitch = false;
-		if(spawnArms)
+	if(!FMath::IsNearlyZero(val) && canSwitch)
+	{	
+		int32 targetHandSlot = GetTargetHandSlot(val);
+
+		if (targetHandSlot == currentHandSlot)
+			return;
+
+		bool showShotgunUI = false;
+		
+		if (targetHandSlot == 0)
 		{
-			if(flashlight->IsFlashlightOn())
-			{
-				flashlight->Toggle();
-			}
-			
-			spawnArms = false;
-			hideArms = true;
+			// Show nothing
+			hideArmsFlashlight = true;
+			hideArmsShotgun = true;
+		}
+		else if(targetHandSlot == 1 && flashlight)
+		{
+			// Show flashlight
+			hideArmsFlashlight = false;
+			hideArmsShotgun = true;
+		}
+		else if(targetHandSlot == 2  && shotgun)
+		{
+			// Show Shotgun
+			hideArmsFlashlight = true;
+			hideArmsShotgun = false;
+			showShotgunUI = true;
 		}
 		else
 		{
-			spawnArms = true;
-			hideArms = false;
+			return;
+		}
+
+		gameMode->AmmoUI(showShotgunUI, shotgunBulletCount);
+		gameMode->ReticleUI(showShotgunUI);
+		canSwitch = false;
+
+
+		if (flashlight && flashlight->IsFlashlightOn())
+		{
+			FlashlightToggle();
+		}
+	
+
+		currentHandSlot = targetHandSlot;
+	}
+}
+
+int AMainCharacter::GetTargetHandSlot(float val)
+{
+	int32 targetHandSlot = currentHandSlot;
+	if (val < 0.f)
+	{
+		targetHandSlot = currentHandSlot - 1;
+		WrapNumberWithinRange(targetHandSlot, 0, items.Num() - 1);
+		while (targetHandSlot != currentHandSlot && !items[targetHandSlot])
+		{
+			targetHandSlot--;
+			WrapNumberWithinRange(targetHandSlot, 0, items.Num() - 1);
 		}
 	}
+	else
+	{
+		targetHandSlot = currentHandSlot + 1;
+		WrapNumberWithinRange(targetHandSlot, 0, items.Num() - 1);
+		while (targetHandSlot != currentHandSlot && !items[targetHandSlot])
+		{
+			targetHandSlot++;
+			WrapNumberWithinRange(targetHandSlot, 0, items.Num() - 1);
+		}
+	}
+	return targetHandSlot;
+}
+
+void AMainCharacter::WrapNumberWithinRange(int32& num, int32 min, int32 max)
+{
+	if (num < min)
+	{
+		num = max;
+	}
+	else if (num > max)
+	{
+		num = min;
+	}
+}
+
+void AMainCharacter::AimIn()
+{
+	isAiming = true;
+
+	if (gameMode)
+		gameMode->ReticleUI(false);
+
+	
+}
+
+void AMainCharacter::AimOut()
+{
+	isAiming = false;
+
+	if (gameMode)
+		gameMode->ReticleUI(true);
 }
 
 
@@ -674,7 +858,7 @@ bool AMainCharacter::AreStaminaEventsPlaying()
 
 void AMainCharacter::FlashlightToggle()
 {
-	if(flashlight && spawnArms)
+	if(flashlight && currentHandSlot == 1)
 	{
 		flashlight->Toggle();
 	}
@@ -682,14 +866,16 @@ void AMainCharacter::FlashlightToggle()
 
 void AMainCharacter::TogglePause()
 {
-	AGlitterGameModeBase* gameMode = Cast<AGlitterGameModeBase>(UGameplayStatics::GetGameMode(this));
+	if(isAiming)
+		AimOut();
 
 	if (gameMode)
 	{
 		gameMode->TogglePause(this);
 	}
-}
 
+
+}
 
 #pragma endregion 
 

@@ -32,6 +32,7 @@ EBTNodeResult::Type UBTTaskNode_KillPlayer::ExecuteTask(class UBehaviorTreeCompo
 	
 	FHitResult hit;
 	FVector start = monster->GetActorLocation();
+	qParams.AddIgnoredActor(monster);
 	start.Z += 130.f;
 
 	if (GetWorld()->LineTraceSingleByChannel(hit, start, player->GetCapsuleComponent()->GetComponentLocation(), ECC_Visibility, qParams))

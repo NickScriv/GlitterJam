@@ -12,6 +12,7 @@
 #include "Engine/TriggerVolume.h"
 #include "../Plugins/Wwise/Source/AkAudio/Classes/AkComponent.h"
 #include "Components/CapsuleComponent.h"
+#include "GlitterGameModeBase.h"
 
 // Sets default values
 AMonster::AMonster()
@@ -36,6 +37,8 @@ void AMonster::BeginPlay()
 
 	if(!mainPlayer)
 		UE_LOG(LogTemp, Error, TEXT("AMonster: Player not found!!!"));
+
+	gameMode = Cast<AGlitterGameModeBase>(UGameplayStatics::GetGameMode(this));
 }
 
 void AMonster::TriggerFirstEvent(AActor* overlappedActor, AActor* otherActor)
@@ -62,6 +65,59 @@ float AMonster::ScaleRange(float input, float inputLow, float inputHigh, float o
 float AMonster::ReverseNumber(float num, float min, float max)
 {
 	return (max + min) - num;
+}
+
+void AMonster::KillMonster(FVector shotDir)
+{
+	if (gameMode)
+		gameMode->monsterKilled = true;
+
+	FAkAudioDevice::Get()->SetRTPCValue(*FString("Danger_Warning"), 0.f, 200, mainPlayer);
+
+	if (AMainCharacter* player = Cast<AMainCharacter>(UGameplayStatics::GetPlayerCharacter(this, 0)))
+	{
+		FAkAudioDevice::Get()->PostEvent("Play_Ambient_Music", player);
+	}
+
+	//GetMesh()->SetCollisionProfileName(TEXT("Ragdoll"));
+
+	float dot = FVector::DotProduct(shotDir, GetActorForwardVector());
+
+	if (dot >= 0.4f)
+	{
+		// Die Forwards
+		deathStatus = EDeathStatus::DieForwards;
+
+	}
+	else if (dot <= -0.4f)
+	{
+		// Die Backwards
+		deathStatus = EDeathStatus::DieBackwards;
+
+	}
+	else
+	{
+		// Die sideways
+
+		float dotSide = FVector::DotProduct(shotDir, GetActorRightVector());
+
+		if (dotSide < 0)
+		{
+			// Die left!?!?!
+			deathStatus = EDeathStatus::DieLeft;
+		}
+		else
+		{
+			//Die right!?!?!?
+			deathStatus = EDeathStatus::DieRight;
+		}
+
+	}
+
+	DetachFromControllerPendingDestroy();
+	// TODO: change to ragdoll??!?!
+	GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+
 }
 
 void AMonster::KillPlayer()
@@ -92,6 +148,9 @@ void AMonster::KillPlayer()
 	}
 
 	GetCharacterMovement()->DisableMovement();
+
+	if(gameMode)
+		gameMode->playerKilled = true;
 	
 
 }
@@ -119,6 +178,14 @@ void AMonster::PlayMosnterSoundEvent(FString event)
 	}
 }
 
+void AMonster::TakeDamage(const FVector& shotDir)
+{
+	health--;
+
+	if(health <= 0.f)
+		KillMonster(shotDir);
+}
+
 void AMonster::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
@@ -126,7 +193,7 @@ void AMonster::Tick(float DeltaTime)
 	FHitResult hit;
 	FCollisionQueryParams qParams;
 
-	if (GetWorld()->LineTraceSingleByChannel(hit, GetActorLocation(), mainPlayer->GetCapsuleComponent()->GetComponentLocation(), ECC_Visibility, qParams))
+	if (!gameMode->monsterKilled && GetWorld()->LineTraceSingleByChannel(hit, GetActorLocation(), mainPlayer->GetCapsuleComponent()->GetComponentLocation(), ECC_Visibility, qParams))
 	{
 		if (Cast<AMainCharacter>(hit.Actor))
 		{

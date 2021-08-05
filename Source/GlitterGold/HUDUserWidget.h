@@ -18,4 +18,10 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void PopNotification(const FText& content);
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void ReticleUI(bool show);
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void AmmoUI(bool show, int32 ammoCount);
 };

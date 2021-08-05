@@ -34,6 +34,16 @@ void AGlitterGameModeBase::AddNotification(FText content)
 	HUDWidget->PopNotification(content);
 }
 
+void AGlitterGameModeBase::ReticleUI(bool show)
+{
+	HUDWidget->ReticleUI(show);
+}
+
+void AGlitterGameModeBase::AmmoUI(bool show, int32 ammoCount)
+{
+	HUDWidget->AmmoUI(show, ammoCount);
+}
+
 void AGlitterGameModeBase::EndGame()
 {
 	HUDWidget->RemoveFromParent();

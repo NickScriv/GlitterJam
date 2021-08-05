@@ -50,6 +50,10 @@ protected:
 public:
 	void AddNotification(FText content);
 
+	void ReticleUI(bool show);
+
+	void AmmoUI(bool show, int32 ammoCount);
+
 	void EndGame();
 	
 	UFUNCTION(BlueprintCallable)
@@ -61,4 +65,8 @@ public:
 	float monsterInCaution = 0.f;
 
 	bool isReadingNote = false;
+
+	bool playerKilled = false;
+
+	bool monsterKilled = false;
 };
