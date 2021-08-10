@@ -98,10 +98,10 @@ public:
 	UPROPERTY(BlueprintReadWrite)
 	int32 currentHandSlot = 0;
 
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadWrite)
 	bool hideArmsFlashlight = true;
 
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadWrite)
 		bool hideArmsShotgun = true;
 
 	UPROPERTY(BlueprintReadWrite)
