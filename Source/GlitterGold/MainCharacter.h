@@ -86,13 +86,16 @@ public:
 	UPROPERTY(BlueprintReadWrite)
 	bool isAiming = false;
 
+	UPROPERTY(BlueprintReadWrite)
+	int32 prevHandSlot;
+
 	/*UPROPERTY(BlueprintReadOnly)
 	bool spawnArmsFlashlight = false;
 
 	UPROPERTY(BlueprintReadOnly)
 		bool spawnArmsShotgunt = false;*/
 
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadWrite)
 	int32 currentHandSlot = 0;
 
 	UPROPERTY(BlueprintReadOnly)
@@ -101,6 +104,7 @@ public:
 	UPROPERTY(BlueprintReadOnly)
 		bool hideArmsShotgun = true;
 
+	UPROPERTY(BlueprintReadWrite)
 	bool canSwitch = true;
 
 	int32 numberOfKeys = 0;
@@ -120,6 +124,8 @@ public:
 	void SpawnFlashlight();
 
 	void SpawnShotgun();
+
+	void InjectSyringe();
 
 	void NotTest();
 

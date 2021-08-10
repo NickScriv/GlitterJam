@@ -35,6 +35,9 @@ EBTNodeResult::Type UBTTaskNode_FindPathPoint::ExecuteTask(class UBehaviorTreeCo
 		target = monster->path[index]->GetActorLocation();
 	}
 
+	// TODO: Maybe remove this below statement later
+	target = monster->path[index]->GetActorLocation();
+
 	OwnerComp.GetBlackboardComponent()->SetValueAsVector(bbKey_TargetLoc.SelectedKeyName, target);
 	
 	float wait = FMath::RandRange(monster->path[index]->waitTime - monster->path[index]->waitTimeDeviation, monster->path[index]->waitTime + monster->path[index]->waitTimeDeviation);

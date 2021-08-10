@@ -69,7 +69,8 @@ public:
 	UPROPERTY(EditAnywhere)
 	float minDistanceAmbience = 300.f;
 
-	
+	void KillTest();
+
 	void KillPlayer();
 
 	void StopMonsterSounds();
@@ -96,8 +97,21 @@ private:
 	
 	FRotator rotateKill;
 
+	class UPhysicalAnimationComponent* physicsComponent;
+
+	FTimerHandle timerHandleRagdoll;
+
 	UPROPERTY(EditAnywhere)
 	float health;
+
+	UPROPERTY(EditAnywhere)
+		float blendPhysics;
+
+	UPROPERTY(EditAnywhere)
+		float time;
+
+	/*UPROPERTY(EditAnywhere)
+		float ragDollTime;*/
 
 	UPROPERTY()
 	class AGlitterGameModeBase* gameMode;
@@ -118,6 +132,11 @@ private:
 	float ReverseNumber(float num, float min, float max);
 
 	void KillMonster(FVector shotDir);
+
+	void EnableRagdoll();
+
+	UFUNCTION()
+	void OnMonsterMeshHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit);
 };
 
 

@@ -178,9 +178,6 @@ void AMainCharacter::Tick(float DeltaTime)
 
 	FAkAudioDevice::Get()->SetRTPCValue(*FString("Stamina_Level"), stamina, 500, this);
 
-	if(isShooting)
-	UE_LOG(LogTemp, Warning, TEXT("Shooting!!!"))
-
 }
 
 // Called to bind functionality to input
@@ -236,6 +233,14 @@ void AMainCharacter::SpawnShotgun()
 	shotgun->SetActorHiddenInGame(true);
 	shotgun->SetOwner(this);
 	items[2] = true;
+}
+
+void AMainCharacter::InjectSyringe()
+{
+	canSwitch = false;
+	hideArmsFlashlight = true;
+	hideArmsShotgun = true;
+	prevHandSlot = currentHandSlot;
 }
 
 void AMainCharacter::NotTest()

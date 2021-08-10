@@ -8,6 +8,7 @@
 #include "MainCharacter.h"
 #include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetMathLibrary.h"
+#include "Perception/AISense_Damage.h"
 
 // Sets default values
 AShotgun::AShotgun()
@@ -77,9 +78,9 @@ void AShotgun::Shoot()
 			if (AMonster* monster = Cast<AMonster>(hit.Actor))
 			{
 				// Hit monster
-				UE_LOG(LogTemp, Warning, TEXT("Hit Monster"));
 				UGameplayStatics::SpawnEmitterAtLocation(this, fleshImpact, hit.Location, hit.Normal.Rotation());
 				monster->TakeDamage(shotDir);
+				UAISense_Damage::ReportDamageEvent(this, monster, player, 1.f, start, hit.Location);
 			}
 			else
 			{

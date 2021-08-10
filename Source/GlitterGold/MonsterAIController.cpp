@@ -101,10 +101,19 @@ void AMonsterAIController::perceptionUpdated(AActor* Actor, FAIStimulus Stimulus
 			UE_LOG(LogTemp, Warning, TEXT("Hit raycast to player: %s"), *hit.Actor->GetName());
 			if (Cast<AMainCharacter>(hit.Actor))
 			{
+				UE_LOG(LogTemp, Warning, TEXT("Heard Player at: %f, %f, %f"), Stimulus.StimulusLocation.X, Stimulus.StimulusLocation.Y, Stimulus.StimulusLocation.Z);
 				blackboardComp->SetValueAsBool(FName("IsInvestigating"), Stimulus.WasSuccessfullySensed());
 				blackboardComp->SetValueAsVector(FName("TargetLoc"), Stimulus.StimulusLocation);
 			}
 		}
+	}
+	else if (senseName == TEXT("AISense_Damage"))
+	{
+
+		UE_LOG(LogTemp, Warning, TEXT("Damage AI at: %f, %f, %f"), Stimulus.StimulusLocation.X, Stimulus.StimulusLocation.Y, Stimulus.StimulusLocation.Z);
+		blackboardComp->SetValueAsBool(FName("IsInvestigating"), Stimulus.WasSuccessfullySensed());
+		blackboardComp->SetValueAsVector(FName("TargetLoc"), Stimulus.StimulusLocation);
+
 	}
 	else
 	{

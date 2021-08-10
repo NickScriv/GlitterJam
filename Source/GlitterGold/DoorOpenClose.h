@@ -31,6 +31,8 @@ public:
 
 	bool playerHasKey = false;
 
+	bool playerHasLockPick = false;
+
 private:
 	UPROPERTY(EditAnywhere)
 	float openAngle;
@@ -38,8 +40,14 @@ private:
 	UPROPERTY(EditAnywhere, meta = (EditCondition = locked))
 	float unlockDoorTime = 0.f;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, meta = (EditCondition = locked))
+	float unlockLockPickTime;
+
+	UPROPERTY(EditAnywhere, meta = (EditCondition = locked))
 	class AKeyActor* keyToDoor;
+
+	UPROPERTY(EditAnywhere, meta = (EditCondition = locked))
+	class ALockPick* lockPick;
 
 	UPROPERTY(EditAnywhere)
 	class ANavLinkProxy* navLinkProxyEnter;
@@ -89,6 +97,12 @@ private:
 
 	UFUNCTION()
 		void PlayerPickedUpKey();
+
+	UFUNCTION()
+		void PlayerPickedUpLockPick();
+
+	UFUNCTION()
+		void LockPickUsed();
 
 	UFUNCTION()
 	void MonsterReachedNavLink(AActor* MovingActor, const FVector& DestinationPoint);

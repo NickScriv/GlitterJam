@@ -17,6 +17,9 @@
 #include "Navigation/NavLinkProxy.h"
 #include "NavMesh/NavMeshPath.h"
 #include "Door.h"
+#include "LockPick.h"
+
+
 
 // Sets default values for this component's properties
 UDoorOpenClose::UDoorOpenClose()
@@ -76,6 +79,12 @@ void UDoorOpenClose::BeginPlay()
 	{
 		keyToDoor->OnPickedUpKey.AddDynamic(this, &UDoorOpenClose::PlayerPickedUpKey);
 	}
+
+	if (lockPick)
+	{
+		lockPick->onPickedUpLockPick.AddDynamic(this, &UDoorOpenClose::PlayerPickedUpLockPick);
+		lockPick->onLockPickUsed.AddDynamic(this, &UDoorOpenClose::LockPickUsed);
+	}
 	
 	if(!navLinkProxyEnter)
 	{
@@ -134,15 +143,10 @@ void UDoorOpenClose::OpenDoor()
 		{
 			parent->PlayOpenCloseSound(in_pEventClose);
 		}
-		//id = FAkAudioDevice::Get()->PostEvent("Door_Close", this->GetOwner());
-
-		/*if (this->GetOwner())
-		{
-			UE_LOG(LogTemp, Warning, TEXT("Door close: %i, name: %s"), id, *this->GetOwner()->GetName());
-		}*/
 		
 		if (portal)
 			portal->ClosePortal();
+
 		navLinkProxyEnter->SetSmartLinkEnabled(true);
 		navLinkProxyExit->SetSmartLinkEnabled(true);
 	}
@@ -175,7 +179,7 @@ void UDoorOpenClose::OpenDoor()
 
 void UDoorOpenClose::InteractDoor(class AMainCharacter* character)
 {
-	if(locked && !playerHasKey)
+	if(locked && !playerHasKey && !playerHasLockPick)
 	{
 		// Play locked door sound
 		FAkAudioDevice::Get()->PostEvent("Locked_Door", this->GetOwner());
@@ -186,6 +190,14 @@ void UDoorOpenClose::InteractDoor(class AMainCharacter* character)
 		FAkAudioDevice::Get()->PostEvent("Stop_Door_Unlocking", this->GetOwner());
 		locked = false;
 		interaction->interactionTime = 0.f;
+	}
+	else if (playerHasLockPick && locked)
+	{
+		FAkAudioDevice::Get()->PostEvent("Stop_Door_Unlocking", this->GetOwner());
+		locked = false;
+		interaction->interactionTime = 0.f;
+		// TODO: Break lock pick
+		lockPick->onLockPickUsed.Broadcast();
 	}
 	
 	if (openTime >= 1)
@@ -208,6 +220,11 @@ void UDoorOpenClose::BeginFocusDoor(class AMainCharacter* character)
 	else if(playerHasKey)
 	{
 		interaction->SetInteractableActionText(FText::FromString("Unlock"));
+		interaction->SetInteractableKeyAction(FText::FromString(""));
+	}
+	else if (playerHasLockPick)
+	{
+		interaction->SetInteractableActionText(FText::FromString("Pick"));
 		interaction->SetInteractableKeyAction(FText::FromString(""));
 	}
 	else
@@ -241,12 +258,6 @@ void UDoorOpenClose::EndInteractDoor(AMainCharacter* character)
 	}
 }
 
-void UDoorOpenClose::PlayerPickedUpKey()
-{
-	playerHasKey = true;
-	interaction->interactionTime = unlockDoorTime;
-}
-
 
 void UDoorOpenClose::MonsterReachedNavLink(AActor* MovingActor, const FVector& DestinationPoint)
 {
@@ -269,5 +280,35 @@ void UDoorOpenClose::MonsterReachedNavLink(AActor* MovingActor, const FVector& D
 		}
 			
 	}
+}
+
+void UDoorOpenClose::PlayerPickedUpKey()
+{
+	if (locked)
+	{
+		playerHasKey = true;
+		interaction->interactionTime = unlockDoorTime;
+	}
+}
+
+void UDoorOpenClose::PlayerPickedUpLockPick()
+{
+	if (!locked || playerHasKey)
+		return;
+
+	playerHasLockPick = true;
+	interaction->interactionTime = unlockLockPickTime;
+
+	
+	UE_LOG(LogTemp, Error, TEXT("Lock pick for door"));
+	
+}
+
+void UDoorOpenClose::LockPickUsed()
+{
+	playerHasLockPick = false;
+
+	if (!playerHasKey)
+		interaction->interactionTime = 0.f;
 }
 

@@ -13,6 +13,7 @@
 #include "../Plugins/Wwise/Source/AkAudio/Classes/AkComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "GlitterGameModeBase.h"
+#include "PhysicsEngine/PhysicalAnimationComponent.h"
 
 // Sets default values
 AMonster::AMonster()
@@ -39,6 +40,40 @@ void AMonster::BeginPlay()
 		UE_LOG(LogTemp, Error, TEXT("AMonster: Player not found!!!"));
 
 	gameMode = Cast<AGlitterGameModeBase>(UGameplayStatics::GetGameMode(this));
+
+	if ((physicsComponent = Cast<UPhysicalAnimationComponent>(GetComponentByClass(UPhysicalAnimationComponent::StaticClass()))) == nullptr)
+	{
+		UE_LOG(LogTemp, Error, TEXT("Physical animation component in monster is null!!!"));
+		return;
+	}
+
+	if (GetMesh())
+	{
+		physicsComponent->SetSkeletalMeshComponent(GetMesh());
+		UE_LOG(LogTemp, Error, TEXT("Set physics mesh 1"));
+	}
+
+	/*FPhysicalAnimationData data;
+	data.OrientationStrength = 20000.f;
+	data.AngularVelocityStrength = 2000.f;
+	data.PositionStrength = 20000.f;
+	data.VelocityStrength = 2000.f;
+	data.bIsLocalSimulation = false;
+	data.MaxAngularForce = 0.f;
+	data.MaxLinearForce = 0.f;
+
+	physicsComponent->ApplyPhysicalAnimationSettingsBelow(FName("pelvis"), data, false);
+
+	if (GetMesh())
+	{
+		GetMesh()->SetAllBodiesBelowSimulatePhysics(FName("pelvis"), true, false);
+		GetMesh()->SetAllBodiesBelowPhysicsBlendWeight(FName("pelvis"), blendPhysics, false, false);
+		UE_LOG(LogTemp, Error, TEXT("Set physics mesh 2"));
+	}
+	else
+	{
+		UE_LOG(LogTemp, Error, TEXT("Mesh in monster not found!!!"));
+	}*/
 }
 
 void AMonster::TriggerFirstEvent(AActor* overlappedActor, AActor* otherActor)
@@ -69,8 +104,15 @@ float AMonster::ReverseNumber(float num, float min, float max)
 
 void AMonster::KillMonster(FVector shotDir)
 {
+
+	if (gameMode && gameMode->monsterKilled)
+		return;
+
+
 	if (gameMode)
 		gameMode->monsterKilled = true;
+
+	//GetMesh()->OnComponentHit.AddDynamic(this, &AMonster::OnMonsterMeshHit);
 
 	FAkAudioDevice::Get()->SetRTPCValue(*FString("Danger_Warning"), 0.f, 200, mainPlayer);
 
@@ -79,7 +121,8 @@ void AMonster::KillMonster(FVector shotDir)
 		FAkAudioDevice::Get()->PostEvent("Play_Ambient_Music", player);
 	}
 
-	//GetMesh()->SetCollisionProfileName(TEXT("Ragdoll"));
+	//GetWorldTimerManager().SetTimer(timerHandleRagdoll, this, &AMonster::EnableRagdoll, ragDollTime, false);
+	//EnableRagdoll();
 
 	float dot = FVector::DotProduct(shotDir, GetActorForwardVector());
 
@@ -114,9 +157,59 @@ void AMonster::KillMonster(FVector shotDir)
 
 	}
 
+
 	DetachFromControllerPendingDestroy();
-	// TODO: change to ragdoll??!?!
 	GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+
+	FPhysicalAnimationData data;
+	data.OrientationStrength = 20000.f;
+	data.AngularVelocityStrength = 2000.f;
+	data.PositionStrength = 20000.f;
+	data.VelocityStrength = 2000.f;
+	data.bIsLocalSimulation = false;
+	data.MaxAngularForce = 0.f;
+	data.MaxLinearForce = 0.f;
+		
+	physicsComponent->ApplyPhysicalAnimationSettingsBelow(FName("pelvis"), data, false);
+
+	if (GetMesh())
+	{
+		//GetMesh()->SetCollisionProfileName(TEXT("PhysicsActor"));
+		GetMesh()->SetSimulatePhysics(true);
+		GetMesh()->SetAllBodiesBelowPhysicsBlendWeight(FName("pelvis"), blendPhysics, false, false);
+		UE_LOG(LogTemp, Error, TEXT("Set physics mesh 2"));
+	}
+	else
+	{
+		UE_LOG(LogTemp, Error, TEXT("Mesh in monster not found!!!"));
+	}
+	
+
+}
+
+void AMonster::KillTest()
+{
+	KillMonster(GetActorForwardVector());
+}
+
+void AMonster::EnableRagdoll()
+{
+	physicsComponent->ApplyPhysicalAnimationProfileBelow("pelvis", "Death");
+	GetMesh()->SetAllBodiesBelowSimulatePhysics(FName("pelvis"), true, false);
+	//GetMesh()->SetAllBodiesBelowPhysicsBlendWeight(FName("pelvis"), 1.0f, false, false);
+}
+
+void AMonster::OnMonsterMeshHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit)
+{
+	if (OtherActor && OtherActor != this)
+	{
+		if (!OtherActor->ActorHasTag("Floor"))
+		{
+			UE_LOG(LogTemp, Warning, TEXT("ENable RagDoll!!!!!"));
+			GetMesh()->OnComponentHit.Clear();
+			EnableRagdoll();
+		}
+	}
 
 }
 
