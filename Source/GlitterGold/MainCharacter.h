@@ -10,6 +10,7 @@
 
 class AFlashlight;
 class AShotgun;
+class AMainCollectible;
 class UCurveFloat;
 
 UENUM()
@@ -107,6 +108,9 @@ public:
 	UPROPERTY(BlueprintReadWrite)
 	bool canSwitch = true;
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+		class AMainCollectible* syringe = nullptr;
+
 	int32 numberOfKeys = 0;
 
 	int32 shotgunBulletCount = 1;
@@ -197,6 +201,9 @@ private:
 
 	UPROPERTY(EditDefaultsOnly)
 		class AShotgun* shotgun = nullptr;
+
+	UPROPERTY(EditDefaultsOnly)
+		TSubclassOf<AMainCollectible> syringeClass;
 
 	TArray<bool> items;
 

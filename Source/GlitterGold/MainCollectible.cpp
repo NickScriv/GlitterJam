@@ -41,6 +41,7 @@ void AMainCollectible::PickedUp(class AMainCharacter* character)
 	// Trigger final door
 	FAkAudioDevice::Get()->PostEvent("Pickup_Flashlight", this);
 	finalDoor->InitInteraction();
+	character->InjectSyringe();
 	Destroy();
 }
 

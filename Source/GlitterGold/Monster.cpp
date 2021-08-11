@@ -47,13 +47,34 @@ void AMonster::BeginPlay()
 		return;
 	}
 
+	/*TArray<UActorComponent*> capsules;
+	GetComponents(UCapsuleComponent::StaticClass(), capsules);
+
+	for (UActorComponent* item : capsules)
+	{
+		UCapsuleComponent* capsule = Cast<UCapsuleComponent>(item);
+		if (capsule->GetName() == "PelvisColl")
+		{
+			pelvis = capsule;
+		}
+	}
+
+	if (!pelvis)
+	{
+		UE_LOG(LogTemp, Error, TEXT("Pelvis not found"));
+		return;
+	}
+
+	pelvis->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	pelvis->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, FName("pelvisCollision"));*/
+
 	if (GetMesh())
 	{
 		physicsComponent->SetSkeletalMeshComponent(GetMesh());
 		UE_LOG(LogTemp, Error, TEXT("Set physics mesh 1"));
 	}
 
-	/*FPhysicalAnimationData data;
+	FPhysicalAnimationData data;
 	data.OrientationStrength = 20000.f;
 	data.AngularVelocityStrength = 2000.f;
 	data.PositionStrength = 20000.f;
@@ -73,7 +94,7 @@ void AMonster::BeginPlay()
 	else
 	{
 		UE_LOG(LogTemp, Error, TEXT("Mesh in monster not found!!!"));
-	}*/
+	}
 }
 
 void AMonster::TriggerFirstEvent(AActor* overlappedActor, AActor* otherActor)
@@ -160,8 +181,9 @@ void AMonster::KillMonster(FVector shotDir)
 
 	DetachFromControllerPendingDestroy();
 	GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	//pelvis->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
 
-	FPhysicalAnimationData data;
+	/*FPhysicalAnimationData data;
 	data.OrientationStrength = 20000.f;
 	data.AngularVelocityStrength = 2000.f;
 	data.PositionStrength = 20000.f;
@@ -182,7 +204,7 @@ void AMonster::KillMonster(FVector shotDir)
 	else
 	{
 		UE_LOG(LogTemp, Error, TEXT("Mesh in monster not found!!!"));
-	}
+	}*/
 	
 
 }

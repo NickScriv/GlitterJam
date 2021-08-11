@@ -14,6 +14,7 @@
 #include "Flashlight.h"
 #include "Shotgun.h"
 #include "Kismet/KismetMathLibrary.h"
+#include "MainCollectible.h"
 #include "../Plugins/Wwise/Source/AkAudio/Classes/AkGameplayStatics.h"
 #include "../Plugins/Wwise/Source/AkAudio/Classes/AkComponent.h"
 
@@ -241,6 +242,13 @@ void AMainCharacter::InjectSyringe()
 	hideArmsFlashlight = true;
 	hideArmsShotgun = true;
 	prevHandSlot = currentHandSlot;
+	currentHandSlot = 3;
+	UE_LOG(LogTemp, Warning, TEXT("Inject syringe!!!"));
+
+	syringe = GetWorld()->SpawnActor<AMainCollectible>(syringeClass);
+	syringe->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, TEXT("Syringe"));
+	syringe->SetActorHiddenInGame(true);
+
 }
 
 void AMainCharacter::NotTest()
