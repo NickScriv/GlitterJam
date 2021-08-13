@@ -110,6 +110,9 @@ private:
 	UPROPERTY(EditAnywhere)
 		float time;
 
+	UPROPERTY(EditAnywhere)
+		float ragDollTime;
+
 	UPROPERTY()
 		class UCapsuleComponent* pelvis;
 

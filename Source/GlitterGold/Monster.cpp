@@ -41,12 +41,6 @@ void AMonster::BeginPlay()
 
 	gameMode = Cast<AGlitterGameModeBase>(UGameplayStatics::GetGameMode(this));
 
-	if ((physicsComponent = Cast<UPhysicalAnimationComponent>(GetComponentByClass(UPhysicalAnimationComponent::StaticClass()))) == nullptr)
-	{
-		UE_LOG(LogTemp, Error, TEXT("Physical animation component in monster is null!!!"));
-		return;
-	}
-
 	/*TArray<UActorComponent*> capsules;
 	GetComponents(UCapsuleComponent::StaticClass(), capsules);
 
@@ -67,6 +61,12 @@ void AMonster::BeginPlay()
 
 	pelvis->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	pelvis->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, FName("pelvisCollision"));*/
+
+	if ((physicsComponent = Cast<UPhysicalAnimationComponent>(GetComponentByClass(UPhysicalAnimationComponent::StaticClass()))) == nullptr)
+	{
+		UE_LOG(LogTemp, Error, TEXT("Physical animation component in monster is null!!!"));
+		return;
+	}
 
 	if (GetMesh())
 	{
@@ -180,7 +180,8 @@ void AMonster::KillMonster(FVector shotDir)
 
 
 	DetachFromControllerPendingDestroy();
-	GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	//GetCapsuleComponent()->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform, TEXT("pelvisCollision"));
+	//GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	//pelvis->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
 
 	/*FPhysicalAnimationData data;
@@ -216,9 +217,10 @@ void AMonster::KillTest()
 
 void AMonster::EnableRagdoll()
 {
-	physicsComponent->ApplyPhysicalAnimationProfileBelow("pelvis", "Death");
-	GetMesh()->SetAllBodiesBelowSimulatePhysics(FName("pelvis"), true, false);
+	//physicsComponent->ApplyPhysicalAnimationProfileBelow("pelvis", "Death");
+	//GetMesh()->SetAllBodiesBelowSimulatePhysics(FName("pelvis"), true, false);
 	//GetMesh()->SetAllBodiesBelowPhysicsBlendWeight(FName("pelvis"), 1.0f, false, false);
+	GetMesh()->SetSimulatePhysics(true);
 }
 
 void AMonster::OnMonsterMeshHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit)
