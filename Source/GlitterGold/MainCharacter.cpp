@@ -12,6 +12,7 @@
 #include "Perception/AISense_Hearing.h"
 #include "Monster.h"
 #include "Flashlight.h"
+#include "CrowBar.h"
 #include "Shotgun.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "MainCollectible.h"
@@ -44,6 +45,7 @@ void AMainCharacter::BeginPlay()
 	crouchCapsuleHeight = capsuleColl->GetScaledCapsuleHalfHeight() * crouchScale;
 
 	items.Add(true);
+	items.Add(false);
 	items.Add(false);
 	items.Add(false);
 
@@ -209,7 +211,7 @@ void AMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 
 	PlayerInputComponent->BindAction("Pause", IE_Pressed, this, &AMainCharacter::TogglePause).bExecuteWhenPaused = true;
 
-	PlayerInputComponent->BindAction("Shoot", IE_Pressed, this, &AMainCharacter::ShootShotgun);
+	PlayerInputComponent->BindAction("Shoot", IE_Pressed, this, &AMainCharacter::Attack);
 
 	PlayerInputComponent->BindAction("Aim", IE_Pressed, this, &AMainCharacter::AimPressed);
 	PlayerInputComponent->BindAction("Aim", IE_Released, this, &AMainCharacter::AimReleased);
@@ -236,13 +238,24 @@ void AMainCharacter::SpawnShotgun()
 	items[2] = true;
 }
 
+void AMainCharacter::SpawnCrowBar()
+{
+	crowBar = GetWorld()->SpawnActor<ACrowBar>(crowBarClass);
+	crowBar->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, TEXT("CrowBar"));
+	crowBar->SetActorHiddenInGame(true);
+	crowBar->SetOwner(this);
+	crowBar->GetPlayer(this);
+	items[3] = true;
+}
+
 void AMainCharacter::InjectSyringe()
 {
 	canSwitch = false;
 	hideArmsFlashlight = true;
 	hideArmsShotgun = true;
+	hideArmsCrowBar = true;
 	prevHandSlot = currentHandSlot;
-	currentHandSlot = 3;
+	currentHandSlot = 4;
 	UE_LOG(LogTemp, Warning, TEXT("Inject syringe!!!"));
 
 	syringe = GetWorld()->SpawnActor<AMainCollectible>(syringeClass);
@@ -431,19 +444,19 @@ void AMainCharacter::TimelineProgressCrouch(float val)
 void AMainCharacter::PlayFootStep()
 {
 	FAkAudioDevice::Get()->PostEvent("Play_Footstep", this);
-
+	//TODO: Remember to change these values back to crouchLoudness, walkLoudness, and sprintLoudness instead of 0.0
 	if (EMovement::Crouching == movement)
 	{
-		//TODO: Remember to change this back to crouchLoudness instead of 0.0
+		
 		UAISense_Hearing::ReportNoiseEvent(this, GetActorLocation(), 0.0f, this, 0, FName("Noise"));
 	}
 	else if(IsSprinting())
 	{
-		UAISense_Hearing::ReportNoiseEvent(this, GetActorLocation(), sprintLoudness, this, 0, FName("Noise"));
+		UAISense_Hearing::ReportNoiseEvent(this, GetActorLocation(), 0.0f, this, 0, FName("Noise"));
 	}
 	else
 	{
-		UAISense_Hearing::ReportNoiseEvent(this, GetActorLocation(), walkLoudness, this, 0, FName("Noise"));
+		UAISense_Hearing::ReportNoiseEvent(this, GetActorLocation(), 0.0f, this, 0, FName("Noise"));
 	}
 }
 
@@ -499,6 +512,12 @@ void AMainCharacter::HideShotgun()
 		shotgun->SetActorHiddenInGame(true);
 }
 
+void AMainCharacter::HideCrowBar()
+{
+	if (crowBar)
+		crowBar->SetActorHiddenInGame(true);
+}
+
 void AMainCharacter::ShowFlashlight()
 {
 	if (flashlight)
@@ -511,31 +530,46 @@ void AMainCharacter::ShowShotgun()
 		shotgun->SetActorHiddenInGame(false);
 }
 
-void AMainCharacter::ShootShotgun()
+void AMainCharacter::ShowCrowBar()
 {
-	if (shotgun && currentHandSlot == 2 && canSwitch && GetMovementComponent()->Velocity.Size() <= walkSpeed + 0.05f && !isShooting)
+	if (crowBar)
+		crowBar->SetActorHiddenInGame(false);
+}
+
+void AMainCharacter::Attack()
+{
+	if (canSwitch && GetMovementComponent()->Velocity.Size() <= walkSpeed + 0.05f)
 	{
-
-		if (gameMode && gameMode->playerKilled)
+		if (shotgun && currentHandSlot == 2 && !isShooting)
 		{
-			return;
+
+			if (gameMode && gameMode->playerKilled)
+			{
+				return;
+			}
+
+			if (shotgunBulletCount > 0)
+			{
+				// shoot
+				isShooting = true;
+				shotgun->Shoot();
+
+				//shotgunBulletCount--;
+				gameMode->AmmoUI(true, shotgunBulletCount);
+
+			}
+			else
+			{
+				// TODO: play no ammo sound
+			}
 		}
-
-		if (shotgunBulletCount > 0)
+		else if (crowBar && currentHandSlot == 3 && !isSwinging)
 		{
-			// shoot
-			isShooting = true;
-			shotgun->Shoot();
-
-			//shotgunBulletCount--;
-			gameMode->AmmoUI(true, shotgunBulletCount);
-		
-		}
-		else
-		{
-			// TODO: play no ammo sound
+			isSwinging = true;
+			crowBar->SwingAttack();
 		}
 	}
+	
 }
 
 void AMainCharacter::AimPressed()
@@ -650,10 +684,7 @@ void AMainCharacter::SprintPressed()
 
 	isSprintingKeyDown = true;
 	
-	
-	
-	UE_LOG(LogTemp, Warning, TEXT("Sprint pressed"));
-	if(canSprint && !isAiming && !isShooting)
+	if(canSprint && !isAiming && !isShooting && !isSwinging)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("can sprint"));
 		GetCharacterMovement()->MaxWalkSpeed = sprintSpeed;
@@ -746,7 +777,7 @@ void AMainCharacter::RegainStamina()
 //TODO: Remember to change assignment to canSwitch and isShooting and isAiming!!!
 void AMainCharacter::SwitchArms(float val)
 {
-	if(!FMath::IsNearlyZero(val) && canSwitch)
+	if(!FMath::IsNearlyZero(val) && canSwitch  && !isSwinging)
 	{	
 		int32 targetHandSlot = GetTargetHandSlot(val);
 
@@ -760,19 +791,29 @@ void AMainCharacter::SwitchArms(float val)
 			// Show nothing
 			hideArmsFlashlight = true;
 			hideArmsShotgun = true;
+			hideArmsCrowBar = true;
 		}
 		else if(targetHandSlot == 1 && flashlight)
 		{
 			// Show flashlight
 			hideArmsFlashlight = false;
 			hideArmsShotgun = true;
+			hideArmsCrowBar = true;
 		}
 		else if(targetHandSlot == 2  && shotgun)
 		{
 			// Show Shotgun
 			hideArmsFlashlight = true;
 			hideArmsShotgun = false;
+			hideArmsCrowBar = true;
 			showShotgunUI = true;
+		}
+		else if (targetHandSlot == 3 && crowBar)
+		{
+			// Show CrowBar
+			hideArmsFlashlight = true;
+			hideArmsShotgun = true;
+			hideArmsCrowBar = false;
 		}
 		else
 		{

@@ -19,14 +19,17 @@ void UAnimNotify_AttachItemMesh::Notify(USkeletalMeshComponent* MeshComp, UAnimS
 	if (meshToAttach == 1)
 	{
 		player->ShowFlashlight();
-		//player->HideShotgun();
 		UE_LOG(LogTemp, Warning, TEXT("Show Flashlight"));
 	}
 	else if (meshToAttach == 2)
 	{
 		player->ShowShotgun();
-		//player->HideFlashlight();
 		UE_LOG(LogTemp, Warning, TEXT("Show Shotgun"));
+	}
+	else if (meshToAttach == 3)
+	{
+		player->ShowCrowBar();
+		UE_LOG(LogTemp, Warning, TEXT("Show CrowBar"));
 	}
 	else
 	{

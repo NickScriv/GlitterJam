@@ -9,6 +9,7 @@
 
 
 class AFlashlight;
+class ACrowBar;
 class AShotgun;
 class AMainCollectible;
 class UCurveFloat;
@@ -85,16 +86,13 @@ public:
 	bool isShooting = false;
 
 	UPROPERTY(BlueprintReadWrite)
+	bool isSwinging = false;
+
+	UPROPERTY(BlueprintReadWrite)
 	bool isAiming = false;
 
 	UPROPERTY(BlueprintReadWrite)
 	int32 prevHandSlot;
-
-	/*UPROPERTY(BlueprintReadOnly)
-	bool spawnArmsFlashlight = false;
-
-	UPROPERTY(BlueprintReadOnly)
-		bool spawnArmsShotgunt = false;*/
 
 	UPROPERTY(BlueprintReadWrite)
 	int32 currentHandSlot = 0;
@@ -106,6 +104,9 @@ public:
 		bool hideArmsShotgun = true;
 
 	UPROPERTY(BlueprintReadWrite)
+		bool hideArmsCrowBar = true;
+
+	UPROPERTY(BlueprintReadWrite)
 	bool canSwitch = true;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
@@ -115,8 +116,9 @@ public:
 
 	int32 shotgunBulletCount = 1;
 
-
 	FTimerHandle timerHandleShoot;
+
+	bool axeCanDamage = false;
 
 	void PickedUpKey();
 
@@ -128,6 +130,8 @@ public:
 	void SpawnFlashlight();
 
 	void SpawnShotgun();
+
+	void SpawnCrowBar();
 
 	void InjectSyringe();
 
@@ -141,11 +145,15 @@ public:
 
 	void HideShotgun();
 
+	void HideCrowBar();
+
 	void ShowFlashlight();
 
 	void ShowShotgun();
 
-	void ShootShotgun();
+	void ShowCrowBar();
+
+	void Attack();
 
 	void AimPressed();
 
@@ -201,6 +209,12 @@ private:
 
 	UPROPERTY(EditDefaultsOnly)
 		class AShotgun* shotgun = nullptr;
+
+	UPROPERTY(EditDefaultsOnly)
+		TSubclassOf<ACrowBar> crowBarClass;
+
+	UPROPERTY(EditDefaultsOnly)
+		class ACrowBar* crowBar = nullptr;
 
 	UPROPERTY(EditDefaultsOnly)
 		TSubclassOf<AMainCollectible> syringeClass;
@@ -265,7 +279,6 @@ private:
 	bool isCrouchHeld = false;
 
 	bool isCrouching = false;
-
 
 	bool canSprint = true;
 
@@ -344,5 +357,4 @@ private:
 
 	void AimIn();
 	void AimOut();
-
 };

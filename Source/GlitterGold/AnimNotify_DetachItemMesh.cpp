@@ -14,7 +14,7 @@ void UAnimNotify_DetachItemMesh::Notify(USkeletalMeshComponent* MeshComp, UAnimS
 
 	if (!player)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("AnimNotifyArmsHideGet: No Player found"));
+		UE_LOG(LogTemp, Warning, TEXT("UAnimNotify_DetachItemMesh: No Player found"));
 		return;
 	}
 
@@ -27,6 +27,11 @@ void UAnimNotify_DetachItemMesh::Notify(USkeletalMeshComponent* MeshComp, UAnimS
 	{
 		player->HideShotgun();
 		UE_LOG(LogTemp, Warning, TEXT("Hide Shotgun"));
+	}
+	else if (meshToDetach == 3)
+	{
+		player->HideCrowBar();
+		UE_LOG(LogTemp, Warning, TEXT("Hide CrowBar"));
 	}
 	else
 	{

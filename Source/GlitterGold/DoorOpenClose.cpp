@@ -2,7 +2,6 @@
 
 
 #include "DoorOpenClose.h"
-
 #include "AIController.h"
 #include "AITypes.h"
 #include "AkAcousticPortal.h"
@@ -17,6 +16,7 @@
 #include "Navigation/NavLinkProxy.h"
 #include "NavMesh/NavMeshPath.h"
 #include "Door.h"
+#include "GlitterGameModeBase.h"
 #include "LockPick.h"
 
 
@@ -35,6 +35,8 @@ UDoorOpenClose::UDoorOpenClose()
 void UDoorOpenClose::BeginPlay()
 {
 	Super::BeginPlay();
+
+	gameMode = Cast<AGlitterGameModeBase>(UGameplayStatics::GetGameMode(this));
 
 	if ((interaction = Cast<UInteractionWidgetComponent>(GetOwner()->GetComponentByClass(UInteractionWidgetComponent::StaticClass()))) == nullptr)
 	{
@@ -114,6 +116,12 @@ void UDoorOpenClose::BeginPlay()
 void UDoorOpenClose::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+
+	if (gameMode && gameMode->playerKilled)
+	{
+		SetComponentTickEnabled(false);
+		return;
+	}
 
 	if (openTime < 1)
 	{

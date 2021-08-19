@@ -41,27 +41,6 @@ void AMonster::BeginPlay()
 
 	gameMode = Cast<AGlitterGameModeBase>(UGameplayStatics::GetGameMode(this));
 
-	/*TArray<UActorComponent*> capsules;
-	GetComponents(UCapsuleComponent::StaticClass(), capsules);
-
-	for (UActorComponent* item : capsules)
-	{
-		UCapsuleComponent* capsule = Cast<UCapsuleComponent>(item);
-		if (capsule->GetName() == "PelvisColl")
-		{
-			pelvis = capsule;
-		}
-	}
-
-	if (!pelvis)
-	{
-		UE_LOG(LogTemp, Error, TEXT("Pelvis not found"));
-		return;
-	}
-
-	pelvis->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-	pelvis->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, FName("pelvisCollision"));*/
-
 	if ((physicsComponent = Cast<UPhysicalAnimationComponent>(GetComponentByClass(UPhysicalAnimationComponent::StaticClass()))) == nullptr)
 	{
 		UE_LOG(LogTemp, Error, TEXT("Physical animation component in monster is null!!!"));
@@ -83,18 +62,12 @@ void AMonster::BeginPlay()
 	data.MaxAngularForce = 0.f;
 	data.MaxLinearForce = 0.f;
 
-	physicsComponent->ApplyPhysicalAnimationSettingsBelow(FName("pelvis"), data, false);
+	//physicsComponent->ApplyPhysicalAnimationSettingsBelow(FName("pelvis"), data, false);
+	physicsComponent->ApplyPhysicalAnimationProfileBelow(FName("pelvis"), FName("Death"), false);
 
-	if (GetMesh())
-	{
-		GetMesh()->SetAllBodiesBelowSimulatePhysics(FName("pelvis"), true, false);
-		GetMesh()->SetAllBodiesBelowPhysicsBlendWeight(FName("pelvis"), blendPhysics, false, false);
-		UE_LOG(LogTemp, Error, TEXT("Set physics mesh 2"));
-	}
-	else
-	{
-		UE_LOG(LogTemp, Error, TEXT("Mesh in monster not found!!!"));
-	}
+	//SetPhysicsAnimation(FName("clavicle_l"));
+	//SetPhysicsAnimation(FName("clavicle_r"));
+	//SetPhysicsAnimation(FName("head"));
 }
 
 void AMonster::TriggerFirstEvent(AActor* overlappedActor, AActor* otherActor)
@@ -133,7 +106,9 @@ void AMonster::KillMonster(FVector shotDir)
 	if (gameMode)
 		gameMode->monsterKilled = true;
 
-	//GetMesh()->OnComponentHit.AddDynamic(this, &AMonster::OnMonsterMeshHit);
+	SetPhysicsAnimation(FName("pelvis"));
+
+	GetMesh()->SetCollisionResponseToChannel(ECollisionChannel::ECC_GameTraceChannel3, ECollisionResponse::ECR_Ignore);
 
 	FAkAudioDevice::Get()->SetRTPCValue(*FString("Danger_Warning"), 0.f, 200, mainPlayer);
 
@@ -178,36 +153,7 @@ void AMonster::KillMonster(FVector shotDir)
 
 	}
 
-
 	DetachFromControllerPendingDestroy();
-	//GetCapsuleComponent()->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform, TEXT("pelvisCollision"));
-	//GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-	//pelvis->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
-
-	/*FPhysicalAnimationData data;
-	data.OrientationStrength = 20000.f;
-	data.AngularVelocityStrength = 2000.f;
-	data.PositionStrength = 20000.f;
-	data.VelocityStrength = 2000.f;
-	data.bIsLocalSimulation = false;
-	data.MaxAngularForce = 0.f;
-	data.MaxLinearForce = 0.f;
-		
-	physicsComponent->ApplyPhysicalAnimationSettingsBelow(FName("pelvis"), data, false);
-
-	if (GetMesh())
-	{
-		//GetMesh()->SetCollisionProfileName(TEXT("PhysicsActor"));
-		GetMesh()->SetSimulatePhysics(true);
-		GetMesh()->SetAllBodiesBelowPhysicsBlendWeight(FName("pelvis"), blendPhysics, false, false);
-		UE_LOG(LogTemp, Error, TEXT("Set physics mesh 2"));
-	}
-	else
-	{
-		UE_LOG(LogTemp, Error, TEXT("Mesh in monster not found!!!"));
-	}*/
-	
-
 }
 
 void AMonster::KillTest()
@@ -223,18 +169,18 @@ void AMonster::EnableRagdoll()
 	GetMesh()->SetSimulatePhysics(true);
 }
 
-void AMonster::OnMonsterMeshHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit)
+void AMonster::SetPhysicsAnimation(FName boneName)
 {
-	if (OtherActor && OtherActor != this)
+	if (GetMesh())
 	{
-		if (!OtherActor->ActorHasTag("Floor"))
-		{
-			UE_LOG(LogTemp, Warning, TEXT("ENable RagDoll!!!!!"));
-			GetMesh()->OnComponentHit.Clear();
-			EnableRagdoll();
-		}
+		GetMesh()->SetAllBodiesBelowSimulatePhysics(boneName, true, false);
+		GetMesh()->SetAllBodiesBelowPhysicsBlendWeight(boneName, blendPhysics, false, false);
+		UE_LOG(LogTemp, Error, TEXT("Set physics mesh 2"));
 	}
-
+	else
+	{
+		UE_LOG(LogTemp, Error, TEXT("Mesh in monster not found!!!"));
+	}
 }
 
 void AMonster::KillPlayer()
@@ -295,9 +241,12 @@ void AMonster::PlayMosnterSoundEvent(FString event)
 	}
 }
 
-void AMonster::TakeDamage(const FVector& shotDir)
+void AMonster::TakeDamage(float damage, const FVector& shotDir)
 {
-	health--;
+	if (gameMode->monsterKilled)
+		return;
+
+	health -= damage;
 
 	if(health <= 0.f)
 		KillMonster(shotDir);

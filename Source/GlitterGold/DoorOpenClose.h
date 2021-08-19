@@ -69,6 +69,9 @@ private:
 
 	UPROPERTY(EditAnywhere)
 		class UAkAudioEvent* in_pEventClose;
+
+	UPROPERTY()
+	class AGlitterGameModeBase* gameMode;
 	
 	bool checkClosed = false;
 

@@ -77,7 +77,7 @@ public:
 
 	void PlayMosnterSoundEvent(FString event);
 
-	void TakeDamage(const FVector& shotDir);
+	void TakeDamage(float damage, const FVector& shotDir);
 
 	int32 passiveEvent = -1;
 	int32 cautionEvent = -1;
@@ -141,8 +141,7 @@ private:
 
 	void EnableRagdoll();
 
-	UFUNCTION()
-	void OnMonsterMeshHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit);
+	void SetPhysicsAnimation(FName boneName);
 };
 
 

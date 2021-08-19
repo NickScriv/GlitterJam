@@ -79,7 +79,7 @@ void AShotgun::Shoot()
 			{
 				// Hit monster
 				UGameplayStatics::SpawnEmitterAtLocation(this, fleshImpact, hit.Location, hit.Normal.Rotation());
-				monster->TakeDamage(shotDir);
+				monster->TakeDamage(1.0, shotDir);
 				UAISense_Damage::ReportDamageEvent(this, monster, player, 1.f, start, hit.Location);
 			}
 			else
