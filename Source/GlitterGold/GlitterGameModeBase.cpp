@@ -55,6 +55,11 @@ void AGlitterGameModeBase::EndGame()
 	UGameplayStatics::SetGamePaused(GetWorld(), true);
 }
 
+void AGlitterGameModeBase::GetCrossHairScreenCoordinates(FVector &pos, FVector &dir)
+{
+	HUDWidget->GetCrossHairCoords(pos, dir);
+}
+
 void AGlitterGameModeBase::TogglePause(AMainCharacter* character)
 {
 	if(isReadingNote)

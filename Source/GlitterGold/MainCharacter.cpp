@@ -244,7 +244,7 @@ void AMainCharacter::SpawnCrowBar()
 	crowBar->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, TEXT("CrowBar"));
 	crowBar->SetActorHiddenInGame(true);
 	crowBar->SetOwner(this);
-	crowBar->GetPlayer(this);
+	//crowBar->GetPlayer(this);
 	items[3] = true;
 }
 
@@ -592,6 +592,11 @@ void AMainCharacter::AimReleased()
 	}
 }
 
+FTransform AMainCharacter::GetCameraTransform()
+{
+	return cameraComponent->GetComponentTransform();
+}
+
 void AMainCharacter::MoveForward(float val)
 {
 	AddMovementInput(GetActorForwardVector(), val);
@@ -784,7 +789,8 @@ void AMainCharacter::SwitchArms(float val)
 		if (targetHandSlot == currentHandSlot)
 			return;
 
-		bool showShotgunUI = false;
+		bool showBulletCountUI = false;
+		bool showCrossHairUI = false;
 		
 		if (targetHandSlot == 0)
 		{
@@ -806,22 +812,24 @@ void AMainCharacter::SwitchArms(float val)
 			hideArmsFlashlight = true;
 			hideArmsShotgun = false;
 			hideArmsCrowBar = true;
-			showShotgunUI = true;
-		}
+			showBulletCountUI = true;
+			showCrossHairUI = true;
+		}	
 		else if (targetHandSlot == 3 && crowBar)
 		{
 			// Show CrowBar
 			hideArmsFlashlight = true;
 			hideArmsShotgun = true;
 			hideArmsCrowBar = false;
+			showCrossHairUI = true;
 		}
 		else
 		{
 			return;
 		}
-
-		gameMode->AmmoUI(showShotgunUI, shotgunBulletCount);
-		gameMode->ReticleUI(showShotgunUI);
+		
+		gameMode->AmmoUI(showBulletCountUI, shotgunBulletCount);
+		gameMode->ReticleUI(showCrossHairUI);
 		canSwitch = false;
 
 

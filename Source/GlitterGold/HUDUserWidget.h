@@ -24,4 +24,10 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void AmmoUI(bool show, int32 ammoCount);
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void GetCrossHairCoords(FVector& pos, FVector& dir);
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void Test();
 };

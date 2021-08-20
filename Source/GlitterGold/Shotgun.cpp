@@ -9,6 +9,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "Perception/AISense_Damage.h"
+#include "GlitterGameModeBase.h"
 
 // Sets default values
 AShotgun::AShotgun()
@@ -39,17 +40,12 @@ void AShotgun::Shoot()
 
 	if (!player->isAiming)
 	{
-		if (player->GetController())
+		if(gameMode)
+			gameMode->GetCrossHairScreenCoordinates(start, dir);
+		else
 		{
-			FRotator viewPointRot;
-			FVector viewPointLoc;
-			player->GetController()->GetPlayerViewPoint(viewPointLoc, viewPointRot);
-
-			dir = viewPointRot.Vector();
-			start = viewPointLoc;
-			start.Z -= hipOffset;
+			UE_LOG(LogTemp, Warning, TEXT("game mode not found in shotgun!!"));
 		}
-
 	}
 	else
 	{
@@ -103,6 +99,8 @@ void AShotgun::BeginPlay()
 	}
 
 	interaction->OnInteract.AddDynamic(this, &AShotgun::PickedUp);
+
+	gameMode = Cast<AGlitterGameModeBase>(UGameplayStatics::GetGameMode(this));
 	
 }
 

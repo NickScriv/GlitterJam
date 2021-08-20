@@ -31,7 +31,7 @@ private:
 	UPROPERTY(EditDefaultsOnly)
 		class UInteractionWidgetComponent* interaction;
 
-	UPROPERTY()
+	/*UPROPERTY()
 		class UBoxComponent* hitBox;
 
 	UPROPERTY()
@@ -44,11 +44,11 @@ private:
 		class UParticleSystem* monsterHit;
 
 	UPROPERTY(EditDefaultsOnly)
-		class UParticleSystem* woodHit;
+		class UParticleSystem* woodHit;*/
 
 	UFUNCTION()
 		void PickedUp(class AMainCharacter* character);
 
-	UFUNCTION()
-		void HitSomething(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+	/*UFUNCTION()
+		void HitSomething(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);*/
 };

@@ -29,11 +29,11 @@ void ACrowBar::SwingAttack()
 	UE_LOG(LogTemp, Warning, TEXT("swing crow bar"));
 }
 
-void ACrowBar::GetPlayer(AMainCharacter* character)
+/*void ACrowBar::GetPlayer(AMainCharacter* character)
 {
 	if (character)
 		player = character;
-}
+}*/
 
 // Called when the game starts or when spawned
 void ACrowBar::BeginPlay()
@@ -48,13 +48,13 @@ void ACrowBar::BeginPlay()
 
 	interaction->OnInteract.AddDynamic(this, &ACrowBar::PickedUp);
 
-	if ((hitBox = Cast<UBoxComponent>(GetComponentByClass(UBoxComponent::StaticClass()))) == nullptr)
+	/*if ((hitBox = Cast<UBoxComponent>(GetComponentByClass(UBoxComponent::StaticClass()))) == nullptr)
 	{
 		UE_LOG(LogTemp, Error, TEXT("Box collition is null in crow bar"));
 		return;
-	}
+	}*/
 
-	hitBox->OnComponentBeginOverlap.AddDynamic(this, &ACrowBar::HitSomething);
+	//hitBox->OnComponentBeginOverlap.AddDynamic(this, &ACrowBar::HitSomething);
 	
 }
 
@@ -65,7 +65,7 @@ void ACrowBar::PickedUp(AMainCharacter* character)
 	Destroy();
 }
 
-void ACrowBar::HitSomething(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+/*void ACrowBar::HitSomething(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	if (OtherActor && OtherActor != this && player && player->axeCanDamage)
 	{
@@ -102,6 +102,7 @@ void ACrowBar::HitSomething(UPrimitiveComponent* OverlappedComponent, AActor* Ot
 				// Play slash blood sound
 
 				// Play blood hit effect
+
 				UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), monsterHit, position, UKismetMathLibrary::MakeRotFromZ(-normal), false);
 			}
 			
@@ -124,5 +125,5 @@ void ACrowBar::HitSomething(UPrimitiveComponent* OverlappedComponent, AActor* Ot
 			UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), normalHit, position, UKismetMathLibrary::MakeRotFromZ(normal));
 		}
 	}
-}
+}*/
 

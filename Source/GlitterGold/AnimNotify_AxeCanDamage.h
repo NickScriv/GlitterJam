@@ -16,5 +16,17 @@ class GLITTERGOLD_API UAnimNotify_AxeCanDamage : public UAnimNotify
 
 protected:
 	virtual void Notify(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation) override;
+
+	UPROPERTY(EditAnywhere)
+		float axeRange;
+
+	UPROPERTY(EditAnywhere)
+		class UParticleSystem* normalHit;
+
+	UPROPERTY(EditAnywhere)
+		class UParticleSystem* monsterHit;
+
+	UPROPERTY(EditAnywhere)
+		class UParticleSystem* woodHit;
 	
 };
