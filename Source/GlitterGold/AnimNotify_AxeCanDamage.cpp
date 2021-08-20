@@ -28,12 +28,7 @@ void UAnimNotify_AxeCanDamage::Notify(USkeletalMeshComponent* MeshComp, UAnimSeq
 	FVector start;
 	FVector end;
 
-	AGlitterGameModeBase* gameMode = Cast<AGlitterGameModeBase>(UGameplayStatics::GetGameMode(player));
-
-	if (!gameMode)
-		return;
-	
-	gameMode->GetCrossHairScreenCoordinates(start, dir);
+	player->GetCrossHairScreenCoordinates(start, dir);
 
 	/*if (player->GetController())
 	{

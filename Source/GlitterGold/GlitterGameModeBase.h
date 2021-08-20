@@ -55,8 +55,6 @@ public:
 	void AmmoUI(bool show, int32 ammoCount);
 
 	void EndGame();
-
-	void GetCrossHairScreenCoordinates(FVector &pos, FVector &dir);
 	
 	UFUNCTION(BlueprintCallable)
 	void TogglePause(class AMainCharacter* character);

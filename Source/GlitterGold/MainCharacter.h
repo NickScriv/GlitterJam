@@ -159,6 +159,8 @@ public:
 
 	void AimReleased();
 
+	void GetCrossHairScreenCoordinates(FVector& pos, FVector& dir);
+
 	FTransform GetCameraTransform();
 
 protected:

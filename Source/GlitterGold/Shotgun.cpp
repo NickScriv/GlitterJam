@@ -40,12 +40,7 @@ void AShotgun::Shoot()
 
 	if (!player->isAiming)
 	{
-		if(gameMode)
-			gameMode->GetCrossHairScreenCoordinates(start, dir);
-		else
-		{
-			UE_LOG(LogTemp, Warning, TEXT("game mode not found in shotgun!!"));
-		}
+		player->GetCrossHairScreenCoordinates(start, dir);
 	}
 	else
 	{
@@ -99,8 +94,6 @@ void AShotgun::BeginPlay()
 	}
 
 	interaction->OnInteract.AddDynamic(this, &AShotgun::PickedUp);
-
-	gameMode = Cast<AGlitterGameModeBase>(UGameplayStatics::GetGameMode(this));
 	
 }
 

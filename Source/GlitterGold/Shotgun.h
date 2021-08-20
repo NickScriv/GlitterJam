@@ -59,9 +59,6 @@ private:
 	UPROPERTY(EditDefaultsOnly)
 		float aimOffset;
 
-	UPROPERTY()
-		class AGlitterGameModeBase* gameMode;
-
 	UFUNCTION()
 		void PickedUp(class AMainCharacter* character);
 
