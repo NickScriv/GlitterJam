@@ -592,6 +592,18 @@ void AMainCharacter::AimReleased()
 	}
 }
 
+void AMainCharacter::GetCrossHairScreenCoordinates(FVector& pos, FVector& dir)
+{
+	APlayerController* playerController = Cast<APlayerController>(GetController());
+
+	int32 x, y;
+	if (playerController)
+	{
+		playerController->GetViewportSize(x, y);
+		playerController->DeprojectScreenPositionToWorld(x * 0.5, y * 0.58035, pos, dir);
+	}
+}
+
 FTransform AMainCharacter::GetCameraTransform()
 {
 	return cameraComponent->GetComponentTransform();
