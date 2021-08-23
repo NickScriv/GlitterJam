@@ -35,12 +35,6 @@ private:
 	UPROPERTY()
 	class UPauseMenuUserWidget* pauseScreenWidget;
 
-	UPROPERTY(EditAnywhere)
-	TArray<class AMonster*> firstScareEventMonster;
-
-	UPROPERTY(EditAnywhere)
-		TArray<class ATriggerVolume*> firstScareEventTrigger;
-
 	bool isPaused = false;
 
 protected:
@@ -53,6 +47,10 @@ public:
 	void ReticleUI(bool show);
 
 	void AmmoUI(bool show, int32 ammoCount);
+
+	void FadeInHUD();
+
+	void FadeOutHUD();
 
 	void EndGame();
 	
@@ -67,6 +65,4 @@ public:
 	bool isReadingNote = false;
 
 	bool playerKilled = false;
-
-	bool monsterKilled = false;
 };

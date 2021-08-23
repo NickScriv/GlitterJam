@@ -22,8 +22,6 @@ public:
 	UPROPERTY(EditAnywhere)
 	FBlackboardKeySelector  bbKey;
 
-
-
 protected:
 		virtual EBTNodeResult::Type ExecuteTask(class UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory) override;
 

@@ -122,6 +122,9 @@ private:
 	UPROPERTY()
 	class AGlitterGameModeBase* gameMode;
 
+	UPROPERTY()
+	class UGlitterGameInstance* gameInstance;
+
 	bool inLineOfPlayer = false;
 
 	UPROPERTY(EditAnywhere)

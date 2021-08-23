@@ -36,14 +36,8 @@ void UBTService_ChangeMusic::OnBecomeRelevant(UBehaviorTreeComponent& OwnerComp,
 	}
 	
 	if(musicChange == "Play_Ambient_Music")
-	{
-		gameMode->monsterInCaution = 0.f;
-		
+	{	
 		musicChange = gameMode->queuedMusic;
-	}
-	else if(musicChange == "Play_Chase_Music")
-	{
-		gameMode->monsterInCaution = 1.f;
 	}
 
 	

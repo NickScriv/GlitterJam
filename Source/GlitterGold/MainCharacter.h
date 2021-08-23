@@ -138,6 +138,10 @@ public:
 	void NotTest();
 
 	void Died(class AMonster* monster);
+
+	void DiedEnding(FVector lookAtLoc);
+
+	void DisablePlayer();
 	
 	bool IsSprinting();
 
@@ -234,6 +238,9 @@ private:
 
 	UPROPERTY(EditAnywhere, Category = "Movement")
 		float crouchScale = 0.5f;
+
+	UPROPERTY(EditAnywhere, Category = "Movement")
+		float scaleHeightEnding;
 
 	UPROPERTY(EditAnywhere)
 		float sphereCastRange = 125.f;
