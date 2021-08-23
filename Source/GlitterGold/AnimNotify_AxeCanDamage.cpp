@@ -65,7 +65,7 @@ void UAnimNotify_AxeCanDamage::Notify(USkeletalMeshComponent* MeshComp, UAnimSeq
 				if (monster)
 				{
 					FVector hitDir = (monster->GetActorLocation() - player->GetActorLocation()).GetSafeNormal();
-					monster->TakeDamage(20.f, -hit.Normal);
+					monster->TakeMonsterDamage(20.f, -hit.Normal);
 					UAISense_Damage::ReportDamageEvent(player, monster, player, 1.f, player->GetActorLocation(), hit.Location);
 
 					// Play slash blood sound

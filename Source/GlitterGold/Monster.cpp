@@ -241,7 +241,7 @@ void AMonster::PlayMosnterSoundEvent(FString event)
 	}
 }
 
-void AMonster::TakeDamage(float damage, const FVector& shotDir)
+void AMonster::TakeMonsterDamage(float damage, const FVector& shotDir)
 {
 	if (gameMode->monsterKilled)
 		return;
