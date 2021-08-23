@@ -18,6 +18,7 @@
 #include "MainCollectible.h"
 #include "../Plugins/Wwise/Source/AkAudio/Classes/AkGameplayStatics.h"
 #include "../Plugins/Wwise/Source/AkAudio/Classes/AkComponent.h"
+#include "GlitterGameInstance.h"
 
 // Sets default values
 AMainCharacter::AMainCharacter()
@@ -39,10 +40,28 @@ void AMainCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 	GetMesh()->AttachToComponent(cameraComponent, FAttachmentTransformRules::KeepWorldTransform);
+	UGlitterGameInstance* gameInstance = Cast<UGlitterGameInstance>(UGameplayStatics::GetGameInstance(this));
+
+	
+
+	// Make character shorter for ending
+	if (gameInstance && gameInstance->gameEnding)
+	{
+		FVector camLoc = cameraComponent->GetRelativeLocation();
+		camLoc.Z = camLoc.Z * scaleHeightEnding;
+		cameraComponent->SetRelativeLocation(camLoc);
+
+		float height = capsuleColl->GetScaledCapsuleHalfHeight() * scaleHeightEnding;
+		capsuleColl->SetCapsuleHalfHeight(height);
+	}
+	
 	standCameraHeight = cameraComponent->GetRelativeLocation().Z;
 	crouchCameraHeight = standCameraHeight * crouchScale;
 	standCapsuleHeight = capsuleColl->GetScaledCapsuleHalfHeight();
 	crouchCapsuleHeight = capsuleColl->GetScaledCapsuleHalfHeight() * crouchScale;
+
+	capsuleColl->SetCollisionObjectType(ECC_GameTraceChannel3);
+	capsuleColl->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
 
 	items.Add(true);
 	items.Add(false);
@@ -78,9 +97,12 @@ void AMainCharacter::BeginPlay()
 
 	gameMode = Cast<AGlitterGameModeBase>(UGameplayStatics::GetGameMode(this));
 
+	if (!gameMode)
+		return;
 
 	gameMode->ReticleUI(false);
 	gameMode->AmmoUI(false, shotgunBulletCount);
+	gameMode->FadeInHUD();
 	
 }
 
@@ -187,7 +209,6 @@ void AMainCharacter::Tick(float DeltaTime)
 void AMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
 	PlayerInputComponent->BindAxis("MoveForward", this, &AMainCharacter::MoveForward);
 	PlayerInputComponent->BindAxis("MoveRight", this, &AMainCharacter::MoveRight);
 	PlayerInputComponent->BindAxis("LookUp", this, &AMainCharacter::LookUp);
@@ -204,9 +225,6 @@ void AMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 
 	PlayerInputComponent->BindAxis("SwitchArms", this, &AMainCharacter::SwitchArms);
 
-	/*PlayerInputComponent->BindAction("m", IE_Pressed, this, &AMainCharacter::FlashlightToggle);
-	PlayerInputComponent->BindAction("Flashlight", IE_Pressed, this, &AMainCharacter::FlashlightToggle);*/
-
 	PlayerInputComponent->BindAction("Flashlight", IE_Pressed, this, &AMainCharacter::FlashlightToggle);
 
 	PlayerInputComponent->BindAction("Pause", IE_Pressed, this, &AMainCharacter::TogglePause).bExecuteWhenPaused = true;
@@ -215,7 +233,6 @@ void AMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 
 	PlayerInputComponent->BindAction("Aim", IE_Pressed, this, &AMainCharacter::AimPressed);
 	PlayerInputComponent->BindAction("Aim", IE_Released, this, &AMainCharacter::AimReleased);
-
 	//PlayerInputComponent->BindAction("TestNot", IE_Pressed, this, &AMainCharacter::NotTest);
 
 }
@@ -256,8 +273,6 @@ void AMainCharacter::InjectSyringe()
 	hideArmsCrowBar = true;
 	prevHandSlot = currentHandSlot;
 	currentHandSlot = 4;
-	UE_LOG(LogTemp, Warning, TEXT("Inject syringe!!!"));
-
 	syringe = GetWorld()->SpawnActor<AMainCollectible>(syringeClass);
 	syringe->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, TEXT("Syringe"));
 	syringe->SetActorHiddenInGame(true);
@@ -277,15 +292,35 @@ void AMainCharacter::Died(AMonster* monster)
 		monsterOffsetLookAt = 0;
 	}
 
-	SetMovement(EMovement::Standing);
-	DisableInput(UGameplayStatics::GetPlayerController(this, 0));
 	FVector monsterLookAt = monster->GetActorLocation();
 	monsterLookAt = FVector(monsterLookAt.X, monsterLookAt.Y, monsterLookAt.Z + monsterOffsetLookAt);
 	rotateDeath = UKismetMathLibrary::FindLookAtRotation(cameraComponent->GetComponentLocation(), monsterLookAt);
-	cameraComponent->bUsePawnControlRotation = false;
-	GetCharacterMovement()->DisableMovement();
+	DisablePlayer();
+	died = true;
+}
+
+void AMainCharacter::DiedEnding(FVector lookAtLoc)
+{
+	if ((movement == EMovement::Crouching))
+	{
+		monsterOffsetLookAt = 0;
+	}
+
+	
+	FVector monsterLookAt = lookAtLoc;
+	monsterLookAt = FVector(monsterLookAt.X, monsterLookAt.Y, monsterLookAt.Z + monsterOffsetLookAt);
+	rotateDeath = UKismetMathLibrary::FindLookAtRotation(cameraComponent->GetComponentLocation(), monsterLookAt);
+	DisablePlayer();
 	died = true;
 
+}
+
+void AMainCharacter::DisablePlayer()
+{
+	SetMovement(EMovement::Standing);
+	DisableInput(UGameplayStatics::GetPlayerController(this, 0));
+	cameraComponent->bUsePawnControlRotation = false;
+	GetCharacterMovement()->DisableMovement();
 }
 
 #pragma region Interaction
@@ -375,7 +410,7 @@ void AMainCharacter::FoundNewInteractable(UInteractionWidgetComponent* interacta
 void AMainCharacter::BeginInteraction()
 {
 	interactionData.interactKeyHeld = true;
-
+	
 	if (UInteractionWidgetComponent* interactable = interactionData.viewedInteractionItem)
 	{
 		interactable->BeginInteraction();
@@ -405,6 +440,7 @@ void AMainCharacter::EndInteraction()
 
 void AMainCharacter::Interact()
 {
+	UE_LOG(LogTemp, Warning, TEXT("Interact"));
 	GetWorldTimerManager().ClearTimer(timerHandleInteract);
 
 	if (UInteractionWidgetComponent* interactable = interactionData.viewedInteractionItem)

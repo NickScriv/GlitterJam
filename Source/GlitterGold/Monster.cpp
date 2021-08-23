@@ -14,6 +14,7 @@
 #include "Components/CapsuleComponent.h"
 #include "GlitterGameModeBase.h"
 #include "PhysicsEngine/PhysicalAnimationComponent.h"
+#include "GlitterGameInstance.h"
 
 // Sets default values
 AMonster::AMonster()
@@ -40,6 +41,8 @@ void AMonster::BeginPlay()
 		UE_LOG(LogTemp, Error, TEXT("AMonster: Player not found!!!"));
 
 	gameMode = Cast<AGlitterGameModeBase>(UGameplayStatics::GetGameMode(this));
+
+	gameInstance = Cast<UGlitterGameInstance>(UGameplayStatics::GetGameInstance(this));
 
 	if ((physicsComponent = Cast<UPhysicalAnimationComponent>(GetComponentByClass(UPhysicalAnimationComponent::StaticClass()))) == nullptr)
 	{
@@ -98,13 +101,12 @@ float AMonster::ReverseNumber(float num, float min, float max)
 
 void AMonster::KillMonster(FVector shotDir)
 {
-
-	if (gameMode && gameMode->monsterKilled)
+	if (gameInstance && gameInstance->monsterKilled)
 		return;
 
 
-	if (gameMode)
-		gameMode->monsterKilled = true;
+	if (gameInstance)
+		gameInstance->monsterKilled = true;
 
 	SetPhysicsAnimation(FName("pelvis"));
 
@@ -230,20 +232,23 @@ void AMonster::PlayMosnterSoundEvent(FString event)
 	if (event == "Play_Enemy_Passive_Sounds")
 	{
 		passiveEvent = FAkAudioDevice::Get()->PostEvent(*event, this);
+		gameMode->monsterInCaution = 0.f;
 	}
 	else if (event == "Play_Enemy_Caution_Sounds")
 	{
 		cautionEvent = FAkAudioDevice::Get()->PostEvent(*event, this);
+		gameMode->monsterInCaution = 1.f;
 	}
 	else
 	{
 		chaseEvent = FAkAudioDevice::Get()->PostEvent(*event, this);
+		gameMode->monsterInCaution = 1.f;
 	}
 }
 
 void AMonster::TakeMonsterDamage(float damage, const FVector& shotDir)
 {
-	if (gameMode->monsterKilled)
+	if (gameInstance->monsterKilled)
 		return;
 
 	health -= damage;
@@ -259,7 +264,7 @@ void AMonster::Tick(float DeltaTime)
 	FHitResult hit;
 	FCollisionQueryParams qParams;
 
-	if (!gameMode->monsterKilled && GetWorld()->LineTraceSingleByChannel(hit, GetActorLocation(), mainPlayer->GetCapsuleComponent()->GetComponentLocation(), ECC_Visibility, qParams))
+	if (!gameInstance->monsterKilled && GetWorld()->LineTraceSingleByChannel(hit, GetActorLocation(), mainPlayer->GetCapsuleComponent()->GetComponentLocation(), ECC_Visibility, qParams))
 	{
 		if (Cast<AMainCharacter>(hit.Actor))
 		{

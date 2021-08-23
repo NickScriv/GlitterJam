@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Components/TimelineComponent.h"
 #include "FinalDoor.generated.h"
 
 UCLASS()
@@ -16,6 +17,9 @@ public:
 	AFinalDoor();
 	
 	void InitInteraction();
+
+	UFUNCTION(BlueprintImplementableEvent)
+		void SwitchToEnding();
 
 protected:
 	// Called when the game starts or when spawned
@@ -31,5 +35,7 @@ private:
 
 	UPROPERTY(EditAnywhere)
 		TSubclassOf<UUserWidget> interarctionWidgetClass;
+
+	FTimerHandle timerSwitchToEnding;
 
 };
