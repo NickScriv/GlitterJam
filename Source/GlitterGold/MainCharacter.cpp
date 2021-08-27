@@ -53,6 +53,8 @@ void AMainCharacter::BeginPlay()
 
 		float height = capsuleColl->GetScaledCapsuleHalfHeight() * scaleHeightEnding;
 		capsuleColl->SetCapsuleHalfHeight(height);
+
+		gameInstance->monsterKilled = true;
 	}
 	
 	standCameraHeight = cameraComponent->GetRelativeLocation().Z;
@@ -467,7 +469,7 @@ float AMainCharacter::GetRemainingInteractTime()
 
 void AMainCharacter::TimelineProgressCrouch(float val)
 {
-	UE_LOG(LogTemp, Warning, TEXT("crouch"));
+	//UE_LOG(LogTemp, Warning, TEXT("crouch"));
 	FVector camLoc = cameraComponent->GetRelativeLocation();
 	camLoc.Z = FMath::Lerp(standCameraHeight, crouchCameraHeight, val);
 	cameraComponent->SetRelativeLocation(camLoc);
@@ -587,16 +589,17 @@ void AMainCharacter::Attack()
 			if (shotgunBulletCount > 0)
 			{
 				// shoot
+				FAkAudioDevice::Get()->PostEvent("Shotgun_Fire", this);
 				isShooting = true;
 				shotgun->Shoot();
 
-				//shotgunBulletCount--;
+				shotgunBulletCount--;
 				gameMode->AmmoUI(true, shotgunBulletCount);
 
 			}
 			else
 			{
-				// TODO: play no ammo sound
+				FAkAudioDevice::Get()->PostEvent("Shotgun_Empty", this);
 			}
 		}
 		else if (crowBar && currentHandSlot == 3 && !isSwinging)

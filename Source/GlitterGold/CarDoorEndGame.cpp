@@ -7,6 +7,10 @@
 #include "GlitterGameInstance.h"
 #include "Kismet/GameplayStatics.h"
 #include "MainCharacter.h"
+#include "GlitterGameModeBase.h"
+#include "Runtime/LevelSequence/Public/LevelSequence.h"
+#include "Runtime/LevelSequence/Public/LevelSequenceActor.h"
+#include "Runtime/LevelSequence/Public/LevelSequencePlayer.h"
 
 // Sets default values
 ACarDoorEndGame::ACarDoorEndGame()
@@ -31,28 +35,69 @@ void ACarDoorEndGame::BeginPlay()
 	}
 
 	interaction->OnInteract.AddDynamic(this, &ACarDoorEndGame::EndGame);
+
+	gameMode = Cast<AGlitterGameModeBase>(UGameplayStatics::GetGameMode(this));
 }
 
 void ACarDoorEndGame::EndGame(class AMainCharacter* character)
 {
-	UE_LOG(LogTemp, Warning, TEXT("End Game"));
+	UE_LOG(LogTemp, Warning, TEXT("ENDING!!!!!!!!!!!!!!!!!!"));
+
 	UGlitterGameInstance* gameInstance = Cast<UGlitterGameInstance>(UGameplayStatics::GetGameInstance(this));
 	if (gameInstance)
 	{
 		if (gameInstance->monsterKilled)
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Monster Killed ending"));
+			character->DisablePlayer();
+
+			if (gameMode)
+			{
+				gameMode->FadeOutHUD();
+			}
+
+			GetWorldTimerManager().SetTimer(goodEndCutsceneHandle, this, &ACarDoorEndGame::TriggerGoodEnding, 2.f, false);
 		}
 		else
 		{
 			UE_LOG(LogTemp, Warning, TEXT("Monster not Killed ending"));
 		}
 	}
-	else
+}
+
+void ACarDoorEndGame::ToMainMenu()
+{
+	gameMode->ScreenToBlack();
+	UGameplayStatics::OpenLevel(this, FName("MainMenu"));
+	UE_LOG(LogTemp, Error, TEXT("Switch to main menu"));
+}
+
+void ACarDoorEndGame::TriggerGoodEnding()
+{
+	// Setup the sequence player
+
+	//Sequence Play
+	UE_LOG(LogTemp, Error, TEXT("Above sequencer"));
+
+	if (SequenceGoodEnding && SequencePlayer == nullptr)
+		SequencePlayer = ULevelSequencePlayer::CreateLevelSequencePlayer(GetWorld(), SequenceGoodEnding, FMovieSceneSequencePlaybackSettings(), SequenceActor);
+
+	if (SequenceActor)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Game Instance not found"));
+		SequenceActor->PlaybackSettings.bPauseAtEnd = true;
+		SequenceActor->PlaybackSettings.bHideHud = true;
 	}
 
-	Destroy();
+	if (SequencePlayer)
+	{
+		SequencePlayer->OnStop.AddDynamic(this, &ACarDoorEndGame::ToMainMenu);
+		SequencePlayer->Play();
+		UE_LOG(LogTemp, Error, TEXT("Play sequencer"));
+	}
+
+	if (gameMode)
+	{
+		gameMode->FadeInHUD();
+	}
 }
+
 

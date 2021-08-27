@@ -51,7 +51,7 @@ void ASafe::InteractSafe(AMainCharacter* character)
 	}
 	else if (playerHasPick && locked)
 	{
-		FAkAudioDevice::Get()->PostEvent("Stop_Door_Unlocking", this);
+		FAkAudioDevice::Get()->PostEvent("Stop_Lock_Picking", this);
 		locked = false;
 		playerHasPick = false;
 		// TODO: Break lock pick
@@ -106,7 +106,7 @@ void ASafe::BeginInteractSafe(AMainCharacter* character)
 	// Start playing unlocking sound
 	if (playerHasPick && locked)
 	{
-		FAkAudioDevice::Get()->PostEvent("Play_Door_Unlocking", this);
+		FAkAudioDevice::Get()->PostEvent("Play_Lock_Picking", this);
 	}
 }
 
@@ -115,7 +115,7 @@ void ASafe::EndInteractSafe(AMainCharacter* character)
 	// Stop playing unlocking sound
 	if (playerHasPick && locked)
 	{
-		FAkAudioDevice::Get()->PostEvent("Stop_Door_Unlocking", this);
+		FAkAudioDevice::Get()->PostEvent("Stop_Lock_Picking", this);
 	}
 }
 

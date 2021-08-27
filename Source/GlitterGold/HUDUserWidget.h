@@ -30,4 +30,7 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void FadeOutHUD();
+
+	UFUNCTION(BlueprintImplementableEvent)
+		void ScreenToBlack();
 };

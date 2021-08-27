@@ -1,6 +1,6 @@
 {
 	"FileVersion": 3,
-	"EngineAssociation": "{8B6A7515-48EC-B58D-9543-9AB010E4EF2C}",
+	"EngineAssociation": "{F575B1ED-4ACE-5E72-B40C-3FAA58CA3B57}",
 	"Category": "",
 	"Description": "",
 	"Modules": [
@@ -25,6 +25,10 @@
 		},
 		{
 			"Name": "ApexDestruction",
+			"Enabled": true
+		},
+		{
+			"Name": "Takes",
 			"Enabled": true
 		}
 	],

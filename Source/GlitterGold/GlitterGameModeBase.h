@@ -53,6 +53,8 @@ public:
 	void FadeOutHUD();
 
 	void EndGame();
+
+	void ScreenToBlack();
 	
 	UFUNCTION(BlueprintCallable)
 	void TogglePause(class AMainCharacter* character);

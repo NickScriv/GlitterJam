@@ -10,6 +10,7 @@
 #include "Perception/AISense_Damage.h"
 #include <Runtime/Engine/Classes/Kismet/KismetMathLibrary.h>
 #include "GlitterGameModeBase.h"
+#include "../Plugins/Wwise/Source/AkAudio/Classes/AkComponent.h"
 
 void UAnimNotify_AxeCanDamage::Notify(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation)
 {
@@ -54,9 +55,9 @@ void UAnimNotify_AxeCanDamage::Notify(USkeletalMeshComponent* MeshComp, UAnimSeq
 					UAISense_Damage::ReportDamageEvent(player, monster, player, 1.f, player->GetActorLocation(), hit.Location);
 
 					// Play slash blood sound
+					FAkAudioDevice::Get()->PostEvent("Axe_Hit_Enemy", MeshComp->GetOwner());
 
 					// Play blood hit effect
-
 					UGameplayStatics::SpawnEmitterAtLocation(player, monsterHit, hit.Location, UKismetMathLibrary::MakeRotFromZ(dir), false);
 				}
 
@@ -67,6 +68,7 @@ void UAnimNotify_AxeCanDamage::Notify(USkeletalMeshComponent* MeshComp, UAnimSeq
 				wood->GetDestructibleComponent()->ApplyDamage(1.f, hit.Location, -hit.Normal, 100);
 
 				// Play slash wood sound
+				FAkAudioDevice::Get()->PostEvent("Axe_Break_Wood", MeshComp->GetOwner());
 
 				// Play wood hit effect?
 				UGameplayStatics::SpawnEmitterAtLocation(player, woodHit, hit.Location, UKismetMathLibrary::MakeRotFromZ(dir));
@@ -74,6 +76,7 @@ void UAnimNotify_AxeCanDamage::Notify(USkeletalMeshComponent* MeshComp, UAnimSeq
 			else if(!actor->ActorHasTag(FName("Monster")))
 			{
 				// Play slash default sound
+				FAkAudioDevice::Get()->PostEvent("Axe_Hit_Generic_Object", MeshComp->GetOwner());
 
 				// Play default hit effect
 				UGameplayStatics::SpawnEmitterAtLocation(player, normalHit, hit.Location, UKismetMathLibrary::MakeRotFromZ(dir));

@@ -57,6 +57,11 @@ void AGlitterGameModeBase::EndGame()
 	UGameplayStatics::SetGamePaused(GetWorld(), true);
 }
 
+void AGlitterGameModeBase::ScreenToBlack()
+{
+	HUDWidget->ScreenToBlack();
+}
+
 void AGlitterGameModeBase::TogglePause(AMainCharacter* character)
 {
 	if(isReadingNote)

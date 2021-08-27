@@ -26,7 +26,26 @@ private:
 	UPROPERTY(EditDefaultsOnly)
 		class UInteractionWidgetComponent* interaction;
 
+	UPROPERTY()
+	class ULevelSequencePlayer* SequencePlayer;
+
+	UPROPERTY(EditAnywhere)
+		class ALevelSequenceActor* SequenceActor;
+
+	UPROPERTY(EditAnywhere)
+	class ULevelSequence* SequenceGoodEnding;
+
+	UPROPERTY(EditAnywhere)
+	class AGlitterGameModeBase* gameMode;
+
+	FTimerHandle goodEndCutsceneHandle;
+
 	UFUNCTION()
 		void EndGame(class AMainCharacter* character);
+
+	UFUNCTION()
+		void ToMainMenu();
+
+	void TriggerGoodEnding();
 
 };
