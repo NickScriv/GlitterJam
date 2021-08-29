@@ -68,7 +68,7 @@ void UAnimNotify_AxeCanDamage::Notify(USkeletalMeshComponent* MeshComp, UAnimSeq
 				wood->GetDestructibleComponent()->ApplyDamage(1.f, hit.Location, -hit.Normal, 100);
 
 				// Play slash wood sound
-				FAkAudioDevice::Get()->PostEvent("Axe_Break_Wood", MeshComp->GetOwner());
+				FAkAudioDevice::Get()->PostEvent("Axe_Hit_Wood", MeshComp->GetOwner());
 
 				// Play wood hit effect?
 				UGameplayStatics::SpawnEmitterAtLocation(player, woodHit, hit.Location, UKismetMathLibrary::MakeRotFromZ(dir));

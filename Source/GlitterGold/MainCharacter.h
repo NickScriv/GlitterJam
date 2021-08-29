@@ -200,6 +200,9 @@ private:
 	UPROPERTY()
 	class AGlitterGameModeBase* gameMode;
 
+	UPROPERTY()
+		class UGlitterGameInstance* gameInstance;
+
 	bool died = false;
 	FRotator rotateDeath;
 

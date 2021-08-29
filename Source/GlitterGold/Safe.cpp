@@ -57,21 +57,13 @@ void ASafe::InteractSafe(AMainCharacter* character)
 		// TODO: Break lock pick
 		lockPick->onLockPickUsed.Broadcast();
 		interaction->interactionTime = 0.f;
+		interaction->OnInteract.RemoveAll(this);
+		interaction->DestroyComponent();
 	}
 
-	if (!opening && !closing)
+	if (!open)
 	{
-		if (isOpen)
-		{
-			CloseSafe();
-		}
-		else
-		{
-			OpenSafe();
-		}
-
-		isOpen = !isOpen;
-		BeginFocusSafe(nullptr);
+		OpenSafe();
 	}
 		
 }
@@ -80,14 +72,7 @@ void ASafe::BeginFocusSafe(AMainCharacter* character)
 {
 	if (!locked)
 	{
-		if (isOpen)
-		{
-			interaction->SetInteractableActionText(FText::FromString("Close"));
-		}
-		else
-		{
-			interaction->SetInteractableActionText(FText::FromString("Open"));
-		}
+		return;
 	}
 	else if (playerHasPick)
 	{
@@ -133,13 +118,8 @@ void ASafe::LockPickUsed()
 
 void ASafe::OpenSafe()
 {
-	opening = true;
+	open = true;
 	FAkAudioDevice::Get()->PostEventAtLocation(in_pEventOpen, GetActorLocation(), GetActorRotation(), GetWorld());
 }
 
-void ASafe::CloseSafe()
-{
-	closing = true;
-	FAkAudioDevice::Get()->PostEventAtLocation(in_pEventClose, GetActorLocation(), GetActorRotation(), GetWorld());
-}
 

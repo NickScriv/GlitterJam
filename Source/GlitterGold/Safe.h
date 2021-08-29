@@ -20,10 +20,7 @@ public:
 		bool openDoor;
 
 	UPROPERTY(BlueprintReadWrite)
-		bool opening;
-
-	UPROPERTY(BlueprintReadWrite)
-		bool closing;
+		bool open;
 
 protected:
 	// Called when the game starts or when spawned
@@ -41,9 +38,7 @@ private:
 	class ALockPick* lockPick;
 
 	UPROPERTY(EditAnywhere)
-		float unlockSafeTime;
-
-	bool isOpen = false;
+	float unlockSafeTime;
 
 	bool locked = true;
 
@@ -74,7 +69,4 @@ private:
 		void LockPickUsed();
 
 	void OpenSafe();
-
-	void CloseSafe();
-
 };

@@ -1,7 +1,5 @@
 Event	ID	Name			Wwise Object Path	Notes
-	1238538214	Play_Ambient_Music			\Default Work Unit\Music Events\Play_Ambient_Music	
 	1550503061	Death_Music			\Default Work Unit\Music Events\Death_Music	
-	2179654399	Pause_Menu_Off			\Default Work Unit\Music Events\Pause_Menu_Off	
 	2837384057	STOP_MUSIC			\Default Work Unit\Music Events\STOP_MUSIC	
 	2932040671	PLAY_MUSIC			\Default Work Unit\Music Events\PLAY_MUSIC	
 	2937929224	Play_Secret_Room_Music			\Default Work Unit\Music Events\Play_Secret_Room_Music	
@@ -75,7 +73,6 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	304732448	dsK1_Ambient_VAR	E:\WwiseGlitter\.cache\Windows\SFX\dsK1_Ambient_var2_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music Switch\Ambient Music Switch\Downstairs Ambient Music\Downstairs Ambient Segment\dsK1_Ambient_VAR		5838880
 	313028623	us_Danger_Warning	E:\WwiseGlitter\.cache\Windows\SFX\us_Danger_Warning_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music Switch\Ambient Music Switch\Upstairs Ambient Music\Upstairs Ambient Segment\us_Danger_Warning		4003888
 	338744272	Secret_Room_BassPluck	E:\WwiseGlitter\.cache\Windows\SFX\Secret_Room_BassPluck_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music Switch\Secret Room Music\Secret Room\Secret_Room_BassPluck		3117296
-	362801264	Danger_Heartbeat	E:\WwiseGlitter\.cache\Windows\SFX\Heartbeat_Danger_CAFAEEC9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Heartbeat\Danger_Heartbeat		1644624
 	372904452	K3_Chase_var1	E:\WwiseGlitter\.cache\Windows\SFX\K3_Chase_var3_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music Switch\Chase Music\Chase Segment\K3_Chase_var1		4003792
 	386796326	K2_Chase	E:\WwiseGlitter\.cache\Windows\SFX\K2_Chase_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music Switch\Chase Music\Chase Segment\K2_Chase		3217360
 	443822615	K3_Chase_var1	E:\WwiseGlitter\.cache\Windows\SFX\K3_Chase_var2_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music Switch\Chase Music\Chase Segment\K3_Chase_var1		4003792

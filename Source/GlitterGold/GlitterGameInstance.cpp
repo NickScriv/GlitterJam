@@ -2,18 +2,23 @@
 
 
 #include "GlitterGameInstance.h"
-#include "AkAudioDevice.h"
-#include "Blueprint/UserWidget.h"
-#include "MainCharacter.h"
-#include "HUDUserWidget.h"
-#include "KillScreenUserWidget.h"
-#include "PauseMenuUserWidget.h"
-#include "Engine/World.h"
-#include "Kismet/GameplayStatics.h"
-#include "ManageEvents.h"
+
+UGlitterGameInstance::UGlitterGameInstance(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
+{   
+
+}
 
 void UGlitterGameInstance::Init()
 {
 	Super::Init();
 }
 
+void UGlitterGameInstance::Shutdown()
+{
+	Super::Shutdown();
+}
+
+void UGlitterGameInstance::StartGameInstance()
+{
+	Super::StartGameInstance();
+}

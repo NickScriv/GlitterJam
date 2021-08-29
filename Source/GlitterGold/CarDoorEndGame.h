@@ -36,9 +36,17 @@ private:
 	class ULevelSequence* SequenceGoodEnding;
 
 	UPROPERTY(EditAnywhere)
+		class AEndMonster* endMonster;
+
+	UPROPERTY()
 	class AGlitterGameModeBase* gameMode;
 
+	UPROPERTY(EditAnywhere)
+		float endMonsterSwipeTime;
+
 	FTimerHandle goodEndCutsceneHandle;
+
+	FTimerHandle badEndCutsceneHandle;
 
 	UFUNCTION()
 		void EndGame(class AMainCharacter* character);
@@ -47,5 +55,7 @@ private:
 		void ToMainMenu();
 
 	void TriggerGoodEnding();
+
+	void TriggerMonsterSwipe();
 
 };

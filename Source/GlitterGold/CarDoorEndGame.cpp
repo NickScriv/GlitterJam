@@ -7,10 +7,12 @@
 #include "GlitterGameInstance.h"
 #include "Kismet/GameplayStatics.h"
 #include "MainCharacter.h"
+#include "EndMonster.h"
 #include "GlitterGameModeBase.h"
 #include "Runtime/LevelSequence/Public/LevelSequence.h"
 #include "Runtime/LevelSequence/Public/LevelSequenceActor.h"
 #include "Runtime/LevelSequence/Public/LevelSequencePlayer.h"
+#include "Kismet/KismetMathLibrary.h"
 
 // Sets default values
 ACarDoorEndGame::ACarDoorEndGame()
@@ -27,7 +29,6 @@ ACarDoorEndGame::ACarDoorEndGame()
 void ACarDoorEndGame::BeginPlay()
 {
 	Super::BeginPlay();
-
 	if ((interaction = Cast<UInteractionWidgetComponent>(GetComponentByClass(UInteractionWidgetComponent::StaticClass()))) == nullptr)
 	{
 		UE_LOG(LogTemp, Error, TEXT("Interaction is null!!!"));
@@ -35,21 +36,19 @@ void ACarDoorEndGame::BeginPlay()
 	}
 
 	interaction->OnInteract.AddDynamic(this, &ACarDoorEndGame::EndGame);
-
+	UE_LOG(LogTemp, Error, TEXT("wow compile"));
 	gameMode = Cast<AGlitterGameModeBase>(UGameplayStatics::GetGameMode(this));
 }
 
 void ACarDoorEndGame::EndGame(class AMainCharacter* character)
 {
-	UE_LOG(LogTemp, Warning, TEXT("ENDING!!!!!!!!!!!!!!!!!!"));
+	character->DisablePlayer();
 
 	UGlitterGameInstance* gameInstance = Cast<UGlitterGameInstance>(UGameplayStatics::GetGameInstance(this));
 	if (gameInstance)
 	{
 		if (gameInstance->monsterKilled)
 		{
-			character->DisablePlayer();
-
 			if (gameMode)
 			{
 				gameMode->FadeOutHUD();
@@ -59,16 +58,26 @@ void ACarDoorEndGame::EndGame(class AMainCharacter* character)
 		}
 		else
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Monster not Killed ending"));
+			if (endMonster)
+			{
+				//endMonster->GetMesh()->GetSocketLocation(FName("Eyes"))
+				character->DiedEnding(endMonster->GetMesh()->GetSocketLocation(FName("Eyes")));
+
+				endMonster->SetActorHiddenInGame(false);
+				float newYaw = UKismetMathLibrary::FindLookAtRotation(endMonster->GetActorLocation(), character->GetActorLocation()).Yaw;
+				FRotator newRot = endMonster->GetActorRotation();
+				newRot.Yaw = newYaw;
+				endMonster->SetActorRotation(newRot);
+				GetWorldTimerManager().SetTimer(badEndCutsceneHandle, this, &ACarDoorEndGame::TriggerMonsterSwipe, endMonsterSwipeTime, false);
+			}
 		}
 	}
+	UE_LOG(LogTemp, Warning, TEXT("Wow compile!!!"));
 }
 
 void ACarDoorEndGame::ToMainMenu()
 {
-	gameMode->ScreenToBlack();
 	UGameplayStatics::OpenLevel(this, FName("MainMenu"));
-	UE_LOG(LogTemp, Error, TEXT("Switch to main menu"));
 }
 
 void ACarDoorEndGame::TriggerGoodEnding()
@@ -98,6 +107,11 @@ void ACarDoorEndGame::TriggerGoodEnding()
 	{
 		gameMode->FadeInHUD();
 	}
+}
+
+void ACarDoorEndGame::TriggerMonsterSwipe()
+{
+	endMonster->startSwiping = true;
 }
 
 

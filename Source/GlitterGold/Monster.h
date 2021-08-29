@@ -77,7 +77,7 @@ public:
 
 	void PlayMosnterSoundEvent(FString event);
 
-	void TakeDamage(float damage, const FVector& shotDir);
+	void TakeMonsterDamage(float damage, const FVector& shotDir);
 
 	int32 passiveEvent = -1;
 	int32 cautionEvent = -1;

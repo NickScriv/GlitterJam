@@ -57,10 +57,17 @@ void AGlitterGameModeBase::EndGame()
 	UGameplayStatics::SetGamePaused(GetWorld(), true);
 }
 
-void AGlitterGameModeBase::ScreenToBlack()
+void AGlitterGameModeBase::BadEnding()
 {
 	HUDWidget->ScreenToBlack();
+	GetWorldTimerManager().SetTimer(switchToMainMenuHandle, this, &AGlitterGameModeBase::SwitchToMainMenu, 5.f, false);
 }
+
+void AGlitterGameModeBase::SwitchToMainMenu()
+{
+	UGameplayStatics::OpenLevel(this, FName("MainMenu"));
+}
+
 
 void AGlitterGameModeBase::TogglePause(AMainCharacter* character)
 {
