@@ -34,16 +34,25 @@ void ACarDoorEndGame::BeginPlay()
 		UE_LOG(LogTemp, Error, TEXT("Interaction is null!!!"));
 		return;
 	}
-
+	
 	interaction->OnInteract.AddDynamic(this, &ACarDoorEndGame::EndGame);
-	UE_LOG(LogTemp, Error, TEXT("wow compile"));
+	
 	gameMode = Cast<AGlitterGameModeBase>(UGameplayStatics::GetGameMode(this));
+
+	if (SequenceGoodEnding && SequencePlayer == nullptr)
+		SequencePlayer = ULevelSequencePlayer::CreateLevelSequencePlayer(GetWorld(), SequenceGoodEnding, FMovieSceneSequencePlaybackSettings(), SequenceActor);
+
+	if (SequenceActor)
+	{
+		SequenceActor->PlaybackSettings.bPauseAtEnd = true;
+		SequenceActor->PlaybackSettings.bHideHud = true;
+	}
 }
 
 void ACarDoorEndGame::EndGame(class AMainCharacter* character)
 {
 	character->DisablePlayer();
-
+	UE_LOG(LogTemp, Warning, TEXT("Wow compile!!!"));
 	UGlitterGameInstance* gameInstance = Cast<UGlitterGameInstance>(UGameplayStatics::GetGameInstance(this));
 	if (gameInstance)
 	{
@@ -72,7 +81,6 @@ void ACarDoorEndGame::EndGame(class AMainCharacter* character)
 			}
 		}
 	}
-	UE_LOG(LogTemp, Warning, TEXT("Wow compile!!!"));
 }
 
 void ACarDoorEndGame::ToMainMenu()
@@ -85,17 +93,7 @@ void ACarDoorEndGame::TriggerGoodEnding()
 	// Setup the sequence player
 
 	//Sequence Play
-	UE_LOG(LogTemp, Error, TEXT("Above sequencer"));
-
-	if (SequenceGoodEnding && SequencePlayer == nullptr)
-		SequencePlayer = ULevelSequencePlayer::CreateLevelSequencePlayer(GetWorld(), SequenceGoodEnding, FMovieSceneSequencePlaybackSettings(), SequenceActor);
-
-	if (SequenceActor)
-	{
-		SequenceActor->PlaybackSettings.bPauseAtEnd = true;
-		SequenceActor->PlaybackSettings.bHideHud = true;
-	}
-
+	
 	if (SequencePlayer)
 	{
 		SequencePlayer->OnStop.AddDynamic(this, &ACarDoorEndGame::ToMainMenu);

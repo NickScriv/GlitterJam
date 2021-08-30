@@ -16,9 +16,7 @@ ANoteActor::ANoteActor()
 	PrimaryActorTick.bTickEvenWhenPaused = true;
 
 	noteMesh = CreateDefaultSubobject<UStaticMeshComponent>("Note Mesh");
-	noteMesh->SetupAttachment(RootComponent);
-
-	
+	SetRootComponent(noteMesh);
 }
 
 // Called when the game starts or when spawned

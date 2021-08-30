@@ -64,6 +64,12 @@ public:
 
 	float GetRemainingInteractTime();
 
+	UPROPERTY(BlueprintReadWrite)
+	float idleTimer = 0.f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+		float idleTimerThreshold;
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Movement")
 	float stamina = 100.f;
 
@@ -275,7 +281,6 @@ private:
 	UPROPERTY(EditAnywhere)
 		float heavyBreathThreshold = 40.f;
 
-
 	FTimerHandle timerFootstep;
 	bool playFootStep = true;
 
@@ -321,6 +326,7 @@ private:
 	void SprintReleased();
 	void SetMovement(EMovement newMovement);
 	void RegainStamina();
+	void AnyKeyPressed();
 
 	void SwitchArms(float val);
 

@@ -26,11 +26,9 @@ private:
 	UPROPERTY(EditDefaultsOnly)
 		class UInteractionWidgetComponent* interaction;
 
-	UPROPERTY()
 	class ULevelSequencePlayer* SequencePlayer;
 
-	UPROPERTY(EditAnywhere)
-		class ALevelSequenceActor* SequenceActor;
+	class ALevelSequenceActor* SequenceActor;
 
 	UPROPERTY(EditAnywhere)
 	class ULevelSequence* SequenceGoodEnding;

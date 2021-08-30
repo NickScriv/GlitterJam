@@ -37,13 +37,15 @@ EBTNodeResult::Type UBTTaskNode_KillPlayer::ExecuteTask(class UBehaviorTreeCompo
 
 	if (GetWorld()->LineTraceSingleByChannel(hit, start, player->GetCapsuleComponent()->GetComponentLocation(), ECC_Visibility, qParams))
 	{
+
 		if (Cast<AMainCharacter>(hit.Actor))
 		{
+			//UE_LOG(LogTemp, Error, TEXT("Kill Player"));
 			//monster->StopMonsterSounds();
 			monster->KillPlayer();
 		}
 	}
-	//DrawDebugLine(GetWorld(), start, player->GetActorLocation(), FColor::Yellow, false, 2.f);
+	//DrawDebugLine(GetWorld(), start, player->GetCapsuleComponent()->GetComponentLocation(), FColor::Yellow, false, 2.f);
 	
 
 	return EBTNodeResult::Succeeded;

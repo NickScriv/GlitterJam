@@ -28,8 +28,8 @@
 			"Enabled": true
 		},
 		{
-			"Name": "Takes",
-			"Enabled": true
+			"Name": "ChaosEditor",
+			"Enabled": false
 		}
 	],
 	"TargetPlatforms": [

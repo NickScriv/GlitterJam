@@ -14,10 +14,6 @@ AKeyActor::AKeyActor()
 
 	keyMesh = CreateDefaultSubobject<UStaticMeshComponent>("Key Mesh");
 	keyMesh->SetupAttachment(RootComponent);
-
-	/*interaction = CreateDefaultSubobject<UInteractionWidgetComponent>("Interaction Component");
-	interaction->SetupAttachment(RootComponent);*/
-
 }
 
 // Called when the game starts or when spawned

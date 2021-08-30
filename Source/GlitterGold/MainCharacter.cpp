@@ -126,6 +126,12 @@ void AMainCharacter::Tick(float DeltaTime)
 		canSprint = true;
 	}
 
+	
+	if (idleTimer <= idleTimerThreshold)
+	{
+		idleTimer += DeltaTime;
+	}
+
 	crouchDelayCountdown += DeltaTime;
 	if (crouchDelayCountdown >= crouchDelayTimer)
 	{
@@ -216,6 +222,9 @@ void AMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	
 	PlayerInputComponent->BindAction("Crouch", IE_Pressed, this, &AMainCharacter::CrouchPressed);
 	PlayerInputComponent->BindAction("Crouch", IE_Released, this, &AMainCharacter::CrouchReleased);
+
+	PlayerInputComponent->BindAction("AnyKey", IE_Pressed, this, &AMainCharacter::AnyKeyPressed);
+	PlayerInputComponent->BindAction("AnyKey", IE_Released, this, &AMainCharacter::AnyKeyPressed);
 
 	PlayerInputComponent->BindAxis("SwitchArms", this, &AMainCharacter::SwitchArms);
 
@@ -809,6 +818,11 @@ void AMainCharacter::SetMovement(EMovement newMovement)
 void AMainCharacter::RegainStamina()
 {
 	canSprint = true;
+}
+
+void AMainCharacter::AnyKeyPressed()
+{
+	idleTimer = 0.f;
 }
 
 //TODO: Remember to change assignment to canSwitch and isShooting and isAiming!!!

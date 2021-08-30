@@ -35,7 +35,4 @@ private:
 
 	UPROPERTY(EditAnywhere)
 		TSubclassOf<UUserWidget> interarctionWidgetClass;
-
-	FTimerHandle timerSwitchToEnding;
-
 };

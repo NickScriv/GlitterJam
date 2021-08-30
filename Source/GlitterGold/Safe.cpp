@@ -13,7 +13,8 @@ ASafe::ASafe()
 	PrimaryActorTick.bCanEverTick = false;
 
 	mesh = CreateDefaultSubobject<USkeletalMeshComponent>("Mesh");
-	mesh->SetupAttachment(RootComponent);
+	SetRootComponent(mesh);
+	//mesh->SetupAttachment(RootComponent);
 
 }
 
