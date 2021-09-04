@@ -228,8 +228,6 @@ void AMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 
 	PlayerInputComponent->BindAxis("SwitchArms", this, &AMainCharacter::SwitchArms);
 
-	PlayerInputComponent->BindAction("Flashlight", IE_Pressed, this, &AMainCharacter::FlashlightToggle);
-
 	PlayerInputComponent->BindAction("Shoot", IE_Pressed, this, &AMainCharacter::Attack);
 
 	PlayerInputComponent->BindAction("Aim", IE_Pressed, this, &AMainCharacter::AimPressed);
@@ -591,6 +589,10 @@ void AMainCharacter::Attack()
 		{
 			isSwinging = true;
 			crowBar->SwingAttack();
+		}
+		else if (flashlight && currentHandSlot == 1)
+		{
+			flashlight->Toggle();
 		}
 	}
 	
