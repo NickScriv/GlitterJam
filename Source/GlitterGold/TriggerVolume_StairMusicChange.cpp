@@ -9,12 +9,14 @@
 
 ATriggerVolume_StairMusicChange::ATriggerVolume_StairMusicChange()
 {
-	OnActorBeginOverlap.AddDynamic(this, &ATriggerVolume_StairMusicChange::OnOverlapBegin);
+
 }
 
 void ATriggerVolume_StairMusicChange::BeginPlay()
 {
 	Super::BeginPlay();
+
+	OnActorBeginOverlap.AddDynamic(this, &ATriggerVolume_StairMusicChange::OnOverlapBegin);
 
 	DrawDebugBox(GetWorld(), GetActorLocation(), Brush->Bounds.BoxExtent, FColor::Orange, true, -1, 0, 5);
 }

@@ -71,4 +71,5 @@ public:
 	bool isReadingNote = false;
 
 	bool playerKilled = false;
+
 };

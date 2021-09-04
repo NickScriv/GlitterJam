@@ -7,7 +7,6 @@
 #include "Components/BoxComponent.h"
 #include "DoorOpenClose.generated.h"
 
-
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class GLITTERGOLD_API UDoorOpenClose : public USceneComponent
 {
@@ -34,6 +33,13 @@ public:
 	bool playerHasLockPick = false;
 
 private:
+
+	UPROPERTY(EditAnywhere, meta = (EditCondition = locked))
+		class ANavModifierVolume* navMeshToBlock;
+
+	UPROPERTY(EditAnywhere, meta = (EditCondition = locked))
+		TSubclassOf<UNavArea> defaultNavAreaClass;
+
 	UPROPERTY(EditAnywhere)
 	float openAngle;
 
@@ -109,5 +115,7 @@ private:
 
 	UFUNCTION()
 	void MonsterReachedNavLink(AActor* MovingActor, const FVector& DestinationPoint);
+
+	void UnlockNavMesh();
 
 };

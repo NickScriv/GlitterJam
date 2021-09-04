@@ -18,6 +18,8 @@
 #include "Door.h"
 #include "GlitterGameModeBase.h"
 #include "LockPick.h"
+#include "NavModifierVolume.h"
+#include "Kismet/GameplayStatics.h"
 
 
 
@@ -100,10 +102,19 @@ void UDoorOpenClose::BeginPlay()
 		return;
 	}
 
-	/*navLinkProxyEnter->SetSmartLinkEnabled(true);
-	navLinkProxyExit->SetSmartLinkEnabled(true);*/
 	navLinkProxyEnter->OnSmartLinkReached.AddDynamic(this, &UDoorOpenClose::MonsterReachedNavLink);
 	navLinkProxyExit->OnSmartLinkReached.AddDynamic(this, &UDoorOpenClose::MonsterReachedNavLink);
+
+	if (locked)
+	{
+		navLinkProxyEnter->SetSmartLinkEnabled(false);
+		navLinkProxyExit->SetSmartLinkEnabled(false);
+	}
+	else
+	{
+		navLinkProxyEnter->SetSmartLinkEnabled(true);
+		navLinkProxyExit->SetSmartLinkEnabled(true);
+	}
 
 	initialYaw = this->GetRelativeRotation().Yaw;
 	currentYaw = initialYaw;
@@ -198,6 +209,11 @@ void UDoorOpenClose::InteractDoor(class AMainCharacter* character)
 		FAkAudioDevice::Get()->PostEvent("Stop_Door_Unlocking", this->GetOwner());
 		locked = false;
 		interaction->interactionTime = 0.f;
+		if (navMeshToBlock && navMeshToBlock->Tags.Num() > 0)
+		{
+			UnlockNavMesh();
+		}
+		
 	}
 	else if (playerHasLockPick && locked)
 	{
@@ -206,6 +222,11 @@ void UDoorOpenClose::InteractDoor(class AMainCharacter* character)
 		interaction->interactionTime = 0.f;
 		// TODO: Break lock pick
 		lockPick->onLockPickUsed.Broadcast();
+
+		if (navMeshToBlock && navMeshToBlock->Tags.Num() > 0)
+		{
+			UnlockNavMesh();
+		}
 	}
 	
 	if (openTime >= 1)
@@ -269,7 +290,6 @@ void UDoorOpenClose::EndInteractDoor(AMainCharacter* character)
 
 void UDoorOpenClose::MonsterReachedNavLink(AActor* MovingActor, const FVector& DestinationPoint)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Something enetered Nav link!!!!!!!!!!!!!"));
 	AMonster* monster = Cast<AMonster>(MovingActor);
 	if(monster)
 	{
@@ -288,6 +308,12 @@ void UDoorOpenClose::MonsterReachedNavLink(AActor* MovingActor, const FVector& D
 		}
 			
 	}
+}
+
+void UDoorOpenClose::UnlockNavMesh()
+{
+	navLinkProxyEnter->SetSmartLinkEnabled(true);
+	navLinkProxyExit->SetSmartLinkEnabled(true);
 }
 
 void UDoorOpenClose::PlayerPickedUpKey()
