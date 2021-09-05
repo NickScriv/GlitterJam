@@ -27,7 +27,6 @@ public:
 	void AISightPerceptionViewPoint(FVector& OutLocation, FRotator& OutRotation) const;
 
 	void StartMonsterBehavior();
-	
 
 private:
 	UPROPERTY(EditDefaultsOnly, Category = "Blackboard")

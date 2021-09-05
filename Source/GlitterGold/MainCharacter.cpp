@@ -476,7 +476,7 @@ void AMainCharacter::PlayFootStep()
 	}
 	else if(IsSprinting())
 	{
-		UAISense_Hearing::ReportNoiseEvent(this, GetActorLocation(), 0.0f, this, 0, FName("Noise"));
+		UAISense_Hearing::ReportNoiseEvent(this, GetActorLocation(), 1.0f, this, 0, FName("Noise"));
 	}
 	else
 	{

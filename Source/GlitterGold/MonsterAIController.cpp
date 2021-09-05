@@ -11,20 +11,21 @@
 #include "Monster.h"
 #include "Perception/AISense_Hearing.h"
 #include "Perception/AISense_Sight.h"
+#include "Kismet/GameplayStatics.h"
 
 
 void AMonsterAIController::BeginPlay()
 {
 	Super::BeginPlay();
 
-	if (!ensure(AIBlackboard))
+	if (!AIBlackboard)
 	{
 		return;
 	}
 
 	UseBlackboard(AIBlackboard, blackboardComp);
 
-	if (!ensure(AIBehavior))
+	if (!AIBehavior)
 	{
 		return;
 	}
@@ -46,7 +47,7 @@ void AMonsterAIController::BeginPlay()
 		}
 	}
 
-	if (!ensure(AIPerception && AIPerceptionStart))
+	if (!AIPerception || !AIPerceptionStart)
 	{
 		return;
 	}
@@ -65,8 +66,9 @@ void AMonsterAIController::GetActorEyesViewPoint(FVector& OutLocation, FRotator&
 
 	AMonster* monster = Cast<AMonster>(GetPawn());
 
-	if(!monster)
+	if (!monster)
 		return;
+
 
 	FTransform trans = monster->GetMesh()->GetSocketTransform("Eyes");
 
@@ -77,6 +79,9 @@ void AMonsterAIController::GetActorEyesViewPoint(FVector& OutLocation, FRotator&
 void AMonsterAIController::perceptionUpdated(AActor* Actor, FAIStimulus Stimulus)
 {
 	AMainCharacter* player = Cast<AMainCharacter>(Actor);
+
+	if (!player)
+		return;
 	
 	//UE_LOG(LogTemp, Warning, TEXT("%s"), Stimulus.WasSuccessfullySensed() ? TEXT("True") : TEXT("False"));
 
@@ -88,6 +93,32 @@ void AMonsterAIController::perceptionUpdated(AActor* Actor, FAIStimulus Stimulus
 		{
 			SetToDefaultPerception();
 		}
+
+
+		AMonster* monster = Cast<AMonster>(GetPawn());
+
+		if (!monster)
+			return;
+
+		/*FVector eyesLoc = monster->GetMesh()->GetSocketLocation(FName("Eyes"));
+
+		TArray<AActor*> actorsToIgnore;
+
+		actorsToIgnore.Add(monster);
+		FHitResult hit;
+
+		bool sensed = false;
+
+		if (Stimulus.WasSuccessfullySensed() && UKismetSystemLibrary::SphereTraceSingle(this, eyesLoc, player->GetActorLocation(), 15.f, UEngineTypes::ConvertToTraceType(ECC_Visibility), false, actorsToIgnore, EDrawDebugTrace::ForDuration, hit, true, FLinearColor::Red, FLinearColor::Green, 5.0f))
+		{
+			if (Cast<AMainCharacter>(hit.Actor))
+			{
+				sensed = true;
+			}
+
+		}
+		UE_LOG(LogTemp, Warning, TEXT("%s"), sensed ? TEXT("True") : TEXT("False"));*/
+
 		blackboardComp->SetValueAsBool(FName("CanSeePlayer"), Stimulus.WasSuccessfullySensed());
 		
 	}
@@ -140,11 +171,12 @@ void AMonsterAIController::StartMonsterBehavior()
 	
 	RunBehaviorTree(AIBehavior);
 	
-	AMonster* monster = Cast<AMonster>(GetPawn());
 
-	GetWorldTimerManager().SetTimer(timerHandleFirstSeen, this, &AMonsterAIController::SetToDefaultPerception, 8.0f,  false);
+	AMonster* monster = Cast<AMonster>(GetPawn());
 
 	if (!monster)
 		return;
+
+	GetWorldTimerManager().SetTimer(timerHandleFirstSeen, this, &AMonsterAIController::SetToDefaultPerception, 8.0f,  false);
 	//monster->TracePath();
 }

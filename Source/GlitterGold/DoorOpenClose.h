@@ -78,10 +78,12 @@ private:
 
 	UPROPERTY()
 	class AGlitterGameModeBase* gameMode;
+
+	FAIRequestID currentMove;
 	
 	bool checkClosed = false;
 
-	class AAIController* monsterController = nullptr;
+	class AMonsterAIController* monsterController = nullptr;
 
 	UPROPERTY()
 		class UInteractionWidgetComponent* interaction = nullptr;

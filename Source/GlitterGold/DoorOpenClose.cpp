@@ -20,6 +20,7 @@
 #include "LockPick.h"
 #include "NavModifierVolume.h"
 #include "Kismet/GameplayStatics.h"
+#include "MonsterAIController.h"
 
 
 
@@ -140,8 +141,12 @@ void UDoorOpenClose::TickComponent(float DeltaTime, ELevelTick TickType, FActorC
 
 		if(openTime > 0.9 && checkClosed)
 		{
-			if(monsterController)
-				monsterController->ResumeMove(FAIRequestID::CurrentRequest);
+			/*if (monsterController)
+			{
+				UE_LOG(LogTemp, Warning, TEXT("Resume move request: %i"), currentMove.GetID());
+				monsterController->ResumeMove(currentMove);
+			}*/
+				
 			UE_LOG(LogTemp, Warning, TEXT("Resume Move"));
 			checkClosed = false;
 		}
@@ -298,8 +303,12 @@ void UDoorOpenClose::MonsterReachedNavLink(AActor* MovingActor, const FVector& D
 		
 		if(!locked && openTime >= 1)
 		{
-			monsterController = Cast<AAIController>(monster->GetController());
-			monsterController->PauseMove(FAIRequestID::CurrentRequest);
+			if(!monsterController)
+				monsterController = Cast<AMonsterAIController>(monster->GetController());
+
+			//currentMove = monsterController->GetCurrentMoveRequestID();
+			//UE_LOG(LogTemp, Warning, TEXT("Pause move request: %i"), currentMove.GetID());
+			//monsterController->PauseMove(currentMove);
 			
 			if (!open)
 				checkClosed = true;
