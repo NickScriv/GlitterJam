@@ -73,15 +73,11 @@ DerivedDataCache/*
 *.pdb
 *.chm
 Plugins/Wwise/
-Config/DefaultGame.ini
-Config/DefaultGame.ini
 Content/Game/Windows/Init.txt
 Content/Game/Windows/Music.txt
 Content/Game/Windows/SFX.bnk
 Content/Game/Windows/SFX.txt
 Content/Game/Windows/SoundbanksInfo.xml
-Config/DefaultGame.ini
-Config/DefaultGame.ini
 Content/Game/Mac/Init.bnk
 Content/Game/Mac/Init.txt
 Content/Game/Mac/Music.bnk
@@ -95,7 +91,6 @@ Content/Game/Windows/Music.txt
 Content/Game/Windows/SFX.bnk
 Content/Game/Windows/SFX.txt
 Content/Game/Windows/SoundbanksInfo.xml
-Config/DefaultGame.ini
 Content/Game/Mac/Init.bnk
 Content/Game/Mac/Music.bnk
 Content/Game/Mac/Music.txt
@@ -108,5 +103,4 @@ Content/Game/Windows/Music.txt
 Content/Game/Windows/SFX.bnk
 Content/Game/Windows/SFX.txt
 Content/Game/Windows/SoundbanksInfo.xml
-Content/Levels/MainLevel.umap
 *.bnk
