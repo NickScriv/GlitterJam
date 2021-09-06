@@ -109,4 +109,4 @@ Content/Game/Windows/SFX.bnk
 Content/Game/Windows/SFX.txt
 Content/Game/Windows/SoundbanksInfo.xml
 Content/Levels/MainLevel.umap
-Config/DefaultGame.ini
+*.bnk
