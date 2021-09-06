@@ -37,6 +37,10 @@ private:
 
 	bool isPaused = false;
 
+	FTimerHandle switchToMainMenuHandle;
+
+	void SwitchToMainMenu();
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -53,6 +57,8 @@ public:
 	void FadeOutHUD();
 
 	void EndGame();
+
+	void BadEnding();
 	
 	UFUNCTION(BlueprintCallable)
 	void TogglePause(class AMainCharacter* character);
@@ -65,4 +71,5 @@ public:
 	bool isReadingNote = false;
 
 	bool playerKilled = false;
+
 };

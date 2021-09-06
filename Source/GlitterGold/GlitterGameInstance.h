@@ -15,10 +15,13 @@ class GLITTERGOLD_API UGlitterGameInstance : public UGameInstance
 	GENERATED_BODY()
 
 protected:
-	// Called when the game starts or when spawned
 	virtual void Init() override;
+	virtual void Shutdown() override;
+	virtual void StartGameInstance() override;
 
 public:
+
+	UGlitterGameInstance(const FObjectInitializer& ObjectInitializer);
 
 	UPROPERTY(BlueprintReadWrite)
 	bool monsterKilled = false;

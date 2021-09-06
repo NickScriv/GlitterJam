@@ -26,7 +26,34 @@ private:
 	UPROPERTY(EditDefaultsOnly)
 		class UInteractionWidgetComponent* interaction;
 
+	class ULevelSequencePlayer* SequencePlayer;
+
+	class ALevelSequenceActor* SequenceActor;
+
+	UPROPERTY(EditAnywhere)
+	class ULevelSequence* SequenceGoodEnding;
+
+	UPROPERTY(EditAnywhere)
+		class AEndMonster* endMonster;
+
+	UPROPERTY()
+	class AGlitterGameModeBase* gameMode;
+
+	UPROPERTY(EditAnywhere)
+		float endMonsterSwipeTime;
+
+	FTimerHandle goodEndCutsceneHandle;
+
+	FTimerHandle badEndCutsceneHandle;
+
 	UFUNCTION()
 		void EndGame(class AMainCharacter* character);
+
+	UFUNCTION()
+		void ToMainMenu();
+
+	void TriggerGoodEnding();
+
+	void TriggerMonsterSwipe();
 
 };

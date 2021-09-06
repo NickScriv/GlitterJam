@@ -25,7 +25,7 @@ ACrowBar::ACrowBar()
 
 void ACrowBar::SwingAttack()
 {
-	UE_LOG(LogTemp, Warning, TEXT("swing crow bar"));
+	FAkAudioDevice::Get()->PostEvent("Axe_Swing", this);
 }
 
 // Called when the game starts or when spawned

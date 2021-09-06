@@ -13,7 +13,8 @@ ASafe::ASafe()
 	PrimaryActorTick.bCanEverTick = false;
 
 	mesh = CreateDefaultSubobject<USkeletalMeshComponent>("Mesh");
-	mesh->SetupAttachment(RootComponent);
+	SetRootComponent(mesh);
+	//mesh->SetupAttachment(RootComponent);
 
 }
 
@@ -51,27 +52,19 @@ void ASafe::InteractSafe(AMainCharacter* character)
 	}
 	else if (playerHasPick && locked)
 	{
-		FAkAudioDevice::Get()->PostEvent("Stop_Door_Unlocking", this);
+		FAkAudioDevice::Get()->PostEvent("Stop_Lock_Picking", this);
 		locked = false;
 		playerHasPick = false;
 		// TODO: Break lock pick
 		lockPick->onLockPickUsed.Broadcast();
 		interaction->interactionTime = 0.f;
+		interaction->OnInteract.RemoveAll(this);
+		interaction->DestroyComponent();
 	}
 
-	if (!opening && !closing)
+	if (!open)
 	{
-		if (isOpen)
-		{
-			CloseSafe();
-		}
-		else
-		{
-			OpenSafe();
-		}
-
-		isOpen = !isOpen;
-		BeginFocusSafe(nullptr);
+		OpenSafe();
 	}
 		
 }
@@ -80,14 +73,7 @@ void ASafe::BeginFocusSafe(AMainCharacter* character)
 {
 	if (!locked)
 	{
-		if (isOpen)
-		{
-			interaction->SetInteractableActionText(FText::FromString("Close"));
-		}
-		else
-		{
-			interaction->SetInteractableActionText(FText::FromString("Open"));
-		}
+		return;
 	}
 	else if (playerHasPick)
 	{
@@ -106,7 +92,7 @@ void ASafe::BeginInteractSafe(AMainCharacter* character)
 	// Start playing unlocking sound
 	if (playerHasPick && locked)
 	{
-		FAkAudioDevice::Get()->PostEvent("Play_Door_Unlocking", this);
+		FAkAudioDevice::Get()->PostEvent("Play_Lock_Picking", this);
 	}
 }
 
@@ -115,7 +101,7 @@ void ASafe::EndInteractSafe(AMainCharacter* character)
 	// Stop playing unlocking sound
 	if (playerHasPick && locked)
 	{
-		FAkAudioDevice::Get()->PostEvent("Stop_Door_Unlocking", this);
+		FAkAudioDevice::Get()->PostEvent("Stop_Lock_Picking", this);
 	}
 }
 
@@ -133,13 +119,8 @@ void ASafe::LockPickUsed()
 
 void ASafe::OpenSafe()
 {
-	opening = true;
+	open = true;
 	FAkAudioDevice::Get()->PostEventAtLocation(in_pEventOpen, GetActorLocation(), GetActorRotation(), GetWorld());
 }
 
-void ASafe::CloseSafe()
-{
-	closing = true;
-	FAkAudioDevice::Get()->PostEventAtLocation(in_pEventClose, GetActorLocation(), GetActorRotation(), GetWorld());
-}
 

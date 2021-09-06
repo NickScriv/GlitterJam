@@ -40,9 +40,7 @@ void AMainCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 	GetMesh()->AttachToComponent(cameraComponent, FAttachmentTransformRules::KeepWorldTransform);
-	UGlitterGameInstance* gameInstance = Cast<UGlitterGameInstance>(UGameplayStatics::GetGameInstance(this));
-
-	
+	gameInstance = Cast<UGlitterGameInstance>(UGameplayStatics::GetGameInstance(this));
 
 	// Make character shorter for ending
 	if (gameInstance && gameInstance->gameEnding)
@@ -53,6 +51,8 @@ void AMainCharacter::BeginPlay()
 
 		float height = capsuleColl->GetScaledCapsuleHalfHeight() * scaleHeightEnding;
 		capsuleColl->SetCapsuleHalfHeight(height);
+
+		gameInstance->monsterKilled = false;
 	}
 	
 	standCameraHeight = cameraComponent->GetRelativeLocation().Z;
@@ -80,7 +80,6 @@ void AMainCharacter::BeginPlay()
 	if (!restTimeCurveFloat)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Rest time curve not intialized!"));
-		
 	}
 
 	GetWorldTimerManager().ClearTimer(timerHandleInteract);
@@ -127,6 +126,12 @@ void AMainCharacter::Tick(float DeltaTime)
 		canSprint = true;
 	}
 
+	
+	if (idleTimer <= idleTimerThreshold)
+	{
+		idleTimer += DeltaTime;
+	}
+
 	crouchDelayCountdown += DeltaTime;
 	if (crouchDelayCountdown >= crouchDelayTimer)
 	{
@@ -150,15 +155,6 @@ void AMainCharacter::Tick(float DeltaTime)
 	{
 		stamina += staminaRegen * DeltaTime;
 		stamina = FMath::Clamp(stamina, 0.f, 100.f);
-
-		/*if(movement == EMovement::Standing)
-		{
-			GetCharacterMovement()->MaxWalkSpeed = walkSpeed;
-		}
-		else
-		{
-			GetCharacterMovement()->MaxWalkSpeed = crouchSpeed;
-		}*/
 	}
 
 	if (stamina < 1.f && movement == EMovement::Standing)
@@ -217,23 +213,25 @@ void AMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	PlayerInputComponent->BindAction("Interact", IE_Pressed, this, &AMainCharacter::BeginInteraction);
 	PlayerInputComponent->BindAction("Interact", IE_Released, this, &AMainCharacter::EndInteraction);
 
-	PlayerInputComponent->BindAction("Crouch", IE_Pressed, this, &AMainCharacter::CrouchPressed);
-	PlayerInputComponent->BindAction("Crouch", IE_Released, this, &AMainCharacter::CrouchReleased);
-
 	PlayerInputComponent->BindAction("Sprint", IE_Pressed, this, &AMainCharacter::SprintPressed);
 	PlayerInputComponent->BindAction("Sprint", IE_Released, this, &AMainCharacter::SprintReleased);
 
-	PlayerInputComponent->BindAxis("SwitchArms", this, &AMainCharacter::SwitchArms);
-
-	PlayerInputComponent->BindAction("Flashlight", IE_Pressed, this, &AMainCharacter::FlashlightToggle);
-
 	PlayerInputComponent->BindAction("Pause", IE_Pressed, this, &AMainCharacter::TogglePause).bExecuteWhenPaused = true;
+	//PlayerInputComponent->BindAction("TestNot", IE_Pressed, this, &AMainCharacter::NotTest);
+
+	
+	PlayerInputComponent->BindAction("Crouch", IE_Pressed, this, &AMainCharacter::CrouchPressed);
+	PlayerInputComponent->BindAction("Crouch", IE_Released, this, &AMainCharacter::CrouchReleased);
+
+	PlayerInputComponent->BindAction("AnyKey", IE_Pressed, this, &AMainCharacter::AnyKeyPressed);
+	PlayerInputComponent->BindAction("AnyKey", IE_Released, this, &AMainCharacter::AnyKeyPressed);
+
+	PlayerInputComponent->BindAxis("SwitchArms", this, &AMainCharacter::SwitchArms);
 
 	PlayerInputComponent->BindAction("Shoot", IE_Pressed, this, &AMainCharacter::Attack);
 
 	PlayerInputComponent->BindAction("Aim", IE_Pressed, this, &AMainCharacter::AimPressed);
 	PlayerInputComponent->BindAction("Aim", IE_Released, this, &AMainCharacter::AimReleased);
-	//PlayerInputComponent->BindAction("TestNot", IE_Pressed, this, &AMainCharacter::NotTest);
 
 }
 
@@ -261,7 +259,6 @@ void AMainCharacter::SpawnCrowBar()
 	crowBar->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, TEXT("CrowBar"));
 	crowBar->SetActorHiddenInGame(true);
 	crowBar->SetOwner(this);
-	//crowBar->GetPlayer(this);
 	items[3] = true;
 }
 
@@ -301,18 +298,9 @@ void AMainCharacter::Died(AMonster* monster)
 
 void AMainCharacter::DiedEnding(FVector lookAtLoc)
 {
-	if ((movement == EMovement::Crouching))
-	{
-		monsterOffsetLookAt = 0;
-	}
-
-	
-	FVector monsterLookAt = lookAtLoc;
-	monsterLookAt = FVector(monsterLookAt.X, monsterLookAt.Y, monsterLookAt.Z + monsterOffsetLookAt);
-	rotateDeath = UKismetMathLibrary::FindLookAtRotation(cameraComponent->GetComponentLocation(), monsterLookAt);
+	rotateDeath = UKismetMathLibrary::FindLookAtRotation(cameraComponent->GetComponentLocation(), lookAtLoc);
 	DisablePlayer();
 	died = true;
-
 }
 
 void AMainCharacter::DisablePlayer()
@@ -467,7 +455,7 @@ float AMainCharacter::GetRemainingInteractTime()
 
 void AMainCharacter::TimelineProgressCrouch(float val)
 {
-	UE_LOG(LogTemp, Warning, TEXT("crouch"));
+	//UE_LOG(LogTemp, Warning, TEXT("crouch"));
 	FVector camLoc = cameraComponent->GetRelativeLocation();
 	camLoc.Z = FMath::Lerp(standCameraHeight, crouchCameraHeight, val);
 	cameraComponent->SetRelativeLocation(camLoc);
@@ -488,7 +476,7 @@ void AMainCharacter::PlayFootStep()
 	}
 	else if(IsSprinting())
 	{
-		UAISense_Hearing::ReportNoiseEvent(this, GetActorLocation(), 0.0f, this, 0, FName("Noise"));
+		UAISense_Hearing::ReportNoiseEvent(this, GetActorLocation(), 1.0f, this, 0, FName("Noise"));
 	}
 	else
 	{
@@ -518,9 +506,6 @@ void AMainCharacter::ProcessFootStep()
 		{
 			footTime = footStepTimeWalk;
 		}
-		
-		/*GetWorldTimerManager().SetTimer(timerFootstep, this, &AMainCharacter::PlayFootStep, footTime, true);
-		playFootStep = false;*/
 
 		footTimer = footTime;
 	}
@@ -587,22 +572,27 @@ void AMainCharacter::Attack()
 			if (shotgunBulletCount > 0)
 			{
 				// shoot
+				FAkAudioDevice::Get()->PostEvent("Shotgun_Fire", this);
 				isShooting = true;
 				shotgun->Shoot();
 
-				//shotgunBulletCount--;
+				shotgunBulletCount--;
 				gameMode->AmmoUI(true, shotgunBulletCount);
 
 			}
 			else
 			{
-				// TODO: play no ammo sound
+				FAkAudioDevice::Get()->PostEvent("Shotgun_Empty", this);
 			}
 		}
 		else if (crowBar && currentHandSlot == 3 && !isSwinging)
 		{
 			isSwinging = true;
 			crowBar->SwingAttack();
+		}
+		else if (flashlight && currentHandSlot == 1)
+		{
+			flashlight->Toggle();
 		}
 	}
 	
@@ -668,6 +658,11 @@ void AMainCharacter::LookUp(float val)
 
 void AMainCharacter::CrouchPressed()
 {
+	if (gameInstance && gameInstance->gameEnding)
+	{
+		return;
+	}
+
 	isCrouchingKeyDown = true;
 
 	if (movement != EMovement::Standing || GetCharacterMovement()->IsFalling() || !canCrouch)
@@ -825,6 +820,11 @@ void AMainCharacter::SetMovement(EMovement newMovement)
 void AMainCharacter::RegainStamina()
 {
 	canSprint = true;
+}
+
+void AMainCharacter::AnyKeyPressed()
+{
+	idleTimer = 0.f;
 }
 
 //TODO: Remember to change assignment to canSwitch and isShooting and isAiming!!!

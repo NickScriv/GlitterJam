@@ -39,6 +39,7 @@ void AMainCollectible::Tick(float DeltaTime)
 void AMainCollectible::PickedUp(class AMainCharacter* character)
 {
 	// Trigger final door
+	UE_LOG(LogTemp, Error, TEXT("wow gregretgtregt4rgmpile"));
 	FAkAudioDevice::Get()->PostEvent("Pickup_Flashlight", this);
 	finalDoor->InitInteraction();
 	character->InjectSyringe();

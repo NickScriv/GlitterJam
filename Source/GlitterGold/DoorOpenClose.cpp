@@ -18,6 +18,9 @@
 #include "Door.h"
 #include "GlitterGameModeBase.h"
 #include "LockPick.h"
+#include "NavModifierVolume.h"
+#include "Kismet/GameplayStatics.h"
+#include "MonsterAIController.h"
 
 
 
@@ -100,10 +103,19 @@ void UDoorOpenClose::BeginPlay()
 		return;
 	}
 
-	/*navLinkProxyEnter->SetSmartLinkEnabled(true);
-	navLinkProxyExit->SetSmartLinkEnabled(true);*/
 	navLinkProxyEnter->OnSmartLinkReached.AddDynamic(this, &UDoorOpenClose::MonsterReachedNavLink);
 	navLinkProxyExit->OnSmartLinkReached.AddDynamic(this, &UDoorOpenClose::MonsterReachedNavLink);
+
+	if (locked)
+	{
+		navLinkProxyEnter->SetSmartLinkEnabled(false);
+		navLinkProxyExit->SetSmartLinkEnabled(false);
+	}
+	else
+	{
+		navLinkProxyEnter->SetSmartLinkEnabled(true);
+		navLinkProxyExit->SetSmartLinkEnabled(true);
+	}
 
 	initialYaw = this->GetRelativeRotation().Yaw;
 	currentYaw = initialYaw;
@@ -129,8 +141,12 @@ void UDoorOpenClose::TickComponent(float DeltaTime, ELevelTick TickType, FActorC
 
 		if(openTime > 0.9 && checkClosed)
 		{
-			if(monsterController)
-				monsterController->ResumeMove(FAIRequestID::CurrentRequest);
+			/*if (monsterController)
+			{
+				UE_LOG(LogTemp, Warning, TEXT("Resume move request: %i"), currentMove.GetID());
+				monsterController->ResumeMove(currentMove);
+			}*/
+				
 			UE_LOG(LogTemp, Warning, TEXT("Resume Move"));
 			checkClosed = false;
 		}
@@ -198,6 +214,11 @@ void UDoorOpenClose::InteractDoor(class AMainCharacter* character)
 		FAkAudioDevice::Get()->PostEvent("Stop_Door_Unlocking", this->GetOwner());
 		locked = false;
 		interaction->interactionTime = 0.f;
+		if (navMeshToBlock && navMeshToBlock->Tags.Num() > 0)
+		{
+			UnlockNavMesh();
+		}
+		
 	}
 	else if (playerHasLockPick && locked)
 	{
@@ -206,6 +227,11 @@ void UDoorOpenClose::InteractDoor(class AMainCharacter* character)
 		interaction->interactionTime = 0.f;
 		// TODO: Break lock pick
 		lockPick->onLockPickUsed.Broadcast();
+
+		if (navMeshToBlock && navMeshToBlock->Tags.Num() > 0)
+		{
+			UnlockNavMesh();
+		}
 	}
 	
 	if (openTime >= 1)
@@ -269,7 +295,6 @@ void UDoorOpenClose::EndInteractDoor(AMainCharacter* character)
 
 void UDoorOpenClose::MonsterReachedNavLink(AActor* MovingActor, const FVector& DestinationPoint)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Something enetered Nav link!!!!!!!!!!!!!"));
 	AMonster* monster = Cast<AMonster>(MovingActor);
 	if(monster)
 	{
@@ -278,8 +303,12 @@ void UDoorOpenClose::MonsterReachedNavLink(AActor* MovingActor, const FVector& D
 		
 		if(!locked && openTime >= 1)
 		{
-			monsterController = Cast<AAIController>(monster->GetController());
-			monsterController->PauseMove(FAIRequestID::CurrentRequest);
+			if(!monsterController)
+				monsterController = Cast<AMonsterAIController>(monster->GetController());
+
+			//currentMove = monsterController->GetCurrentMoveRequestID();
+			//UE_LOG(LogTemp, Warning, TEXT("Pause move request: %i"), currentMove.GetID());
+			//monsterController->PauseMove(currentMove);
 			
 			if (!open)
 				checkClosed = true;
@@ -288,6 +317,12 @@ void UDoorOpenClose::MonsterReachedNavLink(AActor* MovingActor, const FVector& D
 		}
 			
 	}
+}
+
+void UDoorOpenClose::UnlockNavMesh()
+{
+	navLinkProxyEnter->SetSmartLinkEnabled(true);
+	navLinkProxyExit->SetSmartLinkEnabled(true);
 }
 
 void UDoorOpenClose::PlayerPickedUpKey()

@@ -1,6 +1,6 @@
 {
 	"FileVersion": 3,
-	"EngineAssociation": "{C79F2716-CE44-A342-9550-239F5FF4016A}",
+	"EngineAssociation": "{F575B1ED-4ACE-5E72-B40C-3FAA58CA3B57}",
 	"Category": "",
 	"Description": "",
 	"Modules": [
@@ -26,6 +26,10 @@
 		{
 			"Name": "ApexDestruction",
 			"Enabled": true
+		},
+		{
+			"Name": "ChaosEditor",
+			"Enabled": false
 		}
 	],
 	"TargetPlatforms": [

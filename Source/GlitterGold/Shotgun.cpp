@@ -18,7 +18,8 @@ AShotgun::AShotgun()
 	PrimaryActorTick.bCanEverTick = false;
 
 	mesh = CreateDefaultSubobject<USkeletalMeshComponent>("Shotgun Mesh");
-	mesh->SetupAttachment(RootComponent);
+	SetRootComponent(mesh);
+	//mesh->SetupAttachment(RootComponent);
 
 }
 

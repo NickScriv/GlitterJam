@@ -16,7 +16,6 @@ AFinalDoor::AFinalDoor()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
 	
-
 }
 
 // Called when the game starts or when spawned
@@ -36,8 +35,6 @@ void AFinalDoor::BeginPlay()
 
 void AFinalDoor::TriggerEnd(AMainCharacter* character)
 {
-	//UGameplayStatics::SetGamePaused(this, true);
-
 	character->DisablePlayer();
 
 	AGlitterGameModeBase* gameMode = Cast<AGlitterGameModeBase>(UGameplayStatics::GetGameMode(this));
