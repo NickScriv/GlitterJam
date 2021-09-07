@@ -68,7 +68,7 @@ public:
 	float idleTimer = 0.f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-		float idleTimerThreshold;
+	float idleTimerThreshold;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Movement")
 	float stamina = 100.f;

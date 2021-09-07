@@ -132,6 +132,8 @@ void AMainCharacter::Tick(float DeltaTime)
 		idleTimer += DeltaTime;
 	}
 
+	UE_LOG(LogTemp, Warning, TEXT("Idle timer: %f"), idleTimer);
+
 	crouchDelayCountdown += DeltaTime;
 	if (crouchDelayCountdown >= crouchDelayTimer)
 	{
@@ -223,8 +225,8 @@ void AMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	PlayerInputComponent->BindAction("Crouch", IE_Pressed, this, &AMainCharacter::CrouchPressed);
 	PlayerInputComponent->BindAction("Crouch", IE_Released, this, &AMainCharacter::CrouchReleased);
 
-	PlayerInputComponent->BindAction("AnyKey", IE_Pressed, this, &AMainCharacter::AnyKeyPressed);
-	PlayerInputComponent->BindAction("AnyKey", IE_Released, this, &AMainCharacter::AnyKeyPressed);
+	PlayerInputComponent->BindAction("AnyKeyPressed", IE_Pressed, this, &AMainCharacter::AnyKeyPressed);
+	PlayerInputComponent->BindAction("AnyKeyReleased", IE_Released, this, &AMainCharacter::AnyKeyPressed);
 
 	PlayerInputComponent->BindAxis("SwitchArms", this, &AMainCharacter::SwitchArms);
 

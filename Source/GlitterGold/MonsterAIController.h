@@ -26,6 +26,7 @@ public:
 	UFUNCTION(BlueprintImplementableEvent, Category = "AICBase")
 	void AISightPerceptionViewPoint(FVector& OutLocation, FRotator& OutRotation) const;
 
+	UFUNCTION(BlueprintCallable)
 	void StartMonsterBehavior();
 
 private:
