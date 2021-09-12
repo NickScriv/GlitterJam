@@ -1,62 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="12" SoundbankVersion="140">
 	<RootPaths>
-		<ProjectRoot>/Users/zachcarter/Library/Application Support/Wwise2019/Bottles/Wwise2019x64/dosdevices/z:/Volumes/External Hard Drive 2 TB/Game Development (External)/Wwise/Test 2 2/</ProjectRoot>
-		<SourceFilesRoot>/Users/zachcarter/Library/Application Support/Wwise2019/Bottles/Wwise2019x64/dosdevices/z:/Volumes/External Hard Drive 2 TB/Game Development (External)/Wwise/Test 2 2/.cache/Windows/</SourceFilesRoot>
-		<SoundBanksRoot>/Users/zachcarter/Library/Application Support/Wwise2019/Bottles/Wwise2019x64/dosdevices/y:/Game Development/Repositories/GlitterJam/Content/WwiseAudio/Windows/</SoundBanksRoot>
+		<ProjectRoot>E:\WwiseGlitter\</ProjectRoot>
+		<SourceFilesRoot>E:\WwiseGlitter\.cache\Windows\</SourceFilesRoot>
+		<SoundBanksRoot>E:\Glitter 4.26 - 2 4.26\Content\WwiseAudio\Windows\</SoundBanksRoot>
 		<ExternalSourcesInputFile></ExternalSourcesInputFile>
-		<ExternalSourcesOutputRoot>/Users/zachcarter/Library/Application Support/Wwise2019/Bottles/Wwise2019x64/dosdevices/z:/Volumes/External Hard Drive 2 TB/Game Development (External)/Wwise/Test 2 2/GeneratedSoundBanks/Windows</ExternalSourcesOutputRoot>
+		<ExternalSourcesOutputRoot>E:\WwiseGlitter\GeneratedSoundBanks\Windows</ExternalSourcesOutputRoot>
 	</RootPaths>
 	<DialogueEvents/>
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="393239870" Language="SFX" Hash="1179456990">
+		<SoundBank Id="393239870" Language="SFX" Hash="874664872">
 			<ObjectPath>\SoundBanks\Default Work Unit\SFX</ObjectPath>
 			<ShortName>SFX</ShortName>
 			<Path>SFX.bnk</Path>
 			<IncludedEvents>
-				<Event Id="3113414775" Name="Death_Enemy_Sounds" ObjectPath="\Events\Default Work Unit\SFX Events\Enemy\Death_Enemy_Sounds">
+				<Event Id="165552056" Name="Axe_Hit_Enemy" ObjectPath="\Events\Default Work Unit\SFX Events\Axe\Axe Hit Surfaces\Axe_Hit_Enemy">
 					<IncludedMemoryFiles>
-						<File Id="876824865" Language="SFX">
-							<ShortName>Player_Death.wav</ShortName>
-							<Path>SFX/Player_Death_10C4C929.wem</Path>
+						<File Id="300665773" Language="SFX">
+							<ShortName>Axe_Hit_Enemy_1.wav</ShortName>
+							<Path>SFX\Axe_Hit_Enemy_1_10C4C929.wem</Path>
+						</File>
+						<File Id="902517300" Language="SFX">
+							<ShortName>Axe_Hit_Enemy_2.wav</ShortName>
+							<Path>SFX\Axe_Hit_Enemy_2_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3159422259" Name="Axe_Hit_Generic_Object" ObjectPath="\Events\Default Work Unit\SFX Events\Axe\Axe Hit Surfaces\Axe_Hit_Generic_Object">
+					<IncludedMemoryFiles>
+						<File Id="207501120" Language="SFX">
+							<ShortName>Axe_Hit_GenericObject_2.wav</ShortName>
+							<Path>SFX\Axe_Hit_GenericObject_2_10C4C929.wem</Path>
+						</File>
+						<File Id="445865022" Language="SFX">
+							<ShortName>Axe_Hit_GenericObject_1.wav</ShortName>
+							<Path>SFX\Axe_Hit_GenericObject_1_10C4C929.wem</Path>
+						</File>
+						<File Id="917783047" Language="SFX">
+							<ShortName>Axe_Hit_GenericObject_3.wav</ShortName>
+							<Path>SFX\Axe_Hit_GenericObject_3_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="979945107" Name="Axe_Hit_Wood" ObjectPath="\Events\Default Work Unit\SFX Events\Axe\Axe Hit Surfaces\Axe_Hit_Wood">
+					<IncludedMemoryFiles>
+						<File Id="48423694" Language="SFX">
+							<ShortName>Axe_Hit_Wood_2.wav</ShortName>
+							<Path>SFX\Axe_Hit_Wood_2_10C4C929.wem</Path>
+						</File>
+						<File Id="105415055" Language="SFX">
+							<ShortName>Axe_Hit_Wood_1.wav</ShortName>
+							<Path>SFX\Axe_Hit_Wood_1_10C4C929.wem</Path>
+						</File>
+						<File Id="175253081" Language="SFX">
+							<ShortName>Wood_Chunks_2.wav</ShortName>
+							<Path>SFX\Wood_Chunks_2_10C4C929.wem</Path>
+						</File>
+						<File Id="430473415" Language="SFX">
+							<ShortName>Axe_Hit_Wood_3.wav</ShortName>
+							<Path>SFX\Axe_Hit_Wood_3_10C4C929.wem</Path>
+						</File>
+						<File Id="461182363" Language="SFX">
+							<ShortName>Wood_Falling_1.wav</ShortName>
+							<Path>SFX\Wood_Falling_1_10C4C929.wem</Path>
+						</File>
+						<File Id="468295359" Language="SFX">
+							<ShortName>Wood_Chunks_1.wav</ShortName>
+							<Path>SFX\Wood_Chunks_1_10C4C929.wem</Path>
+						</File>
+						<File Id="802572544" Language="SFX">
+							<ShortName>Wood_Falling_2.wav</ShortName>
+							<Path>SFX\Wood_Falling_2_10C4C929.wem</Path>
+						</File>
+						<File Id="902705961" Language="SFX">
+							<ShortName>Wood_Chunks_3.wav</ShortName>
+							<Path>SFX\Wood_Chunks_3_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3402736964" Name="Axe_Swing" ObjectPath="\Events\Default Work Unit\SFX Events\Axe\Axe_Swing">
+					<IncludedMemoryFiles>
+						<File Id="340838024" Language="SFX">
+							<ShortName>Axe_Swing.wav</ShortName>
+							<Path>SFX\Axe_Swing_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3113414775" Name="Death_Enemy_Sounds" ObjectPath="\Events\Default Work Unit\SFX Events\Enemy\Death_Enemy_Sounds"/>
+				<Event Id="1550503061" Name="Death_Music" ObjectPath="\Events\Default Work Unit\Music Events\Death_Music">
+					<ActionSetState>
+						<ActionSetStateEntry Id="779278001" Name="Death" ObjectPath="\States\Default Work Unit\Music States\Music_Sections\Death"/>
+					</ActionSetState>
 				</Event>
 				<Event Id="128625444" Name="Door_Close" ObjectPath="\Events\Default Work Unit\SFX Events\Doors\Door_Close">
 					<IncludedMemoryFiles>
 						<File Id="178903615" Language="SFX">
 							<ShortName>High_Door_Open_1.wav</ShortName>
-							<Path>SFX/High_Door_Open_1_EE57C8E1.wem</Path>
+							<Path>SFX\High_Door_Open_1_EE57C8E1.wem</Path>
 						</File>
 						<File Id="483375584" Language="SFX">
 							<ShortName>Door_Close_2.wav</ShortName>
-							<Path>SFX/Door_Close_2_B8454FB9.wem</Path>
+							<Path>SFX\Door_Close_2_B8454FB9.wem</Path>
 						</File>
 						<File Id="585635104" Language="SFX">
 							<ShortName>High_Door_Open_2.wav</ShortName>
-							<Path>SFX/High_Door_Open_2_6742F08F.wem</Path>
+							<Path>SFX\High_Door_Open_2_6742F08F.wem</Path>
 						</File>
 						<File Id="711518939" Language="SFX">
 							<ShortName>Low_Door_Open_1.wav</ShortName>
-							<Path>SFX/Low_Door_Open_1_6742F08F.wem</Path>
+							<Path>SFX\Low_Door_Open_1_6742F08F.wem</Path>
 						</File>
 						<File Id="733641677" Language="SFX">
 							<ShortName>Low_Door_Open_3.wav</ShortName>
-							<Path>SFX/Low_Door_Open_3_6742F08F.wem</Path>
+							<Path>SFX\Low_Door_Open_3_6742F08F.wem</Path>
 						</File>
 						<File Id="934296180" Language="SFX">
 							<ShortName>Low_Door_Open_2.wav</ShortName>
-							<Path>SFX/Low_Door_Open_2_D5812706.wem</Path>
+							<Path>SFX\Low_Door_Open_2_D5812706.wem</Path>
 						</File>
 						<File Id="973861806" Language="SFX">
 							<ShortName>Door_Close_1.wav</ShortName>
-							<Path>SFX/Door_Close_1_8A14D8D0.wem</Path>
+							<Path>SFX\Door_Close_1_8A14D8D0.wem</Path>
 						</File>
 						<File Id="1023230645" Language="SFX">
 							<ShortName>High_Door_Open_3.wav</ShortName>
-							<Path>SFX/High_Door_Open_3_1ECCD5CF.wem</Path>
+							<Path>SFX\High_Door_Open_3_1ECCD5CF.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -64,27 +134,27 @@
 					<IncludedMemoryFiles>
 						<File Id="204190487" Language="SFX">
 							<ShortName>Low_Door_Open_1.wav</ShortName>
-							<Path>SFX/Low_Door_Open_1_9D1584DB.wem</Path>
+							<Path>SFX\Low_Door_Open_1_9D1584DB.wem</Path>
 						</File>
 						<File Id="520793624" Language="SFX">
 							<ShortName>High_Door_Open_3.wav</ShortName>
-							<Path>SFX/High_Door_Open_3_F340491B.wem</Path>
+							<Path>SFX\High_Door_Open_3_F340491B.wem</Path>
 						</File>
 						<File Id="572467715" Language="SFX">
 							<ShortName>High_Door_Open_1.wav</ShortName>
-							<Path>SFX/High_Door_Open_1_6934C515.wem</Path>
+							<Path>SFX\High_Door_Open_1_6934C515.wem</Path>
 						</File>
 						<File Id="586082498" Language="SFX">
 							<ShortName>Low_Door_Open_3.wav</ShortName>
-							<Path>SFX/Low_Door_Open_3_9D1584DB.wem</Path>
+							<Path>SFX\Low_Door_Open_3_9D1584DB.wem</Path>
 						</File>
 						<File Id="634015941" Language="SFX">
 							<ShortName>High_Door_Open_2.wav</ShortName>
-							<Path>SFX/High_Door_Open_2_9D1584DB.wem</Path>
+							<Path>SFX\High_Door_Open_2_9D1584DB.wem</Path>
 						</File>
 						<File Id="720861378" Language="SFX">
 							<ShortName>Low_Door_Open_2.wav</ShortName>
-							<Path>SFX/Low_Door_Open_2_B43AA1EA.wem</Path>
+							<Path>SFX\Low_Door_Open_2_B43AA1EA.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 					<AuxBusSends>
@@ -95,7 +165,7 @@
 					<IncludedMemoryFiles>
 						<File Id="945434381" Language="SFX">
 							<ShortName>Drawer_Close.wav</ShortName>
-							<Path>SFX/Drawer_Close_10C4C929.wem</Path>
+							<Path>SFX\Drawer_Close_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -103,7 +173,7 @@
 					<IncludedMemoryFiles>
 						<File Id="221115452" Language="SFX">
 							<ShortName>Drawer_Open.wav</ShortName>
-							<Path>SFX/Drawer_Open_10C4C929.wem</Path>
+							<Path>SFX\Drawer_Open_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -111,7 +181,7 @@
 					<IncludedMemoryFiles>
 						<File Id="787668238" Language="SFX">
 							<ShortName>Flashlight_Off.wav</ShortName>
-							<Path>SFX/Flashlight_Off_10C4C929.wem</Path>
+							<Path>SFX\Flashlight_Off_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -119,7 +189,23 @@
 					<IncludedMemoryFiles>
 						<File Id="285136759" Language="SFX">
 							<ShortName>Flashlight_On.wav</ShortName>
-							<Path>SFX/Flashlight_On_10C4C929.wem</Path>
+							<Path>SFX\Flashlight_On_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3990381908" Name="Good_Ending_SFX" ObjectPath="\Events\Default Work Unit\SFX Events\Endings\Good_Ending_SFX">
+					<IncludedMemoryFiles>
+						<File Id="648246599" Language="SFX">
+							<ShortName>Good_Ending_SFX.wav</ShortName>
+							<Path>SFX\Good_Ending_SFX_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1675835462" Name="Inject_Cure" ObjectPath="\Events\Default Work Unit\SFX Events\Cure\Inject_Cure">
+					<IncludedMemoryFiles>
+						<File Id="637253143" Language="SFX">
+							<ShortName>Cure_Injection.wav</ShortName>
+							<Path>SFX\Cure_Injection_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -127,11 +213,19 @@
 					<IncludedMemoryFiles>
 						<File Id="301772476" Language="SFX">
 							<ShortName>Key_Acquired_1.wav</ShortName>
-							<Path>SFX/Key_Acquired_1_10C4C929.wem</Path>
+							<Path>SFX\Key_Acquired_1_10C4C929.wem</Path>
 						</File>
 						<File Id="779639373" Language="SFX">
 							<ShortName>Key_Acquired_2.wav</ShortName>
-							<Path>SFX/Key_Acquired_2_10C4C929.wem</Path>
+							<Path>SFX\Key_Acquired_2_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="371036424" Name="Lock_Pick_Break" ObjectPath="\Events\Default Work Unit\SFX Events\Lock Pick\Lock_Pick_Break">
+					<IncludedMemoryFiles>
+						<File Id="443052389" Language="SFX">
+							<ShortName>Lock_Pick_Break.wav</ShortName>
+							<Path>SFX\Lock_Pick_Break_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -139,15 +233,15 @@
 					<IncludedMemoryFiles>
 						<File Id="427063800" Language="SFX">
 							<ShortName>Locked_Door_2.wav</ShortName>
-							<Path>SFX/Locked_Door_2_10C4C929.wem</Path>
+							<Path>SFX\Locked_Door_2_10C4C929.wem</Path>
 						</File>
 						<File Id="432927829" Language="SFX">
 							<ShortName>Locked_Door_1.wav</ShortName>
-							<Path>SFX/Locked_Door_1_10C4C929.wem</Path>
+							<Path>SFX\Locked_Door_1_10C4C929.wem</Path>
 						</File>
 						<File Id="761994595" Language="SFX">
 							<ShortName>Locked_Door_3.wav</ShortName>
-							<Path>SFX/Locked_Door_3_10C4C929.wem</Path>
+							<Path>SFX\Locked_Door_3_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -155,11 +249,11 @@
 					<IncludedMemoryFiles>
 						<File Id="411798552" Language="SFX">
 							<ShortName>Pickup_Note_1.wav</ShortName>
-							<Path>SFX/Pickup_Note_1_10C4C929.wem</Path>
+							<Path>SFX\Pickup_Note_1_10C4C929.wem</Path>
 						</File>
 						<File Id="897181935" Language="SFX">
 							<ShortName>Pickup_Note_2.wav</ShortName>
-							<Path>SFX/Pickup_Note_2_10C4C929.wem</Path>
+							<Path>SFX\Pickup_Note_2_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -167,15 +261,7 @@
 					<IncludedMemoryFiles>
 						<File Id="117001669" Language="SFX">
 							<ShortName>Pickup_Flashlight.wav</ShortName>
-							<Path>SFX/Pickup_Flashlight_10C4C929.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="278617630" Name="Play_Ambience" ObjectPath="\Events\Default Work Unit\SFX Events\Ambience\Play_Ambience">
-					<IncludedMemoryFiles>
-						<File Id="616222312" Language="SFX">
-							<ShortName>Wind_Ambience.wav</ShortName>
-							<Path>SFX/Wind_Ambience_C3AC051A.wem</Path>
+							<Path>SFX\Pickup_Flashlight_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -193,7 +279,7 @@
 					<IncludedMemoryFiles>
 						<File Id="486627016" Language="SFX">
 							<ShortName>Door_Lock_Opening_1.wav</ShortName>
-							<Path>SFX/Door_Lock_Opening_1_10C4C929.wem</Path>
+							<Path>SFX\Door_Lock_Opening_1_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -201,67 +287,67 @@
 					<IncludedMemoryFiles>
 						<File Id="68107130" Language="SFX">
 							<ShortName>Caution_var_1.wav</ShortName>
-							<Path>SFX/Caution_var_1_10C4C929.wem</Path>
+							<Path>SFX\Caution_var_1_10C4C929.wem</Path>
 						</File>
 						<File Id="144836465" Language="SFX">
 							<ShortName>Passive_Loop.wav</ShortName>
-							<Path>SFX/Passive_Loop_D79FB2B7.wem</Path>
+							<Path>SFX\Passive_Loop_D79FB2B7.wem</Path>
 						</File>
 						<File Id="255009511" Language="SFX">
 							<ShortName>Chase_var_4.wav</ShortName>
-							<Path>SFX/Chase_var_4_10C4C929.wem</Path>
+							<Path>SFX\Chase_var_4_10C4C929.wem</Path>
 						</File>
 						<File Id="287037463" Language="SFX">
 							<ShortName>Caution_var_6.wav</ShortName>
-							<Path>SFX/Caution_var_6_10C4C929.wem</Path>
+							<Path>SFX\Caution_var_6_10C4C929.wem</Path>
 						</File>
 						<File Id="446270413" Language="SFX">
 							<ShortName>Caution_var_5.wav</ShortName>
-							<Path>SFX/Caution_var_5_10C4C929.wem</Path>
+							<Path>SFX\Caution_var_5_10C4C929.wem</Path>
 						</File>
 						<File Id="473463524" Language="SFX">
 							<ShortName>Caution_var_8.wav</ShortName>
-							<Path>SFX/Caution_var_8_10C4C929.wem</Path>
+							<Path>SFX\Caution_var_8_10C4C929.wem</Path>
 						</File>
 						<File Id="526855242" Language="SFX">
 							<ShortName>Caution_var_3.wav</ShortName>
-							<Path>SFX/Caution_var_3_10C4C929.wem</Path>
+							<Path>SFX\Caution_var_3_10C4C929.wem</Path>
 						</File>
 						<File Id="662933913" Language="SFX">
 							<ShortName>Caution_var_9.wav</ShortName>
-							<Path>SFX/Caution_var_9_10C4C929.wem</Path>
+							<Path>SFX\Caution_var_9_10C4C929.wem</Path>
 						</File>
 						<File Id="715753533" Language="SFX">
 							<ShortName>Caution_var_2.wav</ShortName>
-							<Path>SFX/Caution_var_2_10C4C929.wem</Path>
+							<Path>SFX\Caution_var_2_10C4C929.wem</Path>
 						</File>
 						<File Id="805418482" Language="SFX">
 							<ShortName>Chase_var_1.wav</ShortName>
-							<Path>SFX/Chase_var_1_10C4C929.wem</Path>
+							<Path>SFX\Chase_var_1_10C4C929.wem</Path>
 						</File>
 						<File Id="809688070" Language="SFX">
 							<ShortName>Caution_var_4.wav</ShortName>
-							<Path>SFX/Caution_var_4_10C4C929.wem</Path>
+							<Path>SFX\Caution_var_4_10C4C929.wem</Path>
 						</File>
 						<File Id="832019294" Language="SFX">
 							<ShortName>Chase_var_2.wav</ShortName>
-							<Path>SFX/Chase_var_2_10C4C929.wem</Path>
+							<Path>SFX\Chase_var_2_10C4C929.wem</Path>
 						</File>
 						<File Id="915312894" Language="SFX">
 							<ShortName>Caution_var_7.wav</ShortName>
-							<Path>SFX/Caution_var_7_10C4C929.wem</Path>
+							<Path>SFX\Caution_var_7_10C4C929.wem</Path>
 						</File>
 						<File Id="915953283" Language="SFX">
 							<ShortName>Chase_var_6.wav</ShortName>
-							<Path>SFX/Chase_var_6_10C4C929.wem</Path>
+							<Path>SFX\Chase_var_6_10C4C929.wem</Path>
 						</File>
 						<File Id="920230060" Language="SFX">
 							<ShortName>Chase_var_5.wav</ShortName>
-							<Path>SFX/Chase_var_5_10C4C929.wem</Path>
+							<Path>SFX\Chase_var_5_10C4C929.wem</Path>
 						</File>
 						<File Id="1046225091" Language="SFX">
 							<ShortName>Chase_var_3.wav</ShortName>
-							<Path>SFX/Chase_var_3_10C4C929.wem</Path>
+							<Path>SFX\Chase_var_3_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -269,31 +355,31 @@
 					<IncludedMemoryFiles>
 						<File Id="255009511" Language="SFX">
 							<ShortName>Chase_var_4.wav</ShortName>
-							<Path>SFX/Chase_var_4_10C4C929.wem</Path>
+							<Path>SFX\Chase_var_4_10C4C929.wem</Path>
 						</File>
 						<File Id="805418482" Language="SFX">
 							<ShortName>Chase_var_1.wav</ShortName>
-							<Path>SFX/Chase_var_1_10C4C929.wem</Path>
+							<Path>SFX\Chase_var_1_10C4C929.wem</Path>
 						</File>
 						<File Id="832019294" Language="SFX">
 							<ShortName>Chase_var_2.wav</ShortName>
-							<Path>SFX/Chase_var_2_10C4C929.wem</Path>
+							<Path>SFX\Chase_var_2_10C4C929.wem</Path>
 						</File>
 						<File Id="915953283" Language="SFX">
 							<ShortName>Chase_var_6.wav</ShortName>
-							<Path>SFX/Chase_var_6_10C4C929.wem</Path>
+							<Path>SFX\Chase_var_6_10C4C929.wem</Path>
 						</File>
 						<File Id="920230060" Language="SFX">
 							<ShortName>Chase_var_5.wav</ShortName>
-							<Path>SFX/Chase_var_5_10C4C929.wem</Path>
+							<Path>SFX\Chase_var_5_10C4C929.wem</Path>
 						</File>
 						<File Id="945844893" Language="SFX">
 							<ShortName>Chase_Loop.wav</ShortName>
-							<Path>SFX/Chase_Loop_C5579977.wem</Path>
+							<Path>SFX\Chase_Loop_C5579977.wem</Path>
 						</File>
 						<File Id="1046225091" Language="SFX">
 							<ShortName>Chase_var_3.wav</ShortName>
-							<Path>SFX/Chase_var_3_10C4C929.wem</Path>
+							<Path>SFX\Chase_var_3_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -301,59 +387,59 @@
 					<IncludedMemoryFiles>
 						<File Id="2812397" Language="SFX">
 							<ShortName>Enemy_fs_tile_2.wav</ShortName>
-							<Path>SFX/Enemy_fs_tile_2_10C4C929.wem</Path>
+							<Path>SFX\Enemy_fs_tile_2_10C4C929.wem</Path>
 						</File>
 						<File Id="165245018" Language="SFX">
 							<ShortName>Enemy_fs_wood_1.wav</ShortName>
-							<Path>SFX/Enemy_fs_wood_1_10C4C929.wem</Path>
+							<Path>SFX\Enemy_fs_wood_1_10C4C929.wem</Path>
 						</File>
 						<File Id="203799597" Language="SFX">
 							<ShortName>Enemy_fs_tile_7.wav</ShortName>
-							<Path>SFX/Enemy_fs_tile_7_10C4C929.wem</Path>
+							<Path>SFX\Enemy_fs_tile_7_10C4C929.wem</Path>
 						</File>
 						<File Id="267050312" Language="SFX">
 							<ShortName>Enemy_fs_tile_1.wav</ShortName>
-							<Path>SFX/Enemy_fs_tile_1_10C4C929.wem</Path>
+							<Path>SFX\Enemy_fs_tile_1_10C4C929.wem</Path>
 						</File>
 						<File Id="295821180" Language="SFX">
 							<ShortName>Enemy_fs_wood_2.wav</ShortName>
-							<Path>SFX/Enemy_fs_wood_2_10C4C929.wem</Path>
+							<Path>SFX\Enemy_fs_wood_2_10C4C929.wem</Path>
 						</File>
 						<File Id="349922209" Language="SFX">
 							<ShortName>Enemy_fs_wood_3.wav</ShortName>
-							<Path>SFX/Enemy_fs_wood_3_10C4C929.wem</Path>
+							<Path>SFX\Enemy_fs_wood_3_10C4C929.wem</Path>
 						</File>
 						<File Id="361019455" Language="SFX">
 							<ShortName>Enemy_fs_tile_5.wav</ShortName>
-							<Path>SFX/Enemy_fs_tile_5_10C4C929.wem</Path>
+							<Path>SFX\Enemy_fs_tile_5_10C4C929.wem</Path>
 						</File>
 						<File Id="527141422" Language="SFX">
 							<ShortName>Enemy_fs_wood_5.wav</ShortName>
-							<Path>SFX/Enemy_fs_wood_5_10C4C929.wem</Path>
+							<Path>SFX\Enemy_fs_wood_5_10C4C929.wem</Path>
 						</File>
 						<File Id="554635539" Language="SFX">
 							<ShortName>Enemy_fs_wood_6.wav</ShortName>
-							<Path>SFX/Enemy_fs_wood_6_10C4C929.wem</Path>
+							<Path>SFX\Enemy_fs_wood_6_10C4C929.wem</Path>
 						</File>
 						<File Id="611208096" Language="SFX">
 							<ShortName>Enemy_fs_tile_3.wav</ShortName>
-							<Path>SFX/Enemy_fs_tile_3_10C4C929.wem</Path>
+							<Path>SFX\Enemy_fs_tile_3_10C4C929.wem</Path>
 						</File>
 						<File Id="651469099" Language="SFX">
 							<ShortName>Enemy_fs_tile_4.wav</ShortName>
-							<Path>SFX/Enemy_fs_tile_4_10C4C929.wem</Path>
+							<Path>SFX\Enemy_fs_tile_4_10C4C929.wem</Path>
 						</File>
 						<File Id="666960095" Language="SFX">
 							<ShortName>Enemy_fs_tile_6.wav</ShortName>
-							<Path>SFX/Enemy_fs_tile_6_10C4C929.wem</Path>
+							<Path>SFX\Enemy_fs_tile_6_10C4C929.wem</Path>
 						</File>
 						<File Id="727497738" Language="SFX">
 							<ShortName>Enemy_fs_wood_7.wav</ShortName>
-							<Path>SFX/Enemy_fs_wood_7_10C4C929.wem</Path>
+							<Path>SFX\Enemy_fs_wood_7_10C4C929.wem</Path>
 						</File>
 						<File Id="822052185" Language="SFX">
 							<ShortName>Enemy_fs_wood_4.wav</ShortName>
-							<Path>SFX/Enemy_fs_wood_4_10C4C929.wem</Path>
+							<Path>SFX\Enemy_fs_wood_4_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 					<DefaultSwitchValue>{9D8E2D44-9D7C-4493-8CE0-ECCB0A375775}</DefaultSwitchValue>
@@ -386,31 +472,31 @@
 					<IncludedMemoryFiles>
 						<File Id="52955700" Language="SFX">
 							<ShortName>Passive_var_3.wav</ShortName>
-							<Path>SFX/Passive_var_3_10C4C929.wem</Path>
+							<Path>SFX\Passive_var_3_10C4C929.wem</Path>
 						</File>
 						<File Id="116808690" Language="SFX">
 							<ShortName>Passive_var_4.wav</ShortName>
-							<Path>SFX/Passive_var_4_10C4C929.wem</Path>
+							<Path>SFX\Passive_var_4_10C4C929.wem</Path>
 						</File>
 						<File Id="144836465" Language="SFX">
 							<ShortName>Passive_Loop.wav</ShortName>
-							<Path>SFX/Passive_Loop_D79FB2B7.wem</Path>
+							<Path>SFX\Passive_Loop_D79FB2B7.wem</Path>
 						</File>
 						<File Id="362204658" Language="SFX">
 							<ShortName>Passive_var_6.wav</ShortName>
-							<Path>SFX/Passive_var_6_10C4C929.wem</Path>
+							<Path>SFX\Passive_var_6_10C4C929.wem</Path>
 						</File>
 						<File Id="385170959" Language="SFX">
 							<ShortName>Passive_var_5.wav</ShortName>
-							<Path>SFX/Passive_var_5_10C4C929.wem</Path>
+							<Path>SFX\Passive_var_5_10C4C929.wem</Path>
 						</File>
 						<File Id="614518866" Language="SFX">
 							<ShortName>Passive_var_2.wav</ShortName>
-							<Path>SFX/Passive_var_2_10C4C929.wem</Path>
+							<Path>SFX\Passive_var_2_10C4C929.wem</Path>
 						</File>
 						<File Id="942136021" Language="SFX">
 							<ShortName>Passive_var_1.wav</ShortName>
-							<Path>SFX/Passive_var_1_10C4C929.wem</Path>
+							<Path>SFX\Passive_var_1_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -418,123 +504,123 @@
 					<IncludedMemoryFiles>
 						<File Id="7759912" Language="SFX">
 							<ShortName>tile_fs_run_4.wav</ShortName>
-							<Path>SFX/tile_fs_run_4_10C4C929.wem</Path>
+							<Path>SFX\tile_fs_run_4_10C4C929.wem</Path>
 						</File>
 						<File Id="55846913" Language="SFX">
 							<ShortName>wood_fs_run_5.wav</ShortName>
-							<Path>SFX/wood_fs_run_5_10C4C929.wem</Path>
+							<Path>SFX\wood_fs_run_5_10C4C929.wem</Path>
 						</File>
 						<File Id="82711494" Language="SFX">
 							<ShortName>tile_fs_run_2.wav</ShortName>
-							<Path>SFX/tile_fs_run_2_10C4C929.wem</Path>
+							<Path>SFX\tile_fs_run_2_10C4C929.wem</Path>
 						</File>
 						<File Id="127938360" Language="SFX">
 							<ShortName>tile_fs_crouch_3.wav</ShortName>
-							<Path>SFX/tile_fs_crouch_3_10C4C929.wem</Path>
+							<Path>SFX\tile_fs_crouch_3_10C4C929.wem</Path>
 						</File>
 						<File Id="163613378" Language="SFX">
 							<ShortName>wood_fs_walk_3.wav</ShortName>
-							<Path>SFX/wood_fs_walk_3_10C4C929.wem</Path>
+							<Path>SFX\wood_fs_walk_3_10C4C929.wem</Path>
 						</File>
 						<File Id="170934507" Language="SFX">
 							<ShortName>wood_fs_crouch_5.wav</ShortName>
-							<Path>SFX/wood_fs_crouch_5_10C4C929.wem</Path>
+							<Path>SFX\wood_fs_crouch_5_10C4C929.wem</Path>
 						</File>
 						<File Id="215875577" Language="SFX">
 							<ShortName>tile_fs_walk_4.wav</ShortName>
-							<Path>SFX/tile_fs_walk_4_10C4C929.wem</Path>
+							<Path>SFX\tile_fs_walk_4_10C4C929.wem</Path>
 						</File>
 						<File Id="225633521" Language="SFX">
 							<ShortName>wood_fs_walk_5.wav</ShortName>
-							<Path>SFX/wood_fs_walk_5_10C4C929.wem</Path>
+							<Path>SFX\wood_fs_walk_5_10C4C929.wem</Path>
 						</File>
 						<File Id="235128404" Language="SFX">
 							<ShortName>wood_fs_run_3.wav</ShortName>
-							<Path>SFX/wood_fs_run_3_10C4C929.wem</Path>
+							<Path>SFX\wood_fs_run_3_10C4C929.wem</Path>
 						</File>
 						<File Id="377176857" Language="SFX">
 							<ShortName>tile_fs_walk_1.wav</ShortName>
-							<Path>SFX/tile_fs_walk_1_10C4C929.wem</Path>
+							<Path>SFX\tile_fs_walk_1_10C4C929.wem</Path>
 						</File>
 						<File Id="391406086" Language="SFX">
 							<ShortName>tile_fs_run_3.wav</ShortName>
-							<Path>SFX/tile_fs_run_3_10C4C929.wem</Path>
+							<Path>SFX\tile_fs_run_3_10C4C929.wem</Path>
 						</File>
 						<File Id="479321780" Language="SFX">
 							<ShortName>tile_fs_walk_2.wav</ShortName>
-							<Path>SFX/tile_fs_walk_2_10C4C929.wem</Path>
+							<Path>SFX\tile_fs_walk_2_10C4C929.wem</Path>
 						</File>
 						<File Id="530507452" Language="SFX">
 							<ShortName>tile_fs_walk_3.wav</ShortName>
-							<Path>SFX/tile_fs_walk_3_10C4C929.wem</Path>
+							<Path>SFX\tile_fs_walk_3_10C4C929.wem</Path>
 						</File>
 						<File Id="532809091" Language="SFX">
 							<ShortName>tile_fs_crouch_2.wav</ShortName>
-							<Path>SFX/tile_fs_crouch_2_10C4C929.wem</Path>
+							<Path>SFX\tile_fs_crouch_2_10C4C929.wem</Path>
 						</File>
 						<File Id="600710901" Language="SFX">
 							<ShortName>tile_fs_run_5.wav</ShortName>
-							<Path>SFX/tile_fs_run_5_10C4C929.wem</Path>
+							<Path>SFX\tile_fs_run_5_10C4C929.wem</Path>
 						</File>
 						<File Id="682434907" Language="SFX">
 							<ShortName>wood_fs_crouch_1.wav</ShortName>
-							<Path>SFX/wood_fs_crouch_1_10C4C929.wem</Path>
+							<Path>SFX\wood_fs_crouch_1_10C4C929.wem</Path>
 						</File>
 						<File Id="716126964" Language="SFX">
 							<ShortName>wood_fs_crouch_2.wav</ShortName>
-							<Path>SFX/wood_fs_crouch_2_10C4C929.wem</Path>
+							<Path>SFX\wood_fs_crouch_2_10C4C929.wem</Path>
 						</File>
 						<File Id="766920340" Language="SFX">
 							<ShortName>wood_fs_walk_2.wav</ShortName>
-							<Path>SFX/wood_fs_walk_2_10C4C929.wem</Path>
+							<Path>SFX\wood_fs_walk_2_10C4C929.wem</Path>
 						</File>
 						<File Id="856828164" Language="SFX">
 							<ShortName>wood_fs_run_1.wav</ShortName>
-							<Path>SFX/wood_fs_run_1_10C4C929.wem</Path>
+							<Path>SFX\wood_fs_run_1_10C4C929.wem</Path>
 						</File>
 						<File Id="860164930" Language="SFX">
 							<ShortName>tile_fs_walk_5.wav</ShortName>
-							<Path>SFX/tile_fs_walk_5_10C4C929.wem</Path>
+							<Path>SFX\tile_fs_walk_5_10C4C929.wem</Path>
 						</File>
 						<File Id="862842378" Language="SFX">
 							<ShortName>tile_fs_crouch_1.wav</ShortName>
-							<Path>SFX/tile_fs_crouch_1_10C4C929.wem</Path>
+							<Path>SFX\tile_fs_crouch_1_10C4C929.wem</Path>
 						</File>
 						<File Id="903285620" Language="SFX">
 							<ShortName>tile_fs_crouch_4.wav</ShortName>
-							<Path>SFX/tile_fs_crouch_4_10C4C929.wem</Path>
+							<Path>SFX\tile_fs_crouch_4_10C4C929.wem</Path>
 						</File>
 						<File Id="920327594" Language="SFX">
 							<ShortName>wood_fs_walk_1.wav</ShortName>
-							<Path>SFX/wood_fs_walk_1_10C4C929.wem</Path>
+							<Path>SFX\wood_fs_walk_1_10C4C929.wem</Path>
 						</File>
 						<File Id="956539608" Language="SFX">
 							<ShortName>tile_fs_run_1.wav</ShortName>
-							<Path>SFX/tile_fs_run_1_10C4C929.wem</Path>
+							<Path>SFX\tile_fs_run_1_10C4C929.wem</Path>
 						</File>
 						<File Id="963852125" Language="SFX">
 							<ShortName>wood_fs_crouch_4.wav</ShortName>
-							<Path>SFX/wood_fs_crouch_4_10C4C929.wem</Path>
+							<Path>SFX\wood_fs_crouch_4_10C4C929.wem</Path>
 						</File>
 						<File Id="974208004" Language="SFX">
 							<ShortName>wood_fs_run_2.wav</ShortName>
-							<Path>SFX/wood_fs_run_2_10C4C929.wem</Path>
+							<Path>SFX\wood_fs_run_2_10C4C929.wem</Path>
 						</File>
 						<File Id="1004210125" Language="SFX">
 							<ShortName>wood_fs_walk_4.wav</ShortName>
-							<Path>SFX/wood_fs_walk_4_10C4C929.wem</Path>
+							<Path>SFX\wood_fs_walk_4_10C4C929.wem</Path>
 						</File>
 						<File Id="1014623936" Language="SFX">
 							<ShortName>tile_fs_crouch_5.wav</ShortName>
-							<Path>SFX/tile_fs_crouch_5_10C4C929.wem</Path>
+							<Path>SFX\tile_fs_crouch_5_10C4C929.wem</Path>
 						</File>
 						<File Id="1031611517" Language="SFX">
 							<ShortName>wood_fs_crouch_3.wav</ShortName>
-							<Path>SFX/wood_fs_crouch_3_10C4C929.wem</Path>
+							<Path>SFX\wood_fs_crouch_3_10C4C929.wem</Path>
 						</File>
 						<File Id="1052905808" Language="SFX">
 							<ShortName>wood_fs_run_4.wav</ShortName>
-							<Path>SFX/wood_fs_run_4_10C4C929.wem</Path>
+							<Path>SFX\wood_fs_run_4_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 					<DefaultSwitchValue>{5F9D8FC5-52B7-4029-93C8-4EDB4FABA209}</DefaultSwitchValue>
@@ -610,11 +696,12 @@
 						</SwitchContainer>
 					</SwitchContainers>
 				</Event>
+				<Event Id="1060106358" Name="Play_Indoor_Ambience" ObjectPath="\Events\Default Work Unit\SFX Events\Ambience\Indoor Ambience\Play_Indoor_Ambience"/>
 				<Event Id="1225062921" Name="Play_Lights_Power_Off" ObjectPath="\Events\Default Work Unit\SFX Events\Lights\Play_Lights_Power_Off">
 					<IncludedMemoryFiles>
 						<File Id="145789768" Language="SFX">
 							<ShortName>Lights_Power_Off_Test1.wav</ShortName>
-							<Path>SFX/Lights_Power_Off_Test1_10C4C929.wem</Path>
+							<Path>SFX\Lights_Power_Off_Test1_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -622,7 +709,24 @@
 					<IncludedMemoryFiles>
 						<File Id="530980148" Language="SFX">
 							<ShortName>Lights_Power_On_Test1.wav</ShortName>
-							<Path>SFX/Lights_Power_On_Test1_10C4C929.wem</Path>
+							<Path>SFX\Lights_Power_On_Test1_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3124987295" Name="Play_Lock_Picking" ObjectPath="\Events\Default Work Unit\SFX Events\Lock Pick\Play_Lock_Picking"/>
+				<Event Id="3795145933" Name="Play_Outdoor_Ambience" ObjectPath="\Events\Default Work Unit\SFX Events\Ambience\Outdoor Ambience\Play_Outdoor_Ambience">
+					<IncludedMemoryFiles>
+						<File Id="127374453" Language="SFX">
+							<ShortName>Outside_Ambience.wav</ShortName>
+							<Path>SFX\Outside_Ambience_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="219100449" Name="Player_Kills_Enemy" ObjectPath="\Events\Default Work Unit\SFX Events\Enemy\Player_Kills_Enemy">
+					<IncludedMemoryFiles>
+						<File Id="905607898" Language="SFX">
+							<ShortName>Player_Kills_Enemy.wav</ShortName>
+							<Path>SFX\Player_Kills_Enemy_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -630,11 +734,79 @@
 					<IncludedMemoryFiles>
 						<File Id="106886479" Language="SFX">
 							<ShortName>Put_Down_Note_2.wav</ShortName>
-							<Path>SFX/Put_Down_Note_2_10C4C929.wem</Path>
+							<Path>SFX\Put_Down_Note_2_10C4C929.wem</Path>
 						</File>
 						<File Id="378592845" Language="SFX">
 							<ShortName>Put_Down_Note_1.wav</ShortName>
-							<Path>SFX/Put_Down_Note_1_10C4C929.wem</Path>
+							<Path>SFX\Put_Down_Note_1_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1474002183" Name="Safe_Close" ObjectPath="\Events\Default Work Unit\SFX Events\Safe\Safe_Close">
+					<IncludedMemoryFiles>
+						<File Id="507272663" Language="SFX">
+							<ShortName>Safe_Close_1.wav</ShortName>
+							<Path>SFX\Safe_Close_1_10C4C929.wem</Path>
+						</File>
+						<File Id="571028704" Language="SFX">
+							<ShortName>Safe_Close_2.wav</ShortName>
+							<Path>SFX\Safe_Close_2_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="189348657" Name="Safe_Open" ObjectPath="\Events\Default Work Unit\SFX Events\Safe\Safe_Open">
+					<IncludedMemoryFiles>
+						<File Id="80896642" Language="SFX">
+							<ShortName>Safe_Open_1.wav</ShortName>
+							<Path>SFX\Safe_Open_1_10C4C929.wem</Path>
+						</File>
+						<File Id="373926512" Language="SFX">
+							<ShortName>Safe_Open_2.wav</ShortName>
+							<Path>SFX\Safe_Open_2_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2627359935" Name="Shotgun_Empty" ObjectPath="\Events\Default Work Unit\SFX Events\Shotgun\Shotgun_Empty">
+					<IncludedMemoryFiles>
+						<File Id="336853172" Language="SFX">
+							<ShortName>Shotgun_Empty_1.wav</ShortName>
+							<Path>SFX\Shotgun_Empty_1_10C4C929.wem</Path>
+						</File>
+						<File Id="725894407" Language="SFX">
+							<ShortName>Shotgun_Empty_2.wav</ShortName>
+							<Path>SFX\Shotgun_Empty_2_10C4C929.wem</Path>
+						</File>
+						<File Id="899587988" Language="SFX">
+							<ShortName>Shotgun_Empty_3.wav</ShortName>
+							<Path>SFX\Shotgun_Empty_3_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3982195600" Name="Shotgun_Fire" ObjectPath="\Events\Default Work Unit\SFX Events\Shotgun\Shotgun_Fire">
+					<IncludedMemoryFiles>
+						<File Id="68387515" Language="SFX">
+							<ShortName>Shotgun_Shells_1.wav</ShortName>
+							<Path>SFX\Shotgun_Shells_1_10C4C929.wem</Path>
+						</File>
+						<File Id="336853172" Language="SFX">
+							<ShortName>Shotgun_Empty_1.wav</ShortName>
+							<Path>SFX\Shotgun_Empty_1_10C4C929.wem</Path>
+						</File>
+						<File Id="598012489" Language="SFX">
+							<ShortName>Shotgun_Fire.wav</ShortName>
+							<Path>SFX\Shotgun_Fire_10C4C929.wem</Path>
+						</File>
+						<File Id="725894407" Language="SFX">
+							<ShortName>Shotgun_Empty_2.wav</ShortName>
+							<Path>SFX\Shotgun_Empty_2_10C4C929.wem</Path>
+						</File>
+						<File Id="899587988" Language="SFX">
+							<ShortName>Shotgun_Empty_3.wav</ShortName>
+							<Path>SFX\Shotgun_Empty_3_10C4C929.wem</Path>
+						</File>
+						<File Id="917701720" Language="SFX">
+							<ShortName>Shotgun_Shells_2.wav</ShortName>
+							<Path>SFX\Shotgun_Shells_2_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -642,7 +814,7 @@
 					<IncludedMemoryFiles>
 						<File Id="57717829" Language="SFX">
 							<ShortName>Depleted_Stamina.wav</ShortName>
-							<Path>SFX/Depleted_Stamina_10C4C929.wem</Path>
+							<Path>SFX\Depleted_Stamina_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -650,15 +822,15 @@
 					<IncludedMemoryFiles>
 						<File Id="180724148" Language="SFX">
 							<ShortName>Med_Stamina_Breathing.wav</ShortName>
-							<Path>SFX/Med_Stamina_Breathing_D79FB2B7.wem</Path>
+							<Path>SFX\Med_Stamina_Breathing_D79FB2B7.wem</Path>
 						</File>
 						<File Id="648660458" Language="SFX">
 							<ShortName>Low_Stamina_Breathing.wav</ShortName>
-							<Path>SFX/Low_Stamina_Breathing_D79FB2B7.wem</Path>
+							<Path>SFX\Low_Stamina_Breathing_D79FB2B7.wem</Path>
 						</File>
 						<File Id="1032139791" Language="SFX">
 							<ShortName>High_Stamina_Breathing.wav</ShortName>
-							<Path>SFX/High_Stamina_Breathing_D79FB2B7.wem</Path>
+							<Path>SFX\High_Stamina_Breathing_D79FB2B7.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 					<SwitchContainers>
@@ -679,22 +851,24 @@
 						</SwitchContainer>
 					</SwitchContainers>
 				</Event>
-				<Event Id="2477713992" Name="Stop_Ambience" ObjectPath="\Events\Default Work Unit\SFX Events\Ambience\Stop_Ambience"/>
 				<Event Id="3638328809" Name="Stop_Door_Unlocking" ObjectPath="\Events\Default Work Unit\SFX Events\Doors\Stop_Door_Unlocking"/>
+				<Event Id="2473162048" Name="Stop_Indoor_Ambience" ObjectPath="\Events\Default Work Unit\SFX Events\Ambience\Indoor Ambience\Stop_Indoor_Ambience"/>
+				<Event Id="21842589" Name="Stop_Lock_Picking" ObjectPath="\Events\Default Work Unit\SFX Events\Lock Pick\Stop_Lock_Picking"/>
+				<Event Id="2431981779" Name="Stop_Outdoor_Ambience" ObjectPath="\Events\Default Work Unit\SFX Events\Ambience\Outdoor Ambience\Stop_Outdoor_Ambience"/>
 				<Event Id="2141040177" Name="Stop_Run_Gentle" ObjectPath="\Events\Default Work Unit\SFX Events\Stamina\Stop_Run_Gentle"/>
 				<Event Id="377921503" Name="Stop_Run_Heavy" ObjectPath="\Events\Default Work Unit\SFX Events\Stamina\Stop_Run_Heavy">
 					<IncludedMemoryFiles>
 						<File Id="759301855" Language="SFX">
 							<ShortName>Stop_Med_Stamina.wav</ShortName>
-							<Path>SFX/Stop_Med_Stamina_10C4C929.wem</Path>
+							<Path>SFX\Stop_Med_Stamina_10C4C929.wem</Path>
 						</File>
 						<File Id="858817638" Language="SFX">
 							<ShortName>Stop_Low_Stamina.wav</ShortName>
-							<Path>SFX/Stop_Low_Stamina_10C4C929.wem</Path>
+							<Path>SFX\Stop_Low_Stamina_10C4C929.wem</Path>
 						</File>
 						<File Id="1032380085" Language="SFX">
 							<ShortName>Stop_High_Stamina.wav</ShortName>
-							<Path>SFX/Stop_High_Stamina_10C4C929.wem</Path>
+							<Path>SFX\Stop_High_Stamina_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 					<SwitchContainers>
@@ -725,435 +899,503 @@
 			<IncludedMemoryFiles>
 				<File Id="2812397" Language="SFX">
 					<ShortName>Enemy_fs_tile_2.wav</ShortName>
-					<Path>SFX/Enemy_fs_tile_2_10C4C929.wem</Path>
+					<Path>SFX\Enemy_fs_tile_2_10C4C929.wem</Path>
 				</File>
 				<File Id="7759912" Language="SFX">
 					<ShortName>tile_fs_run_4.wav</ShortName>
-					<Path>SFX/tile_fs_run_4_10C4C929.wem</Path>
+					<Path>SFX\tile_fs_run_4_10C4C929.wem</Path>
 				</File>
 				<File Id="52955700" Language="SFX">
 					<ShortName>Passive_var_3.wav</ShortName>
-					<Path>SFX/Passive_var_3_10C4C929.wem</Path>
+					<Path>SFX\Passive_var_3_10C4C929.wem</Path>
 				</File>
 				<File Id="55846913" Language="SFX">
 					<ShortName>wood_fs_run_5.wav</ShortName>
-					<Path>SFX/wood_fs_run_5_10C4C929.wem</Path>
+					<Path>SFX\wood_fs_run_5_10C4C929.wem</Path>
 				</File>
 				<File Id="57717829" Language="SFX">
 					<ShortName>Depleted_Stamina.wav</ShortName>
-					<Path>SFX/Depleted_Stamina_10C4C929.wem</Path>
+					<Path>SFX\Depleted_Stamina_10C4C929.wem</Path>
 				</File>
 				<File Id="68107130" Language="SFX">
 					<ShortName>Caution_var_1.wav</ShortName>
-					<Path>SFX/Caution_var_1_10C4C929.wem</Path>
+					<Path>SFX\Caution_var_1_10C4C929.wem</Path>
+				</File>
+				<File Id="68387515" Language="SFX">
+					<ShortName>Shotgun_Shells_1.wav</ShortName>
+					<Path>SFX\Shotgun_Shells_1_10C4C929.wem</Path>
+				</File>
+				<File Id="80896642" Language="SFX">
+					<ShortName>Safe_Open_1.wav</ShortName>
+					<Path>SFX\Safe_Open_1_10C4C929.wem</Path>
 				</File>
 				<File Id="82711494" Language="SFX">
 					<ShortName>tile_fs_run_2.wav</ShortName>
-					<Path>SFX/tile_fs_run_2_10C4C929.wem</Path>
+					<Path>SFX\tile_fs_run_2_10C4C929.wem</Path>
 				</File>
 				<File Id="106886479" Language="SFX">
 					<ShortName>Put_Down_Note_2.wav</ShortName>
-					<Path>SFX/Put_Down_Note_2_10C4C929.wem</Path>
+					<Path>SFX\Put_Down_Note_2_10C4C929.wem</Path>
 				</File>
 				<File Id="116808690" Language="SFX">
 					<ShortName>Passive_var_4.wav</ShortName>
-					<Path>SFX/Passive_var_4_10C4C929.wem</Path>
+					<Path>SFX\Passive_var_4_10C4C929.wem</Path>
 				</File>
 				<File Id="117001669" Language="SFX">
 					<ShortName>Pickup_Flashlight.wav</ShortName>
-					<Path>SFX/Pickup_Flashlight_10C4C929.wem</Path>
+					<Path>SFX\Pickup_Flashlight_10C4C929.wem</Path>
+				</File>
+				<File Id="123948626" Language="SFX">
+					<ShortName>Lock_Picking_Loop.wav</ShortName>
+					<Path>SFX\Lock_Picking_Loop_4B97722C.wem</Path>
+				</File>
+				<File Id="127374453" Language="SFX">
+					<ShortName>Outside_Ambience.wav</ShortName>
+					<Path>SFX\Outside_Ambience_D79FB2B7.wem</Path>
 				</File>
 				<File Id="127938360" Language="SFX">
 					<ShortName>tile_fs_crouch_3.wav</ShortName>
-					<Path>SFX/tile_fs_crouch_3_10C4C929.wem</Path>
+					<Path>SFX\tile_fs_crouch_3_10C4C929.wem</Path>
 				</File>
 				<File Id="144836465" Language="SFX">
 					<ShortName>Passive_Loop.wav</ShortName>
-					<Path>SFX/Passive_Loop_D79FB2B7.wem</Path>
+					<Path>SFX\Passive_Loop_D79FB2B7.wem</Path>
 				</File>
 				<File Id="145789768" Language="SFX">
 					<ShortName>Lights_Power_Off_Test1.wav</ShortName>
-					<Path>SFX/Lights_Power_Off_Test1_10C4C929.wem</Path>
+					<Path>SFX\Lights_Power_Off_Test1_10C4C929.wem</Path>
 				</File>
 				<File Id="163613378" Language="SFX">
 					<ShortName>wood_fs_walk_3.wav</ShortName>
-					<Path>SFX/wood_fs_walk_3_10C4C929.wem</Path>
+					<Path>SFX\wood_fs_walk_3_10C4C929.wem</Path>
 				</File>
 				<File Id="165245018" Language="SFX">
 					<ShortName>Enemy_fs_wood_1.wav</ShortName>
-					<Path>SFX/Enemy_fs_wood_1_10C4C929.wem</Path>
+					<Path>SFX\Enemy_fs_wood_1_10C4C929.wem</Path>
 				</File>
 				<File Id="170934507" Language="SFX">
 					<ShortName>wood_fs_crouch_5.wav</ShortName>
-					<Path>SFX/wood_fs_crouch_5_10C4C929.wem</Path>
+					<Path>SFX\wood_fs_crouch_5_10C4C929.wem</Path>
 				</File>
 				<File Id="178903615" Language="SFX">
 					<ShortName>High_Door_Open_1.wav</ShortName>
-					<Path>SFX/High_Door_Open_1_EE57C8E1.wem</Path>
+					<Path>SFX\High_Door_Open_1_EE57C8E1.wem</Path>
 				</File>
 				<File Id="180724148" Language="SFX">
 					<ShortName>Med_Stamina_Breathing.wav</ShortName>
-					<Path>SFX/Med_Stamina_Breathing_D79FB2B7.wem</Path>
+					<Path>SFX\Med_Stamina_Breathing_D79FB2B7.wem</Path>
 				</File>
 				<File Id="203799597" Language="SFX">
 					<ShortName>Enemy_fs_tile_7.wav</ShortName>
-					<Path>SFX/Enemy_fs_tile_7_10C4C929.wem</Path>
+					<Path>SFX\Enemy_fs_tile_7_10C4C929.wem</Path>
 				</File>
 				<File Id="204190487" Language="SFX">
 					<ShortName>Low_Door_Open_1.wav</ShortName>
-					<Path>SFX/Low_Door_Open_1_9D1584DB.wem</Path>
+					<Path>SFX\Low_Door_Open_1_9D1584DB.wem</Path>
 				</File>
 				<File Id="215875577" Language="SFX">
 					<ShortName>tile_fs_walk_4.wav</ShortName>
-					<Path>SFX/tile_fs_walk_4_10C4C929.wem</Path>
+					<Path>SFX\tile_fs_walk_4_10C4C929.wem</Path>
 				</File>
 				<File Id="221115452" Language="SFX">
 					<ShortName>Drawer_Open.wav</ShortName>
-					<Path>SFX/Drawer_Open_10C4C929.wem</Path>
+					<Path>SFX\Drawer_Open_10C4C929.wem</Path>
 				</File>
 				<File Id="225633521" Language="SFX">
 					<ShortName>wood_fs_walk_5.wav</ShortName>
-					<Path>SFX/wood_fs_walk_5_10C4C929.wem</Path>
+					<Path>SFX\wood_fs_walk_5_10C4C929.wem</Path>
 				</File>
 				<File Id="235128404" Language="SFX">
 					<ShortName>wood_fs_run_3.wav</ShortName>
-					<Path>SFX/wood_fs_run_3_10C4C929.wem</Path>
+					<Path>SFX\wood_fs_run_3_10C4C929.wem</Path>
 				</File>
 				<File Id="255009511" Language="SFX">
 					<ShortName>Chase_var_4.wav</ShortName>
-					<Path>SFX/Chase_var_4_10C4C929.wem</Path>
+					<Path>SFX\Chase_var_4_10C4C929.wem</Path>
 				</File>
 				<File Id="267050312" Language="SFX">
 					<ShortName>Enemy_fs_tile_1.wav</ShortName>
-					<Path>SFX/Enemy_fs_tile_1_10C4C929.wem</Path>
+					<Path>SFX\Enemy_fs_tile_1_10C4C929.wem</Path>
 				</File>
 				<File Id="285136759" Language="SFX">
 					<ShortName>Flashlight_On.wav</ShortName>
-					<Path>SFX/Flashlight_On_10C4C929.wem</Path>
+					<Path>SFX\Flashlight_On_10C4C929.wem</Path>
 				</File>
 				<File Id="287037463" Language="SFX">
 					<ShortName>Caution_var_6.wav</ShortName>
-					<Path>SFX/Caution_var_6_10C4C929.wem</Path>
+					<Path>SFX\Caution_var_6_10C4C929.wem</Path>
 				</File>
 				<File Id="295821180" Language="SFX">
 					<ShortName>Enemy_fs_wood_2.wav</ShortName>
-					<Path>SFX/Enemy_fs_wood_2_10C4C929.wem</Path>
+					<Path>SFX\Enemy_fs_wood_2_10C4C929.wem</Path>
 				</File>
 				<File Id="301772476" Language="SFX">
 					<ShortName>Key_Acquired_1.wav</ShortName>
-					<Path>SFX/Key_Acquired_1_10C4C929.wem</Path>
+					<Path>SFX\Key_Acquired_1_10C4C929.wem</Path>
+				</File>
+				<File Id="336853172" Language="SFX">
+					<ShortName>Shotgun_Empty_1.wav</ShortName>
+					<Path>SFX\Shotgun_Empty_1_10C4C929.wem</Path>
+				</File>
+				<File Id="340838024" Language="SFX">
+					<ShortName>Axe_Swing.wav</ShortName>
+					<Path>SFX\Axe_Swing_10C4C929.wem</Path>
 				</File>
 				<File Id="349922209" Language="SFX">
 					<ShortName>Enemy_fs_wood_3.wav</ShortName>
-					<Path>SFX/Enemy_fs_wood_3_10C4C929.wem</Path>
+					<Path>SFX\Enemy_fs_wood_3_10C4C929.wem</Path>
 				</File>
 				<File Id="361019455" Language="SFX">
 					<ShortName>Enemy_fs_tile_5.wav</ShortName>
-					<Path>SFX/Enemy_fs_tile_5_10C4C929.wem</Path>
+					<Path>SFX\Enemy_fs_tile_5_10C4C929.wem</Path>
 				</File>
 				<File Id="362204658" Language="SFX">
 					<ShortName>Passive_var_6.wav</ShortName>
-					<Path>SFX/Passive_var_6_10C4C929.wem</Path>
+					<Path>SFX\Passive_var_6_10C4C929.wem</Path>
 				</File>
 				<File Id="362801264" Language="SFX">
 					<ShortName>Heartbeat_Danger.wav</ShortName>
-					<Path>SFX/Heartbeat_Danger_CAFAEEC9.wem</Path>
+					<Path>SFX\Heartbeat_Danger_CAFAEEC9.wem</Path>
+				</File>
+				<File Id="373926512" Language="SFX">
+					<ShortName>Safe_Open_2.wav</ShortName>
+					<Path>SFX\Safe_Open_2_10C4C929.wem</Path>
 				</File>
 				<File Id="377176857" Language="SFX">
 					<ShortName>tile_fs_walk_1.wav</ShortName>
-					<Path>SFX/tile_fs_walk_1_10C4C929.wem</Path>
+					<Path>SFX\tile_fs_walk_1_10C4C929.wem</Path>
 				</File>
 				<File Id="378592845" Language="SFX">
 					<ShortName>Put_Down_Note_1.wav</ShortName>
-					<Path>SFX/Put_Down_Note_1_10C4C929.wem</Path>
+					<Path>SFX\Put_Down_Note_1_10C4C929.wem</Path>
 				</File>
 				<File Id="385170959" Language="SFX">
 					<ShortName>Passive_var_5.wav</ShortName>
-					<Path>SFX/Passive_var_5_10C4C929.wem</Path>
+					<Path>SFX\Passive_var_5_10C4C929.wem</Path>
 				</File>
 				<File Id="391406086" Language="SFX">
 					<ShortName>tile_fs_run_3.wav</ShortName>
-					<Path>SFX/tile_fs_run_3_10C4C929.wem</Path>
+					<Path>SFX\tile_fs_run_3_10C4C929.wem</Path>
 				</File>
 				<File Id="411798552" Language="SFX">
 					<ShortName>Pickup_Note_1.wav</ShortName>
-					<Path>SFX/Pickup_Note_1_10C4C929.wem</Path>
+					<Path>SFX\Pickup_Note_1_10C4C929.wem</Path>
 				</File>
 				<File Id="427063800" Language="SFX">
 					<ShortName>Locked_Door_2.wav</ShortName>
-					<Path>SFX/Locked_Door_2_10C4C929.wem</Path>
+					<Path>SFX\Locked_Door_2_10C4C929.wem</Path>
 				</File>
 				<File Id="432927829" Language="SFX">
 					<ShortName>Locked_Door_1.wav</ShortName>
-					<Path>SFX/Locked_Door_1_10C4C929.wem</Path>
+					<Path>SFX\Locked_Door_1_10C4C929.wem</Path>
+				</File>
+				<File Id="443052389" Language="SFX">
+					<ShortName>Lock_Pick_Break.wav</ShortName>
+					<Path>SFX\Lock_Pick_Break_10C4C929.wem</Path>
 				</File>
 				<File Id="446270413" Language="SFX">
 					<ShortName>Caution_var_5.wav</ShortName>
-					<Path>SFX/Caution_var_5_10C4C929.wem</Path>
+					<Path>SFX\Caution_var_5_10C4C929.wem</Path>
 				</File>
 				<File Id="473463524" Language="SFX">
 					<ShortName>Caution_var_8.wav</ShortName>
-					<Path>SFX/Caution_var_8_10C4C929.wem</Path>
+					<Path>SFX\Caution_var_8_10C4C929.wem</Path>
 				</File>
 				<File Id="479321780" Language="SFX">
 					<ShortName>tile_fs_walk_2.wav</ShortName>
-					<Path>SFX/tile_fs_walk_2_10C4C929.wem</Path>
+					<Path>SFX\tile_fs_walk_2_10C4C929.wem</Path>
 				</File>
 				<File Id="483375584" Language="SFX">
 					<ShortName>Door_Close_2.wav</ShortName>
-					<Path>SFX/Door_Close_2_B8454FB9.wem</Path>
+					<Path>SFX\Door_Close_2_B8454FB9.wem</Path>
 				</File>
 				<File Id="486627016" Language="SFX">
 					<ShortName>Door_Lock_Opening_1.wav</ShortName>
-					<Path>SFX/Door_Lock_Opening_1_10C4C929.wem</Path>
+					<Path>SFX\Door_Lock_Opening_1_10C4C929.wem</Path>
+				</File>
+				<File Id="507272663" Language="SFX">
+					<ShortName>Safe_Close_1.wav</ShortName>
+					<Path>SFX\Safe_Close_1_10C4C929.wem</Path>
 				</File>
 				<File Id="520793624" Language="SFX">
 					<ShortName>High_Door_Open_3.wav</ShortName>
-					<Path>SFX/High_Door_Open_3_F340491B.wem</Path>
+					<Path>SFX\High_Door_Open_3_F340491B.wem</Path>
 				</File>
 				<File Id="526855242" Language="SFX">
 					<ShortName>Caution_var_3.wav</ShortName>
-					<Path>SFX/Caution_var_3_10C4C929.wem</Path>
+					<Path>SFX\Caution_var_3_10C4C929.wem</Path>
 				</File>
 				<File Id="527141422" Language="SFX">
 					<ShortName>Enemy_fs_wood_5.wav</ShortName>
-					<Path>SFX/Enemy_fs_wood_5_10C4C929.wem</Path>
+					<Path>SFX\Enemy_fs_wood_5_10C4C929.wem</Path>
 				</File>
 				<File Id="530507452" Language="SFX">
 					<ShortName>tile_fs_walk_3.wav</ShortName>
-					<Path>SFX/tile_fs_walk_3_10C4C929.wem</Path>
+					<Path>SFX\tile_fs_walk_3_10C4C929.wem</Path>
 				</File>
 				<File Id="530980148" Language="SFX">
 					<ShortName>Lights_Power_On_Test1.wav</ShortName>
-					<Path>SFX/Lights_Power_On_Test1_10C4C929.wem</Path>
+					<Path>SFX\Lights_Power_On_Test1_10C4C929.wem</Path>
 				</File>
 				<File Id="532809091" Language="SFX">
 					<ShortName>tile_fs_crouch_2.wav</ShortName>
-					<Path>SFX/tile_fs_crouch_2_10C4C929.wem</Path>
+					<Path>SFX\tile_fs_crouch_2_10C4C929.wem</Path>
 				</File>
 				<File Id="554635539" Language="SFX">
 					<ShortName>Enemy_fs_wood_6.wav</ShortName>
-					<Path>SFX/Enemy_fs_wood_6_10C4C929.wem</Path>
+					<Path>SFX\Enemy_fs_wood_6_10C4C929.wem</Path>
+				</File>
+				<File Id="571028704" Language="SFX">
+					<ShortName>Safe_Close_2.wav</ShortName>
+					<Path>SFX\Safe_Close_2_10C4C929.wem</Path>
 				</File>
 				<File Id="572467715" Language="SFX">
 					<ShortName>High_Door_Open_1.wav</ShortName>
-					<Path>SFX/High_Door_Open_1_6934C515.wem</Path>
+					<Path>SFX\High_Door_Open_1_6934C515.wem</Path>
 				</File>
 				<File Id="585635104" Language="SFX">
 					<ShortName>High_Door_Open_2.wav</ShortName>
-					<Path>SFX/High_Door_Open_2_6742F08F.wem</Path>
+					<Path>SFX\High_Door_Open_2_6742F08F.wem</Path>
 				</File>
 				<File Id="586082498" Language="SFX">
 					<ShortName>Low_Door_Open_3.wav</ShortName>
-					<Path>SFX/Low_Door_Open_3_9D1584DB.wem</Path>
+					<Path>SFX\Low_Door_Open_3_9D1584DB.wem</Path>
+				</File>
+				<File Id="598012489" Language="SFX">
+					<ShortName>Shotgun_Fire.wav</ShortName>
+					<Path>SFX\Shotgun_Fire_10C4C929.wem</Path>
 				</File>
 				<File Id="600710901" Language="SFX">
 					<ShortName>tile_fs_run_5.wav</ShortName>
-					<Path>SFX/tile_fs_run_5_10C4C929.wem</Path>
+					<Path>SFX\tile_fs_run_5_10C4C929.wem</Path>
 				</File>
 				<File Id="611208096" Language="SFX">
 					<ShortName>Enemy_fs_tile_3.wav</ShortName>
-					<Path>SFX/Enemy_fs_tile_3_10C4C929.wem</Path>
+					<Path>SFX\Enemy_fs_tile_3_10C4C929.wem</Path>
 				</File>
 				<File Id="614518866" Language="SFX">
 					<ShortName>Passive_var_2.wav</ShortName>
-					<Path>SFX/Passive_var_2_10C4C929.wem</Path>
+					<Path>SFX\Passive_var_2_10C4C929.wem</Path>
 				</File>
 				<File Id="616222312" Language="SFX">
 					<ShortName>Wind_Ambience.wav</ShortName>
-					<Path>SFX/Wind_Ambience_C3AC051A.wem</Path>
+					<Path>SFX\Wind_Ambience_C3AC051A.wem</Path>
 				</File>
 				<File Id="634015941" Language="SFX">
 					<ShortName>High_Door_Open_2.wav</ShortName>
-					<Path>SFX/High_Door_Open_2_9D1584DB.wem</Path>
+					<Path>SFX\High_Door_Open_2_9D1584DB.wem</Path>
+				</File>
+				<File Id="637253143" Language="SFX">
+					<ShortName>Cure_Injection.wav</ShortName>
+					<Path>SFX\Cure_Injection_10C4C929.wem</Path>
+				</File>
+				<File Id="648246599" Language="SFX">
+					<ShortName>Good_Ending_SFX.wav</ShortName>
+					<Path>SFX\Good_Ending_SFX_10C4C929.wem</Path>
 				</File>
 				<File Id="648660458" Language="SFX">
 					<ShortName>Low_Stamina_Breathing.wav</ShortName>
-					<Path>SFX/Low_Stamina_Breathing_D79FB2B7.wem</Path>
+					<Path>SFX\Low_Stamina_Breathing_D79FB2B7.wem</Path>
 				</File>
 				<File Id="651469099" Language="SFX">
 					<ShortName>Enemy_fs_tile_4.wav</ShortName>
-					<Path>SFX/Enemy_fs_tile_4_10C4C929.wem</Path>
+					<Path>SFX\Enemy_fs_tile_4_10C4C929.wem</Path>
 				</File>
 				<File Id="662933913" Language="SFX">
 					<ShortName>Caution_var_9.wav</ShortName>
-					<Path>SFX/Caution_var_9_10C4C929.wem</Path>
+					<Path>SFX\Caution_var_9_10C4C929.wem</Path>
 				</File>
 				<File Id="666960095" Language="SFX">
 					<ShortName>Enemy_fs_tile_6.wav</ShortName>
-					<Path>SFX/Enemy_fs_tile_6_10C4C929.wem</Path>
+					<Path>SFX\Enemy_fs_tile_6_10C4C929.wem</Path>
 				</File>
 				<File Id="682434907" Language="SFX">
 					<ShortName>wood_fs_crouch_1.wav</ShortName>
-					<Path>SFX/wood_fs_crouch_1_10C4C929.wem</Path>
+					<Path>SFX\wood_fs_crouch_1_10C4C929.wem</Path>
 				</File>
 				<File Id="711518939" Language="SFX">
 					<ShortName>Low_Door_Open_1.wav</ShortName>
-					<Path>SFX/Low_Door_Open_1_6742F08F.wem</Path>
+					<Path>SFX\Low_Door_Open_1_6742F08F.wem</Path>
 				</File>
 				<File Id="715753533" Language="SFX">
 					<ShortName>Caution_var_2.wav</ShortName>
-					<Path>SFX/Caution_var_2_10C4C929.wem</Path>
+					<Path>SFX\Caution_var_2_10C4C929.wem</Path>
 				</File>
 				<File Id="716126964" Language="SFX">
 					<ShortName>wood_fs_crouch_2.wav</ShortName>
-					<Path>SFX/wood_fs_crouch_2_10C4C929.wem</Path>
+					<Path>SFX\wood_fs_crouch_2_10C4C929.wem</Path>
 				</File>
 				<File Id="720861378" Language="SFX">
 					<ShortName>Low_Door_Open_2.wav</ShortName>
-					<Path>SFX/Low_Door_Open_2_B43AA1EA.wem</Path>
+					<Path>SFX\Low_Door_Open_2_B43AA1EA.wem</Path>
+				</File>
+				<File Id="725894407" Language="SFX">
+					<ShortName>Shotgun_Empty_2.wav</ShortName>
+					<Path>SFX\Shotgun_Empty_2_10C4C929.wem</Path>
 				</File>
 				<File Id="727497738" Language="SFX">
 					<ShortName>Enemy_fs_wood_7.wav</ShortName>
-					<Path>SFX/Enemy_fs_wood_7_10C4C929.wem</Path>
+					<Path>SFX\Enemy_fs_wood_7_10C4C929.wem</Path>
 				</File>
 				<File Id="733641677" Language="SFX">
 					<ShortName>Low_Door_Open_3.wav</ShortName>
-					<Path>SFX/Low_Door_Open_3_6742F08F.wem</Path>
+					<Path>SFX\Low_Door_Open_3_6742F08F.wem</Path>
 				</File>
 				<File Id="759301855" Language="SFX">
 					<ShortName>Stop_Med_Stamina.wav</ShortName>
-					<Path>SFX/Stop_Med_Stamina_10C4C929.wem</Path>
+					<Path>SFX\Stop_Med_Stamina_10C4C929.wem</Path>
 				</File>
 				<File Id="761994595" Language="SFX">
 					<ShortName>Locked_Door_3.wav</ShortName>
-					<Path>SFX/Locked_Door_3_10C4C929.wem</Path>
+					<Path>SFX\Locked_Door_3_10C4C929.wem</Path>
 				</File>
 				<File Id="766920340" Language="SFX">
 					<ShortName>wood_fs_walk_2.wav</ShortName>
-					<Path>SFX/wood_fs_walk_2_10C4C929.wem</Path>
+					<Path>SFX\wood_fs_walk_2_10C4C929.wem</Path>
 				</File>
 				<File Id="779639373" Language="SFX">
 					<ShortName>Key_Acquired_2.wav</ShortName>
-					<Path>SFX/Key_Acquired_2_10C4C929.wem</Path>
+					<Path>SFX\Key_Acquired_2_10C4C929.wem</Path>
 				</File>
 				<File Id="787668238" Language="SFX">
 					<ShortName>Flashlight_Off.wav</ShortName>
-					<Path>SFX/Flashlight_Off_10C4C929.wem</Path>
+					<Path>SFX\Flashlight_Off_10C4C929.wem</Path>
 				</File>
 				<File Id="805418482" Language="SFX">
 					<ShortName>Chase_var_1.wav</ShortName>
-					<Path>SFX/Chase_var_1_10C4C929.wem</Path>
+					<Path>SFX\Chase_var_1_10C4C929.wem</Path>
 				</File>
 				<File Id="809688070" Language="SFX">
 					<ShortName>Caution_var_4.wav</ShortName>
-					<Path>SFX/Caution_var_4_10C4C929.wem</Path>
+					<Path>SFX\Caution_var_4_10C4C929.wem</Path>
 				</File>
 				<File Id="822052185" Language="SFX">
 					<ShortName>Enemy_fs_wood_4.wav</ShortName>
-					<Path>SFX/Enemy_fs_wood_4_10C4C929.wem</Path>
+					<Path>SFX\Enemy_fs_wood_4_10C4C929.wem</Path>
 				</File>
 				<File Id="832019294" Language="SFX">
 					<ShortName>Chase_var_2.wav</ShortName>
-					<Path>SFX/Chase_var_2_10C4C929.wem</Path>
+					<Path>SFX\Chase_var_2_10C4C929.wem</Path>
 				</File>
 				<File Id="856828164" Language="SFX">
 					<ShortName>wood_fs_run_1.wav</ShortName>
-					<Path>SFX/wood_fs_run_1_10C4C929.wem</Path>
+					<Path>SFX\wood_fs_run_1_10C4C929.wem</Path>
 				</File>
 				<File Id="858817638" Language="SFX">
 					<ShortName>Stop_Low_Stamina.wav</ShortName>
-					<Path>SFX/Stop_Low_Stamina_10C4C929.wem</Path>
+					<Path>SFX\Stop_Low_Stamina_10C4C929.wem</Path>
 				</File>
 				<File Id="860164930" Language="SFX">
 					<ShortName>tile_fs_walk_5.wav</ShortName>
-					<Path>SFX/tile_fs_walk_5_10C4C929.wem</Path>
+					<Path>SFX\tile_fs_walk_5_10C4C929.wem</Path>
 				</File>
 				<File Id="862842378" Language="SFX">
 					<ShortName>tile_fs_crouch_1.wav</ShortName>
-					<Path>SFX/tile_fs_crouch_1_10C4C929.wem</Path>
+					<Path>SFX\tile_fs_crouch_1_10C4C929.wem</Path>
 				</File>
 				<File Id="876824865" Language="SFX">
 					<ShortName>Player_Death.wav</ShortName>
-					<Path>SFX/Player_Death_10C4C929.wem</Path>
+					<Path>SFX\Player_Death_10C4C929.wem</Path>
 				</File>
 				<File Id="897181935" Language="SFX">
 					<ShortName>Pickup_Note_2.wav</ShortName>
-					<Path>SFX/Pickup_Note_2_10C4C929.wem</Path>
+					<Path>SFX\Pickup_Note_2_10C4C929.wem</Path>
+				</File>
+				<File Id="899587988" Language="SFX">
+					<ShortName>Shotgun_Empty_3.wav</ShortName>
+					<Path>SFX\Shotgun_Empty_3_10C4C929.wem</Path>
 				</File>
 				<File Id="903285620" Language="SFX">
 					<ShortName>tile_fs_crouch_4.wav</ShortName>
-					<Path>SFX/tile_fs_crouch_4_10C4C929.wem</Path>
+					<Path>SFX\tile_fs_crouch_4_10C4C929.wem</Path>
+				</File>
+				<File Id="905607898" Language="SFX">
+					<ShortName>Player_Kills_Enemy.wav</ShortName>
+					<Path>SFX\Player_Kills_Enemy_10C4C929.wem</Path>
 				</File>
 				<File Id="915312894" Language="SFX">
 					<ShortName>Caution_var_7.wav</ShortName>
-					<Path>SFX/Caution_var_7_10C4C929.wem</Path>
+					<Path>SFX\Caution_var_7_10C4C929.wem</Path>
 				</File>
 				<File Id="915953283" Language="SFX">
 					<ShortName>Chase_var_6.wav</ShortName>
-					<Path>SFX/Chase_var_6_10C4C929.wem</Path>
+					<Path>SFX\Chase_var_6_10C4C929.wem</Path>
+				</File>
+				<File Id="917701720" Language="SFX">
+					<ShortName>Shotgun_Shells_2.wav</ShortName>
+					<Path>SFX\Shotgun_Shells_2_10C4C929.wem</Path>
 				</File>
 				<File Id="920230060" Language="SFX">
 					<ShortName>Chase_var_5.wav</ShortName>
-					<Path>SFX/Chase_var_5_10C4C929.wem</Path>
+					<Path>SFX\Chase_var_5_10C4C929.wem</Path>
 				</File>
 				<File Id="920327594" Language="SFX">
 					<ShortName>wood_fs_walk_1.wav</ShortName>
-					<Path>SFX/wood_fs_walk_1_10C4C929.wem</Path>
+					<Path>SFX\wood_fs_walk_1_10C4C929.wem</Path>
 				</File>
 				<File Id="934296180" Language="SFX">
 					<ShortName>Low_Door_Open_2.wav</ShortName>
-					<Path>SFX/Low_Door_Open_2_D5812706.wem</Path>
+					<Path>SFX\Low_Door_Open_2_D5812706.wem</Path>
 				</File>
 				<File Id="942136021" Language="SFX">
 					<ShortName>Passive_var_1.wav</ShortName>
-					<Path>SFX/Passive_var_1_10C4C929.wem</Path>
+					<Path>SFX\Passive_var_1_10C4C929.wem</Path>
 				</File>
 				<File Id="945434381" Language="SFX">
 					<ShortName>Drawer_Close.wav</ShortName>
-					<Path>SFX/Drawer_Close_10C4C929.wem</Path>
+					<Path>SFX\Drawer_Close_10C4C929.wem</Path>
 				</File>
 				<File Id="945844893" Language="SFX">
 					<ShortName>Chase_Loop.wav</ShortName>
-					<Path>SFX/Chase_Loop_C5579977.wem</Path>
+					<Path>SFX\Chase_Loop_C5579977.wem</Path>
 				</File>
 				<File Id="956539608" Language="SFX">
 					<ShortName>tile_fs_run_1.wav</ShortName>
-					<Path>SFX/tile_fs_run_1_10C4C929.wem</Path>
+					<Path>SFX\tile_fs_run_1_10C4C929.wem</Path>
 				</File>
 				<File Id="963852125" Language="SFX">
 					<ShortName>wood_fs_crouch_4.wav</ShortName>
-					<Path>SFX/wood_fs_crouch_4_10C4C929.wem</Path>
+					<Path>SFX\wood_fs_crouch_4_10C4C929.wem</Path>
 				</File>
 				<File Id="973861806" Language="SFX">
 					<ShortName>Door_Close_1.wav</ShortName>
-					<Path>SFX/Door_Close_1_8A14D8D0.wem</Path>
+					<Path>SFX\Door_Close_1_8A14D8D0.wem</Path>
 				</File>
 				<File Id="974208004" Language="SFX">
 					<ShortName>wood_fs_run_2.wav</ShortName>
-					<Path>SFX/wood_fs_run_2_10C4C929.wem</Path>
+					<Path>SFX\wood_fs_run_2_10C4C929.wem</Path>
 				</File>
 				<File Id="1004210125" Language="SFX">
 					<ShortName>wood_fs_walk_4.wav</ShortName>
-					<Path>SFX/wood_fs_walk_4_10C4C929.wem</Path>
+					<Path>SFX\wood_fs_walk_4_10C4C929.wem</Path>
 				</File>
 				<File Id="1014623936" Language="SFX">
 					<ShortName>tile_fs_crouch_5.wav</ShortName>
-					<Path>SFX/tile_fs_crouch_5_10C4C929.wem</Path>
+					<Path>SFX\tile_fs_crouch_5_10C4C929.wem</Path>
 				</File>
 				<File Id="1023230645" Language="SFX">
 					<ShortName>High_Door_Open_3.wav</ShortName>
-					<Path>SFX/High_Door_Open_3_1ECCD5CF.wem</Path>
+					<Path>SFX\High_Door_Open_3_1ECCD5CF.wem</Path>
 				</File>
 				<File Id="1031611517" Language="SFX">
 					<ShortName>wood_fs_crouch_3.wav</ShortName>
-					<Path>SFX/wood_fs_crouch_3_10C4C929.wem</Path>
+					<Path>SFX\wood_fs_crouch_3_10C4C929.wem</Path>
 				</File>
 				<File Id="1032139791" Language="SFX">
 					<ShortName>High_Stamina_Breathing.wav</ShortName>
-					<Path>SFX/High_Stamina_Breathing_D79FB2B7.wem</Path>
+					<Path>SFX\High_Stamina_Breathing_D79FB2B7.wem</Path>
 				</File>
 				<File Id="1032380085" Language="SFX">
 					<ShortName>Stop_High_Stamina.wav</ShortName>
-					<Path>SFX/Stop_High_Stamina_10C4C929.wem</Path>
+					<Path>SFX\Stop_High_Stamina_10C4C929.wem</Path>
 				</File>
 				<File Id="1046225091" Language="SFX">
 					<ShortName>Chase_var_3.wav</ShortName>
-					<Path>SFX/Chase_var_3_10C4C929.wem</Path>
+					<Path>SFX\Chase_var_3_10C4C929.wem</Path>
 				</File>
 				<File Id="1052905808" Language="SFX">
 					<ShortName>wood_fs_run_4.wav</ShortName>
-					<Path>SFX/wood_fs_run_4_10C4C929.wem</Path>
+					<Path>SFX\wood_fs_run_4_10C4C929.wem</Path>
 				</File>
 			</IncludedMemoryFiles>
 			<GameParameters>
@@ -1169,6 +1411,9 @@
 					<States/>
 				</StateGroup>
 				<StateGroup Id="417490929" Name="Chase" ObjectPath="\States\Default Work Unit\Music States\Music_Sections\Chase">
+					<States/>
+				</StateGroup>
+				<StateGroup Id="779278001" Name="Death" ObjectPath="\States\Default Work Unit\Music States\Music_Sections\Death">
 					<States/>
 				</StateGroup>
 			</StateGroups>
@@ -1213,16 +1458,43 @@
 				<AuxBus Id="1102545430" Name="RvbZone_Narrow_Rooms" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\RvbZone_Narrow_Rooms"/>
 			</IncludedAuxBusses>
 		</SoundBank>
-		<SoundBank Id="3991942870" Language="SFX" Hash="3288314594">
+		<SoundBank Id="3991942870" Language="SFX" Hash="2093966454">
 			<ObjectPath>\SoundBanks\Default Work Unit\Music</ObjectPath>
 			<ShortName>Music</ShortName>
 			<Path>Music.bnk</Path>
 			<IncludedEvents>
 				<Event Id="1550503061" Name="Death_Music" ObjectPath="\Events\Default Work Unit\Music Events\Death_Music">
+					<IncludedMemoryFiles>
+						<File Id="876824865" Language="SFX">
+							<ShortName>Player_Death.wav</ShortName>
+							<Path>SFX\Player_Death_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
 					<ActionSetState>
 						<ActionSetStateEntry Id="779278001" Name="Death" ObjectPath="\States\Default Work Unit\Music States\Music_Sections\Death"/>
 					</ActionSetState>
 				</Event>
+				<Event Id="1828421404" Name="Good_Ending_Music" ObjectPath="\Events\Default Work Unit\Music Events\Good_Ending_Music">
+					<IncludedMemoryFiles>
+						<File Id="124515639" Language="SFX">
+							<ShortName>Chase_Stinger_1.wav</ShortName>
+							<Path>SFX\Chase_Stinger_1_D79FB2B7.wem</Path>
+						</File>
+						<File Id="144165873" Language="SFX">
+							<ShortName>Good_Ending_Music.wav</ShortName>
+							<Path>SFX\Good_Ending_Music_D79FB2B7.wem</Path>
+						</File>
+						<File Id="256343376" Language="SFX">
+							<ShortName>Ambient_Stinger_1.wav</ShortName>
+							<Path>SFX\Ambient_Stinger_1_D79FB2B7.wem</Path>
+						</File>
+						<File Id="1053847306" Language="SFX">
+							<ShortName>Secret_Room_Stinger.wav</ShortName>
+							<Path>SFX\Secret_Room_Stinger_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2179654399" Name="Pause_Menu_Off" ObjectPath="\Events\Default Work Unit\Music Events\Pause_Menu_Off"/>
 				<Event Id="3483621035" Name="Pause_Menu_On" ObjectPath="\Events\Default Work Unit\Music Events\Pause_Menu_On"/>
 				<Event Id="3358299437" Name="Pick_Up_Note" ObjectPath="\Events\Default Work Unit\SFX Events\Notes\Pick_Up_Note"/>
 				<Event Id="3237721180" Name="Play_Chase_Music" ObjectPath="\Events\Default Work Unit\Music Events\Play_Chase_Music">
@@ -1252,211 +1524,215 @@
 			<IncludedMemoryFiles>
 				<File Id="52307656" Language="SFX">
 					<ShortName>usds_Soft_Stairwell_Stinger.wav</ShortName>
-					<Path>SFX/usds_Soft_Stairwell_Stinger_D79FB2B7.wem</Path>
+					<Path>SFX\usds_Soft_Stairwell_Stinger_D79FB2B7.wem</Path>
 				</File>
 				<File Id="52751577" Language="SFX">
 					<ShortName>us_Hit_2.wav</ShortName>
-					<Path>SFX/us_Hit_2_D79FB2B7.wem</Path>
+					<Path>SFX\us_Hit_2_D79FB2B7.wem</Path>
 				</File>
 				<File Id="58008412" Language="SFX">
 					<ShortName>usK3_Ambient_var2.wav</ShortName>
-					<Path>SFX/usK3_Ambient_var2_D79FB2B7.wem</Path>
+					<Path>SFX\usK3_Ambient_var2_D79FB2B7.wem</Path>
 				</File>
 				<File Id="59974996" Language="SFX">
 					<ShortName>ds_AmbStingers_Percussion.wav</ShortName>
-					<Path>SFX/ds_AmbStingers_Percussion_D79FB2B7.wem</Path>
+					<Path>SFX\ds_AmbStingers_Percussion_D79FB2B7.wem</Path>
 				</File>
 				<File Id="114987710" Language="SFX">
 					<ShortName>Secret_Room_AmbPluck.wav</ShortName>
-					<Path>SFX/Secret_Room_AmbPluck_D79FB2B7.wem</Path>
+					<Path>SFX\Secret_Room_AmbPluck_D79FB2B7.wem</Path>
 				</File>
 				<File Id="124515639" Language="SFX">
 					<ShortName>Chase_Stinger_1.wav</ShortName>
-					<Path>SFX/Chase_Stinger_1_D79FB2B7.wem</Path>
+					<Path>SFX\Chase_Stinger_1_D79FB2B7.wem</Path>
 				</File>
 				<File Id="127153478" Language="SFX">
 					<ShortName>usK2_Ambient_Main.wav</ShortName>
-					<Path>SFX/usK2_Ambient_Main_D79FB2B7.wem</Path>
+					<Path>SFX\usK2_Ambient_Main_D79FB2B7.wem</Path>
 				</File>
 				<File Id="127459953" Language="SFX">
 					<ShortName>K1_Chase.wav</ShortName>
-					<Path>SFX/K1_Chase_D79FB2B7.wem</Path>
+					<Path>SFX\K1_Chase_D79FB2B7.wem</Path>
+				</File>
+				<File Id="144165873" Language="SFX">
+					<ShortName>Good_Ending_Music.wav</ShortName>
+					<Path>SFX\Good_Ending_Music_D79FB2B7.wem</Path>
 				</File>
 				<File Id="160081236" Language="SFX">
 					<ShortName>usK0_Ambient_var2.wav</ShortName>
-					<Path>SFX/usK0_Ambient_var2_D79FB2B7.wem</Path>
+					<Path>SFX\usK0_Ambient_var2_D79FB2B7.wem</Path>
 				</File>
 				<File Id="185291948" Language="SFX">
 					<ShortName>us_Ambient_Variation.wav</ShortName>
-					<Path>SFX/us_Ambient_Variation_D79FB2B7.wem</Path>
+					<Path>SFX\us_Ambient_Variation_D79FB2B7.wem</Path>
 				</File>
 				<File Id="190703147" Language="SFX">
 					<ShortName>Hit_1.wav</ShortName>
-					<Path>SFX/Hit_1_D79FB2B7.wem</Path>
+					<Path>SFX\Hit_1_D79FB2B7.wem</Path>
 				</File>
 				<File Id="256343376" Language="SFX">
 					<ShortName>Ambient_Stinger_1.wav</ShortName>
-					<Path>SFX/Ambient_Stinger_1_D79FB2B7.wem</Path>
+					<Path>SFX\Ambient_Stinger_1_D79FB2B7.wem</Path>
 				</File>
 				<File Id="264900686" Language="SFX">
 					<ShortName>ds_AmbStingers_Piano.wav</ShortName>
-					<Path>SFX/ds_AmbStingers_Piano_D79FB2B7.wem</Path>
+					<Path>SFX\ds_AmbStingers_Piano_D79FB2B7.wem</Path>
 				</File>
 				<File Id="304732448" Language="SFX">
 					<ShortName>dsK1_Ambient_var2.wav</ShortName>
-					<Path>SFX/dsK1_Ambient_var2_D79FB2B7.wem</Path>
+					<Path>SFX\dsK1_Ambient_var2_D79FB2B7.wem</Path>
 				</File>
 				<File Id="313028623" Language="SFX">
 					<ShortName>us_Danger_Warning.wav</ShortName>
-					<Path>SFX/us_Danger_Warning_D79FB2B7.wem</Path>
+					<Path>SFX\us_Danger_Warning_D79FB2B7.wem</Path>
 				</File>
 				<File Id="338744272" Language="SFX">
 					<ShortName>Secret_Room_BassPluck.wav</ShortName>
-					<Path>SFX/Secret_Room_BassPluck_D79FB2B7.wem</Path>
+					<Path>SFX\Secret_Room_BassPluck_D79FB2B7.wem</Path>
 				</File>
 				<File Id="372904452" Language="SFX">
 					<ShortName>K3_Chase_var3.wav</ShortName>
-					<Path>SFX/K3_Chase_var3_D79FB2B7.wem</Path>
+					<Path>SFX\K3_Chase_var3_D79FB2B7.wem</Path>
 				</File>
 				<File Id="386796326" Language="SFX">
 					<ShortName>K2_Chase.wav</ShortName>
-					<Path>SFX/K2_Chase_D79FB2B7.wem</Path>
+					<Path>SFX\K2_Chase_D79FB2B7.wem</Path>
 				</File>
 				<File Id="443822615" Language="SFX">
 					<ShortName>K3_Chase_var2.wav</ShortName>
-					<Path>SFX/K3_Chase_var2_D79FB2B7.wem</Path>
+					<Path>SFX\K3_Chase_var2_D79FB2B7.wem</Path>
 				</File>
 				<File Id="445973861" Language="SFX">
 					<ShortName>K2_Chase_var1.wav</ShortName>
-					<Path>SFX/K2_Chase_var1_D79FB2B7.wem</Path>
+					<Path>SFX\K2_Chase_var1_D79FB2B7.wem</Path>
 				</File>
 				<File Id="459039161" Language="SFX">
 					<ShortName>dsK3_Ambient_var1.wav</ShortName>
-					<Path>SFX/dsK3_Ambient_var1_D79FB2B7.wem</Path>
+					<Path>SFX\dsK3_Ambient_var1_D79FB2B7.wem</Path>
 				</File>
 				<File Id="459888732" Language="SFX">
 					<ShortName>Hit_2.wav</ShortName>
-					<Path>SFX/Hit_2_D79FB2B7.wem</Path>
+					<Path>SFX\Hit_2_D79FB2B7.wem</Path>
 				</File>
 				<File Id="470041319" Language="SFX">
 					<ShortName>usK3_Ambient_var1.wav</ShortName>
-					<Path>SFX/usK3_Ambient_var1_D79FB2B7.wem</Path>
+					<Path>SFX\usK3_Ambient_var1_D79FB2B7.wem</Path>
 				</File>
 				<File Id="472131563" Language="SFX">
 					<ShortName>Secret_Room_Loop.wav</ShortName>
-					<Path>SFX/Secret_Room_Loop_D79FB2B7.wem</Path>
+					<Path>SFX\Secret_Room_Loop_D79FB2B7.wem</Path>
 				</File>
 				<File Id="511732289" Language="SFX">
 					<ShortName>dsK3_Ambient_var2.wav</ShortName>
-					<Path>SFX/dsK3_Ambient_var2_D79FB2B7.wem</Path>
+					<Path>SFX\dsK3_Ambient_var2_D79FB2B7.wem</Path>
 				</File>
 				<File Id="548278599" Language="SFX">
 					<ShortName>usK3_Ambient_var3.wav</ShortName>
-					<Path>SFX/usK3_Ambient_var3_D79FB2B7.wem</Path>
+					<Path>SFX\usK3_Ambient_var3_D79FB2B7.wem</Path>
 				</File>
 				<File Id="557835650" Language="SFX">
 					<ShortName>dsK1_Ambient_var3.wav</ShortName>
-					<Path>SFX/dsK1_Ambient_var3_D79FB2B7.wem</Path>
+					<Path>SFX\dsK1_Ambient_var3_D79FB2B7.wem</Path>
 				</File>
 				<File Id="581376605" Language="SFX">
 					<ShortName>K3_Chase.wav</ShortName>
-					<Path>SFX/K3_Chase_D79FB2B7.wem</Path>
+					<Path>SFX\K3_Chase_D79FB2B7.wem</Path>
 				</File>
 				<File Id="592916229" Language="SFX">
 					<ShortName>usK1_Ambient_var1.wav</ShortName>
-					<Path>SFX/usK1_Ambient_var1_D79FB2B7.wem</Path>
+					<Path>SFX\usK1_Ambient_var1_D79FB2B7.wem</Path>
 				</File>
 				<File Id="597712010" Language="SFX">
 					<ShortName>dsK2_Ambient_var1.wav</ShortName>
-					<Path>SFX/dsK2_Ambient_var1_D79FB2B7.wem</Path>
+					<Path>SFX\dsK2_Ambient_var1_D79FB2B7.wem</Path>
 				</File>
 				<File Id="650866039" Language="SFX">
 					<ShortName>us_Ambient_Drums.wav</ShortName>
-					<Path>SFX/us_Ambient_Drums_D79FB2B7.wem</Path>
+					<Path>SFX\us_Ambient_Drums_D79FB2B7.wem</Path>
 				</File>
 				<File Id="661429792" Language="SFX">
 					<ShortName>K0_Chase.wav</ShortName>
-					<Path>SFX/K0_Chase_D79FB2B7.wem</Path>
+					<Path>SFX\K0_Chase_D79FB2B7.wem</Path>
 				</File>
 				<File Id="812302212" Language="SFX">
 					<ShortName>Stairwell_Stinger_Main.wav</ShortName>
-					<Path>SFX/Stairwell_Stinger_Main_D79FB2B7.wem</Path>
+					<Path>SFX\Stairwell_Stinger_Main_D79FB2B7.wem</Path>
 				</File>
 				<File Id="829882316" Language="SFX">
 					<ShortName>Secret_Room_Sine_var3.wav</ShortName>
-					<Path>SFX/Secret_Room_Sine_var3_D79FB2B7.wem</Path>
+					<Path>SFX\Secret_Room_Sine_var3_D79FB2B7.wem</Path>
 				</File>
 				<File Id="834039059" Language="SFX">
 					<ShortName>usK1_Ambient_Main.wav</ShortName>
-					<Path>SFX/usK1_Ambient_Main_D79FB2B7.wem</Path>
+					<Path>SFX\usK1_Ambient_Main_D79FB2B7.wem</Path>
 				</File>
 				<File Id="836089256" Language="SFX">
 					<ShortName>Danger_Warning.wav</ShortName>
-					<Path>SFX/Danger_Warning_D79FB2B7.wem</Path>
+					<Path>SFX\Danger_Warning_D79FB2B7.wem</Path>
 				</File>
 				<File Id="856878704" Language="SFX">
 					<ShortName>us_Hit_1.wav</ShortName>
-					<Path>SFX/us_Hit_1_D79FB2B7.wem</Path>
+					<Path>SFX\us_Hit_1_D79FB2B7.wem</Path>
 				</File>
 				<File Id="871097600" Language="SFX">
 					<ShortName>dsK3_Ambient_var3.wav</ShortName>
-					<Path>SFX/dsK3_Ambient_var3_D79FB2B7.wem</Path>
+					<Path>SFX\dsK3_Ambient_var3_D79FB2B7.wem</Path>
 				</File>
 				<File Id="879219535" Language="SFX">
 					<ShortName>usK0_Ambient_var1.wav</ShortName>
-					<Path>SFX/usK0_Ambient_var1_D79FB2B7.wem</Path>
+					<Path>SFX\usK0_Ambient_var1_D79FB2B7.wem</Path>
 				</File>
 				<File Id="885480240" Language="SFX">
 					<ShortName>dsK0_Ambient_Main.wav</ShortName>
-					<Path>SFX/dsK0_Ambient_Main_D79FB2B7.wem</Path>
+					<Path>SFX\dsK0_Ambient_Main_D79FB2B7.wem</Path>
 				</File>
 				<File Id="910620019" Language="SFX">
 					<ShortName>dsK2_Ambient_Main.wav</ShortName>
-					<Path>SFX/dsK2_Ambient_Main_D79FB2B7.wem</Path>
+					<Path>SFX\dsK2_Ambient_Main_D79FB2B7.wem</Path>
 				</File>
 				<File Id="914421488" Language="SFX">
 					<ShortName>Secret_Room_Sine_var4.wav</ShortName>
-					<Path>SFX/Secret_Room_Sine_var4_D79FB2B7.wem</Path>
+					<Path>SFX\Secret_Room_Sine_var4_D79FB2B7.wem</Path>
 				</File>
 				<File Id="914667342" Language="SFX">
 					<ShortName>usK0_Ambient_Main.wav</ShortName>
-					<Path>SFX/usK0_Ambient_Main_D79FB2B7.wem</Path>
+					<Path>SFX\usK0_Ambient_Main_D79FB2B7.wem</Path>
 				</File>
 				<File Id="938940762" Language="SFX">
 					<ShortName>us_Ambient_Clock.wav</ShortName>
-					<Path>SFX/us_Ambient_Clock_D79FB2B7.wem</Path>
+					<Path>SFX\us_Ambient_Clock_D79FB2B7.wem</Path>
 				</File>
 				<File Id="939900804" Language="SFX">
 					<ShortName>K3_Chase_var1.wav</ShortName>
-					<Path>SFX/K3_Chase_var1_D79FB2B7.wem</Path>
+					<Path>SFX\K3_Chase_var1_D79FB2B7.wem</Path>
 				</File>
 				<File Id="940296019" Language="SFX">
 					<ShortName>dsK1_Ambient_var1.wav</ShortName>
-					<Path>SFX/dsK1_Ambient_var1_D79FB2B7.wem</Path>
+					<Path>SFX\dsK1_Ambient_var1_D79FB2B7.wem</Path>
 				</File>
 				<File Id="942124005" Language="SFX">
 					<ShortName>Death_Stinger 3.wav</ShortName>
-					<Path>SFX/Death_Stinger 3_D79FB2B7.wem</Path>
+					<Path>SFX\Death_Stinger 3_D79FB2B7.wem</Path>
 				</File>
 				<File Id="944440999" Language="SFX">
 					<ShortName>usK3_Ambient_Main.wav</ShortName>
-					<Path>SFX/usK3_Ambient_Main_D79FB2B7.wem</Path>
+					<Path>SFX\usK3_Ambient_Main_D79FB2B7.wem</Path>
 				</File>
 				<File Id="960208997" Language="SFX">
 					<ShortName>Secret_Room_Sine_var1.wav</ShortName>
-					<Path>SFX/Secret_Room_Sine_var1_D79FB2B7.wem</Path>
+					<Path>SFX\Secret_Room_Sine_var1_D79FB2B7.wem</Path>
 				</File>
 				<File Id="991098013" Language="SFX">
 					<ShortName>us_Ambient_Intro.wav</ShortName>
-					<Path>SFX/us_Ambient_Intro_D79FB2B7.wem</Path>
+					<Path>SFX\us_Ambient_Intro_D79FB2B7.wem</Path>
 				</File>
 				<File Id="1001795503" Language="SFX">
 					<ShortName>Secret_Room_Sine_var2.wav</ShortName>
-					<Path>SFX/Secret_Room_Sine_var2_D79FB2B7.wem</Path>
+					<Path>SFX\Secret_Room_Sine_var2_D79FB2B7.wem</Path>
 				</File>
 				<File Id="1053847306" Language="SFX">
 					<ShortName>Secret_Room_Stinger.wav</ShortName>
-					<Path>SFX/Secret_Room_Stinger_D79FB2B7.wem</Path>
+					<Path>SFX\Secret_Room_Stinger_D79FB2B7.wem</Path>
 				</File>
 			</IncludedMemoryFiles>
 			<GameParameters>

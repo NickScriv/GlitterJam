@@ -34,13 +34,13 @@ EBTNodeResult::Type UBTTaskNode_KillPlayer::ExecuteTask(class UBehaviorTreeCompo
 	FVector start = monster->GetActorLocation();
 	qParams.AddIgnoredActor(monster);
 	start.Z += 130.f;
-
+	UE_LOG(LogTemp, Warning, TEXT("check player"));
 	if (GetWorld()->LineTraceSingleByChannel(hit, start, player->GetCapsuleComponent()->GetComponentLocation(), ECC_Visibility, qParams))
 	{
-
+		UE_LOG(LogTemp, Warning, TEXT("Hit something"));
 		if (Cast<AMainCharacter>(hit.Actor))
 		{
-			//UE_LOG(LogTemp, Error, TEXT("Kill Player"));
+			UE_LOG(LogTemp, Warning, TEXT("Kill Player"));
 			//monster->StopMonsterSounds();
 			monster->KillPlayer();
 		}

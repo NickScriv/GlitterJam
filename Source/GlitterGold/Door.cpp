@@ -3,7 +3,7 @@
 
 #include "Door.h"
 #include "AkAudioEvent.h"
-#include <AkAudio/Public/AkAudioDevice.h>
+#include "../Plugins/Wwise/Source/AkAudio/Classes/AkComponent.h"
 
 // Sets default values
 ADoor::ADoor()

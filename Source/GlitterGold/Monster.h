@@ -108,6 +108,18 @@ private:
 		float blendPhysics;
 
 	UPROPERTY(EditAnywhere)
+		float OrientationStrength;
+
+	UPROPERTY(EditAnywhere)
+		float AngularVelocityStrength;
+
+	UPROPERTY(EditAnywhere)
+		float PositionStrength;
+
+	UPROPERTY(EditAnywhere)
+		float VelocityStrength;
+
+	UPROPERTY(EditAnywhere)
 		float time;
 
 	UPROPERTY(EditAnywhere)

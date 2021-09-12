@@ -14,6 +14,9 @@ class GLITTERGOLD_API AAkSpatialAudioVolume_Reverb : public AAkSpatialAudioVolum
 {
 	GENERATED_BODY()
 
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
+
 	AAkSpatialAudioVolume_Reverb();
 
 	UPROPERTY(EditAnywhere)

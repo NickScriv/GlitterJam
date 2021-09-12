@@ -52,7 +52,32 @@ void AMainCharacter::BeginPlay()
 		float height = capsuleColl->GetScaledCapsuleHalfHeight() * scaleHeightEnding;
 		capsuleColl->SetCapsuleHalfHeight(height);
 
-		gameInstance->monsterKilled = false;
+		// TODO: Remember to take this out
+		gameInstance->monsterKilled = true;
+
+
+		FAkAudioDevice::Get()->SetRTPCValue(*FString("Footsteps_Movement_Type"), 2, 200, this);
+		FAkAudioDevice::Get()->PostEvent("Play_Outdoor_Ambience", this);
+	}
+	else
+	{
+		FAkAudioDevice::Get()->SetRTPCValue(*FString("Footsteps_Movement_Type"), 2, 200, this);
+		FAkAudioDevice::Get()->SetRTPCValue(*FString("Downstairs_Upstairs_Stairwell"), 1, 300, this);
+		
+		FAkAudioDevice::Get()->PostEvent("PLAY_MUSIC", this);
+		FAkAudioDevice::Get()->PostEvent("Play_Ambient_Music", this);
+		FAkAudioDevice::Get()->SetRTPCValue(*FString("Num_of_Keys"), 0, 300, this);
+		FAkAudioDevice::Get()->PostEvent("Play_Indoor_Ambience", this);
+
+		// TODO: Remember to take this out
+		//gameInstance->monsterKilled = true;
+	}
+
+	UAkComponent* comp = FAkAudioDevice::Get()->GetAkComponent(GetRootComponent(), FName(), NULL, EAttachLocation::KeepRelativeOffset);
+
+	if (comp)
+	{
+		comp->OcclusionRefreshInterval = 0.0f;
 	}
 	
 	standCameraHeight = cameraComponent->GetRelativeLocation().Z;
@@ -61,6 +86,7 @@ void AMainCharacter::BeginPlay()
 	crouchCapsuleHeight = capsuleColl->GetScaledCapsuleHalfHeight() * crouchScale;
 
 	capsuleColl->SetCollisionObjectType(ECC_GameTraceChannel3);
+	capsuleColl->SetCollisionResponseToChannel(ECC_Visibility, ECollisionResponse::ECR_Block);
 	capsuleColl->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
 
 	items.Add(true);
@@ -85,14 +111,6 @@ void AMainCharacter::BeginPlay()
 	GetWorldTimerManager().ClearTimer(timerHandleInteract);
 
 	GetCharacterMovement()->MaxWalkSpeed = walkSpeed;
-
-	
-	FAkAudioDevice::Get()->SetRTPCValue(*FString("Footsteps_Movement_Type"), 2, 200, this);
-	FAkAudioDevice::Get()->SetRTPCValue(*FString("Downstairs_Upstairs_Stairwell"), 1, 300, this);
-
-	FAkAudioDevice::Get()->PostEvent("PLAY_MUSIC", this);
-	FAkAudioDevice::Get()->PostEvent("Play_Ambient_Music", this);
-	FAkAudioDevice::Get()->SetRTPCValue(*FString("Num_of_Keys"), 0, 300, this);
 
 	gameMode = Cast<AGlitterGameModeBase>(UGameplayStatics::GetGameMode(this));
 
@@ -131,8 +149,6 @@ void AMainCharacter::Tick(float DeltaTime)
 	{
 		idleTimer += DeltaTime;
 	}
-
-	UE_LOG(LogTemp, Warning, TEXT("Idle timer: %f"), idleTimer);
 
 	crouchDelayCountdown += DeltaTime;
 	if (crouchDelayCountdown >= crouchDelayTimer)
@@ -474,15 +490,15 @@ void AMainCharacter::PlayFootStep()
 	if (EMovement::Crouching == movement)
 	{
 		
-		UAISense_Hearing::ReportNoiseEvent(this, GetActorLocation(), 0.0f, this, 0, FName("Noise"));
+		UAISense_Hearing::ReportNoiseEvent(this, GetActorLocation(), crouchLoudness, this, 0, FName("Noise"));
 	}
 	else if(IsSprinting())
 	{
-		UAISense_Hearing::ReportNoiseEvent(this, GetActorLocation(), 1.0f, this, 0, FName("Noise"));
+		UAISense_Hearing::ReportNoiseEvent(this, GetActorLocation(), sprintLoudness, this, 0, FName("Noise"));
 	}
 	else
 	{
-		UAISense_Hearing::ReportNoiseEvent(this, GetActorLocation(), 0.0f, this, 0, FName("Noise"));
+		UAISense_Hearing::ReportNoiseEvent(this, GetActorLocation(), walkLoudness, this, 0, FName("Noise"));
 	}
 }
 
@@ -578,7 +594,7 @@ void AMainCharacter::Attack()
 				isShooting = true;
 				shotgun->Shoot();
 
-				shotgunBulletCount--;
+				//shotgunBulletCount--;
 				gameMode->AmmoUI(true, shotgunBulletCount);
 
 			}

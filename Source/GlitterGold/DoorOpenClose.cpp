@@ -39,6 +39,15 @@ void UDoorOpenClose::BeginPlay()
 {
 	Super::BeginPlay();
 
+	UAkComponent* comp = FAkAudioDevice::Get()->GetAkComponent(this->GetOwner()->GetRootComponent(), FName(), NULL, EAttachLocation::KeepRelativeOffset);
+
+	if (comp)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Door ak comp"));
+		comp->OcclusionCollisionChannel = ECollisionChannel::ECC_GameTraceChannel7;
+		comp->OcclusionRefreshInterval = 0.0f;
+	}
+
 	gameMode = Cast<AGlitterGameModeBase>(UGameplayStatics::GetGameMode(this));
 
 	if ((interaction = Cast<UInteractionWidgetComponent>(GetOwner()->GetComponentByClass(UInteractionWidgetComponent::StaticClass()))) == nullptr)
@@ -206,12 +215,12 @@ void UDoorOpenClose::InteractDoor(class AMainCharacter* character)
 	if(locked && !playerHasKey && !playerHasLockPick)
 	{
 		// Play locked door sound
-		FAkAudioDevice::Get()->PostEvent("Locked_Door", this->GetOwner());
+		FAkAudioDevice::Get()->PostEvent("Locked_Door", character);
 		return;	
 	}
 	else if(playerHasKey && locked)
 	{
-		FAkAudioDevice::Get()->PostEvent("Stop_Door_Unlocking", this->GetOwner());
+		FAkAudioDevice::Get()->PostEvent("Stop_Door_Unlocking", character);
 		locked = false;
 		interaction->interactionTime = 0.f;
 		if (navMeshToBlock && navMeshToBlock->Tags.Num() > 0)
@@ -222,10 +231,10 @@ void UDoorOpenClose::InteractDoor(class AMainCharacter* character)
 	}
 	else if (playerHasLockPick && locked)
 	{
-		FAkAudioDevice::Get()->PostEvent("Stop_Door_Unlocking", this->GetOwner());
+		FAkAudioDevice::Get()->PostEvent("Stop_Lock_Picking", character);
 		locked = false;
 		interaction->interactionTime = 0.f;
-		// TODO: Break lock pick
+		FAkAudioDevice::Get()->PostEvent("Lock_Pick_Break", character);
 		lockPick->onLockPickUsed.Broadcast();
 
 		if (navMeshToBlock && navMeshToBlock->Tags.Num() > 0)
@@ -273,7 +282,12 @@ void UDoorOpenClose::BeginInteractDoor(AMainCharacter* character)
 	// Start playing unlocking sound
 	if (playerHasKey && locked)
 	{
-		FAkAudioDevice::Get()->PostEvent("Play_Door_Unlocking", this->GetOwner());
+		FAkAudioDevice::Get()->PostEvent("Play_Door_Unlocking", character);
+	}
+	else if (locked && playerHasLockPick)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Play lock pick sound"));
+		FAkAudioDevice::Get()->PostEvent("Play_Lock_Picking", character);
 	}
 }
 
@@ -288,7 +302,12 @@ void UDoorOpenClose::EndInteractDoor(AMainCharacter* character)
 	// Stop playing unlocking sound
 	if(playerHasKey && locked)
 	{
-		FAkAudioDevice::Get()->PostEvent("Stop_Door_Unlocking", this->GetOwner());
+		FAkAudioDevice::Get()->PostEvent("Stop_Door_Unlocking", character);
+	}
+	else if (locked && playerHasLockPick)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Stop lock pick sound"));
+		FAkAudioDevice::Get()->PostEvent("Stop_Lock_Picking", character);
 	}
 }
 

@@ -14,9 +14,15 @@ class APointInPlayer;
 
 AAkSpatialAudioVolume_Reverb::AAkSpatialAudioVolume_Reverb()
 {
+}
+
+// Called when the game starts or when spawned
+void AAkSpatialAudioVolume_Reverb::BeginPlay()
+{
+	Super::BeginPlay();
+
 	// listen to event
 	OnActorBeginOverlap.AddDynamic(this, &AAkSpatialAudioVolume_Reverb::OnOverlapBegin);
-
 }
 
 void AAkSpatialAudioVolume_Reverb::OnOverlapBegin(AActor* overlappedActor, AActor* otherActor)

@@ -44,7 +44,7 @@ void UAnimNotify_AxeCanDamage::Notify(USkeletalMeshComponent* MeshComp, UAnimSeq
 		if (AActor* actor = hit.GetActor())
 		{
 
-			/*if (actor->ActorHasTag(FName("Monster")))
+			if (actor->ActorHasTag(FName("Monster")))
 			{
 				AMonster* monster = Cast<AMonster>(actor);
 
@@ -58,10 +58,10 @@ void UAnimNotify_AxeCanDamage::Notify(USkeletalMeshComponent* MeshComp, UAnimSeq
 					FAkAudioDevice::Get()->PostEvent("Axe_Hit_Enemy", MeshComp->GetOwner());
 
 					// Play blood hit effect
-					UGameplayStatics::SpawnEmitterAtLocation(player, monsterHit, hit.Location, UKismetMathLibrary::MakeRotFromZ(dir), false);
+					//UGameplayStatics::SpawnEmitterAtLocation(player, monsterHit, hit.Location, UKismetMathLibrary::MakeRotFromZ(dir), false);
 				}
 
-			}*/
+			}
 			if (ADestructibleActor* wood = Cast<ADestructibleActor>(actor))
 			{
 				// damage wood

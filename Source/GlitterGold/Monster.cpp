@@ -57,20 +57,19 @@ void AMonster::BeginPlay()
 	}
 
 	FPhysicalAnimationData data;
-	data.OrientationStrength = 20000.f;
-	data.AngularVelocityStrength = 2000.f;
-	data.PositionStrength = 20000.f;
-	data.VelocityStrength = 2000.f;
+	data.OrientationStrength = OrientationStrength;
+	data.AngularVelocityStrength = AngularVelocityStrength;
+	data.PositionStrength = PositionStrength;
+	data.VelocityStrength = VelocityStrength;
 	data.bIsLocalSimulation = false;
 	data.MaxAngularForce = 0.f;
 	data.MaxLinearForce = 0.f;
 
-	//physicsComponent->ApplyPhysicalAnimationSettingsBelow(FName("pelvis"), data, false);
-	physicsComponent->ApplyPhysicalAnimationProfileBelow(FName("pelvis"), FName("Death"), false);
+	physicsComponent->ApplyPhysicalAnimationSettingsBelow(FName("pelvis"), data, false);
 
-	//SetPhysicsAnimation(FName("clavicle_l"));
-	//SetPhysicsAnimation(FName("clavicle_r"));
-	//SetPhysicsAnimation(FName("head"));
+	SetPhysicsAnimation(FName("clavicle_l"));
+	SetPhysicsAnimation(FName("clavicle_r"));
+	//SetPhysicsAnimation(FName("neck_01"));
 }
 
 void AMonster::TriggerFirstEvent(AActor* overlappedActor, AActor* otherActor)
@@ -113,6 +112,7 @@ void AMonster::KillMonster(FVector shotDir)
 	GetMesh()->SetCollisionResponseToChannel(ECollisionChannel::ECC_GameTraceChannel3, ECollisionResponse::ECR_Ignore);
 
 	FAkAudioDevice::Get()->SetRTPCValue(*FString("Danger_Warning"), 0.f, 200, mainPlayer);
+	FAkAudioDevice::Get()->PostEvent("Player_Kills_Enemy", this);
 
 	if (AMainCharacter* player = Cast<AMainCharacter>(UGameplayStatics::GetPlayerCharacter(this, 0)))
 	{
@@ -139,17 +139,16 @@ void AMonster::KillMonster(FVector shotDir)
 	else
 	{
 		// Die sideways
-
 		float dotSide = FVector::DotProduct(shotDir, GetActorRightVector());
 
 		if (dotSide < 0)
 		{
-			// Die left!?!?!
+			// Die left
 			deathStatus = EDeathStatus::DieLeft;
 		}
 		else
 		{
-			//Die right!?!?!?
+			//Die right
 			deathStatus = EDeathStatus::DieRight;
 		}
 
@@ -177,7 +176,6 @@ void AMonster::SetPhysicsAnimation(FName boneName)
 	{
 		GetMesh()->SetAllBodiesBelowSimulatePhysics(boneName, true, false);
 		GetMesh()->SetAllBodiesBelowPhysicsBlendWeight(boneName, blendPhysics, false, false);
-		UE_LOG(LogTemp, Error, TEXT("Set physics mesh 2"));
 	}
 	else
 	{
@@ -188,7 +186,7 @@ void AMonster::SetPhysicsAnimation(FName boneName)
 void AMonster::KillPlayer()
 {
 	AAIController* controller =  UAIBlueprintHelperLibrary::GetAIController(this);
-	
+	GetMesh()->SetAllBodiesBelowSimulatePhysics(FName("pelvis"), false, false);
 	if (controller)
 	{
 		if(!mainPlayer)

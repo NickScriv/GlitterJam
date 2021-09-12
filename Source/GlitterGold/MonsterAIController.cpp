@@ -126,7 +126,8 @@ void AMonsterAIController::perceptionUpdated(AActor* Actor, FAIStimulus Stimulus
 	{
 		FHitResult hit;
 		FCollisionQueryParams qParams;
-		
+		qParams.AddIgnoredActor(GetPawn());
+
 		if (GetWorld()->LineTraceSingleByChannel(hit, GetPawn()->GetActorLocation(), Stimulus.StimulusLocation, ECC_Visibility, qParams))
 		{
 			UE_LOG(LogTemp, Warning, TEXT("Hit raycast to player: %s"), *hit.Actor->GetName());
@@ -141,7 +142,7 @@ void AMonsterAIController::perceptionUpdated(AActor* Actor, FAIStimulus Stimulus
 	else if (senseName == TEXT("AISense_Damage"))
 	{
 
-		UE_LOG(LogTemp, Warning, TEXT("Damage AI at: %f, %f, %f"), Stimulus.StimulusLocation.X, Stimulus.StimulusLocation.Y, Stimulus.StimulusLocation.Z);
+		//UE_LOG(LogTemp, Warning, TEXT("Damage AI at: %f, %f, %f"), Stimulus.StimulusLocation.X, Stimulus.StimulusLocation.Y, Stimulus.StimulusLocation.Z);
 		blackboardComp->SetValueAsBool(FName("IsInvestigating"), Stimulus.WasSuccessfullySensed());
 		blackboardComp->SetValueAsVector(FName("TargetLoc"), Stimulus.StimulusLocation);
 

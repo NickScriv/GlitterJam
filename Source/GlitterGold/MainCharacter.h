@@ -70,23 +70,23 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	float idleTimerThreshold;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Movement")
-	float stamina = 100.f;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Stamina")
+		float stamina;
 
 	UPROPERTY(EditAnywhere, Category = "Death")
-		float deathRotTime = 5.f;
+		float deathRotTime;
 
 	UPROPERTY(EditAnywhere, Category = "Death")
-		float monsterOffsetLookAt = 100.f;
+		float monsterOffsetLookAt;
 
 	UPROPERTY(EditAnywhere, Category = "Death")
-		float monsterOffsetLookAtCrouch = 50.f;
+		float monsterOffsetLookAtCrouch;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Movement")
-		float walkSpeed = 600.0f;
+		float walkSpeed;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Movement")
-		float sprintSpeed = 900.0f;
+		float sprintSpeed;
 
 	UPROPERTY(BlueprintReadWrite)
 	bool isShooting = false;
@@ -179,10 +179,10 @@ protected:
 
 #pragma region Interaction
 	UPROPERTY(EditDefaultsOnly, Category = "Interaction")
-		float interactionCheckDistance = 1000.f;
+		float interactionCheckDistance;
 
 	UPROPERTY(EditAnywhere, Category = "Interaction")
-		float interactionCheckRadius = 5.f;
+		float interactionCheckRadius;
 
 	FTimerHandle timerHandleInteract;
 
@@ -243,43 +243,43 @@ private:
 
 
 	UPROPERTY(EditAnywhere, Category = "Movement")
-		float crouchSpeed = 50.0f;
+		float crouchSpeed;
 
 	UPROPERTY(EditAnywhere, Category = "Movement")
-		float crouchScale = 0.5f;
+		float crouchScale;
 
 	UPROPERTY(EditAnywhere, Category = "Movement")
 		float scaleHeightEnding;
 
 	UPROPERTY(EditAnywhere)
-		float sphereCastRange = 125.f;
+		float sphereCastRange;
+
+	UPROPERTY(EditAnywhere, Category = "Movement")
+		float footStepTimeWalk;
+
+	UPROPERTY(EditAnywhere, Category = "Movement")
+		float footStepTimeSprint;
+
+	UPROPERTY(EditAnywhere, Category = "Movement")
+		float footStepTimeCrouch;
 
 	UPROPERTY(EditAnywhere)
-		float footStepTimeWalk = .5f;
+		float crouchLoudness;
 
 	UPROPERTY(EditAnywhere)
-		float footStepTimeSprint = .3f;
+		float walkLoudness;
 
 	UPROPERTY(EditAnywhere)
-		float footStepTimeCrouch = .8f;
+		float sprintLoudness;
 
-	UPROPERTY(EditAnywhere)
-		float crouchLoudness = .4f;
+	UPROPERTY(EditAnywhere, Category = "Stamina")
+		float maxNormalRestTime;
 
-	UPROPERTY(EditAnywhere)
-		float walkLoudness = .8f;
+	UPROPERTY(EditAnywhere, Category = "Stamina")
+		float depletedRestTime;
 
-	UPROPERTY(EditAnywhere)
-		float sprintLoudness = 1.5f;
-
-	UPROPERTY(EditAnywhere)
-		float maxNormalRestTime = 3.f;
-
-	UPROPERTY(EditAnywhere)
-		float depletedRestTime = 3.5f;
-
-	UPROPERTY(EditAnywhere)
-		float heavyBreathThreshold = 40.f;
+	UPROPERTY(EditAnywhere, Category = "Stamina")
+		float heavyBreathThreshold;
 
 	FTimerHandle timerFootstep;
 	bool playFootStep = true;
@@ -331,10 +331,10 @@ private:
 	void SwitchArms(float val);
 
 	UPROPERTY(EditAnywhere, Category = "Stamina")
-		float staminaRegen = 2;
+		float staminaRegen;
 
 	UPROPERTY(EditAnywhere, Category = "Stamina")
-		float staminaDepletion = 3;
+		float staminaDepletion;
 
 
 	bool isSprintingKeyDown = false;

@@ -13,6 +13,7 @@
 #include "Runtime/LevelSequence/Public/LevelSequenceActor.h"
 #include "Runtime/LevelSequence/Public/LevelSequencePlayer.h"
 #include "Kismet/KismetMathLibrary.h"
+#include "../Plugins/Wwise/Source/AkAudio/Classes/AkComponent.h"
 
 // Sets default values
 ACarDoorEndGame::ACarDoorEndGame()
@@ -52,7 +53,6 @@ void ACarDoorEndGame::BeginPlay()
 void ACarDoorEndGame::EndGame(class AMainCharacter* character)
 {
 	character->DisablePlayer();
-	UE_LOG(LogTemp, Warning, TEXT("Wow compile!!!"));
 	UGlitterGameInstance* gameInstance = Cast<UGlitterGameInstance>(UGameplayStatics::GetGameInstance(this));
 	if (gameInstance)
 	{
@@ -62,7 +62,7 @@ void ACarDoorEndGame::EndGame(class AMainCharacter* character)
 			{
 				gameMode->FadeOutHUD();
 			}
-
+			FAkAudioDevice::Get()->PostEvent("Stop_Outdoor_Ambience", character);
 			GetWorldTimerManager().SetTimer(goodEndCutsceneHandle, this, &ACarDoorEndGame::TriggerGoodEnding, 2.f, false);
 		}
 		else
@@ -90,7 +90,6 @@ void ACarDoorEndGame::ToMainMenu()
 
 void ACarDoorEndGame::TriggerGoodEnding()
 {
-	// Setup the sequence player
 
 	//Sequence Play
 	
