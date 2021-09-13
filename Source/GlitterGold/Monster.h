@@ -69,6 +69,23 @@ public:
 	UPROPERTY(EditAnywhere)
 	float minDistanceAmbience = 300.f;
 
+	UPROPERTY(EditAnywhere)
+		float OrientationStrength;
+
+	UPROPERTY(EditAnywhere)
+		float AngularVelocityStrength;
+
+	UPROPERTY(EditAnywhere)
+		float PositionStrength;
+
+	UPROPERTY(EditAnywhere)
+		float VelocityStrength;
+
+	UPROPERTY(EditAnywhere)
+		float blendPhysics;
+
+	class UPhysicalAnimationComponent* physicsComponent;
+
 	void KillTest();
 
 	void KillPlayer();
@@ -97,27 +114,10 @@ private:
 	
 	FRotator rotateKill;
 
-	class UPhysicalAnimationComponent* physicsComponent;
-
 	FTimerHandle timerHandleRagdoll;
 
 	UPROPERTY(EditAnywhere)
 	float health;
-
-	UPROPERTY(EditAnywhere)
-		float blendPhysics;
-
-	UPROPERTY(EditAnywhere)
-		float OrientationStrength;
-
-	UPROPERTY(EditAnywhere)
-		float AngularVelocityStrength;
-
-	UPROPERTY(EditAnywhere)
-		float PositionStrength;
-
-	UPROPERTY(EditAnywhere)
-		float VelocityStrength;
 
 	UPROPERTY(EditAnywhere)
 		float time;

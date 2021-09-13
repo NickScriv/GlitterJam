@@ -21,8 +21,7 @@
 #include "NavModifierVolume.h"
 #include "Kismet/GameplayStatics.h"
 #include "MonsterAIController.h"
-
-
+#include "GameFramework/CharacterMovementComponent.h"
 
 // Sets default values for this component's properties
 UDoorOpenClose::UDoorOpenClose()
@@ -155,6 +154,11 @@ void UDoorOpenClose::TickComponent(float DeltaTime, ELevelTick TickType, FActorC
 				UE_LOG(LogTemp, Warning, TEXT("Resume move request: %i"), currentMove.GetID());
 				monsterController->ResumeMove(currentMove);
 			}*/
+
+			if (monster)
+			{
+				monster->GetCharacterMovement()->Activate();
+			}
 				
 			UE_LOG(LogTemp, Warning, TEXT("Resume Move"));
 			checkClosed = false;
@@ -314,7 +318,9 @@ void UDoorOpenClose::EndInteractDoor(AMainCharacter* character)
 
 void UDoorOpenClose::MonsterReachedNavLink(AActor* MovingActor, const FVector& DestinationPoint)
 {
-	AMonster* monster = Cast<AMonster>(MovingActor);
+	if(!monster)
+		monster = Cast<AMonster>(MovingActor);
+
 	if(monster)
 	{
 		navLinkProxyEnter->ResumePathFollowing(monster);
@@ -328,6 +334,8 @@ void UDoorOpenClose::MonsterReachedNavLink(AActor* MovingActor, const FVector& D
 			//currentMove = monsterController->GetCurrentMoveRequestID();
 			//UE_LOG(LogTemp, Warning, TEXT("Pause move request: %i"), currentMove.GetID());
 			//monsterController->PauseMove(currentMove);
+			
+			monster->GetCharacterMovement()->Deactivate();
 			
 			if (!open)
 				checkClosed = true;

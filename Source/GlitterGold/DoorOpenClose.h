@@ -85,6 +85,8 @@ private:
 
 	class AMonsterAIController* monsterController = nullptr;
 
+	class AMonster* monster = nullptr;
+
 	UPROPERTY()
 		class UInteractionWidgetComponent* interaction = nullptr;
 

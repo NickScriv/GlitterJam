@@ -66,7 +66,6 @@ void AMonster::BeginPlay()
 	data.MaxLinearForce = 0.f;
 
 	physicsComponent->ApplyPhysicalAnimationSettingsBelow(FName("pelvis"), data, false);
-
 	SetPhysicsAnimation(FName("clavicle_l"));
 	SetPhysicsAnimation(FName("clavicle_r"));
 	//SetPhysicsAnimation(FName("neck_01"));
@@ -108,7 +107,6 @@ void AMonster::KillMonster(FVector shotDir)
 		gameInstance->monsterKilled = true;
 
 	SetPhysicsAnimation(FName("pelvis"));
-
 	GetMesh()->SetCollisionResponseToChannel(ECollisionChannel::ECC_GameTraceChannel3, ECollisionResponse::ECR_Ignore);
 
 	FAkAudioDevice::Get()->SetRTPCValue(*FString("Danger_Warning"), 0.f, 200, mainPlayer);

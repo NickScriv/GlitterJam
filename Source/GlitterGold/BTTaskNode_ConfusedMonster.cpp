@@ -29,6 +29,5 @@ EBTNodeResult::Type UBTTaskNode_ConfusedMonster::ExecuteTask(class UBehaviorTree
 	}
 
 	gameMode->monsterInCaution = 2.f;
-	UE_LOG(LogTemp, Error, TEXT("COnfused Monster!!!1!!!!"));
 	return EBTNodeResult::Succeeded;
 }
