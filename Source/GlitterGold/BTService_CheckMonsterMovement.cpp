@@ -15,16 +15,16 @@ UBTService_CheckMonsterMovement::UBTService_CheckMonsterMovement()
 void UBTService_CheckMonsterMovement::OnBecomeRelevant(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
 {
 	Super::OnBecomeRelevant(OwnerComp, NodeMemory);
-	UE_LOG(LogTemp, Warning, TEXT("Activate Monster 0"));
+
 	if (!OwnerComp.GetAIOwner())
 		return;
-	UE_LOG(LogTemp, Warning, TEXT("Activate Monster 1"));
+
 	AMonster* monster = Cast<AMonster>(OwnerComp.GetAIOwner()->GetPawn());
 
 	if (!monster)
 		return;
 
-	UE_LOG(LogTemp, Warning, TEXT("Activate Monster 2"));
+
 	monster->GetCharacterMovement()->Activate();
 	
 
