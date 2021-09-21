@@ -11,7 +11,7 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="393239870" Language="SFX" Hash="874664872">
+		<SoundBank Id="393239870" Language="SFX" Hash="1495618293">
 			<ObjectPath>\SoundBanks\Default Work Unit\SFX</ObjectPath>
 			<ShortName>SFX</ShortName>
 			<Path>SFX.bnk</Path>
@@ -88,6 +88,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
+				<Event Id="3747135464" Name="Bad_Ending_SFX" ObjectPath="\Events\Default Work Unit\SFX Events\Endings\Bad_Ending_SFX"/>
 				<Event Id="3113414775" Name="Death_Enemy_Sounds" ObjectPath="\Events\Default Work Unit\SFX Events\Enemy\Death_Enemy_Sounds"/>
 				<Event Id="1550503061" Name="Death_Music" ObjectPath="\Events\Default Work Unit\Music Events\Death_Music">
 					<ActionSetState>
@@ -245,6 +246,8 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
+				<Event Id="2179654399" Name="Pause_Menu_Off" ObjectPath="\Events\Default Work Unit\Music Events\Pause_Menu_Off"/>
+				<Event Id="3483621035" Name="Pause_Menu_On" ObjectPath="\Events\Default Work Unit\Music Events\Pause_Menu_On"/>
 				<Event Id="3358299437" Name="Pick_Up_Note" ObjectPath="\Events\Default Work Unit\SFX Events\Notes\Pick_Up_Note">
 					<IncludedMemoryFiles>
 						<File Id="411798552" Language="SFX">
@@ -401,10 +404,6 @@
 							<ShortName>Enemy_fs_tile_1.wav</ShortName>
 							<Path>SFX\Enemy_fs_tile_1_10C4C929.wem</Path>
 						</File>
-						<File Id="295821180" Language="SFX">
-							<ShortName>Enemy_fs_wood_2.wav</ShortName>
-							<Path>SFX\Enemy_fs_wood_2_10C4C929.wem</Path>
-						</File>
 						<File Id="349922209" Language="SFX">
 							<ShortName>Enemy_fs_wood_3.wav</ShortName>
 							<Path>SFX\Enemy_fs_wood_3_10C4C929.wem</Path>
@@ -421,17 +420,9 @@
 							<ShortName>Enemy_fs_wood_6.wav</ShortName>
 							<Path>SFX\Enemy_fs_wood_6_10C4C929.wem</Path>
 						</File>
-						<File Id="611208096" Language="SFX">
-							<ShortName>Enemy_fs_tile_3.wav</ShortName>
-							<Path>SFX\Enemy_fs_tile_3_10C4C929.wem</Path>
-						</File>
 						<File Id="651469099" Language="SFX">
 							<ShortName>Enemy_fs_tile_4.wav</ShortName>
 							<Path>SFX\Enemy_fs_tile_4_10C4C929.wem</Path>
-						</File>
-						<File Id="666960095" Language="SFX">
-							<ShortName>Enemy_fs_tile_6.wav</ShortName>
-							<Path>SFX\Enemy_fs_tile_6_10C4C929.wem</Path>
 						</File>
 						<File Id="727497738" Language="SFX">
 							<ShortName>Enemy_fs_wood_7.wav</ShortName>
@@ -447,7 +438,6 @@
 						<SwitchContainer SwitchValue="{9D8E2D44-9D7C-4493-8CE0-ECCB0A375775}">
 							<Media>
 								<File Id="165245018"/>
-								<File Id="295821180"/>
 								<File Id="349922209"/>
 								<File Id="527141422"/>
 								<File Id="554635539"/>
@@ -461,9 +451,7 @@
 								<File Id="203799597"/>
 								<File Id="267050312"/>
 								<File Id="361019455"/>
-								<File Id="611208096"/>
 								<File Id="651469099"/>
-								<File Id="666960095"/>
 							</Media>
 						</SwitchContainer>
 					</SwitchContainers>
@@ -627,6 +615,11 @@
 					<SwitchContainers>
 						<SwitchContainer SwitchValue="{9760308D-F525-4763-8251-3DD4449DB889}">
 							<DefaultSwitchValue>{C5196C48-3D97-49A7-AB68-91747D784AAB}</DefaultSwitchValue>
+							<Media>
+								<File Id="280951500"/>
+								<File Id="746416713"/>
+								<File Id="812108379"/>
+							</Media>
 							<Children>
 								<SwitchContainer SwitchValue="{C5196C48-3D97-49A7-AB68-91747D784AAB}">
 									<Media>
@@ -650,6 +643,11 @@
 						</SwitchContainer>
 						<SwitchContainer SwitchValue="{EB205A80-C83D-48D6-B36B-95E26206343D}">
 							<DefaultSwitchValue>{C5196C48-3D97-49A7-AB68-91747D784AAB}</DefaultSwitchValue>
+							<Media>
+								<File Id="311689646"/>
+								<File Id="409382740"/>
+								<File Id="1018933306"/>
+							</Media>
 							<Children>
 								<SwitchContainer SwitchValue="{C5196C48-3D97-49A7-AB68-91747D784AAB}">
 									<Media>
@@ -673,6 +671,11 @@
 						</SwitchContainer>
 						<SwitchContainer SwitchValue="{5F9D8FC5-52B7-4029-93C8-4EDB4FABA209}">
 							<DefaultSwitchValue>{C5196C48-3D97-49A7-AB68-91747D784AAB}</DefaultSwitchValue>
+							<Media>
+								<File Id="311689646"/>
+								<File Id="409382740"/>
+								<File Id="1018933306"/>
+							</Media>
 							<Children>
 								<SwitchContainer SwitchValue="{C5196C48-3D97-49A7-AB68-91747D784AAB}">
 									<Media>
@@ -695,6 +698,9 @@
 							</Children>
 						</SwitchContainer>
 					</SwitchContainers>
+					<AuxBusSends>
+						<AuxBus Id="718557711" Name="RvbZone_Tiled_Rooms" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\RvbZone_Tiled_Rooms"/>
+					</AuxBusSends>
 				</Event>
 				<Event Id="1060106358" Name="Play_Indoor_Ambience" ObjectPath="\Events\Default Work Unit\SFX Events\Ambience\Indoor Ambience\Play_Indoor_Ambience"/>
 				<Event Id="1225062921" Name="Play_Lights_Power_Off" ObjectPath="\Events\Default Work Unit\SFX Events\Lights\Play_Lights_Power_Off">
@@ -713,7 +719,14 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="3124987295" Name="Play_Lock_Picking" ObjectPath="\Events\Default Work Unit\SFX Events\Lock Pick\Play_Lock_Picking"/>
+				<Event Id="3124987295" Name="Play_Lock_Picking" ObjectPath="\Events\Default Work Unit\SFX Events\Lock Pick\Play_Lock_Picking">
+					<IncludedMemoryFiles>
+						<File Id="123948626" Language="SFX">
+							<ShortName>Lock_Picking_Loop.wav</ShortName>
+							<Path>SFX\Lock_Picking_Loop_4B97722C.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="3795145933" Name="Play_Outdoor_Ambience" ObjectPath="\Events\Default Work Unit\SFX Events\Ambience\Outdoor Ambience\Play_Outdoor_Ambience">
 					<IncludedMemoryFiles>
 						<File Id="127374453" Language="SFX">
@@ -751,6 +764,14 @@
 						<File Id="571028704" Language="SFX">
 							<ShortName>Safe_Close_2.wav</ShortName>
 							<Path>SFX\Safe_Close_2_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2854523811" Name="Safe_Locked" ObjectPath="\Events\Default Work Unit\SFX Events\Safe\Safe_Locked">
+					<IncludedMemoryFiles>
+						<File Id="430611945" Language="SFX">
+							<ShortName>Safe_Locked.wav</ShortName>
+							<Path>SFX\Safe_Locked_A6BD20A4.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -853,7 +874,14 @@
 				</Event>
 				<Event Id="3638328809" Name="Stop_Door_Unlocking" ObjectPath="\Events\Default Work Unit\SFX Events\Doors\Stop_Door_Unlocking"/>
 				<Event Id="2473162048" Name="Stop_Indoor_Ambience" ObjectPath="\Events\Default Work Unit\SFX Events\Ambience\Indoor Ambience\Stop_Indoor_Ambience"/>
-				<Event Id="21842589" Name="Stop_Lock_Picking" ObjectPath="\Events\Default Work Unit\SFX Events\Lock Pick\Stop_Lock_Picking"/>
+				<Event Id="21842589" Name="Stop_Lock_Picking" ObjectPath="\Events\Default Work Unit\SFX Events\Lock Pick\Stop_Lock_Picking">
+					<IncludedMemoryFiles>
+						<File Id="123948626" Language="SFX">
+							<ShortName>Lock_Picking_Loop.wav</ShortName>
+							<Path>SFX\Lock_Picking_Loop_4B97722C.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="2431981779" Name="Stop_Outdoor_Ambience" ObjectPath="\Events\Default Work Unit\SFX Events\Ambience\Outdoor Ambience\Stop_Outdoor_Ambience"/>
 				<Event Id="2141040177" Name="Stop_Run_Gentle" ObjectPath="\Events\Default Work Unit\SFX Events\Stamina\Stop_Run_Gentle"/>
 				<Event Id="377921503" Name="Stop_Run_Heavy" ObjectPath="\Events\Default Work Unit\SFX Events\Stamina\Stop_Run_Heavy">
@@ -889,12 +917,15 @@
 						</SwitchContainer>
 					</SwitchContainers>
 				</Event>
+				<Event Id="1208240901" Name="UI_Scroll" ObjectPath="\Events\Default Work Unit\UI Events\UI_Scroll"/>
+				<Event Id="2774129122" Name="UI_Select" ObjectPath="\Events\Default Work Unit\UI Events\UI_Select"/>
 			</IncludedEvents>
 			<IncludedAuxBusses>
 				<AuxBus Id="718557711" Name="RvbZone_Tiled_Rooms" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\RvbZone_Tiled_Rooms"/>
 				<AuxBus Id="741810926" Name="RvbZone_Large_Rooms" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\RvbZone_Large_Rooms"/>
 				<AuxBus Id="1037034650" Name="RvbZone_Small_Rooms" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\RvbZone_Small_Rooms"/>
 				<AuxBus Id="1102545430" Name="RvbZone_Narrow_Rooms" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\RvbZone_Narrow_Rooms"/>
+				<AuxBus Id="2375102103" Name="RvbZone_Outside" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\RvbZone_Outside"/>
 			</IncludedAuxBusses>
 			<IncludedMemoryFiles>
 				<File Id="2812397" Language="SFX">
@@ -1025,10 +1056,6 @@
 					<ShortName>Caution_var_6.wav</ShortName>
 					<Path>SFX\Caution_var_6_10C4C929.wem</Path>
 				</File>
-				<File Id="295821180" Language="SFX">
-					<ShortName>Enemy_fs_wood_2.wav</ShortName>
-					<Path>SFX\Enemy_fs_wood_2_10C4C929.wem</Path>
-				</File>
 				<File Id="301772476" Language="SFX">
 					<ShortName>Key_Acquired_1.wav</ShortName>
 					<Path>SFX\Key_Acquired_1_10C4C929.wem</Path>
@@ -1085,6 +1112,10 @@
 					<ShortName>Locked_Door_2.wav</ShortName>
 					<Path>SFX\Locked_Door_2_10C4C929.wem</Path>
 				</File>
+				<File Id="430611945" Language="SFX">
+					<ShortName>Safe_Locked.wav</ShortName>
+					<Path>SFX\Safe_Locked_A6BD20A4.wem</Path>
+				</File>
 				<File Id="432927829" Language="SFX">
 					<ShortName>Locked_Door_1.wav</ShortName>
 					<Path>SFX\Locked_Door_1_10C4C929.wem</Path>
@@ -1137,6 +1168,10 @@
 					<ShortName>Lights_Power_On_Test1.wav</ShortName>
 					<Path>SFX\Lights_Power_On_Test1_10C4C929.wem</Path>
 				</File>
+				<File Id="531573207" Language="SFX">
+					<ShortName>Bad_Ending_SFX.wav</ShortName>
+					<Path>SFX\Bad_Ending_SFX_88667C2E.wem</Path>
+				</File>
 				<File Id="532809091" Language="SFX">
 					<ShortName>tile_fs_crouch_2.wav</ShortName>
 					<Path>SFX\tile_fs_crouch_2_10C4C929.wem</Path>
@@ -1169,10 +1204,6 @@
 					<ShortName>tile_fs_run_5.wav</ShortName>
 					<Path>SFX\tile_fs_run_5_10C4C929.wem</Path>
 				</File>
-				<File Id="611208096" Language="SFX">
-					<ShortName>Enemy_fs_tile_3.wav</ShortName>
-					<Path>SFX\Enemy_fs_tile_3_10C4C929.wem</Path>
-				</File>
 				<File Id="614518866" Language="SFX">
 					<ShortName>Passive_var_2.wav</ShortName>
 					<Path>SFX\Passive_var_2_10C4C929.wem</Path>
@@ -1204,10 +1235,6 @@
 				<File Id="662933913" Language="SFX">
 					<ShortName>Caution_var_9.wav</ShortName>
 					<Path>SFX\Caution_var_9_10C4C929.wem</Path>
-				</File>
-				<File Id="666960095" Language="SFX">
-					<ShortName>Enemy_fs_tile_6.wav</ShortName>
-					<Path>SFX\Enemy_fs_tile_6_10C4C929.wem</Path>
 				</File>
 				<File Id="682434907" Language="SFX">
 					<ShortName>wood_fs_crouch_1.wav</ShortName>
@@ -1393,9 +1420,17 @@
 					<ShortName>Chase_var_3.wav</ShortName>
 					<Path>SFX\Chase_var_3_10C4C929.wem</Path>
 				</File>
+				<File Id="1049489781" Language="SFX">
+					<ShortName>UI_Scroll.wav</ShortName>
+					<Path>SFX\UI_Scroll_10C4C929.wem</Path>
+				</File>
 				<File Id="1052905808" Language="SFX">
 					<ShortName>wood_fs_run_4.wav</ShortName>
 					<Path>SFX\wood_fs_run_4_10C4C929.wem</Path>
+				</File>
+				<File Id="1072431155" Language="SFX">
+					<ShortName>UI_Select.wav</ShortName>
+					<Path>SFX\UI_Select_71D45A73.wem</Path>
 				</File>
 			</IncludedMemoryFiles>
 			<GameParameters>
@@ -1443,11 +1478,12 @@
 					<Switches>
 						<Switch Id="2058049674" Name="Wood" ObjectPath="\Switches\Default Work Unit\SFX\Footsteps\Footsteps_Surface_Type\Wood"/>
 						<Switch Id="2637588553" Name="Tile" ObjectPath="\Switches\Default Work Unit\SFX\Footsteps\Footsteps_Surface_Type\Tile"/>
+						<Switch Id="4248645337" Name="Grass" ObjectPath="\Switches\Default Work Unit\SFX\Footsteps\Footsteps_Surface_Type\Grass"/>
 					</Switches>
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="1355168291" Language="SFX" Hash="1242774712">
+		<SoundBank Id="1355168291" Language="SFX" Hash="114489645">
 			<ObjectPath>Init</ObjectPath>
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
@@ -1456,13 +1492,19 @@
 				<AuxBus Id="741810926" Name="RvbZone_Large_Rooms" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\RvbZone_Large_Rooms"/>
 				<AuxBus Id="1037034650" Name="RvbZone_Small_Rooms" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\RvbZone_Small_Rooms"/>
 				<AuxBus Id="1102545430" Name="RvbZone_Narrow_Rooms" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\RvbZone_Narrow_Rooms"/>
+				<AuxBus Id="2375102103" Name="RvbZone_Outside" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\RvbZone_Outside"/>
 			</IncludedAuxBusses>
 		</SoundBank>
-		<SoundBank Id="3991942870" Language="SFX" Hash="2093966454">
+		<SoundBank Id="3991942870" Language="SFX" Hash="1065787564">
 			<ObjectPath>\SoundBanks\Default Work Unit\Music</ObjectPath>
 			<ShortName>Music</ShortName>
 			<Path>Music.bnk</Path>
 			<IncludedEvents>
+				<Event Id="1829487256" Name="Bad_Ending_Music" ObjectPath="\Events\Default Work Unit\Music Events\Bad_Ending_Music">
+					<ActionSetState>
+						<ActionSetStateEntry Id="2222736396" Name="Bad_Ending" ObjectPath="\States\Default Work Unit\Music States\Music_Sections\Bad_Ending"/>
+					</ActionSetState>
+				</Event>
 				<Event Id="1550503061" Name="Death_Music" ObjectPath="\Events\Default Work Unit\Music Events\Death_Music">
 					<IncludedMemoryFiles>
 						<File Id="876824865" Language="SFX">
@@ -1476,30 +1518,366 @@
 				</Event>
 				<Event Id="1828421404" Name="Good_Ending_Music" ObjectPath="\Events\Default Work Unit\Music Events\Good_Ending_Music">
 					<IncludedMemoryFiles>
+						<File Id="52307656" Language="SFX">
+							<ShortName>usds_Soft_Stairwell_Stinger.wav</ShortName>
+							<Path>SFX\usds_Soft_Stairwell_Stinger_D79FB2B7.wem</Path>
+						</File>
+						<File Id="52751577" Language="SFX">
+							<ShortName>us_Hit_2.wav</ShortName>
+							<Path>SFX\us_Hit_2_D79FB2B7.wem</Path>
+						</File>
+						<File Id="58008412" Language="SFX">
+							<ShortName>usK3_Ambient_var2.wav</ShortName>
+							<Path>SFX\usK3_Ambient_var2_D79FB2B7.wem</Path>
+						</File>
+						<File Id="59974996" Language="SFX">
+							<ShortName>ds_AmbStingers_Percussion.wav</ShortName>
+							<Path>SFX\ds_AmbStingers_Percussion_D79FB2B7.wem</Path>
+						</File>
+						<File Id="114987710" Language="SFX">
+							<ShortName>Secret_Room_AmbPluck.wav</ShortName>
+							<Path>SFX\Secret_Room_AmbPluck_D79FB2B7.wem</Path>
+						</File>
 						<File Id="124515639" Language="SFX">
 							<ShortName>Chase_Stinger_1.wav</ShortName>
 							<Path>SFX\Chase_Stinger_1_D79FB2B7.wem</Path>
+						</File>
+						<File Id="127153478" Language="SFX">
+							<ShortName>usK2_Ambient_Main.wav</ShortName>
+							<Path>SFX\usK2_Ambient_Main_D79FB2B7.wem</Path>
+						</File>
+						<File Id="127459953" Language="SFX">
+							<ShortName>K1_Chase.wav</ShortName>
+							<Path>SFX\K1_Chase_D79FB2B7.wem</Path>
 						</File>
 						<File Id="144165873" Language="SFX">
 							<ShortName>Good_Ending_Music.wav</ShortName>
 							<Path>SFX\Good_Ending_Music_D79FB2B7.wem</Path>
 						</File>
+						<File Id="160081236" Language="SFX">
+							<ShortName>usK0_Ambient_var2.wav</ShortName>
+							<Path>SFX\usK0_Ambient_var2_D79FB2B7.wem</Path>
+						</File>
+						<File Id="185291948" Language="SFX">
+							<ShortName>us_Ambient_Variation.wav</ShortName>
+							<Path>SFX\us_Ambient_Variation_D79FB2B7.wem</Path>
+						</File>
+						<File Id="185633474" Language="SFX">
+							<ShortName>Menu_Music.wav</ShortName>
+							<Path>SFX\Menu_Music_D79FB2B7.wem</Path>
+						</File>
+						<File Id="190703147" Language="SFX">
+							<ShortName>Hit_1.wav</ShortName>
+							<Path>SFX\Hit_1_D79FB2B7.wem</Path>
+						</File>
 						<File Id="256343376" Language="SFX">
 							<ShortName>Ambient_Stinger_1.wav</ShortName>
 							<Path>SFX\Ambient_Stinger_1_D79FB2B7.wem</Path>
+						</File>
+						<File Id="264900686" Language="SFX">
+							<ShortName>ds_AmbStingers_Piano.wav</ShortName>
+							<Path>SFX\ds_AmbStingers_Piano_D79FB2B7.wem</Path>
+						</File>
+						<File Id="304732448" Language="SFX">
+							<ShortName>dsK1_Ambient_var2.wav</ShortName>
+							<Path>SFX\dsK1_Ambient_var2_D79FB2B7.wem</Path>
+						</File>
+						<File Id="313028623" Language="SFX">
+							<ShortName>us_Danger_Warning.wav</ShortName>
+							<Path>SFX\us_Danger_Warning_D79FB2B7.wem</Path>
+						</File>
+						<File Id="338744272" Language="SFX">
+							<ShortName>Secret_Room_BassPluck.wav</ShortName>
+							<Path>SFX\Secret_Room_BassPluck_D79FB2B7.wem</Path>
+						</File>
+						<File Id="372904452" Language="SFX">
+							<ShortName>K3_Chase_var3.wav</ShortName>
+							<Path>SFX\K3_Chase_var3_D79FB2B7.wem</Path>
+						</File>
+						<File Id="386796326" Language="SFX">
+							<ShortName>K2_Chase.wav</ShortName>
+							<Path>SFX\K2_Chase_D79FB2B7.wem</Path>
+						</File>
+						<File Id="443822615" Language="SFX">
+							<ShortName>K3_Chase_var2.wav</ShortName>
+							<Path>SFX\K3_Chase_var2_D79FB2B7.wem</Path>
+						</File>
+						<File Id="445973861" Language="SFX">
+							<ShortName>K2_Chase_var1.wav</ShortName>
+							<Path>SFX\K2_Chase_var1_D79FB2B7.wem</Path>
+						</File>
+						<File Id="459039161" Language="SFX">
+							<ShortName>dsK3_Ambient_var1.wav</ShortName>
+							<Path>SFX\dsK3_Ambient_var1_D79FB2B7.wem</Path>
+						</File>
+						<File Id="459888732" Language="SFX">
+							<ShortName>Hit_2.wav</ShortName>
+							<Path>SFX\Hit_2_D79FB2B7.wem</Path>
+						</File>
+						<File Id="470041319" Language="SFX">
+							<ShortName>usK3_Ambient_var1.wav</ShortName>
+							<Path>SFX\usK3_Ambient_var1_D79FB2B7.wem</Path>
+						</File>
+						<File Id="472131563" Language="SFX">
+							<ShortName>Secret_Room_Loop.wav</ShortName>
+							<Path>SFX\Secret_Room_Loop_D79FB2B7.wem</Path>
+						</File>
+						<File Id="509923575" Language="SFX">
+							<ShortName>test menu music.wav</ShortName>
+							<Path>SFX\test menu music_D79FB2B7.wem</Path>
+						</File>
+						<File Id="511732289" Language="SFX">
+							<ShortName>dsK3_Ambient_var2.wav</ShortName>
+							<Path>SFX\dsK3_Ambient_var2_D79FB2B7.wem</Path>
+						</File>
+						<File Id="548278599" Language="SFX">
+							<ShortName>usK3_Ambient_var3.wav</ShortName>
+							<Path>SFX\usK3_Ambient_var3_D79FB2B7.wem</Path>
+						</File>
+						<File Id="557835650" Language="SFX">
+							<ShortName>dsK1_Ambient_var3.wav</ShortName>
+							<Path>SFX\dsK1_Ambient_var3_D79FB2B7.wem</Path>
+						</File>
+						<File Id="581376605" Language="SFX">
+							<ShortName>K3_Chase.wav</ShortName>
+							<Path>SFX\K3_Chase_D79FB2B7.wem</Path>
+						</File>
+						<File Id="592916229" Language="SFX">
+							<ShortName>usK1_Ambient_var1.wav</ShortName>
+							<Path>SFX\usK1_Ambient_var1_D79FB2B7.wem</Path>
+						</File>
+						<File Id="597712010" Language="SFX">
+							<ShortName>dsK2_Ambient_var1.wav</ShortName>
+							<Path>SFX\dsK2_Ambient_var1_D79FB2B7.wem</Path>
+						</File>
+						<File Id="650866039" Language="SFX">
+							<ShortName>us_Ambient_Drums.wav</ShortName>
+							<Path>SFX\us_Ambient_Drums_D79FB2B7.wem</Path>
+						</File>
+						<File Id="661429792" Language="SFX">
+							<ShortName>K0_Chase.wav</ShortName>
+							<Path>SFX\K0_Chase_D79FB2B7.wem</Path>
+						</File>
+						<File Id="812302212" Language="SFX">
+							<ShortName>Stairwell_Stinger_Main.wav</ShortName>
+							<Path>SFX\Stairwell_Stinger_Main_D79FB2B7.wem</Path>
+						</File>
+						<File Id="829882316" Language="SFX">
+							<ShortName>Secret_Room_Sine_var3.wav</ShortName>
+							<Path>SFX\Secret_Room_Sine_var3_D79FB2B7.wem</Path>
+						</File>
+						<File Id="834039059" Language="SFX">
+							<ShortName>usK1_Ambient_Main.wav</ShortName>
+							<Path>SFX\usK1_Ambient_Main_D79FB2B7.wem</Path>
+						</File>
+						<File Id="836089256" Language="SFX">
+							<ShortName>Danger_Warning.wav</ShortName>
+							<Path>SFX\Danger_Warning_D79FB2B7.wem</Path>
+						</File>
+						<File Id="856878704" Language="SFX">
+							<ShortName>us_Hit_1.wav</ShortName>
+							<Path>SFX\us_Hit_1_D79FB2B7.wem</Path>
+						</File>
+						<File Id="871097600" Language="SFX">
+							<ShortName>dsK3_Ambient_var3.wav</ShortName>
+							<Path>SFX\dsK3_Ambient_var3_D79FB2B7.wem</Path>
+						</File>
+						<File Id="879219535" Language="SFX">
+							<ShortName>usK0_Ambient_var1.wav</ShortName>
+							<Path>SFX\usK0_Ambient_var1_D79FB2B7.wem</Path>
+						</File>
+						<File Id="885480240" Language="SFX">
+							<ShortName>dsK0_Ambient_Main.wav</ShortName>
+							<Path>SFX\dsK0_Ambient_Main_D79FB2B7.wem</Path>
+						</File>
+						<File Id="910620019" Language="SFX">
+							<ShortName>dsK2_Ambient_Main.wav</ShortName>
+							<Path>SFX\dsK2_Ambient_Main_D79FB2B7.wem</Path>
+						</File>
+						<File Id="914421488" Language="SFX">
+							<ShortName>Secret_Room_Sine_var4.wav</ShortName>
+							<Path>SFX\Secret_Room_Sine_var4_D79FB2B7.wem</Path>
+						</File>
+						<File Id="914667342" Language="SFX">
+							<ShortName>usK0_Ambient_Main.wav</ShortName>
+							<Path>SFX\usK0_Ambient_Main_D79FB2B7.wem</Path>
+						</File>
+						<File Id="938940762" Language="SFX">
+							<ShortName>us_Ambient_Clock.wav</ShortName>
+							<Path>SFX\us_Ambient_Clock_D79FB2B7.wem</Path>
+						</File>
+						<File Id="939900804" Language="SFX">
+							<ShortName>K3_Chase_var1.wav</ShortName>
+							<Path>SFX\K3_Chase_var1_D79FB2B7.wem</Path>
+						</File>
+						<File Id="940296019" Language="SFX">
+							<ShortName>dsK1_Ambient_var1.wav</ShortName>
+							<Path>SFX\dsK1_Ambient_var1_D79FB2B7.wem</Path>
+						</File>
+						<File Id="942124005" Language="SFX">
+							<ShortName>Death_Stinger 3.wav</ShortName>
+							<Path>SFX\Death_Stinger 3_D79FB2B7.wem</Path>
+						</File>
+						<File Id="944440999" Language="SFX">
+							<ShortName>usK3_Ambient_Main.wav</ShortName>
+							<Path>SFX\usK3_Ambient_Main_D79FB2B7.wem</Path>
+						</File>
+						<File Id="960208997" Language="SFX">
+							<ShortName>Secret_Room_Sine_var1.wav</ShortName>
+							<Path>SFX\Secret_Room_Sine_var1_D79FB2B7.wem</Path>
+						</File>
+						<File Id="991098013" Language="SFX">
+							<ShortName>us_Ambient_Intro.wav</ShortName>
+							<Path>SFX\us_Ambient_Intro_D79FB2B7.wem</Path>
+						</File>
+						<File Id="1001795503" Language="SFX">
+							<ShortName>Secret_Room_Sine_var2.wav</ShortName>
+							<Path>SFX\Secret_Room_Sine_var2_D79FB2B7.wem</Path>
 						</File>
 						<File Id="1053847306" Language="SFX">
 							<ShortName>Secret_Room_Stinger.wav</ShortName>
 							<Path>SFX\Secret_Room_Stinger_D79FB2B7.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
+					<SwitchContainers>
+						<SwitchContainer SwitchValue="{3D8EBFBE-378E-4664-9EA3-7798E4D24468}">
+							<Media>
+								<File Id="58008412"/>
+								<File Id="127153478"/>
+								<File Id="127459953"/>
+								<File Id="190703147"/>
+								<File Id="372904452"/>
+								<File Id="386796326"/>
+								<File Id="443822615"/>
+								<File Id="445973861"/>
+								<File Id="459888732"/>
+								<File Id="470041319"/>
+								<File Id="548278599"/>
+								<File Id="581376605"/>
+								<File Id="661429792"/>
+								<File Id="834039059"/>
+								<File Id="939900804"/>
+							</Media>
+						</SwitchContainer>
+						<SwitchContainer SwitchValue="{D38B038D-A977-436F-86C0-E9BA2000ACCD}">
+							<Media>
+								<File Id="942124005"/>
+							</Media>
+						</SwitchContainer>
+						<SwitchContainer SwitchValue="{0DD2B4CF-CF59-4829-9306-C3424BE57286}">
+							<Children>
+								<SwitchContainer SwitchValue="{5060CC3F-421B-4AE0-A468-8DA736EBF6AC}">
+									<Media>
+										<File Id="59974996"/>
+										<File Id="190703147"/>
+										<File Id="264900686"/>
+										<File Id="304732448"/>
+										<File Id="459039161"/>
+										<File Id="459888732"/>
+										<File Id="511732289"/>
+										<File Id="557835650"/>
+										<File Id="597712010"/>
+										<File Id="836089256"/>
+										<File Id="871097600"/>
+										<File Id="885480240"/>
+										<File Id="910620019"/>
+										<File Id="940296019"/>
+									</Media>
+								</SwitchContainer>
+								<SwitchContainer SwitchValue="{0CBFA3BB-9A76-4E1A-A2F5-D93D291DB4BA}">
+									<Media>
+										<File Id="52307656"/>
+										<File Id="812302212"/>
+									</Media>
+								</SwitchContainer>
+								<SwitchContainer SwitchValue="{E9207CC0-6DC0-437C-9E99-404CFFCBC1F0}">
+									<Media>
+										<File Id="52751577"/>
+										<File Id="127153478"/>
+										<File Id="160081236"/>
+										<File Id="185291948"/>
+										<File Id="313028623"/>
+										<File Id="592916229"/>
+										<File Id="650866039"/>
+										<File Id="834039059"/>
+										<File Id="836089256"/>
+										<File Id="856878704"/>
+										<File Id="879219535"/>
+										<File Id="914667342"/>
+										<File Id="938940762"/>
+										<File Id="944440999"/>
+										<File Id="991098013"/>
+									</Media>
+								</SwitchContainer>
+							</Children>
+						</SwitchContainer>
+						<SwitchContainer SwitchValue="{8BD190FA-603E-4ADF-AA82-7E3181E575C2}">
+							<Media>
+								<File Id="114987710"/>
+								<File Id="338744272"/>
+								<File Id="472131563"/>
+								<File Id="829882316"/>
+								<File Id="914421488"/>
+								<File Id="960208997"/>
+								<File Id="1001795503"/>
+							</Media>
+						</SwitchContainer>
+						<SwitchContainer SwitchValue="{2F834C8E-8769-412A-AA0B-CAEE59C7307B}">
+							<Media>
+								<File Id="1053847306"/>
+							</Media>
+						</SwitchContainer>
+						<SwitchContainer SwitchValue="{2194FC87-C620-4604-9628-0FD0395046D1}">
+							<Media>
+								<File Id="185633474"/>
+							</Media>
+						</SwitchContainer>
+						<SwitchContainer SwitchValue="{22469BE9-DC6F-43D4-8602-646234B6948E}">
+							<Media>
+								<File Id="144165873"/>
+							</Media>
+						</SwitchContainer>
+						<SwitchContainer SwitchValue="{B771CD2E-02B1-45DA-8CA0-F19926C9F697}">
+							<Media>
+								<File Id="185633474"/>
+								<File Id="509923575"/>
+							</Media>
+						</SwitchContainer>
+					</SwitchContainers>
+					<ActionSetState>
+						<ActionSetStateEntry Id="589883976" Name="Good_Ending" ObjectPath="\States\Default Work Unit\Music States\Music_Sections\Good_Ending"/>
+					</ActionSetState>
 				</Event>
-				<Event Id="2179654399" Name="Pause_Menu_Off" ObjectPath="\Events\Default Work Unit\Music Events\Pause_Menu_Off"/>
-				<Event Id="3483621035" Name="Pause_Menu_On" ObjectPath="\Events\Default Work Unit\Music Events\Pause_Menu_On"/>
+				<Event Id="1415247271" Name="Outside_Music_Event" ObjectPath="\Events\Default Work Unit\Music Events\Outside_Music_Event">
+					<ActionSetState>
+						<ActionSetStateEntry Id="438105790" Name="Outside" ObjectPath="\States\Default Work Unit\Music States\Music_Sections\Outside"/>
+					</ActionSetState>
+				</Event>
+				<Event Id="2179654399" Name="Pause_Menu_Off" ObjectPath="\Events\Default Work Unit\Music Events\Pause_Menu_Off">
+					<IncludedMemoryFiles>
+						<File Id="1049489781" Language="SFX">
+							<ShortName>UI_Scroll.wav</ShortName>
+							<Path>SFX\UI_Scroll_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3483621035" Name="Pause_Menu_On" ObjectPath="\Events\Default Work Unit\Music Events\Pause_Menu_On">
+					<IncludedMemoryFiles>
+						<File Id="1072431155" Language="SFX">
+							<ShortName>UI_Select.wav</ShortName>
+							<Path>SFX\UI_Select_71D45A73.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="3358299437" Name="Pick_Up_Note" ObjectPath="\Events\Default Work Unit\SFX Events\Notes\Pick_Up_Note"/>
 				<Event Id="3237721180" Name="Play_Chase_Music" ObjectPath="\Events\Default Work Unit\Music Events\Play_Chase_Music">
 					<ActionSetState>
 						<ActionSetStateEntry Id="417490929" Name="Chase" ObjectPath="\States\Default Work Unit\Music States\Music_Sections\Chase"/>
+					</ActionSetState>
+				</Event>
+				<Event Id="2228153899" Name="Play_Menu_Music" ObjectPath="\Events\Default Work Unit\Music Events\Play_Menu_Music">
+					<ActionSetState>
+						<ActionSetStateEntry Id="2607556080" Name="Menu" ObjectPath="\States\Default Work Unit\Music States\Music_Sections\Menu"/>
 					</ActionSetState>
 				</Event>
 				<Event Id="2932040671" Name="PLAY_MUSIC" ObjectPath="\Events\Default Work Unit\Music Events\PLAY_MUSIC">
@@ -1514,12 +1892,29 @@
 				</Event>
 				<Event Id="3626210482" Name="Put_Down_Note" ObjectPath="\Events\Default Work Unit\SFX Events\Notes\Put_Down_Note"/>
 				<Event Id="2837384057" Name="STOP_MUSIC" ObjectPath="\Events\Default Work Unit\Music Events\STOP_MUSIC"/>
+				<Event Id="1208240901" Name="UI_Scroll" ObjectPath="\Events\Default Work Unit\UI Events\UI_Scroll">
+					<IncludedMemoryFiles>
+						<File Id="1049489781" Language="SFX">
+							<ShortName>UI_Scroll.wav</ShortName>
+							<Path>SFX\UI_Scroll_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2774129122" Name="UI_Select" ObjectPath="\Events\Default Work Unit\UI Events\UI_Select">
+					<IncludedMemoryFiles>
+						<File Id="1072431155" Language="SFX">
+							<ShortName>UI_Select.wav</ShortName>
+							<Path>SFX\UI_Select_71D45A73.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 			</IncludedEvents>
 			<IncludedAuxBusses>
 				<AuxBus Id="718557711" Name="RvbZone_Tiled_Rooms" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\RvbZone_Tiled_Rooms"/>
 				<AuxBus Id="741810926" Name="RvbZone_Large_Rooms" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\RvbZone_Large_Rooms"/>
 				<AuxBus Id="1037034650" Name="RvbZone_Small_Rooms" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\RvbZone_Small_Rooms"/>
 				<AuxBus Id="1102545430" Name="RvbZone_Narrow_Rooms" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\RvbZone_Narrow_Rooms"/>
+				<AuxBus Id="2375102103" Name="RvbZone_Outside" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\RvbZone_Outside"/>
 			</IncludedAuxBusses>
 			<IncludedMemoryFiles>
 				<File Id="52307656" Language="SFX">
@@ -1565,6 +1960,10 @@
 				<File Id="185291948" Language="SFX">
 					<ShortName>us_Ambient_Variation.wav</ShortName>
 					<Path>SFX\us_Ambient_Variation_D79FB2B7.wem</Path>
+				</File>
+				<File Id="185633474" Language="SFX">
+					<ShortName>Menu_Music.wav</ShortName>
+					<Path>SFX\Menu_Music_D79FB2B7.wem</Path>
 				</File>
 				<File Id="190703147" Language="SFX">
 					<ShortName>Hit_1.wav</ShortName>
@@ -1621,6 +2020,10 @@
 				<File Id="472131563" Language="SFX">
 					<ShortName>Secret_Room_Loop.wav</ShortName>
 					<Path>SFX\Secret_Room_Loop_D79FB2B7.wem</Path>
+				</File>
+				<File Id="509923575" Language="SFX">
+					<ShortName>test menu music.wav</ShortName>
+					<Path>SFX\test menu music_D79FB2B7.wem</Path>
 				</File>
 				<File Id="511732289" Language="SFX">
 					<ShortName>dsK3_Ambient_var2.wav</ShortName>
@@ -1744,10 +2147,22 @@
 				<StateGroup Id="417490929" Name="Chase" ObjectPath="\States\Default Work Unit\Music States\Music_Sections\Chase">
 					<States/>
 				</StateGroup>
+				<StateGroup Id="438105790" Name="Outside" ObjectPath="\States\Default Work Unit\Music States\Music_Sections\Outside">
+					<States/>
+				</StateGroup>
+				<StateGroup Id="589883976" Name="Good_Ending" ObjectPath="\States\Default Work Unit\Music States\Music_Sections\Good_Ending">
+					<States/>
+				</StateGroup>
 				<StateGroup Id="748895195" Name="None" ObjectPath="\States\Default Work Unit\Music States\Music_Sections\None">
 					<States/>
 				</StateGroup>
 				<StateGroup Id="779278001" Name="Death" ObjectPath="\States\Default Work Unit\Music States\Music_Sections\Death">
+					<States/>
+				</StateGroup>
+				<StateGroup Id="2222736396" Name="Bad_Ending" ObjectPath="\States\Default Work Unit\Music States\Music_Sections\Bad_Ending">
+					<States/>
+				</StateGroup>
+				<StateGroup Id="2607556080" Name="Menu" ObjectPath="\States\Default Work Unit\Music States\Music_Sections\Menu">
 					<States/>
 				</StateGroup>
 				<StateGroup Id="2973900265" Name="Secret_Room" ObjectPath="\States\Default Work Unit\Music States\Music_Sections\Secret_Room">
@@ -1760,6 +2175,10 @@
 						<State Id="779278001" Name="Death" ObjectPath="\States\Default Work Unit\Music States\Music_Sections\Death"/>
 						<State Id="77978275" Name="Ambient" ObjectPath="\States\Default Work Unit\Music States\Music_Sections\Ambient"/>
 						<State Id="2973900265" Name="Secret_Room" ObjectPath="\States\Default Work Unit\Music States\Music_Sections\Secret_Room"/>
+						<State Id="438105790" Name="Outside" ObjectPath="\States\Default Work Unit\Music States\Music_Sections\Outside"/>
+						<State Id="2607556080" Name="Menu" ObjectPath="\States\Default Work Unit\Music States\Music_Sections\Menu"/>
+						<State Id="589883976" Name="Good_Ending" ObjectPath="\States\Default Work Unit\Music States\Music_Sections\Good_Ending"/>
+						<State Id="2222736396" Name="Bad_Ending" ObjectPath="\States\Default Work Unit\Music States\Music_Sections\Bad_Ending"/>
 					</States>
 				</StateGroup>
 			</StateGroups>

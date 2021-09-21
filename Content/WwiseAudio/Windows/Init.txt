@@ -23,6 +23,7 @@ Switch	ID	Name	Switch Group			Notes
 	3863236874	Running	Footsteps_Movement_SwitchGroup			
 	2058049674	Wood	Footsteps_Surface_Type			
 	2637588553	Tile	Footsteps_Surface_Type			
+	4248645337	Grass	Footsteps_Surface_Type			
 
 State Group	ID	Name			Wwise Object Path	Notes
 	1870834283	Enemy_Sounds_States			\Default Work Unit\Enemy_Sounds_States	
@@ -34,8 +35,12 @@ State	ID	Name	State Group			Notes
 	2595709632	Passive	Enemy_Sounds_States			
 	77978275	Ambient	Music_Sections			
 	417490929	Chase	Music_Sections			
+	438105790	Outside	Music_Sections			
+	589883976	Good_Ending	Music_Sections			
 	748895195	None	Music_Sections			
 	779278001	Death	Music_Sections			
+	2222736396	Bad_Ending	Music_Sections			
+	2607556080	Menu	Music_Sections			
 	2973900265	Secret_Room	Music_Sections			
 
 Audio Bus	ID	Name			Wwise Object Path	Notes
@@ -48,8 +53,10 @@ Auxiliary Bus	ID	Name			Wwise Object Path	Notes
 	741810926	RvbZone_Large_Rooms			\Default Work Unit\Master Audio Bus\RvbZone_Large_Rooms	
 	1037034650	RvbZone_Small_Rooms			\Default Work Unit\Master Audio Bus\RvbZone_Small_Rooms	
 	1102545430	RvbZone_Narrow_Rooms			\Default Work Unit\Master Audio Bus\RvbZone_Narrow_Rooms	
+	2375102103	RvbZone_Outside			\Default Work Unit\Master Audio Bus\RvbZone_Outside	
 
 Effect plug-ins	ID	Name	Type				Notes
+	48620415	Have_U_Ever_Been_Outside	Wwise RoomVerb			
 	602546716	Room_Large	Wwise RoomVerb			
 	1159390747	Room_Medium_Tiled	Wwise RoomVerb			
 	1990128658	Room_Medium	Wwise RoomVerb			

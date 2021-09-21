@@ -47,7 +47,7 @@ void ASafe::InteractSafe(AMainCharacter* character)
 	if (locked && !playerHasPick)
 	{
 		// Play locked door sound
-		FAkAudioDevice::Get()->PostEvent("Locked_Door", this);
+		FAkAudioDevice::Get()->PostEvent("Safe_Locked", this);
 		return;
 	}
 	else if (playerHasPick && locked)

@@ -1,7 +1,12 @@
 Event	ID	Name			Wwise Object Path	Notes
+	1208240901	UI_Scroll			\Default Work Unit\UI Events\UI_Scroll	
+	1415247271	Outside_Music_Event			\Default Work Unit\Music Events\Outside_Music_Event	
 	1550503061	Death_Music			\Default Work Unit\Music Events\Death_Music	
 	1828421404	Good_Ending_Music			\Default Work Unit\Music Events\Good_Ending_Music	
+	1829487256	Bad_Ending_Music			\Default Work Unit\Music Events\Bad_Ending_Music	
 	2179654399	Pause_Menu_Off			\Default Work Unit\Music Events\Pause_Menu_Off	
+	2228153899	Play_Menu_Music			\Default Work Unit\Music Events\Play_Menu_Music	
+	2774129122	UI_Select			\Default Work Unit\UI Events\UI_Select	
 	2837384057	STOP_MUSIC			\Default Work Unit\Music Events\STOP_MUSIC	
 	2932040671	PLAY_MUSIC			\Default Work Unit\Music Events\PLAY_MUSIC	
 	2937929224	Play_Secret_Room_Music			\Default Work Unit\Music Events\Play_Secret_Room_Music	
@@ -24,8 +29,12 @@ State Group	ID	Name			Wwise Object Path	Notes
 State	ID	Name	State Group			Notes
 	77978275	Ambient	Music_Sections			
 	417490929	Chase	Music_Sections			
+	438105790	Outside	Music_Sections			
+	589883976	Good_Ending	Music_Sections			
 	748895195	None	Music_Sections			
 	779278001	Death	Music_Sections			
+	2222736396	Bad_Ending	Music_Sections			
+	2607556080	Menu	Music_Sections			
 	2973900265	Secret_Room	Music_Sections			
 
 Game Parameter	ID	Name			Wwise Object Path	Notes
@@ -47,8 +56,10 @@ Auxiliary Bus	ID	Name			Wwise Object Path	Notes
 	741810926	RvbZone_Large_Rooms			\Default Work Unit\Master Audio Bus\RvbZone_Large_Rooms	
 	1037034650	RvbZone_Small_Rooms			\Default Work Unit\Master Audio Bus\RvbZone_Small_Rooms	
 	1102545430	RvbZone_Narrow_Rooms			\Default Work Unit\Master Audio Bus\RvbZone_Narrow_Rooms	
+	2375102103	RvbZone_Outside			\Default Work Unit\Master Audio Bus\RvbZone_Outside	
 
 Effect plug-ins	ID	Name	Type				Notes
+	48620415	Have_U_Ever_Been_Outside	Wwise RoomVerb			
 	88220550	Wwise Parametric EQ (Custom)	Wwise Parametric EQ			
 	147904098	Wwise RoomVerb (Custom)	Wwise RoomVerb			
 	301594025	Wwise Parametric EQ (Custom)	Wwise Parametric EQ			
@@ -67,9 +78,10 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	124515639	Chase_Stinger_1	E:\WwiseGlitter\.cache\Windows\SFX\Chase_Stinger_1_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music Switch\Stingers\Chase_Stinger_1\Chase_Stinger_1		2430992
 	127153478	usK2_Ambient_Main	E:\WwiseGlitter\.cache\Windows\SFX\usK2_Ambient_Main_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music Switch\Chase Music\Chase Segment\usK2_Ambient_Main		4003824
 	127459953	K1_Chase	E:\WwiseGlitter\.cache\Windows\SFX\K1_Chase_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music Switch\Chase Music\Chase Segment\K1_Chase		2955216
-	144165873	Good_Ending_Music	E:\WwiseGlitter\.cache\Windows\SFX\Good_Ending_Music_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music Switch\Ending Music\Good Ending Music\Good_Ending_Music		4349520
+	144165873	Good_Ending_Music	E:\WwiseGlitter\.cache\Windows\SFX\Good_Ending_Music_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music Switch\Ending Music\Good Ending Music\Good Ending Music\Good_Ending_Music		4349520
 	160081236	usK0_Ambient_VAR	E:\WwiseGlitter\.cache\Windows\SFX\usK0_Ambient_var2_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music Switch\Ambient Music Switch\Upstairs Ambient Music\Upstairs Ambient Segment\usK0_Ambient_VAR		3741696
 	185291948	us_Ambient_Variation	E:\WwiseGlitter\.cache\Windows\SFX\us_Ambient_Variation_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music Switch\Ambient Music Switch\Upstairs Ambient Music\Upstairs Ambient Variation\us_Ambient_Variation		2693168
+	185633474	Menu_Music	E:\WwiseGlitter\.cache\Windows\SFX\Menu_Music_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music Switch\Menu Music\Menu Music\Menu_Music		17527104
 	190703147	Hits	E:\WwiseGlitter\.cache\Windows\SFX\Hit_1_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music Switch\Chase Music\Chase Segment\Hits		2955232
 	256343376	Ambient_Stinger_1	E:\WwiseGlitter\.cache\Windows\SFX\Ambient_Stinger_1_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music Switch\Stingers\Ambient_Stinger_1\Ambient_Stinger_1		2430976
 	264900686	ds_AmbStingers	E:\WwiseGlitter\.cache\Windows\SFX\ds_AmbStingers_Piano_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music Switch\Ambient Music Switch\Downstairs Ambient Music\Downstairs Ambient Segment\ds_AmbStingers		2955232
@@ -84,6 +96,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	459888732	Hits	E:\WwiseGlitter\.cache\Windows\SFX\Hit_2_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music Switch\Chase Music\Chase Segment\Hits		2430944
 	470041319	usK3_Ambient_var1	E:\WwiseGlitter\.cache\Windows\SFX\usK3_Ambient_var1_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music Switch\Chase Music\Chase Segment\usK3_Ambient_var1		3741664
 	472131563	Secret_Room_Loop	E:\WwiseGlitter\.cache\Windows\SFX\Secret_Room_Loop_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music Switch\Secret Room Music\Secret Room\Secret_Room_Loop		3641584
+	509923575	test menu music	E:\WwiseGlitter\.cache\Windows\SFX\test menu music_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music Switch\Ending Music\Bad Ending Music\Bad Ending Music\test menu music		13070656
 	511732289	dsK3_Ambient_VAR	E:\WwiseGlitter\.cache\Windows\SFX\dsK3_Ambient_var2_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music Switch\Ambient Music Switch\Downstairs Ambient Music\Downstairs Ambient Segment\dsK3_Ambient_VAR		3741696
 	548278599	usK3_Ambient_var1	E:\WwiseGlitter\.cache\Windows\SFX\usK3_Ambient_var3_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music Switch\Chase Music\Chase Segment\usK3_Ambient_var1		3741728
 	557835650	dsK1_Ambient_VAR	E:\WwiseGlitter\.cache\Windows\SFX\dsK1_Ambient_var3_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music Switch\Ambient Music Switch\Downstairs Ambient Music\Downstairs Ambient Segment\dsK1_Ambient_VAR		6363280
@@ -112,5 +125,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	960208997	Secret_Room_Sine_VAR	E:\WwiseGlitter\.cache\Windows\SFX\Secret_Room_Sine_var1_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music Switch\Secret Room Music\Secret Room\Secret_Room_Sine_VAR		2855152
 	991098013	us_Ambient_Intro	E:\WwiseGlitter\.cache\Windows\SFX\us_Ambient_Intro_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music Switch\Ambient Music Switch\Upstairs Ambient Music\Upstairs Ambient Intro\us_Ambient_Intro		1906704
 	1001795503	Secret_Room_Sine_VAR	E:\WwiseGlitter\.cache\Windows\SFX\Secret_Room_Sine_var2_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music Switch\Secret Room Music\Secret Room\Secret_Room_Sine_VAR		3379440
+	1049489781	UI_Scroll	E:\WwiseGlitter\.cache\Windows\SFX\UI_Scroll_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI\UI_Scroll		233792
 	1053847306	Secret_Room_Stinger	E:\WwiseGlitter\.cache\Windows\SFX\Secret_Room_Stinger_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Music Switch\Stingers\Secret_Room_Stinger\Secret_Room_Stinger		2330864
+	1072431155	UI_Select	E:\WwiseGlitter\.cache\Windows\SFX\UI_Select_71D45A73.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI\UI_Select		539772
 
