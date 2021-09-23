@@ -71,7 +71,8 @@ void ACarDoorEndGame::EndGame(class AMainCharacter* character)
 			{
 				//endMonster->GetMesh()->GetSocketLocation(FName("Eyes"))
 				character->DiedEnding(endMonster->GetMesh()->GetSocketLocation(FName("Eyes")));
-
+				FAkAudioDevice::Get()->PostEvent("Bad_Ending_Music", character);
+				FAkAudioDevice::Get()->PostEvent("Bad_Ending_SFX", character);
 				endMonster->SetActorHiddenInGame(false);
 				float newYaw = UKismetMathLibrary::FindLookAtRotation(endMonster->GetActorLocation(), character->GetActorLocation()).Yaw;
 				FRotator newRot = endMonster->GetActorRotation();

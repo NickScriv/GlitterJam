@@ -53,7 +53,7 @@ void AMainCharacter::BeginPlay()
 		capsuleColl->SetCapsuleHalfHeight(height);
 
 		// TODO: Remember to take this out
-		gameInstance->monsterKilled = true;
+		//gameInstance->monsterKilled = true;
 
 
 		FAkAudioDevice::Get()->SetRTPCValue(*FString("Footsteps_Movement_Type"), 2, 200, this);

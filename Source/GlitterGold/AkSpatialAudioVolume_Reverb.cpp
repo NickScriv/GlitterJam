@@ -38,7 +38,7 @@ void AAkSpatialAudioVolume_Reverb::OnOverlapBegin(AActor* overlappedActor, AActo
 		}
 		else if (APointInPlayer* pointInPlayer = Cast<APointInPlayer>(otherActor))
 		{
-			//UE_LOG(LogTemp, Warning, TEXT("PointInPlayer detected!"));
+			
 			// Player stepped in
 			AMainCharacter* player = Cast<AMainCharacter>(pointInPlayer->GetParentActor());
 
@@ -52,7 +52,7 @@ void AAkSpatialAudioVolume_Reverb::OnOverlapBegin(AActor* overlappedActor, AActo
 			gameMode->queuedMusic = musicName;
 			UE_LOG(LogTemp, Warning, TEXT("Change footstep surface: %i"), footStepSurface);
 			FAkAudioDevice::Get()->SetRTPCValue(*FString("Footsteps_Surface_Type"), footStepSurface, 0, player);
-
+			UE_LOG(LogTemp, Warning, TEXT("PointInPlayer detected!"));
 
 			if (FMath::IsNearlyEqual(gameMode->monsterInCaution, 0.0f, 0.2f))
 			{
