@@ -11,7 +11,7 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="393239870" Language="SFX" Hash="2321675545">
+		<SoundBank Id="393239870" Language="SFX" Hash="1622773798">
 			<ObjectPath>\SoundBanks\Default Work Unit\SFX</ObjectPath>
 			<ShortName>SFX</ShortName>
 			<Path>SFX.bnk</Path>
@@ -526,6 +526,14 @@
 							<ShortName>wood_fs_run_3.wav</ShortName>
 							<Path>SFX\wood_fs_run_3_10C4C929.wem</Path>
 						</File>
+						<File Id="280951500" Language="SFX">
+							<ShortName>grass_fs_run_3.wav</ShortName>
+							<Path>SFX\grass_fs_run_3_10C4C929.wem</Path>
+						</File>
+						<File Id="311689646" Language="SFX">
+							<ShortName>grass_fs_walk_2.wav</ShortName>
+							<Path>SFX\grass_fs_walk_2_10C4C929.wem</Path>
+						</File>
 						<File Id="377176857" Language="SFX">
 							<ShortName>tile_fs_walk_1.wav</ShortName>
 							<Path>SFX\tile_fs_walk_1_10C4C929.wem</Path>
@@ -533,6 +541,10 @@
 						<File Id="391406086" Language="SFX">
 							<ShortName>tile_fs_run_3.wav</ShortName>
 							<Path>SFX\tile_fs_run_3_10C4C929.wem</Path>
+						</File>
+						<File Id="409382740" Language="SFX">
+							<ShortName>grass_fs_walk_3.wav</ShortName>
+							<Path>SFX\grass_fs_walk_3_10C4C929.wem</Path>
 						</File>
 						<File Id="479321780" Language="SFX">
 							<ShortName>tile_fs_walk_2.wav</ShortName>
@@ -558,9 +570,17 @@
 							<ShortName>wood_fs_crouch_2.wav</ShortName>
 							<Path>SFX\wood_fs_crouch_2_10C4C929.wem</Path>
 						</File>
+						<File Id="746416713" Language="SFX">
+							<ShortName>grass_fs_run_1.wav</ShortName>
+							<Path>SFX\grass_fs_run_1_10C4C929.wem</Path>
+						</File>
 						<File Id="766920340" Language="SFX">
 							<ShortName>wood_fs_walk_2.wav</ShortName>
 							<Path>SFX\wood_fs_walk_2_10C4C929.wem</Path>
+						</File>
+						<File Id="812108379" Language="SFX">
+							<ShortName>grass_fs_run_2.wav</ShortName>
+							<Path>SFX\grass_fs_run_2_10C4C929.wem</Path>
 						</File>
 						<File Id="856828164" Language="SFX">
 							<ShortName>wood_fs_run_1.wav</ShortName>
@@ -602,6 +622,10 @@
 							<ShortName>tile_fs_crouch_5.wav</ShortName>
 							<Path>SFX\tile_fs_crouch_5_10C4C929.wem</Path>
 						</File>
+						<File Id="1018933306" Language="SFX">
+							<ShortName>grass_fs_walk_1.wav</ShortName>
+							<Path>SFX\grass_fs_walk_1_10C4C929.wem</Path>
+						</File>
 						<File Id="1031611517" Language="SFX">
 							<ShortName>wood_fs_crouch_3.wav</ShortName>
 							<Path>SFX\wood_fs_crouch_3_10C4C929.wem</Path>
@@ -615,11 +639,6 @@
 					<SwitchContainers>
 						<SwitchContainer SwitchValue="{9760308D-F525-4763-8251-3DD4449DB889}">
 							<DefaultSwitchValue>{C5196C48-3D97-49A7-AB68-91747D784AAB}</DefaultSwitchValue>
-							<Media>
-								<File Id="280951500"/>
-								<File Id="746416713"/>
-								<File Id="812108379"/>
-							</Media>
 							<Children>
 								<SwitchContainer SwitchValue="{C5196C48-3D97-49A7-AB68-91747D784AAB}">
 									<Media>
@@ -639,15 +658,17 @@
 										<File Id="956539608"/>
 									</Media>
 								</SwitchContainer>
+								<SwitchContainer SwitchValue="{514511B2-401C-45CC-B068-ACF7E40ED6A3}">
+									<Media>
+										<File Id="280951500"/>
+										<File Id="746416713"/>
+										<File Id="812108379"/>
+									</Media>
+								</SwitchContainer>
 							</Children>
 						</SwitchContainer>
 						<SwitchContainer SwitchValue="{EB205A80-C83D-48D6-B36B-95E26206343D}">
 							<DefaultSwitchValue>{C5196C48-3D97-49A7-AB68-91747D784AAB}</DefaultSwitchValue>
-							<Media>
-								<File Id="311689646"/>
-								<File Id="409382740"/>
-								<File Id="1018933306"/>
-							</Media>
 							<Children>
 								<SwitchContainer SwitchValue="{C5196C48-3D97-49A7-AB68-91747D784AAB}">
 									<Media>
@@ -667,15 +688,17 @@
 										<File Id="1014623936"/>
 									</Media>
 								</SwitchContainer>
+								<SwitchContainer SwitchValue="{514511B2-401C-45CC-B068-ACF7E40ED6A3}">
+									<Media>
+										<File Id="311689646"/>
+										<File Id="409382740"/>
+										<File Id="1018933306"/>
+									</Media>
+								</SwitchContainer>
 							</Children>
 						</SwitchContainer>
 						<SwitchContainer SwitchValue="{5F9D8FC5-52B7-4029-93C8-4EDB4FABA209}">
 							<DefaultSwitchValue>{C5196C48-3D97-49A7-AB68-91747D784AAB}</DefaultSwitchValue>
-							<Media>
-								<File Id="311689646"/>
-								<File Id="409382740"/>
-								<File Id="1018933306"/>
-							</Media>
 							<Children>
 								<SwitchContainer SwitchValue="{C5196C48-3D97-49A7-AB68-91747D784AAB}">
 									<Media>
@@ -695,6 +718,13 @@
 										<File Id="860164930"/>
 									</Media>
 								</SwitchContainer>
+								<SwitchContainer SwitchValue="{514511B2-401C-45CC-B068-ACF7E40ED6A3}">
+									<Media>
+										<File Id="311689646"/>
+										<File Id="409382740"/>
+										<File Id="1018933306"/>
+									</Media>
+								</SwitchContainer>
 							</Children>
 						</SwitchContainer>
 					</SwitchContainers>
@@ -702,7 +732,7 @@
 						<AuxBus Id="718557711" Name="RvbZone_Tiled_Rooms" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\RvbZone_Tiled_Rooms"/>
 					</AuxBusSends>
 				</Event>
-				<Event Id="1060106358" Name="Play_Indoor_Ambience" ObjectPath="\Events\Default Work Unit\SFX Events\Ambience\Indoor Ambience\Play_Indoor_Ambience"/>
+				<Event Id="1060106358" Name="Play_Indoor_Ambience" ObjectPath="\Events\Default Work Unit\SFX Events\Ambience\Play_Indoor_Ambience"/>
 				<Event Id="1225062921" Name="Play_Lights_Power_Off" ObjectPath="\Events\Default Work Unit\SFX Events\Lights\Play_Lights_Power_Off">
 					<IncludedMemoryFiles>
 						<File Id="145789768" Language="SFX">
@@ -727,7 +757,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="3795145933" Name="Play_Outdoor_Ambience" ObjectPath="\Events\Default Work Unit\SFX Events\Ambience\Outdoor Ambience\Play_Outdoor_Ambience">
+				<Event Id="3795145933" Name="Play_Outdoor_Ambience" ObjectPath="\Events\Default Work Unit\SFX Events\Ambience\Play_Outdoor_Ambience">
 					<IncludedMemoryFiles>
 						<File Id="127374453" Language="SFX">
 							<ShortName>Outside_Ambience.wav</ShortName>
@@ -873,9 +903,7 @@
 					</SwitchContainers>
 				</Event>
 				<Event Id="3638328809" Name="Stop_Door_Unlocking" ObjectPath="\Events\Default Work Unit\SFX Events\Doors\Stop_Door_Unlocking"/>
-				<Event Id="2473162048" Name="Stop_Indoor_Ambience" ObjectPath="\Events\Default Work Unit\SFX Events\Ambience\Indoor Ambience\Stop_Indoor_Ambience"/>
 				<Event Id="21842589" Name="Stop_Lock_Picking" ObjectPath="\Events\Default Work Unit\SFX Events\Lock Pick\Stop_Lock_Picking"/>
-				<Event Id="2431981779" Name="Stop_Outdoor_Ambience" ObjectPath="\Events\Default Work Unit\SFX Events\Ambience\Outdoor Ambience\Stop_Outdoor_Ambience"/>
 				<Event Id="2141040177" Name="Stop_Run_Gentle" ObjectPath="\Events\Default Work Unit\SFX Events\Stamina\Stop_Run_Gentle"/>
 				<Event Id="377921503" Name="Stop_Run_Heavy" ObjectPath="\Events\Default Work Unit\SFX Events\Stamina\Stop_Run_Heavy">
 					<IncludedMemoryFiles>
@@ -1041,6 +1069,10 @@
 					<ShortName>Enemy_fs_tile_1.wav</ShortName>
 					<Path>SFX\Enemy_fs_tile_1_10C4C929.wem</Path>
 				</File>
+				<File Id="280951500" Language="SFX">
+					<ShortName>grass_fs_run_3.wav</ShortName>
+					<Path>SFX\grass_fs_run_3_10C4C929.wem</Path>
+				</File>
 				<File Id="285136759" Language="SFX">
 					<ShortName>Flashlight_On.wav</ShortName>
 					<Path>SFX\Flashlight_On_10C4C929.wem</Path>
@@ -1052,6 +1084,10 @@
 				<File Id="301772476" Language="SFX">
 					<ShortName>Key_Acquired_1.wav</ShortName>
 					<Path>SFX\Key_Acquired_1_10C4C929.wem</Path>
+				</File>
+				<File Id="311689646" Language="SFX">
+					<ShortName>grass_fs_walk_2.wav</ShortName>
+					<Path>SFX\grass_fs_walk_2_10C4C929.wem</Path>
 				</File>
 				<File Id="336853172" Language="SFX">
 					<ShortName>Shotgun_Empty_1.wav</ShortName>
@@ -1096,6 +1132,10 @@
 				<File Id="391406086" Language="SFX">
 					<ShortName>tile_fs_run_3.wav</ShortName>
 					<Path>SFX\tile_fs_run_3_10C4C929.wem</Path>
+				</File>
+				<File Id="409382740" Language="SFX">
+					<ShortName>grass_fs_walk_3.wav</ShortName>
+					<Path>SFX\grass_fs_walk_3_10C4C929.wem</Path>
 				</File>
 				<File Id="411798552" Language="SFX">
 					<ShortName>Pickup_Note_1.wav</ShortName>
@@ -1261,6 +1301,10 @@
 					<ShortName>Low_Door_Open_3.wav</ShortName>
 					<Path>SFX\Low_Door_Open_3_6742F08F.wem</Path>
 				</File>
+				<File Id="746416713" Language="SFX">
+					<ShortName>grass_fs_run_1.wav</ShortName>
+					<Path>SFX\grass_fs_run_1_10C4C929.wem</Path>
+				</File>
 				<File Id="759301855" Language="SFX">
 					<ShortName>Stop_Med_Stamina.wav</ShortName>
 					<Path>SFX\Stop_Med_Stamina_10C4C929.wem</Path>
@@ -1288,6 +1332,10 @@
 				<File Id="809688070" Language="SFX">
 					<ShortName>Caution_var_4.wav</ShortName>
 					<Path>SFX\Caution_var_4_10C4C929.wem</Path>
+				</File>
+				<File Id="812108379" Language="SFX">
+					<ShortName>grass_fs_run_2.wav</ShortName>
+					<Path>SFX\grass_fs_run_2_10C4C929.wem</Path>
 				</File>
 				<File Id="822052185" Language="SFX">
 					<ShortName>Enemy_fs_wood_4.wav</ShortName>
@@ -1393,6 +1441,10 @@
 					<ShortName>tile_fs_crouch_5.wav</ShortName>
 					<Path>SFX\tile_fs_crouch_5_10C4C929.wem</Path>
 				</File>
+				<File Id="1018933306" Language="SFX">
+					<ShortName>grass_fs_walk_1.wav</ShortName>
+					<Path>SFX\grass_fs_walk_1_10C4C929.wem</Path>
+				</File>
 				<File Id="1023230645" Language="SFX">
 					<ShortName>High_Door_Open_3.wav</ShortName>
 					<Path>SFX\High_Door_Open_3_1ECCD5CF.wem</Path>
@@ -1476,7 +1528,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="1355168291" Language="SFX" Hash="114489645">
+		<SoundBank Id="1355168291" Language="SFX" Hash="2895266143">
 			<ObjectPath>Init</ObjectPath>
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
