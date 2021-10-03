@@ -15,6 +15,12 @@ public:
 	// Sets default values for this actor's properties
 	ACeilingLight();
 
+	UFUNCTION(BlueprintImplementableEvent)
+	void StartLightFlicker();
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void ShutOffLight();
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -22,11 +28,5 @@ protected:
 private:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-
-	UPROPERTY(EditAnywhere)
-		class USpotLightComponent* light;
-
-	UPROPERTY(EditDefaultsOnly)
-		class UStaticMeshComponent* mesh;
 
 };

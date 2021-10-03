@@ -96,6 +96,10 @@ public:
 
 	void TakeMonsterDamage(float damage, const FVector& shotDir);
 
+	void SetKeys();
+
+	void SetFlashlight();
+
 	int32 passiveEvent = -1;
 	int32 cautionEvent = -1;
 	int32 chaseEvent = -1;
@@ -145,6 +149,36 @@ private:
 	UPROPERTY()
 		class AMainCharacter* mainPlayer;
 
+	UPROPERTY(EditAnywhere, Category = "Spawn")
+		class AKeyActor* firstKey;
+
+	UPROPERTY(EditAnywhere, Category = "Spawn")
+		class AKeyActor* secondKey;
+
+	UPROPERTY(EditAnywhere, Category = "Spawn")
+		class AKeyActor* thirdKey;
+
+	UPROPERTY(EditAnywhere, Category = "Spawn")
+		class AFlashlight* flashlight;
+
+	UPROPERTY(EditAnywhere, Category = "Spawn")
+		class ADrawer* flashlightDrawer;
+
+	UPROPERTY(EditAnywhere, Category = "Spawn")
+		FTransform flashlightDrawerLocation;
+
+	UPROPERTY(EditAnywhere, Category = "Spawn")
+		TArray<FTransform> firstKeySpawnLocations;
+
+	UPROPERTY(EditAnywhere, Category = "Spawn")
+		TArray<FTransform> secondKeySpawnLocations;
+
+	UPROPERTY(EditAnywhere, Category = "Spawn")
+		TArray<FTransform> thirdKeySpawnLocations;
+
+	UPROPERTY(EditAnywhere, Category = "Spawn")
+		TArray<FTransform> flashlightSpawnLocations;
+
 	UFUNCTION()
 	void TriggerFirstEvent(class AActor* overlappedActor, class AActor* otherActor);
 
@@ -157,6 +191,8 @@ private:
 	void EnableRagdoll();
 
 	void SetPhysicsAnimation(FName boneName);
+
+	bool ShouldHappen(int32 percentage);
 };
 
 

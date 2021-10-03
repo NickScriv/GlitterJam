@@ -26,4 +26,7 @@ public:
 	UPROPERTY(EditAnywhere)
 		TArray<class ATriggerVolume*> firstScareEventTriggers;
 
+	UPROPERTY(EditAnywhere)
+		TArray<class ATriggerVolume*> lighShortTriggers;
+
 };

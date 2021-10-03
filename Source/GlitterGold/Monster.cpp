@@ -4,6 +4,9 @@
 #include "Monster.h"
 #include "Blueprint/AIBlueprintHelperLibrary.h"
 #include "AIController.h"
+#include "Flashlight.h"
+#include "Drawer.h"
+#include "KeyActor.h"
 #include "BrainComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "MainCharacter.h"
@@ -179,6 +182,46 @@ void AMonster::SetPhysicsAnimation(FName boneName)
 	{
 		UE_LOG(LogTemp, Error, TEXT("Mesh in monster not found!!!"));
 	}
+}
+
+void AMonster::SetKeys()
+{
+	if (firstKeySpawnLocations.Num() > 0)
+	{
+		const int32 index = FMath::RandRange(0, firstKeySpawnLocations.Num() - 1);
+		firstKey->SetActorTransform(firstKeySpawnLocations[index]);
+	}
+
+	if (secondKeySpawnLocations.Num() > 0)
+	{
+		const int32 index = FMath::RandRange(0, secondKeySpawnLocations.Num() - 1);
+		secondKey->SetActorTransform(secondKeySpawnLocations[index]);
+	}
+
+	if (thirdKeySpawnLocations.Num() > 0)
+	{
+		const int32 index = FMath::RandRange(0, thirdKeySpawnLocations.Num() - 1);
+		thirdKey->SetActorTransform(thirdKeySpawnLocations[index]);
+	}
+}
+
+void AMonster::SetFlashlight()
+{
+	if (flashlightDrawer && ShouldHappen(35))
+	{
+		flashlight->AttachToActor(flashlightDrawer, FAttachmentTransformRules::SnapToTargetIncludingScale);
+		flashlight->SetActorTransform(flashlightDrawerLocation);
+	}
+	else if(flashlightSpawnLocations.Num() > 0)
+	{
+		const int32 index = FMath::RandRange(0, flashlightSpawnLocations.Num() - 1);
+		flashlight->SetActorTransform(flashlightSpawnLocations[index]);
+	}
+}
+
+bool AMonster::ShouldHappen(int32 percentage)
+{
+	return (FMath::RandRange(1, 100 / percentage) == 1 ? true : false);
 }
 
 void AMonster::KillPlayer()

@@ -20,13 +20,19 @@ void AManageEvents::BeginPlay()
 
 	if(firstScareEventMonsters.Num() != firstScareEventTriggers.Num())
 	{
-		UE_LOG(LogTemp, Error, TEXT("Trigger and monsters array must be equal for event manager to work!"));
+		UE_LOG(LogTemp, Error, TEXT("AManageEvents: Trigger and monsters array must be equal for event manager to work!"));
+		return;
+	}
+
+	if (lighShortTriggers.Num() != firstScareEventTriggers.Num())
+	{
+		UE_LOG(LogTemp, Error, TEXT("AManageEvents: Trigger arrays must be equal for event manager to work!"));
 		return;
 	}
 
 	if (firstScareEventMonsters.Num() <= 0)
 	{
-		UE_LOG(LogTemp, Error, TEXT("The event arrays are empty!!"));
+		UE_LOG(LogTemp, Error, TEXT("AManageEvents: The event arrays are empty!!"));
 		return;
 	}
 
@@ -37,25 +43,22 @@ void AManageEvents::BeginPlay()
 		
 		if(i != index)
 		{
-			/*firstScareEventMonsters[i]->SetActorHiddenInGame(true);
-			firstScareEventMonsters[i]->SetActorEnableCollision(false);
-			firstScareEventMonsters[i]->SetActorTickEnabled(false);*/
+			// There are only 2 monsters
+			firstScareEventMonsters[i]->SetFlashlight();
 			firstScareEventMonsters[i]->Destroy();
-			
-			/*firstScareEventTriggers[i]->SetActorHiddenInGame(true);
-			firstScareEventTriggers[i]->SetActorEnableCollision(false);
-			firstScareEventTriggers[i]->SetActorTickEnabled(false);*/
+			lighShortTriggers[i]->Destroy();
 			firstScareEventTriggers[i]->Destroy();
 		}
 		else
 		{
-			firstScareEventMonsters[i]->SetActorHiddenInGame(false);
+			firstScareEventMonsters[i]->SetKeys();
+			/*firstScareEventMonsters[i]->SetActorHiddenInGame(false);
 			firstScareEventMonsters[i]->SetActorEnableCollision(true);
 			firstScareEventMonsters[i]->SetActorTickEnabled(true);
 
 			firstScareEventTriggers[i]->SetActorHiddenInGame(false);
 			firstScareEventTriggers[i]->SetActorEnableCollision(true);
-			firstScareEventTriggers[i]->SetActorTickEnabled(true);
+			firstScareEventTriggers[i]->SetActorTickEnabled(true);*/
 		}
 	}
 	

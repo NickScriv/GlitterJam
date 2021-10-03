@@ -29,9 +29,9 @@ void ADrawer::BeginPlay()
 	interaction->OnInteract.AddDynamic(this, &ADrawer::InteractDrawer);
 	interaction->OnBeginFocus.AddDynamic(this, &ADrawer::BeginFocusDrawer);
 
-	startLoc = FVector(0.f, 0.f, 0.f);
+	startLoc = GetActorLocation();;
 	endLoc = startLoc;
-	endLoc.Y += distanceToOpen;
+	endLoc.X -= distanceToOpen;
 
 	if (openCloseCurveFloat)
 	{
