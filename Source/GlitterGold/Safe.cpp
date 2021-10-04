@@ -37,8 +37,16 @@ void ASafe::BeginPlay()
 
 	interaction->AttachToComponent(mesh, FAttachmentTransformRules::KeepWorldTransform, FName("Interaction"));
 
-	lockPick->onPickedUpLockPick.AddDynamic(this, &ASafe::PickedUpLockPick);
-	lockPick->onLockPickUsed.AddDynamic(this, &ASafe::LockPickUsed);
+	if (lockPick)
+	{
+		lockPick->onPickedUpLockPick.AddDynamic(this, &ASafe::PickedUpLockPick);
+		lockPick->onLockPickUsed.AddDynamic(this, &ASafe::LockPickUsed);
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Lock Pick not found!!!"));
+	}
+	
 
 }
 
