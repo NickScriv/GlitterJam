@@ -27,8 +27,13 @@ class GLITTERGOLD_API ATriggerVolume_LightShort : public ATriggerVolume
 	UPROPERTY(EditAnywhere)
 		class UAkAudioEvent* in_pEventLightsOff;
 
+	UPROPERTY(EditAnywhere)
+		float lightFlickerTime;
+
 	UFUNCTION()
 		void TurnOffLights();
+
+	FTimerHandle lightShortTimer;
 
 protected:
 	virtual void BeginPlay() override;
