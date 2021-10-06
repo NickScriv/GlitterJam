@@ -11,12 +11,12 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="393239870" Language="SFX" Hash="1622773798">
+		<SoundBank Id="393239870" Language="SFX" Hash="2252726487">
 			<ObjectPath>\SoundBanks\Default Work Unit\SFX</ObjectPath>
 			<ShortName>SFX</ShortName>
 			<Path>SFX.bnk</Path>
 			<IncludedEvents>
-				<Event Id="165552056" Name="Axe_Hit_Enemy" ObjectPath="\Events\Default Work Unit\SFX Events\Axe\Axe Hit Surfaces\Axe_Hit_Enemy">
+				<Event Id="165552056" Name="Axe_Hit_Enemy" ObjectPath="\Events\Default Work Unit\SFX Events\Axe\Axe_Hit_Enemy">
 					<IncludedMemoryFiles>
 						<File Id="300665773" Language="SFX">
 							<ShortName>Axe_Hit_Enemy_1.wav</ShortName>
@@ -28,7 +28,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="3159422259" Name="Axe_Hit_Generic_Object" ObjectPath="\Events\Default Work Unit\SFX Events\Axe\Axe Hit Surfaces\Axe_Hit_Generic_Object">
+				<Event Id="3159422259" Name="Axe_Hit_Generic_Object" ObjectPath="\Events\Default Work Unit\SFX Events\Axe\Axe_Hit_Generic_Object">
 					<IncludedMemoryFiles>
 						<File Id="207501120" Language="SFX">
 							<ShortName>Axe_Hit_GenericObject_2.wav</ShortName>
@@ -44,7 +44,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="979945107" Name="Axe_Hit_Wood" ObjectPath="\Events\Default Work Unit\SFX Events\Axe\Axe Hit Surfaces\Axe_Hit_Wood">
+				<Event Id="979945107" Name="Axe_Hit_Wood" ObjectPath="\Events\Default Work Unit\SFX Events\Axe\Axe_Hit_Wood">
 					<IncludedMemoryFiles>
 						<File Id="48423694" Language="SFX">
 							<ShortName>Axe_Hit_Wood_2.wav</ShortName>
@@ -77,14 +77,6 @@
 						<File Id="902705961" Language="SFX">
 							<ShortName>Wood_Chunks_3.wav</ShortName>
 							<Path>SFX\Wood_Chunks_3_10C4C929.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="3402736964" Name="Axe_Swing" ObjectPath="\Events\Default Work Unit\SFX Events\Axe\Axe_Swing">
-					<IncludedMemoryFiles>
-						<File Id="340838024" Language="SFX">
-							<ShortName>Axe_Swing.wav</ShortName>
-							<Path>SFX\Axe_Swing_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -222,6 +214,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
+				<Event Id="330157181" Name="Lights_Flicker_Off" ObjectPath="\Events\Default Work Unit\SFX Events\Lights\Lights_Flicker_Off"/>
 				<Event Id="371036424" Name="Lock_Pick_Break" ObjectPath="\Events\Default Work Unit\SFX Events\Lock Pick\Lock_Pick_Break">
 					<IncludedMemoryFiles>
 						<File Id="443052389" Language="SFX">
@@ -733,22 +726,6 @@
 					</AuxBusSends>
 				</Event>
 				<Event Id="1060106358" Name="Play_Indoor_Ambience" ObjectPath="\Events\Default Work Unit\SFX Events\Ambience\Play_Indoor_Ambience"/>
-				<Event Id="1225062921" Name="Play_Lights_Power_Off" ObjectPath="\Events\Default Work Unit\SFX Events\Lights\Play_Lights_Power_Off">
-					<IncludedMemoryFiles>
-						<File Id="145789768" Language="SFX">
-							<ShortName>Lights_Power_Off_Test1.wav</ShortName>
-							<Path>SFX\Lights_Power_Off_Test1_10C4C929.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="523050301" Name="Play_Lights_Power_On" ObjectPath="\Events\Default Work Unit\SFX Events\Lights\Play_Lights_Power_On">
-					<IncludedMemoryFiles>
-						<File Id="530980148" Language="SFX">
-							<ShortName>Lights_Power_On_Test1.wav</ShortName>
-							<Path>SFX\Lights_Power_On_Test1_10C4C929.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
 				<Event Id="3124987295" Name="Play_Lock_Picking" ObjectPath="\Events\Default Work Unit\SFX Events\Lock Pick\Play_Lock_Picking">
 					<IncludedMemoryFiles>
 						<File Id="123948626" Language="SFX">
@@ -782,18 +759,6 @@
 						<File Id="378592845" Language="SFX">
 							<ShortName>Put_Down_Note_1.wav</ShortName>
 							<Path>SFX\Put_Down_Note_1_10C4C929.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="1474002183" Name="Safe_Close" ObjectPath="\Events\Default Work Unit\SFX Events\Safe\Safe_Close">
-					<IncludedMemoryFiles>
-						<File Id="507272663" Language="SFX">
-							<ShortName>Safe_Close_1.wav</ShortName>
-							<Path>SFX\Safe_Close_1_10C4C929.wem</Path>
-						</File>
-						<File Id="571028704" Language="SFX">
-							<ShortName>Safe_Close_2.wav</ShortName>
-							<Path>SFX\Safe_Close_2_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -1013,10 +978,6 @@
 					<ShortName>Passive_Loop.wav</ShortName>
 					<Path>SFX\Passive_Loop_D79FB2B7.wem</Path>
 				</File>
-				<File Id="145789768" Language="SFX">
-					<ShortName>Lights_Power_Off_Test1.wav</ShortName>
-					<Path>SFX\Lights_Power_Off_Test1_10C4C929.wem</Path>
-				</File>
 				<File Id="163613378" Language="SFX">
 					<ShortName>wood_fs_walk_3.wav</ShortName>
 					<Path>SFX\wood_fs_walk_3_10C4C929.wem</Path>
@@ -1092,10 +1053,6 @@
 				<File Id="336853172" Language="SFX">
 					<ShortName>Shotgun_Empty_1.wav</ShortName>
 					<Path>SFX\Shotgun_Empty_1_10C4C929.wem</Path>
-				</File>
-				<File Id="340838024" Language="SFX">
-					<ShortName>Axe_Swing.wav</ShortName>
-					<Path>SFX\Axe_Swing_10C4C929.wem</Path>
 				</File>
 				<File Id="349922209" Language="SFX">
 					<ShortName>Enemy_fs_wood_3.wav</ShortName>
@@ -1177,10 +1134,6 @@
 					<ShortName>Door_Lock_Opening_1.wav</ShortName>
 					<Path>SFX\Door_Lock_Opening_1_10C4C929.wem</Path>
 				</File>
-				<File Id="507272663" Language="SFX">
-					<ShortName>Safe_Close_1.wav</ShortName>
-					<Path>SFX\Safe_Close_1_10C4C929.wem</Path>
-				</File>
 				<File Id="520793624" Language="SFX">
 					<ShortName>High_Door_Open_3.wav</ShortName>
 					<Path>SFX\High_Door_Open_3_F340491B.wem</Path>
@@ -1197,10 +1150,6 @@
 					<ShortName>tile_fs_walk_3.wav</ShortName>
 					<Path>SFX\tile_fs_walk_3_10C4C929.wem</Path>
 				</File>
-				<File Id="530980148" Language="SFX">
-					<ShortName>Lights_Power_On_Test1.wav</ShortName>
-					<Path>SFX\Lights_Power_On_Test1_10C4C929.wem</Path>
-				</File>
 				<File Id="531573207" Language="SFX">
 					<ShortName>Bad_Ending_SFX.wav</ShortName>
 					<Path>SFX\Bad_Ending_SFX_88667C2E.wem</Path>
@@ -1212,10 +1161,6 @@
 				<File Id="554635539" Language="SFX">
 					<ShortName>Enemy_fs_wood_6.wav</ShortName>
 					<Path>SFX\Enemy_fs_wood_6_10C4C929.wem</Path>
-				</File>
-				<File Id="571028704" Language="SFX">
-					<ShortName>Safe_Close_2.wav</ShortName>
-					<Path>SFX\Safe_Close_2_10C4C929.wem</Path>
 				</File>
 				<File Id="572467715" Language="SFX">
 					<ShortName>High_Door_Open_1.wav</ShortName>
@@ -1300,6 +1245,10 @@
 				<File Id="733641677" Language="SFX">
 					<ShortName>Low_Door_Open_3.wav</ShortName>
 					<Path>SFX\Low_Door_Open_3_6742F08F.wem</Path>
+				</File>
+				<File Id="735711905" Language="SFX">
+					<ShortName>Lights_Flicker_Off.wav</ShortName>
+					<Path>SFX\Lights_Flicker_Off_10C4C929.wem</Path>
 				</File>
 				<File Id="746416713" Language="SFX">
 					<ShortName>grass_fs_run_1.wav</ShortName>

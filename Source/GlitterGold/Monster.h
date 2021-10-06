@@ -100,10 +100,6 @@ public:
 
 	void SetFlashlight();
 
-	int32 passiveEvent = -1;
-	int32 cautionEvent = -1;
-	int32 chaseEvent = -1;
-
 	UFUNCTION(BlueprintImplementableEvent)
 		void TracePath();
 

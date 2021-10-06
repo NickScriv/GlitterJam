@@ -30,6 +30,7 @@ void ATriggerVolume_LightShort::OnOverlapBegin(AActor* overlappedActor, AActor* 
 			}
 			//turnOffLights.BindUFunction(this, TEXT("TurnOffLights"));
 			//UAkGameplayStatics::PostEvent(in_pEventLightsOff, player, AkCallbackType::AK_EndOfEvent, turnOffLights);
+			FAkAudioDevice::Get()->PostEvent("Lights_Flicker_Off", player);
 			GetWorldTimerManager().SetTimer(lightShortTimer, this, &ATriggerVolume_LightShort::TurnOffLights, lightFlickerTime, false);
 		}
 	}

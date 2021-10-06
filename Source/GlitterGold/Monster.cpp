@@ -36,8 +36,6 @@ void AMonster::BeginPlay()
 	else
 		UE_LOG(LogTemp, Error, TEXT("AMonster: Trigger not found for scare event in monster!!"));
 
-	passiveEvent = FAkAudioDevice::Get()->PostEvent("Play_Enemy_Passive_Sounds", this);
-
 	mainPlayer = Cast<AMainCharacter>(UGameplayStatics::GetPlayerCharacter(this, 0));
 
 	if(!mainPlayer)
@@ -85,7 +83,7 @@ void AMonster::TriggerFirstEvent(AActor* overlappedActor, AActor* otherActor)
 			UE_LOG(LogTemp, Error, TEXT("AMonster: Player Not found in trigger"));
 			return;
 		}
-
+		FAkAudioDevice::Get()->PostEvent("Play_Enemy_Passive_Sounds", this);
 		startAnimation = true;
 	}
 }
@@ -261,26 +259,26 @@ void AMonster::KillPlayer()
 
 void AMonster::StopMonsterSounds()
 {
-	FAkAudioDevice::Get()->StopPlayingID(passiveEvent, 300);
+	/*FAkAudioDevice::Get()->StopPlayingID(passiveEvent, 300);
 	FAkAudioDevice::Get()->StopPlayingID(cautionEvent, 300);
-	FAkAudioDevice::Get()->StopPlayingID(chaseEvent, 300);
+	FAkAudioDevice::Get()->StopPlayingID(chaseEvent, 300);*/
 }
 
 void AMonster::PlayMosnterSoundEvent(FString event)
 {
 	if (event == "Play_Enemy_Passive_Sounds")
 	{
-		passiveEvent = FAkAudioDevice::Get()->PostEvent(*event, this);
+		FAkAudioDevice::Get()->PostEvent(*event, this);
 		gameMode->monsterInCaution = 0.f;
 	}
 	else if (event == "Play_Enemy_Caution_Sounds")
 	{
-		cautionEvent = FAkAudioDevice::Get()->PostEvent(*event, this);
+		FAkAudioDevice::Get()->PostEvent(*event, this);
 		gameMode->monsterInCaution = 1.f;
 	}
 	else
 	{
-		chaseEvent = FAkAudioDevice::Get()->PostEvent(*event, this);
+		FAkAudioDevice::Get()->PostEvent(*event, this);
 		gameMode->monsterInCaution = 1.f;
 	}
 }
