@@ -352,6 +352,25 @@ void UDoorOpenClose::UnlockNavMesh()
 	navLinkProxyExit->SetSmartLinkEnabled(true);
 }
 
+void UDoorOpenClose::ChangeMonsterPath()
+{
+
+	AActor* actor = UGameplayStatics::GetActorOfClass(GetWorld(), AMonster::StaticClass());
+
+	if (actor)
+	{
+		if (AMonster* monst = Cast<AMonster>(actor))
+		{
+			const int32 index = FMath::RandRange(0, possibleMonsterPaths.Num() - 1);
+
+			monst->ChangeCurrentPath(possibleMonsterPaths[index].pathPoints);
+		}
+	}
+	
+	
+
+}
+
 void UDoorOpenClose::PlayerPickedUpKey()
 {
 	if (locked)

@@ -6,7 +6,6 @@
 #include "GameFramework/Character.h"
 #include "Monster.generated.h"
 
-
 UENUM(BlueprintType)
 enum EDeathStatus
 {
@@ -43,7 +42,7 @@ public:
 	AMonster();
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TArray<class APathPoint*> path;
+	TArray<class APathPoint*> currentPath;
 
 	UPROPERTY(EditAnywhere)
 		TEnumAsByte <EPathEnding>  pathEnding;
@@ -99,6 +98,8 @@ public:
 	void SetKeys();
 
 	void SetFlashlight();
+
+	void ChangeCurrentPath(TArray<APathPoint*> path);
 
 	UFUNCTION(BlueprintImplementableEvent)
 		void TracePath();

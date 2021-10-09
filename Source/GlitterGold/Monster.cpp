@@ -18,6 +18,7 @@
 #include "GlitterGameModeBase.h"
 #include "PhysicsEngine/PhysicalAnimationComponent.h"
 #include "GlitterGameInstance.h"
+#include "MonsterAIController.h"
 
 // Sets default values
 AMonster::AMonster()
@@ -214,6 +215,33 @@ void AMonster::SetFlashlight()
 	{
 		const int32 index = FMath::RandRange(0, flashlightSpawnLocations.Num() - 1);
 		flashlight->SetActorTransform(flashlightSpawnLocations[index]);
+	}
+}
+
+void AMonster::ChangeCurrentPath(TArray<APathPoint*> path)
+{
+	// using random values
+	if (ShouldHappen(50))
+	{
+		pathDirection = 1;
+	}
+	else
+	{
+		pathDirection = -1;
+	}
+
+	currentPath = path;
+
+	currentPathIndex = FMath::RandRange(0, currentPath.Num() - 1);
+
+	pathEnding = static_cast<EPathEnding>(FMath::RandRange(1, 2));
+
+	AMonsterAIController* monsterController = Cast<AMonsterAIController>(GetController());
+
+	if (monsterController)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Monster controller found when change path!!"));
+		monsterController->TriggerPatrolAbort();
 	}
 }
 

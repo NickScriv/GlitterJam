@@ -24,23 +24,9 @@ EBTNodeResult::Type UBTTaskNode_FindPathPoint::ExecuteTask(class UBehaviorTreeCo
 
 	int32 index = monster->currentPathIndex;
 
-	FNavLocation randomLoc;
-	FVector target;
-	if (UNavigationSystemV1::GetCurrent(GetWorld())->GetRandomPointInNavigableRadius(monster->path[index]->GetActorLocation(), radius, randomLoc))
-	{
-		target = randomLoc.Location;
-	}
-	else
-	{
-		target = monster->path[index]->GetActorLocation();
-	}
-
-	// TODO: Maybe remove this below statement later
-	target = monster->path[index]->GetActorLocation();
-
-	OwnerComp.GetBlackboardComponent()->SetValueAsVector(bbKey_TargetLoc.SelectedKeyName, target);
+	OwnerComp.GetBlackboardComponent()->SetValueAsVector(bbKey_TargetLoc.SelectedKeyName, monster->currentPath[index]->GetActorLocation());
 	
-	float wait = FMath::RandRange(monster->path[index]->waitTime - monster->path[index]->waitTimeDeviation, monster->path[index]->waitTime + monster->path[index]->waitTimeDeviation);
+	float wait = FMath::RandRange(monster->currentPath[index]->waitTime - monster->currentPath[index]->waitTimeDeviation, monster->currentPath[index]->waitTime + monster->currentPath[index]->waitTimeDeviation);
 	
 	OwnerComp.GetBlackboardComponent()->SetValueAsFloat(bbKey_PathPointWaitTime.SelectedKeyName, wait);
 

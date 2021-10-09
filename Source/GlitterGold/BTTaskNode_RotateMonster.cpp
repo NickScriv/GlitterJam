@@ -19,7 +19,7 @@ EBTNodeResult::Type UBTTaskNode_RotateMonster::ExecuteTask(class UBehaviorTreeCo
 	if (!monster)
 		return EBTNodeResult::Failed;
 
-	APathPoint* pathPoint = monster->path[monster->currentPathIndex];
+	APathPoint* pathPoint = monster->currentPath[monster->currentPathIndex];
 
 	FLatentActionInfo LatentInfo;
 	LatentInfo.CallbackTarget = this;

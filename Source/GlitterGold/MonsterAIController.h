@@ -29,6 +29,8 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void StartMonsterBehavior();
 
+	void TriggerPatrolAbort();
+
 private:
 	UPROPERTY(EditDefaultsOnly, Category = "Blackboard")
 		class UBehaviorTree* AIBehavior;
@@ -58,6 +60,8 @@ private:
 	void perceptionUpdated(AActor* Actor, FAIStimulus Stimulus);
 
 	bool firstSeen = false;
+
+	bool changePathValue = false;
 
 	FTimerHandle timerHandleFirstSeen;
 

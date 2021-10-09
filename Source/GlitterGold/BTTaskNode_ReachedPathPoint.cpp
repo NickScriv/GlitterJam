@@ -17,7 +17,7 @@ EBTNodeResult::Type UBTTaskNode_ReachedPathPoint::ExecuteTask(class UBehaviorTre
 	if (!monster)
 		return EBTNodeResult::Failed;
 
-	if (!monster->path.IsValidIndex(monster->currentPathIndex + monster->pathDirection))
+	if (!monster->currentPath.IsValidIndex(monster->currentPathIndex + monster->pathDirection))
 	{
 		switch (monster->pathEnding)
 		{

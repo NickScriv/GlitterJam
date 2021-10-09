@@ -54,7 +54,7 @@ void AMonsterAIController::BeginPlay()
 
 	AIPerception->OnTargetPerceptionUpdated.AddDynamic(this, &AMonsterAIController::perceptionUpdated);
 	AIPerceptionStart->OnTargetPerceptionUpdated.AddDynamic(this, &AMonsterAIController::perceptionUpdated);
-	
+	blackboardComp->SetValueAsInt(FName("ChangePath"), 0);
 
 	//RunBehaviorTree(AIBehavior);
 
@@ -180,4 +180,19 @@ void AMonsterAIController::StartMonsterBehavior()
 
 	GetWorldTimerManager().SetTimer(timerHandleFirstSeen, this, &AMonsterAIController::SetToDefaultPerception, 8.0f,  false);
 	//monster->TracePath();
+}
+
+void AMonsterAIController::TriggerPatrolAbort()
+{
+	// Just need to trigger abort without conditional
+	if (changePathValue)
+	{
+		blackboardComp->SetValueAsInt(FName("ChangePath"), blackboardComp->GetValueAsInt(FName("ChanePath")) + 1);
+	}
+	else
+	{
+		blackboardComp->SetValueAsInt(FName("ChangePath"), blackboardComp->GetValueAsInt(FName("ChanePath")) - 1);
+	}
+
+	changePathValue = !changePathValue;
 }

@@ -5,7 +5,17 @@
 #include "CoreMinimal.h"
 #include "Components/SceneComponent.h"
 #include "Components/BoxComponent.h"
+#include "PathPoint.h"
 #include "DoorOpenClose.generated.h"
+
+USTRUCT()
+struct FPathPointArray
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere)
+		TArray<APathPoint*> pathPoints;
+};
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class GLITTERGOLD_API UDoorOpenClose : public USceneComponent
@@ -76,6 +86,9 @@ private:
 	UPROPERTY(EditAnywhere)
 		class UAkAudioEvent* in_pEventClose;
 
+	UPROPERTY(EditAnywhere, Category = "MonsterPathing", meta = (EditCondition = locked))
+		TArray<FPathPointArray> possibleMonsterPaths;
+
 	UPROPERTY()
 	class AGlitterGameModeBase* gameMode;
 
@@ -121,5 +134,7 @@ private:
 	void MonsterReachedNavLink(AActor* MovingActor, const FVector& DestinationPoint);
 
 	void UnlockNavMesh();
+
+	void ChangeMonsterPath();
 
 };
