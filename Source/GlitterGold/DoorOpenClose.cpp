@@ -226,17 +226,18 @@ void UDoorOpenClose::InteractDoor(class AMainCharacter* character)
 	{
 		FAkAudioDevice::Get()->PostEvent("Stop_Door_Unlocking", character);
 		locked = false;
+		ChangeMonsterPath();
 		interaction->interactionTime = 0.f;
 		if (navMeshToBlock && navMeshToBlock->Tags.Num() > 0)
 		{
 			UnlockNavMesh();
 		}
-		
 	}
 	else if (playerHasLockPick && locked)
 	{
 		FAkAudioDevice::Get()->PostEvent("Stop_Lock_Picking", character);
 		locked = false;
+		ChangeMonsterPath();
 		interaction->interactionTime = 0.f;
 		FAkAudioDevice::Get()->PostEvent("Lock_Pick_Break", character);
 		lockPick->onLockPickUsed.Broadcast();

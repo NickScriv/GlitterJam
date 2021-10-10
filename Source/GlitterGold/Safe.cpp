@@ -4,6 +4,8 @@
 #include "Safe.h"
 #include "../Plugins/Wwise/Source/AkAudio/Classes/AkComponent.h"
 #include "InteractionWidgetComponent.h"
+#include "Kismet/GameplayStatics.h"
+#include "Monster.h"
 #include "LockPick.h"
 
 // Sets default values
@@ -63,11 +65,12 @@ void ASafe::InteractSafe(AMainCharacter* character)
 		FAkAudioDevice::Get()->PostEvent("Stop_Lock_Picking", this);
 		locked = false;
 		playerHasPick = false;
-		// TODO: Break lock pick
+		FAkAudioDevice::Get()->PostEvent("Lock_Pick_Break", character);
 		lockPick->onLockPickUsed.Broadcast();
 		interaction->interactionTime = 0.f;
 		interaction->OnInteract.RemoveAll(this);
 		interaction->DestroyComponent();
+		ChangeMonsterPath();
 	}
 
 	if (!open)
@@ -129,6 +132,22 @@ void ASafe::OpenSafe()
 {
 	open = true;
 	FAkAudioDevice::Get()->PostEventAtLocation(in_pEventOpen, GetActorLocation(), GetActorRotation(), GetWorld());
+}
+
+void ASafe::ChangeMonsterPath()
+{
+	AActor* actor = UGameplayStatics::GetActorOfClass(GetWorld(), AMonster::StaticClass());
+
+	if (actor)
+	{
+		if (AMonster* monst = Cast<AMonster>(actor))
+		{
+			const int32 index = FMath::RandRange(0, possibleMonsterPaths.Num() - 1);
+
+			monst->ChangeCurrentPath(possibleMonsterPaths[index].pathPoints);
+		}
+	}
+
 }
 
 

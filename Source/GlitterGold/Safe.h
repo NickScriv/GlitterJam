@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "GlitterStructs.h"
 #include "Safe.generated.h"
 
 UCLASS()
@@ -44,6 +45,9 @@ private:
 
 	bool playerHasPick = false;
 
+	UPROPERTY(EditAnywhere, Category = "MonsterPathing", meta = (EditCondition = locked))
+		TArray<FPathPointArray> possibleMonsterPaths;
+
 	UPROPERTY(EditAnywhere)
 		class UAkAudioEvent* in_pEventOpen;
 
@@ -69,4 +73,6 @@ private:
 		void LockPickUsed();
 
 	void OpenSafe();
+
+	void ChangeMonsterPath();
 };

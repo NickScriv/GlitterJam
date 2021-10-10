@@ -20,6 +20,7 @@
 #include "GlitterGameInstance.h"
 #include "MonsterAIController.h"
 
+
 // Sets default values
 AMonster::AMonster()
 {
@@ -71,6 +72,10 @@ void AMonster::BeginPlay()
 	SetPhysicsAnimation(FName("clavicle_l"));
 	SetPhysicsAnimation(FName("clavicle_r"));
 	//SetPhysicsAnimation(FName("neck_01"));
+
+	const int32 index = FMath::RandRange(0, possibleStartPaths.Num() - 1);
+
+	currentPath = possibleStartPaths[index].pathPoints;
 }
 
 void AMonster::TriggerFirstEvent(AActor* overlappedActor, AActor* otherActor)
@@ -235,6 +240,10 @@ void AMonster::ChangeCurrentPath(TArray<APathPoint*> path)
 	currentPathIndex = FMath::RandRange(0, currentPath.Num() - 1);
 
 	pathEnding = static_cast<EPathEnding>(FMath::RandRange(1, 2));
+
+	const UEnum* pathEndingEnum = FindObject<UEnum>(ANY_PACKAGE, TEXT("EPathEnding"));
+	UE_LOG(LogTemp, Warning, TEXT("Path ending state: %s")
+		, *(pathEndingEnum ? pathEndingEnum->GetEnumName(pathEnding) : TEXT("<Invalid Enum>")));
 
 	AMonsterAIController* monsterController = Cast<AMonsterAIController>(GetController());
 

@@ -73,7 +73,7 @@ void UAnimNotify_AxeCanDamage::Notify(USkeletalMeshComponent* MeshComp, UAnimSeq
 				// Play wood hit effect?
 				UGameplayStatics::SpawnEmitterAtLocation(player, woodHit, hit.Location, UKismetMathLibrary::MakeRotFromZ(dir));
 			}
-			else if(!actor->ActorHasTag(FName("Monster")))
+			else if(!actor->ActorHasTag(FName("Monster")) && !actor->ActorHasTag(FName("IgnoreAxe")))
 			{
 				// Play slash default sound
 				FAkAudioDevice::Get()->PostEvent("Axe_Hit_Generic_Object", MeshComp->GetOwner());

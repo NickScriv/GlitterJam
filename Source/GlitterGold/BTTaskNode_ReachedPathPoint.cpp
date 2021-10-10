@@ -25,7 +25,14 @@ EBTNodeResult::Type UBTTaskNode_ReachedPathPoint::ExecuteTask(class UBehaviorTre
 				return EBTNodeResult::Succeeded;
 				break;
 			case EPathEnding::Loop:
-				monster->currentPathIndex = 0;
+				if (monster->pathDirection < 0)
+				{
+					monster->currentPathIndex = monster->currentPath.Num() - 1;
+				}
+				else
+				{
+					monster->currentPathIndex = 0;
+				}
 				break;
 			case EPathEnding::PatrolBack:
 				monster->pathDirection = -monster->pathDirection;

@@ -5,17 +5,8 @@
 #include "CoreMinimal.h"
 #include "Components/SceneComponent.h"
 #include "Components/BoxComponent.h"
-#include "PathPoint.h"
+#include "GlitterStructs.h"
 #include "DoorOpenClose.generated.h"
-
-USTRUCT()
-struct FPathPointArray
-{
-	GENERATED_BODY()
-
-	UPROPERTY(EditAnywhere)
-		TArray<APathPoint*> pathPoints;
-};
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class GLITTERGOLD_API UDoorOpenClose : public USceneComponent

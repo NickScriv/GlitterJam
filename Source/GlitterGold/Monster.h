@@ -4,7 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include <GlitterGold/GlitterStructs.h>
 #include "Monster.generated.h"
+
 
 UENUM(BlueprintType)
 enum EDeathStatus
@@ -41,8 +43,11 @@ public:
 	// Sets default values for this character's properties
 	AMonster();
 
+	UPROPERTY(EditAnywhere)
+		TArray<FPathPointArray> possibleStartPaths;
+
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TArray<class APathPoint*> currentPath;
+	TArray<APathPoint*> currentPath;
 
 	UPROPERTY(EditAnywhere)
 		TEnumAsByte <EPathEnding>  pathEnding;
