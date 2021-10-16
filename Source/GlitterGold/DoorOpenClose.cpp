@@ -22,6 +22,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "MonsterAIController.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "Engine/StaticMeshActor.h"
 
 // Sets default values for this component's properties
 UDoorOpenClose::UDoorOpenClose()
@@ -225,27 +226,14 @@ void UDoorOpenClose::InteractDoor(class AMainCharacter* character)
 	else if(playerHasKey && locked)
 	{
 		FAkAudioDevice::Get()->PostEvent("Stop_Door_Unlocking", character);
-		locked = false;
-		ChangeMonsterPath();
-		interaction->interactionTime = 0.f;
-		if (navMeshToBlock && navMeshToBlock->Tags.Num() > 0)
-		{
-			UnlockNavMesh();
-		}
+		UnlockDoor();
 	}
 	else if (playerHasLockPick && locked)
 	{
 		FAkAudioDevice::Get()->PostEvent("Stop_Lock_Picking", character);
-		locked = false;
-		ChangeMonsterPath();
-		interaction->interactionTime = 0.f;
 		FAkAudioDevice::Get()->PostEvent("Lock_Pick_Break", character);
 		lockPick->onLockPickUsed.Broadcast();
-
-		if (navMeshToBlock && navMeshToBlock->Tags.Num() > 0)
-		{
-			UnlockNavMesh();
-		}
+		UnlockDoor();
 	}
 	
 	if (openTime >= 1)
@@ -369,6 +357,23 @@ void UDoorOpenClose::ChangeMonsterPath()
 	}
 	
 	
+
+}
+
+void UDoorOpenClose::UnlockDoor()
+{
+	locked = false;
+	ChangeMonsterPath();
+	interaction->interactionTime = 0.f;
+	if (navMeshToBlock && navMeshToBlock->Tags.Num() > 0)
+	{
+		UnlockNavMesh();
+	}
+
+	if (actorToDestroyWhenUnlocked)
+	{
+		actorToDestroyWhenUnlocked->Destroy();
+	}
 
 }
 

@@ -80,6 +80,9 @@ private:
 	UPROPERTY(EditAnywhere, Category = "MonsterPathing", meta = (EditCondition = locked))
 		TArray<FPathPointArray> possibleMonsterPaths;
 
+	UPROPERTY(EditAnywhere)
+		class AStaticMeshActor* actorToDestroyWhenUnlocked;
+
 	UPROPERTY()
 	class AGlitterGameModeBase* gameMode;
 
@@ -127,5 +130,7 @@ private:
 	void UnlockNavMesh();
 
 	void ChangeMonsterPath();
+
+	void UnlockDoor();
 
 };
