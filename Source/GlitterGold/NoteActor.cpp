@@ -4,6 +4,7 @@
 #include "NoteActor.h"
 #include "AkAudioDevice.h"
 #include "GlitterGameModeBase.h"
+#include "MainCharacter.h"
 #include "InteractionWidgetComponent.h"
 #include "NotesUserWidget.h"
 #include "Kismet/GameplayStatics.h"
@@ -40,7 +41,7 @@ void ANoteActor::BeginPlay()
 
 }
 
-void ANoteActor::PickedUpNote(class AMainCharacter* character)
+void ANoteActor::PickedUpNote(AMainCharacter* character)
 {
 
 	if (!noteWidget)
@@ -55,6 +56,9 @@ void ANoteActor::PickedUpNote(class AMainCharacter* character)
 	{
 		gameMode->isReadingNote = true;
 	}
+
+
+	character->TryToStand();
 	
 	//Play open note sound
 	FAkAudioDevice::Get()->PostEvent("Pick_Up_Note", this);

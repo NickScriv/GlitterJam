@@ -80,14 +80,14 @@ void AGlitterGameModeBase::TogglePause(AMainCharacter* character)
 	if(isPaused)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Add to view pause"));
-		// TODO: Add pause event to pause all other sounds
+
 		FAkAudioDevice::Get()->PostEvent("Pause_Menu_On", character);
 		pauseScreenWidget->AddToViewport();
 	}
 	else
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Add to view unpause"));
-		// TODO: Add unpause event to unpause all other sounds
+
 		FAkAudioDevice::Get()->PostEvent("Pause_Menu_Off", character);
 		pauseScreenWidget->RemoveFromParent();
 	}

@@ -65,7 +65,7 @@ void AShotgun::Shoot()
 
 		FVector end = start + shot;
 
-		if (GetWorld()->LineTraceSingleByChannel(hit, start, end, ECC_Visibility, qParams))
+		if (GetWorld()->LineTraceSingleByChannel(hit, start, end, ECC_GameTraceChannel6, qParams))
 		{
 			if (AMonster* monster = Cast<AMonster>(hit.Actor))
 			{

@@ -238,8 +238,8 @@ void AMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	//PlayerInputComponent->BindAction("TestNot", IE_Pressed, this, &AMainCharacter::NotTest);
 
 	
-	PlayerInputComponent->BindAction("Crouch", IE_Pressed, this, &AMainCharacter::CrouchPressed);
-	PlayerInputComponent->BindAction("Crouch", IE_Released, this, &AMainCharacter::CrouchReleased);
+	PlayerInputComponent->BindAction("Crouch", IE_Pressed, this, &AMainCharacter::CrouchPressed).bExecuteWhenPaused = true;
+	PlayerInputComponent->BindAction("Crouch", IE_Released, this, &AMainCharacter::CrouchReleased).bExecuteWhenPaused = true;
 
 	PlayerInputComponent->BindAction("AnyKeyPressed", IE_Pressed, this, &AMainCharacter::AnyKeyPressed);
 	PlayerInputComponent->BindAction("AnyKeyReleased", IE_Released, this, &AMainCharacter::AnyKeyPressed);
@@ -683,7 +683,7 @@ void AMainCharacter::CrouchPressed()
 
 	isCrouchingKeyDown = true;
 
-	if (movement != EMovement::Standing || GetCharacterMovement()->IsFalling() || !canCrouch)
+	if (movement != EMovement::Standing || GetCharacterMovement()->IsFalling() || !canCrouch || gameMode->isReadingNote || gameMode->isPaused)
 		return;
 
 	canCrouch = false;
@@ -720,9 +720,12 @@ void AMainCharacter::CrouchPressed()
 
 void AMainCharacter::CrouchReleased()
 {
+	if (gameMode->isPaused)
+		return;
+
 	isCrouchingKeyDown = false;
 
-	if (movement != EMovement::Crouching || GetCharacterMovement()->IsFalling())
+	if (movement != EMovement::Crouching || GetCharacterMovement()->IsFalling() || gameMode->isReadingNote)
 		return;
 
 	FVector top = GetActorLocation();
@@ -762,6 +765,7 @@ void AMainCharacter::SprintPressed()
 
 void AMainCharacter::SprintReleased()
 {
+
 	if(IsSprinting() && stamina >= 1.f)
 	{
 		if (stamina < heavyBreathThreshold )
@@ -832,6 +836,15 @@ void AMainCharacter::SetMovement(EMovement newMovement)
 	case EMovement::Standing:
 		EndCrouch();
 		break;
+	}
+}
+
+void AMainCharacter::TryToStand()
+{
+	if (movement == EMovement::Crouching && !stuckOnCrouch && !isCrouchingKeyDown)
+	{
+		
+		SetMovement(EMovement::Standing);
 	}
 }
 
@@ -996,6 +1009,10 @@ void AMainCharacter::TogglePause()
 {
 	if(isAiming)
 		AimOut();
+
+	if(gameMode->isPaused)
+		TryToStand();
+
 
 	if (gameMode)
 	{

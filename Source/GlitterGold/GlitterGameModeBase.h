@@ -35,8 +35,6 @@ private:
 	UPROPERTY()
 	class UPauseMenuUserWidget* pauseScreenWidget;
 
-	bool isPaused = false;
-
 	FTimerHandle switchToMainMenuHandle;
 
 	void SwitchToMainMenu();
@@ -71,5 +69,7 @@ public:
 	bool isReadingNote = false;
 
 	bool playerKilled = false;
+
+	bool isPaused = false;
 
 };

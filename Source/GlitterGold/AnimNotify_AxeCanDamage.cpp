@@ -38,7 +38,7 @@ void UAnimNotify_AxeCanDamage::Notify(USkeletalMeshComponent* MeshComp, UAnimSeq
 
 	end = (dir * axeRange) + start;
 
-	if (UKismetSystemLibrary::LineTraceSingle(player, start, end, UEngineTypes::ConvertToTraceType(ECC_Visibility), false, actorsToIgnore, EDrawDebugTrace::None, hit, true))
+	if (UKismetSystemLibrary::LineTraceSingle(player, start, end, UEngineTypes::ConvertToTraceType(ECC_GameTraceChannel6), false, actorsToIgnore, EDrawDebugTrace::None, hit, true))
 	{
 
 		if (AActor* actor = hit.GetActor())
@@ -73,7 +73,7 @@ void UAnimNotify_AxeCanDamage::Notify(USkeletalMeshComponent* MeshComp, UAnimSeq
 				// Play wood hit effect?
 				UGameplayStatics::SpawnEmitterAtLocation(player, woodHit, hit.Location, UKismetMathLibrary::MakeRotFromZ(dir));
 			}
-			else if(!actor->ActorHasTag(FName("Monster")) && !actor->ActorHasTag(FName("IgnoreAxe")))
+			else if(!actor->ActorHasTag(FName("Monster")))
 			{
 				// Play slash default sound
 				FAkAudioDevice::Get()->PostEvent("Axe_Hit_Generic_Object", MeshComp->GetOwner());

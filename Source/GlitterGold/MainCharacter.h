@@ -169,6 +169,8 @@ public:
 
 	void AimReleased();
 
+	void TryToStand();
+
 	void GetCrossHairScreenCoordinates(FVector& pos, FVector& dir);
 
 	FTransform GetCameraTransform();
