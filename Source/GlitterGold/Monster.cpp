@@ -223,6 +223,13 @@ void AMonster::SetFlashlight()
 	}
 }
 
+void AMonster::PlayDeathSound(AMainCharacter* player)
+{
+	UE_LOG(LogTemp, Warning, TEXT("Play monster kill sounds"));
+	FAkAudioDevice::Get()->PostEvent("Death_Music", player);
+	FAkAudioDevice::Get()->PostEvent("Death_Enemy_Sounds", this);
+}
+
 void AMonster::ChangeCurrentPath(TArray<APathPoint*> path)
 {
 	// using random values
@@ -274,9 +281,8 @@ void AMonster::KillPlayer()
 		{
 			mainPlayer->Died(this);
 			controller->SetFocus(mainPlayer);
-			FAkAudioDevice::Get()->PostEvent("Death_Music", mainPlayer);
-			FAkAudioDevice::Get()->PostEvent("Death_Enemy_Sounds", this);
-			
+			killTimerDel.BindUFunction(this, FName("PlayDeathSound"), mainPlayer);
+			GetWorld()->GetTimerManager().SetTimer(killTimerHandle, killTimerDel, deathSoundTimer, false);
 			mainPlayer->StopPlayerSounds();
 			FVector playerLookAt = GetActorLocation();
 			rotateKill= UKismetMathLibrary::FindLookAtRotation(GetActorLocation(), mainPlayer->GetActorLocation());

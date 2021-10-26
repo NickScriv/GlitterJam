@@ -52,9 +52,12 @@ void AMainCharacter::BeginPlay()
 		float height = capsuleColl->GetScaledCapsuleHalfHeight() * scaleHeightEnding;
 		capsuleColl->SetCapsuleHalfHeight(height);
 
-		// TODO: Remember to take this out
 		//gameInstance->monsterKilled = true;
+		walkSpeed = walkSpeed - (walkSpeed * speedMultiplier);
+		sprintSpeed = sprintSpeed - (sprintSpeed * speedMultiplier);
 
+		footStepTimeWalk = footStepTimeWalk + (footStepTimeWalk * footStepTimeMultiplier);
+		footStepTimeSprint = footStepTimeSprint + (footStepTimeSprint * footStepTimeMultiplier);
 
 		FAkAudioDevice::Get()->SetRTPCValue(*FString("Footsteps_Movement_Type"), 2, 200, this);
 		FAkAudioDevice::Get()->PostEvent("Play_Outdoor_Ambience", this);
@@ -486,7 +489,6 @@ void AMainCharacter::TimelineProgressCrouch(float val)
 void AMainCharacter::PlayFootStep()
 {
 	FAkAudioDevice::Get()->PostEvent("Play_Footstep", this);
-	//TODO: Remember to change these values back to crouchLoudness, walkLoudness, and sprintLoudness instead of 0.0
 	if (EMovement::Crouching == movement)
 	{
 		
@@ -594,7 +596,7 @@ void AMainCharacter::Attack()
 				isShooting = true;
 				shotgun->Shoot();
 
-				//shotgunBulletCount--;
+				shotgunBulletCount--;
 				gameMode->AmmoUI(true, shotgunBulletCount);
 
 			}
@@ -682,8 +684,8 @@ void AMainCharacter::CrouchPressed()
 	}
 
 	isCrouchingKeyDown = true;
-
-	if (movement != EMovement::Standing || GetCharacterMovement()->IsFalling() || !canCrouch || gameMode->isReadingNote || gameMode->isPaused)
+	UE_LOG(LogTemp, Warning, TEXT("crouching key down true"));
+	if (movement != EMovement::Standing || GetCharacterMovement()->IsFalling() || !canCrouch || gameMode->isPaused || gameMode->isReadingNote)
 		return;
 
 	canCrouch = false;
@@ -720,12 +722,18 @@ void AMainCharacter::CrouchPressed()
 
 void AMainCharacter::CrouchReleased()
 {
-	if (gameMode->isPaused)
+
+	if (gameMode->isPaused && !crouchPaused)
+	{
+		crouchPaused = true;
 		return;
+	}
+		
 
 	isCrouchingKeyDown = false;
+	UE_LOG(LogTemp, Warning, TEXT("crouching key down false"));
 
-	if (movement != EMovement::Crouching || GetCharacterMovement()->IsFalling() || gameMode->isReadingNote)
+	if (movement != EMovement::Crouching || GetCharacterMovement()->IsFalling() || gameMode->isPaused || gameMode->isReadingNote)
 		return;
 
 	FVector top = GetActorLocation();
@@ -765,6 +773,7 @@ void AMainCharacter::SprintPressed()
 
 void AMainCharacter::SprintReleased()
 {
+	UE_LOG(LogTemp, Warning, TEXT("sprint released!!"));
 
 	if(IsSprinting() && stamina >= 1.f)
 	{
@@ -841,9 +850,10 @@ void AMainCharacter::SetMovement(EMovement newMovement)
 
 void AMainCharacter::TryToStand()
 {
+	UE_LOG(LogTemp, Warning, TEXT("Try to stand"));
 	if (movement == EMovement::Crouching && !stuckOnCrouch && !isCrouchingKeyDown)
 	{
-		
+		UE_LOG(LogTemp, Warning, TEXT("Stand"));
 		SetMovement(EMovement::Standing);
 	}
 }
@@ -861,7 +871,7 @@ void AMainCharacter::AnyKeyPressed()
 //TODO: Remember to change assignment to canSwitch and isShooting and isAiming!!!
 void AMainCharacter::SwitchArms(float val)
 {
-	if(!FMath::IsNearlyZero(val) && canSwitch  && !isSwinging)
+	if(!FMath::IsNearlyZero(val) && canSwitch  && !isSwinging && !isShooting)
 	{	
 		int32 targetHandSlot = GetTargetHandSlot(val);
 
@@ -1010,8 +1020,12 @@ void AMainCharacter::TogglePause()
 	if(isAiming)
 		AimOut();
 
-	if(gameMode->isPaused)
+	if (gameMode->isPaused)
+	{
+		crouchPaused = false;
 		TryToStand();
+	}
+		
 
 
 	if (gameMode)

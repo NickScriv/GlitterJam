@@ -38,8 +38,14 @@ private:
 
 	void BindToInput();
 
+	UFUNCTION(BlueprintCallable)
+	void CloseNote(class AMainCharacter* character);
+
 	UFUNCTION()
-	void CloseNote();
+		void TextPressed();
+
+	UFUNCTION()
+		void ExitPressed();
 
 	UFUNCTION()
 		void CanExitNoteExpire();

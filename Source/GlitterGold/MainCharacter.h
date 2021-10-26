@@ -85,6 +85,12 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Movement")
 		float walkSpeed;
 
+	UPROPERTY(EditAnywhere, Category = "Movement")
+		float speedMultiplier;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Movement")
+		float crouchSpeed;
+
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Movement")
 		float sprintSpeed;
 
@@ -120,7 +126,7 @@ public:
 
 	int32 numberOfKeys = 0;
 
-	int32 shotgunBulletCount = 1;
+	int32 shotgunBulletCount = 3;
 
 	FTimerHandle timerHandleShoot;
 
@@ -240,12 +246,9 @@ private:
 
 	TArray<bool> items;
 
-
+	bool crouchPaused = false;
 #pragma region Movement
 
-
-	UPROPERTY(EditAnywhere, Category = "Movement")
-		float crouchSpeed;
 
 	UPROPERTY(EditAnywhere, Category = "Movement")
 		float crouchScale;
@@ -258,6 +261,9 @@ private:
 
 	UPROPERTY(EditAnywhere, Category = "Movement")
 		float footStepTimeWalk;
+
+	UPROPERTY(EditAnywhere, Category = "Movement")
+		float footStepTimeMultiplier;
 
 	UPROPERTY(EditAnywhere, Category = "Movement")
 		float footStepTimeSprint;

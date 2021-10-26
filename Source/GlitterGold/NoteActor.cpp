@@ -39,6 +39,11 @@ void ANoteActor::BeginPlay()
 		return;
 	}
 
+	if (noteWidget)
+	{
+		noteWidget->SetNoteActor(this);
+	}
+
 }
 
 void ANoteActor::PickedUpNote(AMainCharacter* character)
@@ -56,9 +61,6 @@ void ANoteActor::PickedUpNote(AMainCharacter* character)
 	{
 		gameMode->isReadingNote = true;
 	}
-
-
-	character->TryToStand();
 	
 	//Play open note sound
 	FAkAudioDevice::Get()->PostEvent("Pick_Up_Note", this);
@@ -75,18 +77,21 @@ void ANoteActor::BindToInput()
 	InputComponent->RegisterComponent();
 	if (InputComponent)
 	{
-		InputComponent->BindAction("Interact", IE_Pressed, this, &ANoteActor::CloseNote).bExecuteWhenPaused = true;
+
+		InputComponent->BindAction("Interact", IE_Pressed, this, &ANoteActor::TextPressed).bExecuteWhenPaused = true;
+
+		InputComponent->BindAction("NoteBack", IE_Pressed, this, &ANoteActor::ExitPressed).bExecuteWhenPaused = true;
 		EnableInput(GetWorld()->GetFirstPlayerController());
 	}
 }
 
-void ANoteActor::CloseNote()
+void ANoteActor::CloseNote(AMainCharacter* character)
 {
 	if(!canExit)
 		return;
 
 	AGlitterGameModeBase* gameMode = Cast<AGlitterGameModeBase>(UGameplayStatics::GetGameMode(this));
-
+	character->TryToStand();
 	if (gameMode)
 	{
 		gameMode->isReadingNote = false;
@@ -96,6 +101,22 @@ void ANoteActor::CloseNote()
 	UGameplayStatics::SetGamePaused(GetWorld(), false);
 	noteWidget->RemoveFromParent();
 	DisableInput(GetWorld()->GetFirstPlayerController());
+}
+
+void ANoteActor::TextPressed()
+{
+	if (noteWidget)
+	{
+		noteWidget->TextPressed();
+	}
+}
+
+void ANoteActor::ExitPressed()
+{
+	if (noteWidget)
+	{
+		noteWidget->ExitPressed();
+	}
 }
 
 void ANoteActor::CanExitNoteExpire()

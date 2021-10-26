@@ -52,6 +52,9 @@ public:
 	UPROPERTY(EditAnywhere)
 		TEnumAsByte <EPathEnding>  pathEnding;
 
+	UPROPERTY(EditAnywhere)
+		float deathSoundTimer;
+
 	UPROPERTY(BlueprintReadOnly)
 		TEnumAsByte <EDeathStatus>  deathStatus = EDeathStatus::Alive;
 
@@ -181,6 +184,10 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Spawn")
 		TArray<FTransform> flashlightSpawnLocations;
 
+	FTimerDelegate killTimerDel;
+
+	FTimerHandle killTimerHandle;
+
 	UFUNCTION()
 	void TriggerFirstEvent(class AActor* overlappedActor, class AActor* otherActor);
 
@@ -195,6 +202,9 @@ private:
 	void SetPhysicsAnimation(FName boneName);
 
 	bool ShouldHappen(int32 percentage);
+
+	UFUNCTION()
+		void PlayDeathSound(AMainCharacter* player);
 };
 
 

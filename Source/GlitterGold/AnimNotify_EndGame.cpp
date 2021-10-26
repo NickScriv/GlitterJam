@@ -9,7 +9,6 @@
 void UAnimNotify_EndGame::Notify(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation)
 {
 	Super::Notify(MeshComp, Animation);
-	// TODO: play event here
 	AGlitterGameModeBase* gameMode = Cast<AGlitterGameModeBase>(UGameplayStatics::GetGameMode(MeshComp->GetWorld()));
 
 	if(gameMode)

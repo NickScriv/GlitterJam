@@ -131,13 +131,17 @@ void ASafe::LockPickUsed()
 void ASafe::OpenSafe()
 {
 	open = true;
-	FAkAudioDevice::Get()->PostEventAtLocation(in_pEventOpen, GetActorLocation(), GetActorRotation(), GetWorld());
+	// TODO: Play crank sound!!!
+	//FAkAudioDevice::Get()->PostEventAtLocation(in_pEventOpen, GetActorLocation(), GetActorRotation(), GetWorld());
 }
 
 void ASafe::ChangeMonsterPath()
 {
-	AActor* actor = UGameplayStatics::GetActorOfClass(GetWorld(), AMonster::StaticClass());
+	if (possibleMonsterPaths.Num() < 1)
+		return;
 
+	AActor* actor = UGameplayStatics::GetActorOfClass(GetWorld(), AMonster::StaticClass());
+	
 	if (actor)
 	{
 		if (AMonster* monst = Cast<AMonster>(actor))

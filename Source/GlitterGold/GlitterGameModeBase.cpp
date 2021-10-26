@@ -50,7 +50,6 @@ void AGlitterGameModeBase::EndGame()
 {
 	HUDWidget->RemoveFromParent();
 
-	// TODO: Take this out for polish
 	KillScreenWidget = CreateWidget<UKillScreenUserWidget>(GetGameInstance(), killScreenWidgetClass);
 	KillScreenWidget->AddToViewport();
 	

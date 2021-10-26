@@ -21,6 +21,9 @@ public:
 	UPROPERTY(EditAnywhere)
 	float waitTimeDeviation;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	bool turnDirection;
+
 	UPROPERTY(EditDefaultsOnly)
 	class USphereComponent* sphere;
 

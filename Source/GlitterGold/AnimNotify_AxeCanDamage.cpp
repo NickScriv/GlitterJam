@@ -79,7 +79,7 @@ void UAnimNotify_AxeCanDamage::Notify(USkeletalMeshComponent* MeshComp, UAnimSeq
 				FAkAudioDevice::Get()->PostEvent("Axe_Hit_Generic_Object", MeshComp->GetOwner());
 
 				// Play default hit effect
-				UGameplayStatics::SpawnEmitterAtLocation(player, normalHit, hit.Location, UKismetMathLibrary::MakeRotFromZ(dir));
+				//UGameplayStatics::SpawnEmitterAtLocation(player, normalHit, hit.Location, UKismetMathLibrary::MakeRotFromZ(dir));
 			}
 		}
 	}

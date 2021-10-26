@@ -11,7 +11,7 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="393239870" Language="SFX" Hash="2252726487">
+		<SoundBank Id="393239870" Language="SFX" Hash="3391999120">
 			<ObjectPath>\SoundBanks\Default Work Unit\SFX</ObjectPath>
 			<ShortName>SFX</ShortName>
 			<Path>SFX.bnk</Path>
@@ -214,7 +214,14 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="330157181" Name="Lights_Flicker_Off" ObjectPath="\Events\Default Work Unit\SFX Events\Lights\Lights_Flicker_Off"/>
+				<Event Id="330157181" Name="Lights_Flicker_Off" ObjectPath="\Events\Default Work Unit\SFX Events\Lights\Lights_Flicker_Off">
+					<IncludedMemoryFiles>
+						<File Id="735711905" Language="SFX">
+							<ShortName>Lights_Flicker_Off.wav</ShortName>
+							<Path>SFX\Lights_Flicker_Off_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="371036424" Name="Lock_Pick_Break" ObjectPath="\Events\Default Work Unit\SFX Events\Lock Pick\Lock_Pick_Break">
 					<IncludedMemoryFiles>
 						<File Id="443052389" Language="SFX">
