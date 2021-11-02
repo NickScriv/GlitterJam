@@ -11,7 +11,7 @@ void UAnimNotify_BadEnding::Notify(USkeletalMeshComponent* MeshComp, UAnimSequen
 
 	if (!MeshComp->GetOwner())
 	{
-		UE_LOG(LogTemp, Warning, TEXT("UAnimNotify_BadEnding: No mesh comp owner found"));
+		//UE_LOG(LogTemp, Warning, TEXT("UAnimNotify_BadEnding: No mesh comp owner found"));
 		return;
 	}
 

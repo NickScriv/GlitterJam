@@ -25,7 +25,7 @@ void AFinalDoor::BeginPlay()
 
 	if ((interaction = Cast<UInteractionWidgetComponent>(GetComponentByClass(UInteractionWidgetComponent::StaticClass()))) == nullptr)
 	{
-		UE_LOG(LogTemp, Error, TEXT("Interaction is null!!!"));
+		//UE_LOG(LogTemp, Error, TEXT("Interaction is null!!!"));
 		return;
 	}
 	
@@ -57,7 +57,7 @@ void AFinalDoor::TriggerEnd(AMainCharacter* character)
 
 	if (monsters.Num() != 1)
 	{
-		UE_LOG(LogTemp, Error, TEXT("There only should be 1 monster in the level"));
+		//UE_LOG(LogTemp, Error, TEXT("There only should be 1 monster in the level"));
 		return;
 	}
 

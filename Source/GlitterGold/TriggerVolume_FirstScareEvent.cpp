@@ -30,7 +30,7 @@ void ATriggerVolume_FirstScareEvent::OnOverlapBegin(AActor* overlappedActor, AAc
 
 		if(!monster)
 		{
-			UE_LOG(LogTemp, Error, TEXT("Monster Not found in trigger"));
+			//UE_LOG(LogTemp, Error, TEXT("Monster Not found in trigger"));
 			return;
 		}
 

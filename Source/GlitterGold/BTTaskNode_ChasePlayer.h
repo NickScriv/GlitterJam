@@ -20,7 +20,8 @@ public:
 		FBlackboardKeySelector  bbKey_Loc;
 
 
-
+	UPROPERTY(EditAnywhere)
+		FVector extents;
 
 protected:
 	virtual EBTNodeResult::Type ExecuteTask(class UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory) override;

@@ -19,6 +19,10 @@ void AGlitterGameModeBase::BeginPlay()
 	HUDWidget->AddToViewport();
 
 	pauseScreenWidget = CreateWidget<UPauseMenuUserWidget>(GetGameInstance(), pauseWidgetClass);
+
+	ReticleUI(false);
+	AmmoUI(false, 3);
+	FadeInHUD();
 }
 
 void AGlitterGameModeBase::AddNotification(FText content)
@@ -75,17 +79,17 @@ void AGlitterGameModeBase::TogglePause(AMainCharacter* character)
 	
 	isPaused = !isPaused;
 	UGameplayStatics::SetGamePaused(GetWorld(), isPaused);
-	UE_LOG(LogTemp, Warning, TEXT("outside pause"));
+	//UE_LOG(LogTemp, Warning, TEXT("outside pause"));
 	if(isPaused)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Add to view pause"));
+		//UE_LOG(LogTemp, Warning, TEXT("Add to view pause"));
 
 		FAkAudioDevice::Get()->PostEvent("Pause_Menu_On", character);
 		pauseScreenWidget->AddToViewport();
 	}
 	else
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Add to view unpause"));
+		//UE_LOG(LogTemp, Warning, TEXT("Add to view unpause"));
 
 		FAkAudioDevice::Get()->PostEvent("Pause_Menu_Off", character);
 		pauseScreenWidget->RemoveFromParent();

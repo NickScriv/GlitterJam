@@ -11,6 +11,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	377921503	Stop_Run_Heavy			\Default Work Unit\SFX Events\Stamina\Stop_Run_Heavy	
 	535830432	Door_Open			\Default Work Unit\SFX Events\Doors\Door_Open	
 	757579393	Key_Acquired			\Default Work Unit\SFX Events\Keys\Key_Acquired	
+	976763844	Safe_Crank_Turn			\Default Work Unit\SFX Events\Safe\Safe_Crank_Turn	
 	979945107	Axe_Hit_Wood			\Default Work Unit\SFX Events\Axe\Axe_Hit_Wood	
 	1047608429	Start_Run			\Default Work Unit\SFX Events\Stamina\Start_Run	
 	1060106358	Play_Indoor_Ambience			\Default Work Unit\SFX Events\Ambience\Play_Indoor_Ambience	
@@ -181,6 +182,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	616222312	Indoor_Ambience	E:\WwiseGlitter\.cache\Windows\SFX\Wind_Ambience_C3AC051A.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambiences\Indoor_Ambience		3528144
 	634015941	High_Door_Open_2	E:\WwiseGlitter\.cache\Windows\SFX\High_Door_Open_2_9D1584DB.wem		\Actor-Mixer Hierarchy\Default Work Unit\Doors\Door Open\High Door Open\High_Door_Open_2		441192
 	637253143	Inject Cure	E:\WwiseGlitter\.cache\Windows\SFX\Cure_Injection_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Cure\Inject Cure		524432
+	642072306	Safe_Crank	E:\WwiseGlitter\.cache\Windows\SFX\Safe_Crank_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Safe\Safe_Crank		496744
 	648246599	Good_Ending_SFX	E:\WwiseGlitter\.cache\Windows\SFX\Good_Ending_SFX_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ending SFX\Good_Ending_SFX		3908084
 	648660458	Low Stamina	E:\WwiseGlitter\.cache\Windows\SFX\Low_Stamina_Breathing_D79FB2B7.wem		\Actor-Mixer Hierarchy\Default Work Unit\Stamina\Heavy Breathing Switch\Low Stamina		1455492
 	651469099	Enemy_fs_tile_3	E:\WwiseGlitter\.cache\Windows\SFX\Enemy_fs_tile_4_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemy Sounds\Enemy Footstep Switch\Enemy Tile Footsteps\Enemy_fs_tile_3		234148

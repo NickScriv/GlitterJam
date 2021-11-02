@@ -12,28 +12,28 @@ void UAnimNotify_AttachItemMesh::Notify(USkeletalMeshComponent* MeshComp, UAnimS
 
 	if (!player)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("AnimNotifyArmsHideGet: No Player found"));
+		//UE_LOG(LogTemp, Warning, TEXT("AnimNotifyArmsHideGet: No Player found"));
 		return;
 	}
 
 	if (meshToAttach == 1)
 	{
 		player->ShowFlashlight();
-		UE_LOG(LogTemp, Warning, TEXT("Show Flashlight"));
+		//UE_LOG(LogTemp, Warning, TEXT("Show Flashlight"));
 	}
 	else if (meshToAttach == 2)
 	{
 		player->ShowShotgun();
-		UE_LOG(LogTemp, Warning, TEXT("Show Shotgun"));
+		//UE_LOG(LogTemp, Warning, TEXT("Show Shotgun"));
 	}
 	else if (meshToAttach == 3)
 	{
 		player->ShowCrowBar();
-		UE_LOG(LogTemp, Warning, TEXT("Show CrowBar"));
+		//UE_LOG(LogTemp, Warning, TEXT("Show CrowBar"));
 	}
 	else
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Wrong mesh value for attach mesh"));
+		//UE_LOG(LogTemp, Warning, TEXT("Wrong mesh value for attach mesh"));
 	}
 
 }

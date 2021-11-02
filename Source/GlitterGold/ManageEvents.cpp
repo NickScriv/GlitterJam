@@ -20,19 +20,19 @@ void AManageEvents::BeginPlay()
 
 	if(firstScareEventMonsters.Num() != firstScareEventTriggers.Num())
 	{
-		UE_LOG(LogTemp, Error, TEXT("AManageEvents: Trigger and monsters array must be equal for event manager to work!"));
+		//UE_LOG(LogTemp, Error, TEXT("AManageEvents: Trigger and monsters array must be equal for event manager to work!"));
 		return;
 	}
 
 	if (lighShortTriggers.Num() != firstScareEventTriggers.Num())
 	{
-		UE_LOG(LogTemp, Error, TEXT("AManageEvents: Trigger arrays must be equal for event manager to work!"));
+		//UE_LOG(LogTemp, Error, TEXT("AManageEvents: Trigger arrays must be equal for event manager to work!"));
 		return;
 	}
 
 	if (firstScareEventMonsters.Num() <= 0)
 	{
-		UE_LOG(LogTemp, Error, TEXT("AManageEvents: The event arrays are empty!!"));
+		//UE_LOG(LogTemp, Error, TEXT("AManageEvents: The event arrays are empty!!"));
 		return;
 	}
 

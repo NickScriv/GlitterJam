@@ -31,7 +31,7 @@ void UBTService_ChangeMusic::OnBecomeRelevant(UBehaviorTreeComponent& OwnerComp,
 
 	if(!gameMode)
 	{
-		UE_LOG(LogTemp, Error, TEXT("UBTService_ChangeMusic: No game mode found!"));
+		//UE_LOG(LogTemp, Error, TEXT("UBTService_ChangeMusic: No game mode found!"));
 		return;
 	}
 	

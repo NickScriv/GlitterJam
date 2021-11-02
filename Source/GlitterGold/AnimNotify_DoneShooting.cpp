@@ -12,11 +12,11 @@ void UAnimNotify_DoneShooting::Notify(USkeletalMeshComponent* MeshComp, UAnimSeq
 
 	if (!player)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("AnimNotifyArmsHideGet: No Player found"));
+		//UE_LOG(LogTemp, Warning, TEXT("AnimNotifyArmsHideGet: No Player found"));
 		return;
 	}
 
 	/*player->isShooting = false;
-	UE_LOG(LogTemp, Warning, TEXT("Done Shooting"));*/
+	//UE_LOG(LogTemp, Warning, TEXT("Done Shooting"));*/
 
 }

@@ -43,7 +43,7 @@ void UDoorOpenClose::BeginPlay()
 
 	if (comp)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Door ak comp"));
+		//UE_LOG(LogTemp, Warning, TEXT("Door ak comp"));
 		comp->OcclusionCollisionChannel = ECollisionChannel::ECC_GameTraceChannel7;
 		comp->OcclusionRefreshInterval = 0.0f;
 	}
@@ -52,12 +52,12 @@ void UDoorOpenClose::BeginPlay()
 
 	if ((interaction = Cast<UInteractionWidgetComponent>(GetOwner()->GetComponentByClass(UInteractionWidgetComponent::StaticClass()))) == nullptr)
 	{
-		UE_LOG(LogTemp, Error, TEXT("DoorOpenClose: Interaction is null for %s"), *GetOwner()->GetName());
+		//UE_LOG(LogTemp, Error, TEXT("DoorOpenClose: Interaction is null for %s"), *GetOwner()->GetName());
 	}
 
 	if ((portal = Cast<UAkPortalComponent>(GetOwner()->GetComponentByClass(UAkPortalComponent::StaticClass()))) == nullptr)
 	{
-		UE_LOG(LogTemp, Error, TEXT("DoorOpenClose: Portal is null!!!"));
+		//UE_LOG(LogTemp, Error, TEXT("DoorOpenClose: Portal is null!!!"));
 	}
 	
 	if(portal)
@@ -102,13 +102,13 @@ void UDoorOpenClose::BeginPlay()
 	
 	if(!navLinkProxyEnter)
 	{
-		UE_LOG(LogTemp, Error, TEXT("DoorOpenClose: Nav link proxy enter for door is null for %s"), *GetOwner()->GetName());
+		//UE_LOG(LogTemp, Error, TEXT("DoorOpenClose: Nav link proxy enter for door is null for %s"), *GetOwner()->GetName());
 		return;
 	}
 
 	if (!navLinkProxyExit)
 	{
-		UE_LOG(LogTemp, Error, TEXT("DoorOpenClose: Nav link proxy exit for door is null for %s"), *GetOwner()->GetName());
+		//UE_LOG(LogTemp, Error, TEXT("DoorOpenClose: Nav link proxy exit for door is null for %s"), *GetOwner()->GetName());
 		return;
 	}
 
@@ -152,7 +152,7 @@ void UDoorOpenClose::TickComponent(float DeltaTime, ELevelTick TickType, FActorC
 		{
 			/*if (monsterController)
 			{
-				UE_LOG(LogTemp, Warning, TEXT("Resume move request: %i"), currentMove.GetID());
+				//UE_LOG(LogTemp, Warning, TEXT("Resume move request: %i"), currentMove.GetID());
 				monsterController->ResumeMove(currentMove);
 			}*/
 
@@ -161,7 +161,7 @@ void UDoorOpenClose::TickComponent(float DeltaTime, ELevelTick TickType, FActorC
 				monster->GetCharacterMovement()->Activate();
 			}
 				
-			UE_LOG(LogTemp, Warning, TEXT("Resume Move"));
+			//UE_LOG(LogTemp, Warning, TEXT("Resume Move"));
 			checkClosed = false;
 		}
 	}
@@ -199,7 +199,7 @@ void UDoorOpenClose::OpenDoor()
 		/*id = FAkAudioDevice::Get()->PostEvent("Door_Open", this->GetOwner());
 		if (this->GetOwner())
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Door open: %i, name: %s"), id, *this->GetOwner()->GetName());
+			//UE_LOG(LogTemp, Warning, TEXT("Door open: %i, name: %s"), id, *this->GetOwner()->GetName());
 		}*/
 
 		if(portal)
@@ -279,7 +279,7 @@ void UDoorOpenClose::BeginInteractDoor(AMainCharacter* character)
 	}
 	else if (locked && playerHasLockPick)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Play lock pick sound"));
+		//UE_LOG(LogTemp, Warning, TEXT("Play lock pick sound"));
 		FAkAudioDevice::Get()->PostEvent("Play_Lock_Picking", character);
 	}
 }
@@ -299,7 +299,7 @@ void UDoorOpenClose::EndInteractDoor(AMainCharacter* character)
 	}
 	else if (locked && playerHasLockPick)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Stop lock pick sound"));
+		//UE_LOG(LogTemp, Warning, TEXT("Stop lock pick sound"));
 		FAkAudioDevice::Get()->PostEvent("Stop_Lock_Picking", character);
 	}
 }
@@ -395,7 +395,7 @@ void UDoorOpenClose::PlayerPickedUpLockPick()
 	interaction->interactionTime = unlockLockPickTime;
 
 	
-	UE_LOG(LogTemp, Error, TEXT("Lock pick for door"));
+	//UE_LOG(LogTemp, Error, TEXT("Lock pick for door"));
 	
 }
 

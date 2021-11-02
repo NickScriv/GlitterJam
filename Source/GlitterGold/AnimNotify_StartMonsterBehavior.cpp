@@ -7,21 +7,21 @@
 
 void UAnimNotify_StartMonsterBehavior::Notify(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Noify"));
+	//UE_LOG(LogTemp, Warning, TEXT("Noify"));
 	Super::Notify(MeshComp, Animation);
 	
 	AMonster* monster = Cast<AMonster>(MeshComp->GetOwner());
 
 	if(!monster)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("No Monster"));
+		//UE_LOG(LogTemp, Warning, TEXT("No Monster"));
 		return;
 	}
 
 
 	if(!monster)
 	{
-		UE_LOG(LogTemp, Error, TEXT("Monster not found from mesh component!!"));
+		//UE_LOG(LogTemp, Error, TEXT("Monster not found from mesh component!!"));
 		return;
 	}
 
@@ -29,10 +29,10 @@ void UAnimNotify_StartMonsterBehavior::Notify(USkeletalMeshComponent* MeshComp, 
 
 	if (!controller)
 	{
-		UE_LOG(LogTemp, Error, TEXT("controller not found from monster!!"));
+		//UE_LOG(LogTemp, Error, TEXT("controller not found from monster!!"));
 		return;
 	}
 
-	UE_LOG(LogTemp, Warning, TEXT("controller start"));
+	//UE_LOG(LogTemp, Warning, TEXT("controller start"));
 	controller->StartMonsterBehavior();
 }

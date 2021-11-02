@@ -37,12 +37,12 @@ void AMonsterAIController::BeginPlay()
 	{
 		if(perc->GetName() == "AIPerceptionMain")
 		{
-			UE_LOG(LogTemp, Warning, TEXT("AIPerceptionMain found!"));
+			//UE_LOG(LogTemp, Warning, TEXT("AIPerceptionMain found!"));
 			AIPerception = perc;
 		}
 		else if(perc->GetName() == "AIPerception2")
 		{
-			UE_LOG(LogTemp, Warning, TEXT("AIPerception2 found!"));
+			//UE_LOG(LogTemp, Warning, TEXT("AIPerception2 found!"));
 			AIPerceptionStart = perc;
 		}
 	}
@@ -55,6 +55,7 @@ void AMonsterAIController::BeginPlay()
 	AIPerception->OnTargetPerceptionUpdated.AddDynamic(this, &AMonsterAIController::perceptionUpdated);
 	AIPerceptionStart->OnTargetPerceptionUpdated.AddDynamic(this, &AMonsterAIController::perceptionUpdated);
 	blackboardComp->SetValueAsInt(FName("ChangePath"), 0);
+	blackboardComp->SetValueAsObject(FName("TargetActor"), UGameplayStatics::GetPlayerCharacter(this, 0));
 
 	//RunBehaviorTree(AIBehavior);
 
@@ -81,6 +82,9 @@ void AMonsterAIController::perceptionUpdated(AActor* Actor, FAIStimulus Stimulus
 	AMainCharacter* player = Cast<AMainCharacter>(Actor);
 
 	if (!player)
+		return;
+
+	if (!GetPawn())
 		return;
 	
 	//UE_LOG(LogTemp, Warning, TEXT("%s"), Stimulus.WasSuccessfullySensed() ? TEXT("True") : TEXT("False"));
@@ -117,23 +121,27 @@ void AMonsterAIController::perceptionUpdated(AActor* Actor, FAIStimulus Stimulus
 			}
 
 		}
-		UE_LOG(LogTemp, Warning, TEXT("%s"), sensed ? TEXT("True") : TEXT("False"));*/
+		//UE_LOG(LogTemp, Warning, TEXT("%s"), sensed ? TEXT("True") : TEXT("False"));*/
 
 		blackboardComp->SetValueAsBool(FName("CanSeePlayer"), Stimulus.WasSuccessfullySensed());
 		
 	}
 	else if (senseName == TEXT("AISense_Hearing"))
 	{
+
 		FHitResult hit;
 		FCollisionQueryParams qParams;
 		qParams.AddIgnoredActor(GetPawn());
 
+		if (!GetWorld())
+			return;
+
 		if (GetWorld()->LineTraceSingleByChannel(hit, GetPawn()->GetActorLocation(), Stimulus.StimulusLocation, ECC_Visibility, qParams))
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Hit raycast to player: %s"), *hit.Actor->GetName());
+			//UE_LOG(LogTemp, Warning, TEXT("Hit raycast to player: %s"), *hit.Actor->GetName());
 			if (Cast<AMainCharacter>(hit.Actor))
 			{
-				UE_LOG(LogTemp, Warning, TEXT("Heard Player at: %f, %f, %f"), Stimulus.StimulusLocation.X, Stimulus.StimulusLocation.Y, Stimulus.StimulusLocation.Z);
+				//UE_LOG(LogTemp, Warning, TEXT("Heard Player at: %f, %f, %f"), Stimulus.StimulusLocation.X, Stimulus.StimulusLocation.Y, Stimulus.StimulusLocation.Z);
 				blackboardComp->SetValueAsBool(FName("IsInvestigating"), Stimulus.WasSuccessfullySensed());
 				blackboardComp->SetValueAsVector(FName("TargetLoc"), Stimulus.StimulusLocation);
 			}
@@ -149,7 +157,7 @@ void AMonsterAIController::perceptionUpdated(AActor* Actor, FAIStimulus Stimulus
 	}
 	else
 	{
-		UE_LOG(LogTemp, Warning, TEXT("None"));
+		//UE_LOG(LogTemp, Warning, TEXT("None"));
 	}
 
 }
@@ -163,7 +171,7 @@ void AMonsterAIController::SetToDefaultPerception()
 		AIPerception->SetSenseEnabled(UAISense_Sight::StaticClass(), true);
 		AIPerceptionStart->SetSenseEnabled(UAISense_Hearing::StaticClass(), false);
 		AIPerception->SetSenseEnabled(UAISense_Hearing::StaticClass(), true);
-		UE_LOG(LogTemp, Warning, TEXT("Change AIPerception"));
+		//UE_LOG(LogTemp, Warning, TEXT("Change AIPerception"));
 	}
 }
 
@@ -178,7 +186,7 @@ void AMonsterAIController::StartMonsterBehavior()
 	if (!monster)
 		return;
 
-	GetWorldTimerManager().SetTimer(timerHandleFirstSeen, this, &AMonsterAIController::SetToDefaultPerception, 8.0f,  false);
+	GetWorldTimerManager().SetTimer(timerHandleFirstSeen, this, &AMonsterAIController::SetToDefaultPerception, ChangePerceptionTime,  false);
 	//monster->TracePath();
 }
 

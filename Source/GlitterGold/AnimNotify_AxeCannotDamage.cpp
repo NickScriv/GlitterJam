@@ -12,7 +12,7 @@ void UAnimNotify_AxeCannotDamage::Notify(USkeletalMeshComponent* MeshComp, UAnim
 
 	if (!player)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("UAnimNotify_AxeCannotDamage: No Player found"));
+		//UE_LOG(LogTemp, Warning, TEXT("UAnimNotify_AxeCannotDamage: No Player found"));
 		return;
 	}
 

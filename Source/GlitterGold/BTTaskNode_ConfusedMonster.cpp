@@ -24,7 +24,7 @@ EBTNodeResult::Type UBTTaskNode_ConfusedMonster::ExecuteTask(class UBehaviorTree
 
 	if (!gameMode)
 	{
-		UE_LOG(LogTemp, Error, TEXT("UBTTask_RandomLocation: No game mode found!"));
+		//UE_LOG(LogTemp, Error, TEXT("UBTTask_RandomLocation: No game mode found!"));
 		return EBTNodeResult::Failed;
 	}
 

@@ -22,7 +22,7 @@ void ADrawer::BeginPlay()
 
 	if ((interaction = Cast<UInteractionWidgetComponent>(GetComponentByClass(UInteractionWidgetComponent::StaticClass()))) == nullptr)
 	{
-		UE_LOG(LogTemp, Error, TEXT("Drawer: Interaction is null for %s"), *GetName());
+		//UE_LOG(LogTemp, Error, TEXT("Drawer: Interaction is null for %s"), *GetName());
 		return;
 	}
 

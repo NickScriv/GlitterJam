@@ -15,16 +15,6 @@ EBTNodeResult::Type UBTTaskNode_MoveToPlayer::ExecuteTask(class UBehaviorTreeCom
 	if (!UGameplayStatics::GetPlayerCharacter(this, 0))
 		return EBTNodeResult::Failed;
 
-
-
-	FNavLocation randomLoc;
-
-	if (!UNavigationSystemV1::GetCurrent(GetWorld())->GetRandomPointInNavigableRadius(UGameplayStatics::GetPlayerCharacter(this, 0)->GetActorLocation(), radius, randomLoc))
-	{
-		return EBTNodeResult::Failed;
-	}
-
-
 	OwnerComp.GetBlackboardComponent()->SetValueAsVector(bbKey.SelectedKeyName, UGameplayStatics::GetPlayerCharacter(this, 0)->GetActorLocation());
 
 	return EBTNodeResult::Succeeded;

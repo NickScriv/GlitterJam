@@ -9,6 +9,7 @@
 #include "PointInPlayer.h"
 #include "../Plugins/Wwise/Source/AkAudio/Classes/AkComponent.h"
 #include "Kismet/GameplayStatics.h"
+#include "Engine/StaticMeshActor.h"
 
 class APointInPlayer;
 
@@ -22,7 +23,7 @@ void AAkSpatialAudioVolume_Reverb::BeginPlay()
 	Super::BeginPlay();
 
 	// listen to event
-	OnActorBeginOverlap.AddDynamic(this, &AAkSpatialAudioVolume_Reverb::OnOverlapBegin);
+	OnActorBeginOverlap.AddUniqueDynamic(this, &AAkSpatialAudioVolume_Reverb::OnOverlapBegin);
 }
 
 void AAkSpatialAudioVolume_Reverb::OnOverlapBegin(AActor* overlappedActor, AActor* otherActor)
@@ -32,7 +33,7 @@ void AAkSpatialAudioVolume_Reverb::OnOverlapBegin(AActor* overlappedActor, AActo
 		if (APointInMonster* pointInMonster = Cast<APointInMonster>(otherActor))
 		{
 			// Monster stepped in
-			UE_LOG(LogTemp, Warning, TEXT("PointInMonster detected!"));
+			//UE_LOG(LogTemp, Warning, TEXT("PointInMonster detected!"));
 			FAkAudioDevice::Get()->SetRTPCValue(*FString("Enemy_Footsteps_Surface_Type"), footStepSurface, 0, pointInMonster->GetParentActor());
 
 		}
@@ -44,15 +45,21 @@ void AAkSpatialAudioVolume_Reverb::OnOverlapBegin(AActor* overlappedActor, AActo
 
 			if (!player)
 			{
-				UE_LOG(LogTemp, Warning, TEXT("Reverb Spatial Volume: Player actor not found"));
+				//UE_LOG(LogTemp, Warning, TEXT("Reverb Spatial Volume: Player actor not found"));
 				return;
+			}
+
+			if (IsValid(lightBlocker))
+			{
+				lightBlocker->Destroy();
+				lightBlocker = nullptr;
 			}
 
 			AGlitterGameModeBase* gameMode = Cast<AGlitterGameModeBase>(UGameplayStatics::GetGameMode(this));
 			gameMode->queuedMusic = musicName;
-			UE_LOG(LogTemp, Warning, TEXT("Change footstep surface: %i"), footStepSurface);
+			//UE_LOG(LogTemp, Warning, TEXT("Change footstep surface: %i"), footStepSurface);
 			FAkAudioDevice::Get()->SetRTPCValue(*FString("Footsteps_Surface_Type"), footStepSurface, 0, player);
-			UE_LOG(LogTemp, Warning, TEXT("PointInPlayer detected!"));
+			//UE_LOG(LogTemp, Warning, TEXT("PointInPlayer detected!"));
 
 			if (FMath::IsNearlyEqual(gameMode->monsterInCaution, 0.0f, 0.2f))
 			{

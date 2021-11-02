@@ -21,7 +21,7 @@ void AMainCollectible::BeginPlay()
 
 	if ((interaction = Cast<UInteractionWidgetComponent>(GetComponentByClass(UInteractionWidgetComponent::StaticClass()))) == nullptr)
 	{
-		UE_LOG(LogTemp, Error, TEXT("Interaction is null!!!"));
+		//UE_LOG(LogTemp, Error, TEXT("Interaction is null!!!"));
 		return;
 	}
 
@@ -39,7 +39,7 @@ void AMainCollectible::Tick(float DeltaTime)
 void AMainCollectible::PickedUp(class AMainCharacter* character)
 {
 	// Trigger final door
-	UE_LOG(LogTemp, Error, TEXT("wow gregretgtregt4rgmpile"));
+	//UE_LOG(LogTemp, Error, TEXT("wow gregretgtregt4rgmpile"));
 	FAkAudioDevice::Get()->PostEvent("Pickup_Flashlight", this);
 	finalDoor->InitInteraction();
 	character->InjectSyringe();

@@ -38,7 +38,7 @@ void ATriggerVolume_LightShort::OnOverlapBegin(AActor* overlappedActor, AActor* 
 
 void ATriggerVolume_LightShort::TurnOffLights()
 {
-	UE_LOG(LogTemp, Warning, TEXT("Turn off lights"));
+	//UE_LOG(LogTemp, Warning, TEXT("Turn off lights"));
 
 	for (ACeilingLight* light : lights)
 	{

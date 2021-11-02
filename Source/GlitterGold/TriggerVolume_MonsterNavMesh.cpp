@@ -26,29 +26,29 @@ void ATriggerVolume_MonsterNavMesh::BeginPlay()
 
 void ATriggerVolume_MonsterNavMesh::OnOverlapNavBegin(AActor* overlappedActor, AActor* otherActor)
 {
-	UE_LOG(LogTemp, Warning, TEXT("monster Begin Overlap"));
+	//UE_LOG(LogTemp, Warning, TEXT("monster Begin Overlap"));
 	if (otherActor && otherActor != this)
 	{
 		AMonster* monster = Cast<AMonster>(otherActor);
-		UE_LOG(LogTemp, Warning, TEXT("check monster"));
+		//UE_LOG(LogTemp, Warning, TEXT("check monster"));
 		if (!monster)
 		{
-			UE_LOG(LogTemp, Error, TEXT("Monster Not found in trigger"));
+			//UE_LOG(LogTemp, Error, TEXT("Monster Not found in trigger"));
 			return;
 		}
-		UE_LOG(LogTemp, Warning, TEXT("overlap monster"));
+		//UE_LOG(LogTemp, Warning, TEXT("overlap monster"));
 		for (ANavModifierVolume* navMod : downStairMeshVolumes)
 		{
 
 			navMod->SetAreaClass(defaultNavAreaClass);
-			UE_LOG(LogTemp, Warning, TEXT("Set default nav modifier"));
+			//UE_LOG(LogTemp, Warning, TEXT("Set default nav modifier"));
 			
 		}
 
 		for (ANavModifierVolume* navMod : upStairMeshVolumes)
 		{
 			navMod->SetAreaClass(defaultNavAreaClass);
-			UE_LOG(LogTemp, Warning, TEXT("Set default nav modifier"));
+			//UE_LOG(LogTemp, Warning, TEXT("Set default nav modifier"));
 		}
 	}
 }
@@ -61,7 +61,7 @@ void ATriggerVolume_MonsterNavMesh::OnOverlapNavEnd(AActor* overlappedActor, AAc
 
 		if (!monster)
 		{
-			UE_LOG(LogTemp, Error, TEXT("Monster Not found in trigger"));
+			//UE_LOG(LogTemp, Error, TEXT("Monster Not found in trigger"));
 			return;
 		}
 
@@ -74,7 +74,7 @@ void ATriggerVolume_MonsterNavMesh::OnOverlapNavEnd(AActor* overlappedActor, AAc
 			for (ANavModifierVolume* navMod : upStairMeshVolumes)
 			{
 				navMod->SetAreaClass(nullNavAreaClass);
-				UE_LOG(LogTemp, Warning, TEXT("Set null nav modifier"));
+				//UE_LOG(LogTemp, Warning, TEXT("Set null nav modifier"));
 				
 			}
 		}
@@ -85,7 +85,7 @@ void ATriggerVolume_MonsterNavMesh::OnOverlapNavEnd(AActor* overlappedActor, AAc
 			{
 
 				navMod->SetAreaClass(nullNavAreaClass);
-				UE_LOG(LogTemp, Warning, TEXT("Set null nav modifier"));
+				//UE_LOG(LogTemp, Warning, TEXT("Set null nav modifier"));
 				
 			}
 

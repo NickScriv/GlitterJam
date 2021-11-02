@@ -139,7 +139,7 @@ void UInteractionWidgetComponent::BeginPlay()
 
 	if (!character)
 	{
-		UE_LOG(LogTemp, Error, TEXT("Character not found in Interactable component!!"));
+		//UE_LOG(LogTemp, Error, TEXT("Character not found in Interactable component!!"));
 	}
 
 }

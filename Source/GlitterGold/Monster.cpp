@@ -122,6 +122,7 @@ void AMonster::KillMonster(FVector shotDir)
 	if (AMainCharacter* player = Cast<AMainCharacter>(UGameplayStatics::GetPlayerCharacter(this, 0)))
 	{
 		FAkAudioDevice::Get()->PostEvent("Play_Ambient_Music", player);
+		FAkAudioDevice::Get()->SetRTPCValue(*FString("Num_of_Keys"), 0, 50, player);
 	}
 
 	//GetWorldTimerManager().SetTimer(timerHandleRagdoll, this, &AMonster::EnableRagdoll, ragDollTime, false);
@@ -269,9 +270,11 @@ bool AMonster::ShouldHappen(int32 percentage)
 void AMonster::KillPlayer()
 {
 	AAIController* controller =  UAIBlueprintHelperLibrary::GetAIController(this);
+	
 	GetMesh()->SetAllBodiesBelowSimulatePhysics(FName("pelvis"), false, false);
 	if (controller)
 	{
+		//controller->UnPossess();
 		if(!mainPlayer)
 		{
 			mainPlayer = Cast<AMainCharacter>(UGameplayStatics::GetPlayerCharacter(this, 0));
@@ -297,7 +300,7 @@ void AMonster::KillPlayer()
 	if(gameMode)
 		gameMode->playerKilled = true;
 	
-
+	DetachFromControllerPendingDestroy();
 }
 
 void AMonster::StopMonsterSounds()
@@ -332,7 +335,6 @@ void AMonster::TakeMonsterDamage(float damage, const FVector& shotDir)
 		return;
 
 	health -= damage;
-
 	if(health <= 0.f)
 		KillMonster(shotDir);
 }
@@ -350,8 +352,8 @@ void AMonster::Tick(float DeltaTime)
 		{
 			inLineOfPlayer = true;
 			float dist = hit.Distance;
-			dist = FMath::Clamp(dist, minDistanceAmbience, 700.f);
-			dist = ReverseNumber(ScaleRange(dist, minDistanceAmbience, 700.f, 0.0f, 100.f), 0.0f, 100.f);
+			dist = FMath::Clamp(dist, minDistanceAmbience, maxDistanceAmbience);
+			dist = ReverseNumber(ScaleRange(dist, minDistanceAmbience, maxDistanceAmbience, 0.0f, 100.f), 0.0f, 100.f);
 			FAkAudioDevice::Get()->SetRTPCValue(*FString("Danger_Warning"), dist, 200, mainPlayer);
 		}
 		else if(inLineOfPlayer)

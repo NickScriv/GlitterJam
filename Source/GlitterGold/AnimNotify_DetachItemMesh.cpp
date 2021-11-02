@@ -8,39 +8,39 @@ void UAnimNotify_DetachItemMesh::Notify(USkeletalMeshComponent* MeshComp, UAnimS
 {
 	Super::Notify(MeshComp, Animation);
 
-	UE_LOG(LogTemp, Warning, TEXT("Detach Mesh!!!!!!!!!!!!!!!!!!!!!!!!!!!!"));
+	//UE_LOG(LogTemp, Warning, TEXT("Detach Mesh!!!!!!!!!!!!!!!!!!!!!!!!!!!!"));
 
 	AMainCharacter* player = Cast<AMainCharacter>(MeshComp->GetOwner());
 
 	if (!player)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("UAnimNotify_DetachItemMesh: No Player found"));
+		//UE_LOG(LogTemp, Warning, TEXT("UAnimNotify_DetachItemMesh: No Player found"));
 		return;
 	}
 
 	if (meshToDetach == 1)
 	{
 		player->HideFlashlight();
-		UE_LOG(LogTemp, Warning, TEXT("Hide Flashlight"));
+		//UE_LOG(LogTemp, Warning, TEXT("Hide Flashlight"));
 	}
 	else if (meshToDetach == 2)
 	{
 		player->HideShotgun();
-		UE_LOG(LogTemp, Warning, TEXT("Hide Shotgun"));
+		//UE_LOG(LogTemp, Warning, TEXT("Hide Shotgun"));
 	}
 	else if (meshToDetach == 3)
 	{
 		player->HideCrowBar();
-		UE_LOG(LogTemp, Warning, TEXT("Hide CrowBar"));
+		//UE_LOG(LogTemp, Warning, TEXT("Hide CrowBar"));
 	}
 	else
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Wrong mesh value for detach mesh"));
+		//UE_LOG(LogTemp, Warning, TEXT("Wrong mesh value for detach mesh"));
 	}
 
 	if (player->currentHandSlot == 0)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("next item is nothing, set canSwitch to true"));
+		//UE_LOG(LogTemp, Warning, TEXT("next item is nothing, set canSwitch to true"));
 		player->canSwitch = true;
 	}
 		

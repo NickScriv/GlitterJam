@@ -25,6 +25,9 @@ class GLITTERGOLD_API AAkSpatialAudioVolume_Reverb : public AAkSpatialAudioVolum
 	UPROPERTY(EditAnywhere)
 		FString musicName = "Play_Ambient_Music";
 
+	UPROPERTY(EditAnywhere)
+	class AStaticMeshActor* lightBlocker;
+
 	UFUNCTION()
 	void OnOverlapBegin(class AActor* overlappedActor, class AActor* otherActor);
 

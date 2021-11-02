@@ -43,6 +43,9 @@ private:
 
 	UPROPERTY(EditAnywhere)
 		float chaseSpeed = 600.f;
+
+	UPROPERTY(EditAnywhere)
+		float ChangePerceptionTime;
 	
 	UPROPERTY(EditDefaultsOnly, Category = "Blackboard")
 	TSubclassOf<UAISense> hearingSense;

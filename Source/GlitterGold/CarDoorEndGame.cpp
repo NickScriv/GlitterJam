@@ -32,7 +32,7 @@ void ACarDoorEndGame::BeginPlay()
 	Super::BeginPlay();
 	if ((interaction = Cast<UInteractionWidgetComponent>(GetComponentByClass(UInteractionWidgetComponent::StaticClass()))) == nullptr)
 	{
-		UE_LOG(LogTemp, Error, TEXT("Interaction is null!!!"));
+		//UE_LOG(LogTemp, Error, TEXT("Interaction is null!!!"));
 		return;
 	}
 	
@@ -98,7 +98,7 @@ void ACarDoorEndGame::TriggerGoodEnding()
 	{
 		SequencePlayer->OnStop.AddDynamic(this, &ACarDoorEndGame::ToMainMenu);
 		SequencePlayer->Play();
-		UE_LOG(LogTemp, Error, TEXT("Play sequencer"));
+		//UE_LOG(LogTemp, Error, TEXT("Play sequencer"));
 	}
 
 	if (gameMode)

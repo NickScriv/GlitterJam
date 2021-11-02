@@ -16,7 +16,7 @@ void UAnimNotify_DisableMonsterColl::Notify(USkeletalMeshComponent* MeshComp, UA
 
 	if (monster->GetMesh())
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Sleep bodies"));
+		//UE_LOG(LogTemp, Warning, TEXT("Sleep bodies"));
 		/*monster->GetMesh()->PutRigidBodyToSleep(FName("clavicle_l"));
 		monster->GetMesh()->PutRigidBodyToSleep(FName("clavicle_r"));*/
 		//monster->GetMesh()->PutAllRigidBodiesToSleep();

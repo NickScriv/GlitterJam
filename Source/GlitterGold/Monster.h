@@ -74,7 +74,10 @@ public:
 	bool startAnimation = false;
 
 	UPROPERTY(EditAnywhere)
-	float minDistanceAmbience = 300.f;
+		float minDistanceAmbience;
+
+	UPROPERTY(EditAnywhere)
+		float maxDistanceAmbience;
 
 	UPROPERTY(EditAnywhere)
 		float OrientationStrength;

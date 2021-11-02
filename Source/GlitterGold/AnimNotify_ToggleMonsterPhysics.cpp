@@ -13,7 +13,7 @@ void UAnimNotify_ToggleMonsterPhysics::Notify(USkeletalMeshComponent* MeshComp, 
 
 	if (!monster)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("UAnimNotify_ToggleMonsterPhysics: No monster found"));
+		//UE_LOG(LogTemp, Warning, TEXT("UAnimNotify_ToggleMonsterPhysics: No monster found"));
 		return;
 	}
 
@@ -25,7 +25,7 @@ void UAnimNotify_ToggleMonsterPhysics::Notify(USkeletalMeshComponent* MeshComp, 
 
 		if (!gameMode)
 		{
-			UE_LOG(LogTemp, Error, TEXT("UBTTask_RandomLocation: No game mode found!"));
+			//UE_LOG(LogTemp, Error, TEXT("UBTTask_RandomLocation: No game mode found!"));
 			return;
 		}
 

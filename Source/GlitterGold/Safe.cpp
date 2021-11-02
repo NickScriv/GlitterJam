@@ -26,7 +26,7 @@ void ASafe::BeginPlay()
 	Super::BeginPlay();
 	if ((interaction = Cast<UInteractionWidgetComponent>(GetComponentByClass(UInteractionWidgetComponent::StaticClass()))) == nullptr)
 	{
-		UE_LOG(LogTemp, Error, TEXT("Interaction is null in Safe!!!"));
+		//UE_LOG(LogTemp, Error, TEXT("Interaction is null in Safe!!!"));
 		return;
 	}
 
@@ -46,7 +46,7 @@ void ASafe::BeginPlay()
 	}
 	else
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Lock Pick not found!!!"));
+		//UE_LOG(LogTemp, Warning, TEXT("Lock Pick not found!!!"));
 	}
 	
 
@@ -131,8 +131,7 @@ void ASafe::LockPickUsed()
 void ASafe::OpenSafe()
 {
 	open = true;
-	// TODO: Play crank sound!!!
-	//FAkAudioDevice::Get()->PostEventAtLocation(in_pEventOpen, GetActorLocation(), GetActorRotation(), GetWorld());
+	FAkAudioDevice::Get()->PostEvent("Safe_Crank_Turn", this);
 }
 
 void ASafe::ChangeMonsterPath()

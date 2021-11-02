@@ -27,7 +27,7 @@ void ANoteActor::BeginPlay()
 
 	if ((interaction = Cast<UInteractionWidgetComponent>(GetComponentByClass(UInteractionWidgetComponent::StaticClass()))) == nullptr)
 	{
-		UE_LOG(LogTemp, Error, TEXT("Interaction is null!!!"));
+		//UE_LOG(LogTemp, Error, TEXT("Interaction is null!!!"));
 		return;
 	}
 
@@ -35,7 +35,7 @@ void ANoteActor::BeginPlay()
 
 	if(!noteWidget)
 	{
-		UE_LOG(LogTemp, Error, TEXT("Note widget is null!!!"));
+		//UE_LOG(LogTemp, Error, TEXT("Note widget is null!!!"));
 		return;
 	}
 
@@ -51,7 +51,7 @@ void ANoteActor::PickedUpNote(AMainCharacter* character)
 
 	if (!noteWidget)
 	{
-		UE_LOG(LogTemp, Error, TEXT("Note widget is null!!!"));
+		//UE_LOG(LogTemp, Error, TEXT("Note widget is null!!!"));
 		return;
 	}
 

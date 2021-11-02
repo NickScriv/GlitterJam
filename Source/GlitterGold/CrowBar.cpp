@@ -35,7 +35,7 @@ void ACrowBar::BeginPlay()
 	
 	if ((interaction = Cast<UInteractionWidgetComponent>(GetComponentByClass(UInteractionWidgetComponent::StaticClass()))) == nullptr)
 	{
-		UE_LOG(LogTemp, Error, TEXT("Interaction is null!!!"));
+		//UE_LOG(LogTemp, Error, TEXT("Interaction is null!!!"));
 		return;
 	}
 

@@ -108,7 +108,7 @@ void AMainCharacter::BeginPlay()
 
 	if (!restTimeCurveFloat)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Rest time curve not intialized!"));
+		//UE_LOG(LogTemp, Warning, TEXT("Rest time curve not intialized!"));
 	}
 
 	GetWorldTimerManager().ClearTimer(timerHandleInteract);
@@ -116,13 +116,6 @@ void AMainCharacter::BeginPlay()
 	GetCharacterMovement()->MaxWalkSpeed = walkSpeed;
 
 	gameMode = Cast<AGlitterGameModeBase>(UGameplayStatics::GetGameMode(this));
-
-	if (!gameMode)
-		return;
-
-	gameMode->ReticleUI(false);
-	gameMode->AmmoUI(false, shotgunBulletCount);
-	gameMode->FadeInHUD();
 	
 }
 
@@ -449,7 +442,7 @@ void AMainCharacter::EndInteraction()
 
 void AMainCharacter::Interact()
 {
-	UE_LOG(LogTemp, Warning, TEXT("Interact"));
+	//UE_LOG(LogTemp, Warning, TEXT("Interact"));
 	GetWorldTimerManager().ClearTimer(timerHandleInteract);
 
 	if (UInteractionWidgetComponent* interactable = interactionData.viewedInteractionItem)
@@ -684,7 +677,7 @@ void AMainCharacter::CrouchPressed()
 	}
 
 	isCrouchingKeyDown = true;
-	UE_LOG(LogTemp, Warning, TEXT("crouching key down true"));
+	//UE_LOG(LogTemp, Warning, TEXT("crouching key down true"));
 	if (movement != EMovement::Standing || GetCharacterMovement()->IsFalling() || !canCrouch || gameMode->isPaused || gameMode->isReadingNote)
 		return;
 
@@ -705,7 +698,7 @@ void AMainCharacter::CrouchPressed()
 		}
 
 		float restTime = restTimeCurveFloat->GetFloatValue(stamina);
-		UE_LOG(LogTemp, Warning, TEXT("%f"), restTime);
+		//UE_LOG(LogTemp, Warning, TEXT("%f"), restTime);
 
 		canSprint = false;
 		restTimer = restTime;
@@ -731,7 +724,7 @@ void AMainCharacter::CrouchReleased()
 		
 
 	isCrouchingKeyDown = false;
-	UE_LOG(LogTemp, Warning, TEXT("crouching key down false"));
+	//UE_LOG(LogTemp, Warning, TEXT("crouching key down false"));
 
 	if (movement != EMovement::Crouching || GetCharacterMovement()->IsFalling() || gameMode->isPaused || gameMode->isReadingNote)
 		return;
@@ -763,7 +756,7 @@ void AMainCharacter::SprintPressed()
 	
 	if(canSprint && !isAiming && !isShooting && !isSwinging)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("can sprint"));
+		//UE_LOG(LogTemp, Warning, TEXT("can sprint"));
 		GetCharacterMovement()->MaxWalkSpeed = sprintSpeed;
 		FAkAudioDevice::Get()->SetRTPCValue(*FString("Footsteps_Movement_Type"), 3, 200, this);
 		startSprintEvent = FAkAudioDevice::Get()->PostEvent("Start_Run", this);
@@ -773,7 +766,7 @@ void AMainCharacter::SprintPressed()
 
 void AMainCharacter::SprintReleased()
 {
-	UE_LOG(LogTemp, Warning, TEXT("sprint released!!"));
+	//UE_LOG(LogTemp, Warning, TEXT("sprint released!!"));
 
 	if(IsSprinting() && stamina >= 1.f)
 	{
@@ -790,7 +783,7 @@ void AMainCharacter::SprintReleased()
 
 		float restTime = restTimeCurveFloat->GetFloatValue(stamina);
 
-		UE_LOG(LogTemp, Warning, TEXT("%f"), restTime);
+		//UE_LOG(LogTemp, Warning, TEXT("%f"), restTime);
 		canSprint = false;
 		restTimer = restTime;
 		restCountDown = 0.f;
@@ -850,10 +843,10 @@ void AMainCharacter::SetMovement(EMovement newMovement)
 
 void AMainCharacter::TryToStand()
 {
-	UE_LOG(LogTemp, Warning, TEXT("Try to stand"));
+	//UE_LOG(LogTemp, Warning, TEXT("Try to stand"));
 	if (movement == EMovement::Crouching && !stuckOnCrouch && !isCrouchingKeyDown)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Stand"));
+		//UE_LOG(LogTemp, Warning, TEXT("Stand"));
 		SetMovement(EMovement::Standing);
 	}
 }
@@ -1040,6 +1033,9 @@ void AMainCharacter::TogglePause()
 
 void AMainCharacter::PickedUpKey()
 {
+	if (gameInstance && gameInstance->monsterKilled)
+		return;
+
 	numberOfKeys++;
 	numberOfKeys = FMath::Min(numberOfKeys, 3);
 	FAkAudioDevice::Get()->SetRTPCValue(*FString("Num_of_Keys"), numberOfKeys, 300, this);

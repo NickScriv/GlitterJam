@@ -33,6 +33,6 @@ EBTNodeResult::Type UBTTaskNode_RotateMonster::ExecuteTask(class UBehaviorTreeCo
 
 void UBTTaskNode_RotateMonster::OnMoveComponentToEnd()
 {
-	UE_LOG(LogTemp, Warning, TEXT("wow"));
+	//UE_LOG(LogTemp, Warning, TEXT("wow"));
 
 }

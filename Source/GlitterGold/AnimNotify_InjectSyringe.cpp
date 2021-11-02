@@ -10,7 +10,7 @@ void UAnimNotify_InjectSyringe::Notify(USkeletalMeshComponent* MeshComp, UAnimSe
 
 	if (!MeshComp->GetOwner())
 	{
-		UE_LOG(LogTemp, Warning, TEXT("UAnimNotify_InjectSyringe: No parent found"));
+		//UE_LOG(LogTemp, Warning, TEXT("UAnimNotify_InjectSyringe: No parent found"));
 		return;
 	}
 
