@@ -6,6 +6,7 @@
 #include "BehaviorTree/BlackboardComponent.h"
 #include "AIController.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "MonsterAIController.h"
 
 UBTService_CheckMonsterMovement::UBTService_CheckMonsterMovement()
 {
@@ -24,8 +25,14 @@ void UBTService_CheckMonsterMovement::OnBecomeRelevant(UBehaviorTreeComponent& O
 	if (!monster)
 		return;
 
+	AMonsterAIController* monsterController = Cast<AMonsterAIController>(OwnerComp.GetAIOwner());
 
-	monster->GetCharacterMovement()->Activate();
+
+	if (monsterController && !monsterController->isScreaming)
+	{
+		monster->GetCharacterMovement()->Activate();
+	}
+		
 	
 
 }

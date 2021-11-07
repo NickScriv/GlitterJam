@@ -12,6 +12,8 @@
 #include "Perception/AISense_Hearing.h"
 #include "Perception/AISense_Sight.h"
 #include "Kismet/GameplayStatics.h"
+#include "GameFramework/CharacterMovementComponent.h"
+#include "Perception/AISenseConfig_Sight.h"
 
 
 void AMonsterAIController::BeginPlay()
@@ -35,30 +37,24 @@ void AMonsterAIController::BeginPlay()
 
 	for(UAIPerceptionComponent* perc : perceptionComponents)
 	{
-		if(perc->GetName() == "AIPerceptionMain")
-		{
-			//UE_LOG(LogTemp, Warning, TEXT("AIPerceptionMain found!"));
-			AIPerception = perc;
-		}
-		else if(perc->GetName() == "AIPerception2")
+
+		if(perc->GetName() == "AIPerception2")
 		{
 			//UE_LOG(LogTemp, Warning, TEXT("AIPerception2 found!"));
-			AIPerceptionStart = perc;
+			AIPerception = perc;
+			break;
 		}
 	}
 
-	if (!AIPerception || !AIPerceptionStart)
+	if (AIPerception)
 	{
-		return;
+		AIPerception->OnTargetPerceptionUpdated.AddDynamic(this, &AMonsterAIController::perceptionUpdated);
 	}
 
-	AIPerception->OnTargetPerceptionUpdated.AddDynamic(this, &AMonsterAIController::perceptionUpdated);
-	AIPerceptionStart->OnTargetPerceptionUpdated.AddDynamic(this, &AMonsterAIController::perceptionUpdated);
+	
 	blackboardComp->SetValueAsInt(FName("ChangePath"), 0);
 	blackboardComp->SetValueAsObject(FName("TargetActor"), UGameplayStatics::GetPlayerCharacter(this, 0));
-
-	//RunBehaviorTree(AIBehavior);
-
+	blackboardComp->SetValueAsEnum(FName("MonsterStatus"), (uint8)MonsterStatus::Patrolling); 
 }
 
 void AMonsterAIController::GetActorEyesViewPoint(FVector& OutLocation, FRotator& OutRotation) const
@@ -74,20 +70,13 @@ void AMonsterAIController::GetActorEyesViewPoint(FVector& OutLocation, FRotator&
 	FTransform trans = monster->GetMesh()->GetSocketTransform("Eyes");
 
 	OutLocation = trans.GetLocation();
-	OutRotation = trans.GetRotation().Rotator();
+	OutRotation.Yaw = trans.GetRotation().Rotator().Yaw;
 }
 
 void AMonsterAIController::perceptionUpdated(AActor* Actor, FAIStimulus Stimulus)
 {
-	AMainCharacter* player = Cast<AMainCharacter>(Actor);
-
-	if (!player)
-		return;
-
 	if (!GetPawn())
 		return;
-	
-	//UE_LOG(LogTemp, Warning, TEXT("%s"), Stimulus.WasSuccessfullySensed() ? TEXT("True") : TEXT("False"));
 
 	FString senseName = UKismetSystemLibrary::GetDisplayName(UAIPerceptionSystem::GetSenseClassForStimulus(this, Stimulus));
 
@@ -98,33 +87,22 @@ void AMonsterAIController::perceptionUpdated(AActor* Actor, FAIStimulus Stimulus
 			SetToDefaultPerception();
 		}
 
-
 		AMonster* monster = Cast<AMonster>(GetPawn());
 
 		if (!monster)
 			return;
 
-		/*FVector eyesLoc = monster->GetMesh()->GetSocketLocation(FName("Eyes"));
-
-		TArray<AActor*> actorsToIgnore;
-
-		actorsToIgnore.Add(monster);
-		FHitResult hit;
-
-		bool sensed = false;
-
-		if (Stimulus.WasSuccessfullySensed() && UKismetSystemLibrary::SphereTraceSingle(this, eyesLoc, player->GetActorLocation(), 15.f, UEngineTypes::ConvertToTraceType(ECC_Visibility), false, actorsToIgnore, EDrawDebugTrace::ForDuration, hit, true, FLinearColor::Red, FLinearColor::Green, 5.0f))
-		{
-			if (Cast<AMainCharacter>(hit.Actor))
-			{
-				sensed = true;
-			}
-
-		}
-		//UE_LOG(LogTemp, Warning, TEXT("%s"), sensed ? TEXT("True") : TEXT("False"));*/
-
-		blackboardComp->SetValueAsBool(FName("CanSeePlayer"), Stimulus.WasSuccessfullySensed());
 		
+		blackboardComp->SetValueAsBool(FName("CanSeePlayer"), Stimulus.WasSuccessfullySensed());
+
+		if (Stimulus.WasSuccessfullySensed() && blackboardComp->GetValueAsEnum(FName("MonsterStatus")) == (uint8)MonsterStatus::Patrolling)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Monster sensed"));
+			blackboardComp->SetValueAsBool(FName("IsScreaming"), true);
+			blackboardComp->SetValueAsEnum(FName("MonsterStatus"), (uint8)MonsterStatus::Chasing);
+			isScreaming = true;
+			monster->GetCharacterMovement()->Deactivate();
+		}
 	}
 	else if (senseName == TEXT("AISense_Hearing"))
 	{
@@ -155,23 +133,44 @@ void AMonsterAIController::perceptionUpdated(AActor* Actor, FAIStimulus Stimulus
 		blackboardComp->SetValueAsVector(FName("TargetLoc"), Stimulus.StimulusLocation);
 
 	}
-	else
-	{
-		//UE_LOG(LogTemp, Warning, TEXT("None"));
-	}
+}
 
+void AMonsterAIController::StopScreaming()
+{
+	blackboardComp->SetValueAsBool(FName("IsScreaming"), false);
+	isScreaming = false;
+	AMonster* monster = Cast<AMonster>(GetPawn());
+	monster->GetCharacterMovement()->Activate();
 }
 
 void AMonsterAIController::SetToDefaultPerception()
 {
-	if(!firstSeen)
+	if (!firstSeen)
 	{
 		firstSeen = true;
-		AIPerceptionStart->SetSenseEnabled(UAISense_Sight::StaticClass(), false);
-		AIPerception->SetSenseEnabled(UAISense_Sight::StaticClass(), true);
-		AIPerceptionStart->SetSenseEnabled(UAISense_Hearing::StaticClass(), false);
-		AIPerception->SetSenseEnabled(UAISense_Hearing::StaticClass(), true);
-		//UE_LOG(LogTemp, Warning, TEXT("Change AIPerception"));
+		FAISenseID id = UAISense::GetSenseID(UAISense_Sight::StaticClass());
+		if (!id.IsValid())
+		{
+			UE_LOG(LogTemp, Error, TEXT("Wrong Sense ID"));
+			return;
+		}
+
+		auto config = AIPerception->GetSenseConfig(id);
+		if (config == nullptr)
+		{
+			UE_LOG(LogTemp, Error, TEXT("Sight config is nullptr"));
+			return;
+		}
+
+		auto configSight = Cast<UAISenseConfig_Sight>(config);
+
+		if (configSight)
+		{
+			configSight->SightRadius = mainSightRadius;
+			configSight->LoseSightRadius = mainLoseSightRadius;
+			AIPerception->RequestStimuliListenerUpdate();
+		}
+		
 	}
 }
 
@@ -179,7 +178,6 @@ void AMonsterAIController::StartMonsterBehavior()
 {
 	
 	RunBehaviorTree(AIBehavior);
-	
 
 	AMonster* monster = Cast<AMonster>(GetPawn());
 
@@ -187,7 +185,6 @@ void AMonsterAIController::StartMonsterBehavior()
 		return;
 
 	GetWorldTimerManager().SetTimer(timerHandleFirstSeen, this, &AMonsterAIController::SetToDefaultPerception, ChangePerceptionTime,  false);
-	//monster->TracePath();
 }
 
 void AMonsterAIController::TriggerPatrolAbort()

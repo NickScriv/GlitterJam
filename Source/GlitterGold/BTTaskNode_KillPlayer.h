@@ -21,7 +21,5 @@ class GLITTERGOLD_API UBTTaskNode_KillPlayer : public UBTTaskNode
 
 protected:
 	virtual EBTNodeResult::Type ExecuteTask(class UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory) override;
-
-	virtual void TickTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory, float DeltaSeconds) override;
 	
 };

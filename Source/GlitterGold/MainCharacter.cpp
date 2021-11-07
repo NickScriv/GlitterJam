@@ -211,7 +211,7 @@ void AMainCharacter::Tick(float DeltaTime)
 	}
 	
 
-	FAkAudioDevice::Get()->SetRTPCValue(*FString("Stamina_Level"), stamina, 500, this);
+	FAkAudioDevice::Get()->SetRTPCValue(*FString("Stamina_Level"), stamina, 0, this);
 
 }
 
@@ -772,12 +772,12 @@ void AMainCharacter::SprintReleased()
 	{
 		if (stamina < heavyBreathThreshold )
 		{
-
+			//UE_LOG(LogTemp, Warning, TEXT("Stop sprint heavy"));
 			heavySprintEvent = FAkAudioDevice::Get()->PostEvent("Stop_Run_Heavy", this);
 		}
 		else 
 		{
-
+			//UE_LOG(LogTemp, Warning, TEXT("Stop sprint gentle"));
 			gentleSprintEvent = FAkAudioDevice::Get()->PostEvent("Stop_Run_Gentle", this);
 		}
 

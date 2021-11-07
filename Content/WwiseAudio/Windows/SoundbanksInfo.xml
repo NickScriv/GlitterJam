@@ -11,7 +11,7 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="393239870" Language="SFX" Hash="851051670">
+		<SoundBank Id="393239870" Language="SFX" Hash="2781019091">
 			<ObjectPath>\SoundBanks\Default Work Unit\SFX</ObjectPath>
 			<ShortName>SFX</ShortName>
 			<Path>SFX.bnk</Path>
@@ -769,7 +769,14 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="976763844" Name="Safe_Crank_Turn" ObjectPath="\Events\Default Work Unit\SFX Events\Safe\Safe_Crank_Turn"/>
+				<Event Id="976763844" Name="Safe_Crank_Turn" ObjectPath="\Events\Default Work Unit\SFX Events\Safe\Safe_Crank_Turn">
+					<IncludedMemoryFiles>
+						<File Id="642072306" Language="SFX">
+							<ShortName>Safe_Crank.wav</ShortName>
+							<Path>SFX\Safe_Crank_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="2854523811" Name="Safe_Locked" ObjectPath="\Events\Default Work Unit\SFX Events\Safe\Safe_Locked">
 					<IncludedMemoryFiles>
 						<File Id="430611945" Language="SFX">

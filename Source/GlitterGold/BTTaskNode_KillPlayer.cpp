@@ -10,6 +10,8 @@
 #include "DrawDebugHelpers.h"
 #include "Components/CapsuleComponent.h"
 #include "BehaviorTree/BlackboardComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
+#include "MonsterAIController.h"
 
 
 UBTTaskNode_KillPlayer::UBTTaskNode_KillPlayer()
@@ -45,9 +47,12 @@ EBTNodeResult::Type UBTTaskNode_KillPlayer::ExecuteTask(class UBehaviorTreeCompo
 		//UE_LOG(LogTemp, Warning, TEXT("Hit something"));
 		if (Cast<AMainCharacter>(hit.Actor) && hit.Distance <= killDistance)
 		{
-			//UE_LOG(LogTemp, Warning, TEXT("Kill Player"));
-			//monster->StopMonsterSounds();
-			monster->KillPlayer();
+			AMonsterAIController* monsterController = Cast<AMonsterAIController>(OwnerComp.GetAIOwner());
+
+			if (monsterController && !monsterController->isScreaming)
+			{
+				monster->KillPlayer();
+			}
 		}
 	}
 
@@ -55,21 +60,4 @@ EBTNodeResult::Type UBTTaskNode_KillPlayer::ExecuteTask(class UBehaviorTreeCompo
 	
 
 	return EBTNodeResult::Succeeded;
-}
-
-void UBTTaskNode_KillPlayer::TickTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory, float DeltaSeconds)
-{
-	return;
-	//UE_LOG(LogTemp, Warning, TEXT("wow"));
-	if (!OwnerComp.GetAIOwner())
-		FinishLatentTask(OwnerComp, EBTNodeResult::Failed);
-
-	AMonster* monster = Cast<AMonster>(OwnerComp.GetAIOwner()->GetPawn());
-
-	if (!monster)
-		FinishLatentTask(OwnerComp, EBTNodeResult::Failed);
-
-
-
-	monster->KillPlayer();
 }

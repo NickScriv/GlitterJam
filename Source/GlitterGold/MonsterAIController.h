@@ -7,11 +7,6 @@
 #include "Perception/AIPerceptionTypes.h"
 #include "MonsterAIController.generated.h"
 
-//DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FActorPerceptionUpdatedDelegate, AActor*, actor, FAIStimulus, stimulus);
-
-/**
- * 
- */
 UCLASS()
 class GLITTERGOLD_API AMonsterAIController : public AAIController
 {
@@ -21,6 +16,10 @@ protected:
 	void BeginPlay() override;
 
 public:
+
+	UPROPERTY(BlueprintReadWrite)
+		bool isScreaming;
+
 	virtual void GetActorEyesViewPoint(FVector& OutLocation, FRotator& OutRotation) const override;
 
 	UFUNCTION(BlueprintImplementableEvent, Category = "AICBase")
@@ -46,21 +45,21 @@ private:
 
 	UPROPERTY(EditAnywhere)
 		float ChangePerceptionTime;
-	
-	UPROPERTY(EditDefaultsOnly, Category = "Blackboard")
-	TSubclassOf<UAISense> hearingSense;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Blackboard")
-	TSubclassOf<UAISense> sightSense;
+	UPROPERTY(EditAnywhere)
+		float mainSightRadius;
 
-	UPROPERTY(EditAnywhere, Category = "Components")
-	UAIPerceptionComponent* AIPerceptionStart = nullptr;
+	UPROPERTY(EditAnywhere)
+		float mainLoseSightRadius;
 
 	UPROPERTY(EditAnywhere, Category = "Components")
 	UAIPerceptionComponent* AIPerception = nullptr;
 
 	UFUNCTION()
 	void perceptionUpdated(AActor* Actor, FAIStimulus Stimulus);
+
+	UFUNCTION(BlueprintCallable)
+		void StopScreaming();
 
 	bool firstSeen = false;
 

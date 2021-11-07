@@ -21,7 +21,7 @@ void AGlitterGameModeBase::BeginPlay()
 	pauseScreenWidget = CreateWidget<UPauseMenuUserWidget>(GetGameInstance(), pauseWidgetClass);
 
 	ReticleUI(false);
-	AmmoUI(false, 3);
+	AmmoUI(false, 0);
 	FadeInHUD();
 }
 

@@ -16,7 +16,7 @@ void ATriggerVolume_StairMusicChange::BeginPlay()
 {
 	Super::BeginPlay();
 
-	OnActorBeginOverlap.AddDynamic(this, &ATriggerVolume_StairMusicChange::OnOverlapBegin);
+	OnActorBeginOverlap.AddUniqueDynamic(this, &ATriggerVolume_StairMusicChange::OnOverlapBegin);
 }
 
 void ATriggerVolume_StairMusicChange::OnOverlapBegin(AActor* overlappedActor, AActor* otherActor)
