@@ -19,8 +19,8 @@ void ATriggerVolume_MonsterNavMesh::BeginPlay()
 	Super::BeginPlay();
 
 	// listen to event
-	OnActorBeginOverlap.AddDynamic(this, &ATriggerVolume_MonsterNavMesh::OnOverlapNavBegin);
-	OnActorEndOverlap.AddDynamic(this, &ATriggerVolume_MonsterNavMesh::OnOverlapNavEnd);
+	OnActorBeginOverlap.AddUniqueDynamic(this, &ATriggerVolume_MonsterNavMesh::OnOverlapNavBegin);
+	OnActorEndOverlap.AddUniqueDynamic(this, &ATriggerVolume_MonsterNavMesh::OnOverlapNavEnd);
 	//DrawDebugBox(GetWorld(), GetActorLocation(), Brush->Bounds.BoxExtent, FColor::Orange, true, -1, 0, 5);
 }
 

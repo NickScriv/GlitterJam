@@ -25,7 +25,7 @@ void AMainCollectible::BeginPlay()
 		return;
 	}
 
-	interaction->OnInteract.AddDynamic(this, &AMainCollectible::PickedUp);
+	interaction->OnInteract.AddUniqueDynamic(this, &AMainCollectible::PickedUp);
 	
 }
 

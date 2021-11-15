@@ -46,10 +46,10 @@ void AMonsterAIController::BeginPlay()
 		}
 	}
 
-	if (AIPerception)
+	/*if (AIPerception)
 	{
-		AIPerception->OnTargetPerceptionUpdated.AddDynamic(this, &AMonsterAIController::perceptionUpdated);
-	}
+		AIPerception->OnTargetPerceptionUpdated.AddUniqueDynamic(this, &AMonsterAIController::perceptionUpdated);
+	}*/
 
 	
 	blackboardComp->SetValueAsInt(FName("ChangePath"), 0);
@@ -70,7 +70,7 @@ void AMonsterAIController::GetActorEyesViewPoint(FVector& OutLocation, FRotator&
 	FTransform trans = monster->GetMesh()->GetSocketTransform("Eyes");
 
 	OutLocation = trans.GetLocation();
-	OutRotation.Yaw = trans.GetRotation().Rotator().Yaw;
+	OutRotation = trans.GetRotation().Rotator();
 }
 
 void AMonsterAIController::perceptionUpdated(AActor* Actor, FAIStimulus Stimulus)
@@ -94,6 +94,15 @@ void AMonsterAIController::perceptionUpdated(AActor* Actor, FAIStimulus Stimulus
 
 		
 		blackboardComp->SetValueAsBool(FName("CanSeePlayer"), Stimulus.WasSuccessfullySensed());
+
+		/*if (Stimulus.WasSuccessfullySensed())
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Player sensed"));
+		}
+		else
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Player lost"));
+		}*/
 
 		if (Stimulus.WasSuccessfullySensed() && blackboardComp->GetValueAsEnum(FName("MonsterStatus")) == (uint8)MonsterStatus::Patrolling)
 		{
@@ -143,6 +152,7 @@ void AMonsterAIController::StopScreaming()
 	monster->GetCharacterMovement()->Activate();
 }
 
+
 void AMonsterAIController::SetToDefaultPerception()
 {
 	if (!firstSeen)
@@ -176,7 +186,30 @@ void AMonsterAIController::SetToDefaultPerception()
 
 void AMonsterAIController::StartMonsterBehavior()
 {
-	
+	TArray<AActor*> actorsPrecieved;
+	AIPerception->GetCurrentlyPerceivedActors(UAISense_Sight::StaticClass(), actorsPrecieved);
+
+	for (AActor* actor : actorsPrecieved)
+	{
+
+		if (Cast<AMainCharacter>(actor))
+		{
+			blackboardComp->SetValueAsBool(FName("IsScreaming"), true);
+			blackboardComp->SetValueAsEnum(FName("MonsterStatus"), (uint8)MonsterStatus::Chasing);
+			isScreaming = true;
+			blackboardComp->SetValueAsBool(FName("CanSeePlayer"), true);
+
+			AMonster* monster = Cast<AMonster>(GetPawn());
+			monster->GetCharacterMovement()->Deactivate();
+		}
+	}
+
+	if (AIPerception)
+	{
+		AIPerception->OnTargetPerceptionUpdated.AddUniqueDynamic(this, &AMonsterAIController::perceptionUpdated);
+	}
+
+
 	RunBehaviorTree(AIBehavior);
 
 	AMonster* monster = Cast<AMonster>(GetPawn());

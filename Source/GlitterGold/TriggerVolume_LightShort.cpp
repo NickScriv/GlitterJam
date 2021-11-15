@@ -9,7 +9,7 @@
 void ATriggerVolume_LightShort::BeginPlay()
 {
 	Super::BeginPlay();
-	OnActorBeginOverlap.AddDynamic(this, &ATriggerVolume_LightShort::OnOverlapBegin);
+	OnActorBeginOverlap.AddUniqueDynamic(this, &ATriggerVolume_LightShort::OnOverlapBegin);
 }
 
 

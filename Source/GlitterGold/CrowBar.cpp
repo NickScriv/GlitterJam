@@ -39,7 +39,7 @@ void ACrowBar::BeginPlay()
 		return;
 	}
 
-	interaction->OnInteract.AddDynamic(this, &ACrowBar::PickedUp);
+	interaction->OnInteract.AddUniqueDynamic(this, &ACrowBar::PickedUp);
 	
 }
 

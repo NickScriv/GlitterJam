@@ -34,7 +34,7 @@ void AMonster::BeginPlay()
 	Super::BeginPlay();
 
 	if(firstEventScare)
-		firstEventScare->OnActorBeginOverlap.AddDynamic(this, &AMonster::TriggerFirstEvent);
+		firstEventScare->OnActorBeginOverlap.AddUniqueDynamic(this, &AMonster::TriggerFirstEvent);
 	else
 		UE_LOG(LogTemp, Error, TEXT("AMonster: Trigger not found for scare event in monster!!"));
 
@@ -91,6 +91,7 @@ void AMonster::TriggerFirstEvent(AActor* overlappedActor, AActor* otherActor)
 		}
 		FAkAudioDevice::Get()->PostEvent("Play_Enemy_Passive_Sounds", this);
 		startAnimation = true;
+		firstEventScare->Destroy();
 	}
 }
 
@@ -345,21 +346,25 @@ void AMonster::Tick(float DeltaTime)
 
 	FHitResult hit;
 	FCollisionQueryParams qParams;
+	qParams.AddIgnoredActor(this);
 
 	if (!gameInstance->monsterKilled && GetWorld()->LineTraceSingleByChannel(hit, GetActorLocation(), mainPlayer->GetCapsuleComponent()->GetComponentLocation(), ECC_Visibility, qParams))
 	{
+		//UE_LOG(LogTemp, Warning, TEXT("Name of coll: %s"), *hit.Actor->GetName());
 		if (Cast<AMainCharacter>(hit.Actor))
 		{
+			//UE_LOG(LogTemp, Warning, TEXT("danger"));
 			inLineOfPlayer = true;
 			float dist = hit.Distance;
 			dist = FMath::Clamp(dist, minDistanceAmbience, maxDistanceAmbience);
 			dist = ReverseNumber(ScaleRange(dist, minDistanceAmbience, maxDistanceAmbience, 0.0f, 100.f), 0.0f, 100.f);
-			FAkAudioDevice::Get()->SetRTPCValue(*FString("Danger_Warning"), dist, 200, mainPlayer);
+			FAkAudioDevice::Get()->SetRTPCValue(*FString("Danger_Warning"), dist, 0, mainPlayer);
 		}
 		else if(inLineOfPlayer)
 		{
+			//UE_LOG(LogTemp, Warning, TEXT("no danger"));
 			inLineOfPlayer = false;
-			FAkAudioDevice::Get()->SetRTPCValue(*FString("Danger_Warning"), 0, 200, mainPlayer);
+			FAkAudioDevice::Get()->SetRTPCValue(*FString("Danger_Warning"), 0, 0, mainPlayer);
 		}
 	}
 

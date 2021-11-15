@@ -71,7 +71,6 @@ void AMainCharacter::BeginPlay()
 		FAkAudioDevice::Get()->PostEvent("Play_Ambient_Music", this);
 		FAkAudioDevice::Get()->SetRTPCValue(*FString("Num_of_Keys"), 0, 300, this);
 		FAkAudioDevice::Get()->PostEvent("Play_Indoor_Ambience", this);
-
 		// TODO: Remember to take this out
 		//gameInstance->monsterKilled = true;
 	}
@@ -116,7 +115,9 @@ void AMainCharacter::BeginPlay()
 	GetCharacterMovement()->MaxWalkSpeed = walkSpeed;
 
 	gameMode = Cast<AGlitterGameModeBase>(UGameplayStatics::GetGameMode(this));
+
 	
+	FAkAudioDevice::Get()->PostEvent("STAMINA_START_ON_LOAD", this);
 }
 
 // Called every frame
@@ -174,7 +175,7 @@ void AMainCharacter::Tick(float DeltaTime)
 	if (stamina < 1.f && movement == EMovement::Standing)
 	{
 		GetCharacterMovement()->MaxWalkSpeed = walkSpeed;
-		FAkAudioDevice::Get()->SetRTPCValue(*FString("Footsteps_Movement_Type"), 2, 200, this);
+		FAkAudioDevice::Get()->SetRTPCValue(*FString("Footsteps_Movement_Type"), 2, 0, this);
 		depletedSprintEvent = FAkAudioDevice::Get()->PostEvent("Stamina_Depleted", this);
 		stamina = 1.f;
 		canSprint = false;
@@ -758,7 +759,7 @@ void AMainCharacter::SprintPressed()
 	{
 		//UE_LOG(LogTemp, Warning, TEXT("can sprint"));
 		GetCharacterMovement()->MaxWalkSpeed = sprintSpeed;
-		FAkAudioDevice::Get()->SetRTPCValue(*FString("Footsteps_Movement_Type"), 3, 200, this);
+		FAkAudioDevice::Get()->SetRTPCValue(*FString("Footsteps_Movement_Type"), 3, 50, this);
 		startSprintEvent = FAkAudioDevice::Get()->PostEvent("Start_Run", this);
 	}
 		
@@ -798,7 +799,7 @@ void AMainCharacter::SprintReleased()
 		return;
 
 	GetCharacterMovement()->MaxWalkSpeed = walkSpeed;
-	FAkAudioDevice::Get()->SetRTPCValue(*FString("Footsteps_Movement_Type"), 2, 200, this);
+	FAkAudioDevice::Get()->SetRTPCValue(*FString("Footsteps_Movement_Type"), 2, 50, this);
 	//GetWorldTimerManager().SetTimer(timerFootstep, this, &AMainCharacter::PlayFootStep, footStepTimeWalk, true);
 
 	
@@ -810,7 +811,7 @@ void AMainCharacter::BeginCrouch()
 
 	crouchCurveTimeline.Play();
 	GetCharacterMovement()->MaxWalkSpeed = crouchSpeed;
-	FAkAudioDevice::Get()->SetRTPCValue(*FString("Footsteps_Movement_Type"), 1, 200, this);
+	FAkAudioDevice::Get()->SetRTPCValue(*FString("Footsteps_Movement_Type"), 1, 50, this);
 	//GetWorldTimerManager().SetTimer(timerFootstep, this, &AMainCharacter::PlayFootStep, footStepTimeCrouch, true);
 	
 	
@@ -822,7 +823,7 @@ void AMainCharacter::EndCrouch()
 	crouchCurveTimeline.Reverse();
 
 	GetCharacterMovement()->MaxWalkSpeed = walkSpeed;
-	FAkAudioDevice::Get()->SetRTPCValue(*FString("Footsteps_Movement_Type"), 2, 200, this);
+	FAkAudioDevice::Get()->SetRTPCValue(*FString("Footsteps_Movement_Type"), 2, 50, this);
 }
 
 

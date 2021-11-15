@@ -73,6 +73,6 @@ void AFinalDoor::TriggerEnd(AMainCharacter* character)
 void AFinalDoor::InitInteraction()
 {
 	interaction->SetWidgetClass(interarctionWidgetClass);
-	interaction->OnInteract.AddDynamic(this, &AFinalDoor::TriggerEnd);
+	interaction->OnInteract.AddUniqueDynamic(this, &AFinalDoor::TriggerEnd);
 }
 

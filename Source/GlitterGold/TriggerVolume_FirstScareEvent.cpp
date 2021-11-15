@@ -17,7 +17,7 @@ void ATriggerVolume_FirstScareEvent::BeginPlay()
 	Super::BeginPlay();
 
 	// listen to event
-	OnActorBeginOverlap.AddDynamic(this, &ATriggerVolume_FirstScareEvent::OnOverlapBegin);
+	OnActorBeginOverlap.AddUniqueDynamic(this, &ATriggerVolume_FirstScareEvent::OnOverlapBegin);
 
 	DrawDebugBox(GetWorld(), GetActorLocation(), Brush->Bounds.BoxExtent, FColor::Orange, true, -1, 0, 5);
 }

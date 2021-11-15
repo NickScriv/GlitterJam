@@ -36,6 +36,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	3140010222	Stamina_Depleted			\Default Work Unit\SFX Events\Stamina\Stamina_Depleted	
 	3159422259	Axe_Hit_Generic_Object			\Default Work Unit\SFX Events\Axe\Axe_Hit_Generic_Object	
 	3237721180	Play_Chase_Music			\Default Work Unit\Music Events\Play_Chase_Music	
+	3280195082	STAMINA_START_ON_LOAD			\Default Work Unit\SFX Events\Stamina\STAMINA_START_ON_LOAD	
 	3358299437	Pick_Up_Note			\Default Work Unit\SFX Events\Notes\Pick_Up_Note	
 	3483621035	Pause_Menu_On			\Default Work Unit\Music Events\Pause_Menu_On	
 	3626210482	Put_Down_Note			\Default Work Unit\SFX Events\Notes\Put_Down_Note	

@@ -3,7 +3,7 @@
 	<RootPaths>
 		<ProjectRoot>E:\WwiseGlitter\</ProjectRoot>
 		<SourceFilesRoot>E:\WwiseGlitter\.cache\Windows\</SourceFilesRoot>
-		<SoundBanksRoot>E:\Glitter 4.26 - 2 4.26\Content\WwiseAudio\Windows\</SoundBanksRoot>
+		<SoundBanksRoot>E:\Glitter4.2624.26\Content\WwiseAudio\Windows\</SoundBanksRoot>
 		<ExternalSourcesInputFile></ExternalSourcesInputFile>
 		<ExternalSourcesOutputRoot>E:\WwiseGlitter\GeneratedSoundBanks\Windows</ExternalSourcesOutputRoot>
 	</RootPaths>
@@ -11,7 +11,7 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="393239870" Language="SFX" Hash="2781019091">
+		<SoundBank Id="393239870" Language="SFX" Hash="2343918232">
 			<ObjectPath>\SoundBanks\Default Work Unit\SFX</ObjectPath>
 			<ShortName>SFX</ShortName>
 			<Path>SFX.bnk</Path>
@@ -849,7 +849,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="1047608429" Name="Start_Run" ObjectPath="\Events\Default Work Unit\SFX Events\Stamina\Start_Run">
+				<Event Id="3280195082" Name="STAMINA_START_ON_LOAD" ObjectPath="\Events\Default Work Unit\SFX Events\Stamina\STAMINA_START_ON_LOAD">
 					<IncludedMemoryFiles>
 						<File Id="180724148" Language="SFX">
 							<ShortName>Med_Stamina_Breathing.wav</ShortName>
@@ -882,6 +882,7 @@
 						</SwitchContainer>
 					</SwitchContainers>
 				</Event>
+				<Event Id="1047608429" Name="Start_Run" ObjectPath="\Events\Default Work Unit\SFX Events\Stamina\Start_Run"/>
 				<Event Id="3638328809" Name="Stop_Door_Unlocking" ObjectPath="\Events\Default Work Unit\SFX Events\Doors\Stop_Door_Unlocking"/>
 				<Event Id="21842589" Name="Stop_Lock_Picking" ObjectPath="\Events\Default Work Unit\SFX Events\Lock Pick\Stop_Lock_Picking"/>
 				<Event Id="2141040177" Name="Stop_Run_Gentle" ObjectPath="\Events\Default Work Unit\SFX Events\Stamina\Stop_Run_Gentle"/>

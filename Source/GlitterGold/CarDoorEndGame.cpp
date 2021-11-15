@@ -36,7 +36,7 @@ void ACarDoorEndGame::BeginPlay()
 		return;
 	}
 	
-	interaction->OnInteract.AddDynamic(this, &ACarDoorEndGame::EndGame);
+	interaction->OnInteract.AddUniqueDynamic(this, &ACarDoorEndGame::EndGame);
 	
 	gameMode = Cast<AGlitterGameModeBase>(UGameplayStatics::GetGameMode(this));
 
@@ -96,7 +96,7 @@ void ACarDoorEndGame::TriggerGoodEnding()
 	
 	if (SequencePlayer)
 	{
-		SequencePlayer->OnStop.AddDynamic(this, &ACarDoorEndGame::ToMainMenu);
+		SequencePlayer->OnStop.AddUniqueDynamic(this, &ACarDoorEndGame::ToMainMenu);
 		SequencePlayer->Play();
 		//UE_LOG(LogTemp, Error, TEXT("Play sequencer"));
 	}

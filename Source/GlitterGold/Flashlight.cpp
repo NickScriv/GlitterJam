@@ -56,7 +56,7 @@ void AFlashlight::BeginPlay()
 		return;
 	}
 
-	interaction->OnInteract.AddDynamic(this, &AFlashlight::PickedUp);
+	interaction->OnInteract.AddUniqueDynamic(this, &AFlashlight::PickedUp);
 	
 }
 

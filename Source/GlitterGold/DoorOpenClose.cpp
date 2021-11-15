@@ -30,7 +30,7 @@ UDoorOpenClose::UDoorOpenClose()
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = true;
-
+	
 	// ...
 }
 
@@ -82,22 +82,22 @@ void UDoorOpenClose::BeginPlay()
 
 	if (interaction)
 	{	
-		interaction->OnInteract.AddDynamic(this, &UDoorOpenClose::InteractDoor);
-		interaction->OnBeginFocus.AddDynamic(this, &UDoorOpenClose::BeginFocusDoor);
-		interaction->OnEndFocus.AddDynamic(this, &UDoorOpenClose::EndFocusDoor);
-		interaction->OnEndInteract.AddDynamic(this, &UDoorOpenClose::EndInteractDoor);
-		interaction->OnBeginInteract.AddDynamic(this, &UDoorOpenClose::BeginInteractDoor);
+		interaction->OnInteract.AddUniqueDynamic(this, &UDoorOpenClose::InteractDoor);
+		interaction->OnBeginFocus.AddUniqueDynamic(this, &UDoorOpenClose::BeginFocusDoor);
+		interaction->OnEndFocus.AddUniqueDynamic(this, &UDoorOpenClose::EndFocusDoor);
+		interaction->OnEndInteract.AddUniqueDynamic(this, &UDoorOpenClose::EndInteractDoor);
+		interaction->OnBeginInteract.AddUniqueDynamic(this, &UDoorOpenClose::BeginInteractDoor);
 	}
 
 	if(keyToDoor)
 	{
-		keyToDoor->OnPickedUpKey.AddDynamic(this, &UDoorOpenClose::PlayerPickedUpKey);
+		keyToDoor->OnPickedUpKey.AddUniqueDynamic(this, &UDoorOpenClose::PlayerPickedUpKey);
 	}
 
 	if (lockPick)
 	{
-		lockPick->onPickedUpLockPick.AddDynamic(this, &UDoorOpenClose::PlayerPickedUpLockPick);
-		lockPick->onLockPickUsed.AddDynamic(this, &UDoorOpenClose::LockPickUsed);
+		lockPick->onPickedUpLockPick.AddUniqueDynamic(this, &UDoorOpenClose::PlayerPickedUpLockPick);
+		lockPick->onLockPickUsed.AddUniqueDynamic(this, &UDoorOpenClose::LockPickUsed);
 	}
 	
 	if(!navLinkProxyEnter)
@@ -112,8 +112,8 @@ void UDoorOpenClose::BeginPlay()
 		return;
 	}
 
-	navLinkProxyEnter->OnSmartLinkReached.AddDynamic(this, &UDoorOpenClose::MonsterReachedNavLink);
-	navLinkProxyExit->OnSmartLinkReached.AddDynamic(this, &UDoorOpenClose::MonsterReachedNavLink);
+	navLinkProxyEnter->OnSmartLinkReached.AddUniqueDynamic(this, &UDoorOpenClose::MonsterReachedNavLink);
+	navLinkProxyExit->OnSmartLinkReached.AddUniqueDynamic(this, &UDoorOpenClose::MonsterReachedNavLink);
 
 	if (locked)
 	{
@@ -141,6 +141,11 @@ void UDoorOpenClose::TickComponent(float DeltaTime, ELevelTick TickType, FActorC
 	if (gameMode && gameMode->playerKilled)
 	{
 		SetComponentTickEnabled(false);
+		ADoor* parent = Cast<ADoor>(this->GetOwner());
+
+		if(parent)
+			parent->StopDoorSounds();
+
 		return;
 	}
 

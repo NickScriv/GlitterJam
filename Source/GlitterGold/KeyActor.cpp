@@ -26,7 +26,7 @@ void AKeyActor::BeginPlay()
 		return;
 	}
 
-	interaction->OnInteract.AddDynamic(this, &AKeyActor::PickedUp);
+	interaction->OnInteract.AddUniqueDynamic(this, &AKeyActor::PickedUp);
 	
 }
 

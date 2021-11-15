@@ -31,7 +31,7 @@ void ANoteActor::BeginPlay()
 		return;
 	}
 
-	interaction->OnInteract.AddDynamic(this, &ANoteActor::PickedUpNote);
+	interaction->OnInteract.AddUniqueDynamic(this, &ANoteActor::PickedUpNote);
 
 	if(!noteWidget)
 	{

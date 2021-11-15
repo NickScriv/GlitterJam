@@ -30,10 +30,10 @@ void ASafe::BeginPlay()
 		return;
 	}
 
-	interaction->OnInteract.AddDynamic(this, &ASafe::InteractSafe);
-	interaction->OnBeginFocus.AddDynamic(this, &ASafe::BeginFocusSafe);
-	interaction->OnEndInteract.AddDynamic(this, &ASafe::EndInteractSafe);
-	interaction->OnBeginInteract.AddDynamic(this, &ASafe::BeginInteractSafe);
+	interaction->OnInteract.AddUniqueDynamic(this, &ASafe::InteractSafe);
+	interaction->OnBeginFocus.AddUniqueDynamic(this, &ASafe::BeginFocusSafe);
+	interaction->OnEndInteract.AddUniqueDynamic(this, &ASafe::EndInteractSafe);
+	interaction->OnBeginInteract.AddUniqueDynamic(this, &ASafe::BeginInteractSafe);
 
 	interaction->interactionTime = 0.f;
 
@@ -41,8 +41,8 @@ void ASafe::BeginPlay()
 
 	if (lockPick)
 	{
-		lockPick->onPickedUpLockPick.AddDynamic(this, &ASafe::PickedUpLockPick);
-		lockPick->onLockPickUsed.AddDynamic(this, &ASafe::LockPickUsed);
+		lockPick->onPickedUpLockPick.AddUniqueDynamic(this, &ASafe::PickedUpLockPick);
+		lockPick->onLockPickUsed.AddUniqueDynamic(this, &ASafe::LockPickUsed);
 	}
 	else
 	{

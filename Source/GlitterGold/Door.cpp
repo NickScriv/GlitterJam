@@ -15,8 +15,14 @@ ADoor::ADoor()
 
 void ADoor::PlayOpenCloseSound(UAkAudioEvent* in_pEvent)
 {
-	FAkAudioDevice::Get()->PostEventAtLocation(in_pEvent, GetActorLocation(), GetActorRotation(), GetWorld());
+	currentSound = FAkAudioDevice::Get()->PostEventAtLocation(in_pEvent, GetActorLocation(), GetActorRotation(), GetWorld());
 	//FAkAudioDevice::Get()->PostEvent(text, this);
+}
+
+void ADoor::StopDoorSounds()
+{
+	FAkAudioDevice::Get()->StopPlayingID(currentSound, 0);
+	FAkAudioDevice::Get()->StopEventID(currentSound);
 }
 
 // Called when the game starts or when spawned

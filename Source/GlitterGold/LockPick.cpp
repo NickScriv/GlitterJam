@@ -31,7 +31,7 @@ void ALockPick::BeginPlay()
 		return;
 	}
 
-	interaction->OnInteract.AddDynamic(this, &ALockPick::PickedUp);
+	interaction->OnInteract.AddUniqueDynamic(this, &ALockPick::PickedUp);
 	
 }
 

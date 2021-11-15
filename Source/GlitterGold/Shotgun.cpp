@@ -94,7 +94,7 @@ void AShotgun::BeginPlay()
 		return;
 	}
 
-	interaction->OnInteract.AddDynamic(this, &AShotgun::PickedUp);
+	interaction->OnInteract.AddUniqueDynamic(this, &AShotgun::PickedUp);
 	
 }
 

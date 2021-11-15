@@ -26,8 +26,8 @@ void ADrawer::BeginPlay()
 		return;
 	}
 
-	interaction->OnInteract.AddDynamic(this, &ADrawer::InteractDrawer);
-	interaction->OnBeginFocus.AddDynamic(this, &ADrawer::BeginFocusDrawer);
+	interaction->OnInteract.AddUniqueDynamic(this, &ADrawer::InteractDrawer);
+	interaction->OnBeginFocus.AddUniqueDynamic(this, &ADrawer::BeginFocusDrawer);
 
 	startLoc = GetActorLocation();;
 	endLoc = startLoc;

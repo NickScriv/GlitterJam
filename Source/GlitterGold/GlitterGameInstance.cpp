@@ -11,6 +11,8 @@ UGlitterGameInstance::UGlitterGameInstance(const FObjectInitializer& ObjectIniti
 void UGlitterGameInstance::Init()
 {
 	Super::Init();
+
+	GEngine->Exec(GetWorld(), TEXT("r.Vsync 0"));
 }
 
 void UGlitterGameInstance::Shutdown()
