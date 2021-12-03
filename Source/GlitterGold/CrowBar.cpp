@@ -23,11 +23,6 @@ ACrowBar::ACrowBar()
 
 }
 
-void ACrowBar::SwingAttack()
-{
-	FAkAudioDevice::Get()->PostEvent("Axe_Swing", this);
-}
-
 // Called when the game starts or when spawned
 void ACrowBar::BeginPlay()
 {

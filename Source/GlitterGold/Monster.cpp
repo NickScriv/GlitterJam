@@ -56,7 +56,6 @@ void AMonster::BeginPlay()
 	if (GetMesh())
 	{
 		physicsComponent->SetSkeletalMeshComponent(GetMesh());
-		UE_LOG(LogTemp, Error, TEXT("Set physics mesh 1"));
 	}
 
 	FPhysicalAnimationData data;
@@ -227,7 +226,6 @@ void AMonster::SetFlashlight()
 
 void AMonster::PlayDeathSound(AMainCharacter* player)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Play monster kill sounds"));
 	FAkAudioDevice::Get()->PostEvent("Death_Music", player);
 	FAkAudioDevice::Get()->PostEvent("Death_Enemy_Sounds", this);
 }
@@ -250,15 +248,14 @@ void AMonster::ChangeCurrentPath(TArray<APathPoint*> path)
 
 	pathEnding = static_cast<EPathEnding>(FMath::RandRange(1, 2));
 
-	const UEnum* pathEndingEnum = FindObject<UEnum>(ANY_PACKAGE, TEXT("EPathEnding"));
-	UE_LOG(LogTemp, Warning, TEXT("Path ending state: %s")
-		, *(pathEndingEnum ? pathEndingEnum->GetEnumName(pathEnding) : TEXT("<Invalid Enum>")));
+	//const UEnum* pathEndingEnum = FindObject<UEnum>(ANY_PACKAGE, TEXT("EPathEnding"));
+	/*UE_LOG(LogTemp, Warning, TEXT("Path ending state: %s")
+		, *(pathEndingEnum ? pathEndingEnum->GetEnumName(pathEnding) : TEXT("<Invalid Enum>")));*/
 
 	AMonsterAIController* monsterController = Cast<AMonsterAIController>(GetController());
 
 	if (monsterController)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Monster controller found when change path!!"));
 		monsterController->TriggerPatrolAbort();
 	}
 }
@@ -268,31 +265,23 @@ bool AMonster::ShouldHappen(int32 percentage)
 	return (FMath::RandRange(1, 100 / percentage) == 1 ? true : false);
 }
 
-void AMonster::KillPlayer()
+void AMonster::KillPlayer(AMainCharacter* player)
 {
 	AAIController* controller =  UAIBlueprintHelperLibrary::GetAIController(this);
 	
 	GetMesh()->SetAllBodiesBelowSimulatePhysics(FName("pelvis"), false, false);
 	if (controller)
 	{
-		//controller->UnPossess();
-		if(!mainPlayer)
-		{
-			mainPlayer = Cast<AMainCharacter>(UGameplayStatics::GetPlayerCharacter(this, 0));
-		}
-		
-		if (mainPlayer)
-		{
-			mainPlayer->Died(this);
-			controller->SetFocus(mainPlayer);
-			killTimerDel.BindUFunction(this, FName("PlayDeathSound"), mainPlayer);
-			GetWorld()->GetTimerManager().SetTimer(killTimerHandle, killTimerDel, deathSoundTimer, false);
-			mainPlayer->StopPlayerSounds();
-			FVector playerLookAt = GetActorLocation();
-			rotateKill= UKismetMathLibrary::FindLookAtRotation(GetActorLocation(), mainPlayer->GetActorLocation());
+		player->Died(this);
+		controller->SetFocus(player);
+		killTimerDel.BindUFunction(this, FName("PlayDeathSound"), player);
+		GetWorld()->GetTimerManager().SetTimer(killTimerHandle, killTimerDel, deathSoundTimer, false);
+		player->StopPlayerSounds();
+		FVector playerLookAt = GetActorLocation();
+		rotateKill= UKismetMathLibrary::FindLookAtRotation(GetActorLocation(), player->GetActorLocation());
 
-			killedPlayer = true;
-		}
+		killedPlayer = true;
+
 		controller->GetBrainComponent()->StopLogic("Dead");
 	}
 
@@ -344,6 +333,10 @@ void AMonster::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	FHitResult OutHit;
+	GetCharacterMovement()->SafeMoveUpdatedComponent(FVector(0.f, 0.f, 0.01f), GetActorRotation(), true, OutHit);
+	GetCharacterMovement()->SafeMoveUpdatedComponent(FVector(0.f, 0.f, -0.01f), GetActorRotation(), true, OutHit);
+
 	FHitResult hit;
 	FCollisionQueryParams qParams;
 	qParams.AddIgnoredActor(this);
@@ -351,20 +344,21 @@ void AMonster::Tick(float DeltaTime)
 	if (!gameInstance->monsterKilled && GetWorld()->LineTraceSingleByChannel(hit, GetActorLocation(), mainPlayer->GetCapsuleComponent()->GetComponentLocation(), ECC_Visibility, qParams))
 	{
 		//UE_LOG(LogTemp, Warning, TEXT("Name of coll: %s"), *hit.Actor->GetName());
-		if (Cast<AMainCharacter>(hit.Actor))
+		AMainCharacter* player = Cast<AMainCharacter>(hit.Actor);
+		if (player)
 		{
 			//UE_LOG(LogTemp, Warning, TEXT("danger"));
 			inLineOfPlayer = true;
 			float dist = hit.Distance;
 			dist = FMath::Clamp(dist, minDistanceAmbience, maxDistanceAmbience);
 			dist = ReverseNumber(ScaleRange(dist, minDistanceAmbience, maxDistanceAmbience, 0.0f, 100.f), 0.0f, 100.f);
-			FAkAudioDevice::Get()->SetRTPCValue(*FString("Danger_Warning"), dist, 0, mainPlayer);
+			FAkAudioDevice::Get()->SetRTPCValue(*FString("Danger_Warning"), dist, 0, player);
 		}
 		else if(inLineOfPlayer)
 		{
 			//UE_LOG(LogTemp, Warning, TEXT("no danger"));
 			inLineOfPlayer = false;
-			FAkAudioDevice::Get()->SetRTPCValue(*FString("Danger_Warning"), 0, 0, mainPlayer);
+			FAkAudioDevice::Get()->SetRTPCValue(*FString("Danger_Warning"), 0, 0, UGameplayStatics::GetPlayerCharacter(this, 0));
 		}
 	}
 

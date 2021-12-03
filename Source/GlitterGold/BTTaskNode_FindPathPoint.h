@@ -19,20 +19,7 @@ public:
 		FBlackboardKeySelector  bbKey_TargetLoc;
 
 	UPROPERTY(EditAnywhere)
-		FBlackboardKeySelector  bbKey_PathPointWaitTime;
-
-	/*UPROPERTY(EditAnywhere)
-		FBlackboardKeySelector  bbKey_Caution;*/
-
-	UPROPERTY(EditAnywhere)
-		float radius = 20.f;
-
-	UPROPERTY(EditAnywhere)
-		bool overrideSpeed = false;
-
-	UPROPERTY(EditAnywhere, meta = (EditCondition = overrideSpeed))
-		float walkSpeed = 0.f;
-		
+		FBlackboardKeySelector  bbKey_PathPointWaitTime;	
 
 protected:
 	virtual EBTNodeResult::Type ExecuteTask(class UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory) override;

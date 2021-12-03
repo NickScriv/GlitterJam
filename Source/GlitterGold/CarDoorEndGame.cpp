@@ -62,8 +62,7 @@ void ACarDoorEndGame::EndGame(class AMainCharacter* character)
 			{
 				gameMode->FadeOutHUD();
 			}
-			FAkAudioDevice::Get()->PostEvent("Stop_Outdoor_Ambience", character);
-			GetWorldTimerManager().SetTimer(goodEndCutsceneHandle, this, &ACarDoorEndGame::TriggerGoodEnding, 2.f, false);
+			GetWorldTimerManager().SetTimer(goodEndCutsceneHandle, this, &ACarDoorEndGame::TriggerGoodEnding, 4.2f, false);
 		}
 		else
 		{

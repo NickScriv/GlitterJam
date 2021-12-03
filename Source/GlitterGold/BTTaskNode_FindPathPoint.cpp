@@ -24,15 +24,11 @@ EBTNodeResult::Type UBTTaskNode_FindPathPoint::ExecuteTask(class UBehaviorTreeCo
 
 	int32 index = monster->currentPathIndex;
 	OwnerComp.GetBlackboardComponent()->SetValueAsVector(bbKey_TargetLoc.SelectedKeyName, monster->currentPath[index]->GetActorLocation());
-	
+	//OwnerComp.GetBlackboardComponent()->SetValueAsObject("PathPointActor", monster->currentPath[index]);
+
 	float wait = FMath::RandRange(monster->currentPath[index]->waitTime - monster->currentPath[index]->waitTimeDeviation, monster->currentPath[index]->waitTime + monster->currentPath[index]->waitTimeDeviation);
 	
 	OwnerComp.GetBlackboardComponent()->SetValueAsFloat(bbKey_PathPointWaitTime.SelectedKeyName, wait);
-
-	//OwnerComp.GetBlackboardComponent()->SetValueAsBool(bbKey_Caution.SelectedKeyName, false);
-
-	if(overrideSpeed)
-		monster->GetCharacterMovement()->MaxWalkSpeed = walkSpeed;
 
 	return EBTNodeResult::Succeeded;
 

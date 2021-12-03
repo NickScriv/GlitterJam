@@ -15,12 +15,17 @@ class GLITTERGOLD_API AMonsterAIController : public AAIController
 protected:
 	void BeginPlay() override;
 
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
+
 public:
 
 	UPROPERTY(BlueprintReadWrite)
 		bool isScreaming;
 
-	virtual void GetActorEyesViewPoint(FVector& OutLocation, FRotator& OutRotation) const override;
+	bool canHear = true;
+
+	//virtual void GetActorEyesViewPoint(FVector& OutLocation, FRotator& OutRotation) const override;
 
 	UFUNCTION(BlueprintImplementableEvent, Category = "AICBase")
 	void AISightPerceptionViewPoint(FVector& OutLocation, FRotator& OutRotation) const;
@@ -28,9 +33,30 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void StartMonsterBehavior();
 
+	UPROPERTY(EditDefaultsOnly)
+		TSubclassOf<AActor> predictNavClass;
+
+	UPROPERTY()
+		AActor* predictNavHelper = nullptr;
+
+	UPROPERTY()
+		AActor* predictNavHelperTrace = nullptr;
+
+
+	bool inSightCone = false;
+
 	void TriggerPatrolAbort();
 
+	FVector GetPredictLoc();
+
 private:
+
+	UPROPERTY()
+		class AMainCharacter* player = nullptr;
+
+	UPROPERTY()
+		class AMonster* monster = nullptr;
+
 	UPROPERTY(EditDefaultsOnly, Category = "Blackboard")
 		class UBehaviorTree* AIBehavior;
 
@@ -47,10 +73,39 @@ private:
 		float ChangePerceptionTime;
 
 	UPROPERTY(EditAnywhere)
-		float mainSightRadius;
+		float mainSightRange;
 
 	UPROPERTY(EditAnywhere)
-		float mainLoseSightRadius;
+		float sightRange;
+
+	UPROPERTY(EditAnywhere)
+		float mainLoseSightRange;
+
+	UPROPERTY(EditAnywhere)
+		float loseSightRange;
+
+	UPROPERTY(EditAnywhere)
+		float sightHalfAngleDegrees;
+
+	UPROPERTY(EditAnywhere)
+		float loseSightHalfAngleDegrees;
+
+	UPROPERTY(EditAnywhere)
+		float screamingSightHalfAngleDegrees;
+
+	float currentSightAngle;
+
+	float currentSightRange;
+
+	float currentLoseSightRange;
+
+	float detectRange;
+
+	bool chasing = false;
+
+
+	UPROPERTY(EditAnywhere)
+		float predictionTime;
 
 	UPROPERTY(EditAnywhere, Category = "Components")
 	UAIPerceptionComponent* AIPerception = nullptr;
@@ -61,11 +116,25 @@ private:
 	UFUNCTION(BlueprintCallable)
 		void StopScreaming();
 
+	void SetToDefaultPerception();
+
 	bool firstSeen = false;
+
+	bool startedBehavior = false;
 
 	bool changePathValue = false;
 
+	bool lostSight = true;
+
+	int32 interchangeValues = 1;
+
 	FTimerHandle timerHandleFirstSeen;
 
-	void SetToDefaultPerception();
+	FVector predictLoc;
+
+	void SetInvestigatingBlackboard();
+
+	bool PlayerLineCheck(bool checkCone);
+
+	void HandleSight(bool successfullySensed);
 };

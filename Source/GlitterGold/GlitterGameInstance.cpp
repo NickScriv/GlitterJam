@@ -2,6 +2,7 @@
 
 
 #include "GlitterGameInstance.h"
+#include "GameFramework/GameUserSettings.h"
 
 UGlitterGameInstance::UGlitterGameInstance(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
 {   
@@ -12,7 +13,11 @@ void UGlitterGameInstance::Init()
 {
 	Super::Init();
 
-	GEngine->Exec(GetWorld(), TEXT("r.Vsync 0"));
+	GEngine->GameUserSettings->SetVSyncEnabled(true);
+	GEngine->GameUserSettings->SetFullscreenMode(EWindowMode::Fullscreen);
+	GEngine->GameUserSettings->ApplySettings(false);
+	GetWorld()->Exec(GetWorld(), TEXT("r.HZBOcclusion 1"));
+	//GetWorld()->Exec(GetWorld(), TEXT("t.MaxFPS 60"));
 }
 
 void UGlitterGameInstance::Shutdown()

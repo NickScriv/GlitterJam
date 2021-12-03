@@ -94,11 +94,12 @@ public:
 	UPROPERTY(EditAnywhere)
 		float blendPhysics;
 
+	UPROPERTY()
 	class UPhysicalAnimationComponent* physicsComponent;
 
 	void KillTest();
 
-	void KillPlayer();
+	void KillPlayer(class AMainCharacter* player);
 
 	void StopMonsterSounds();
 

@@ -94,6 +94,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Movement")
 		float sprintSpeed;
 
+	UPROPERTY(EditAnywhere)
+		float monsterTouchTimer;
+
 	UPROPERTY(BlueprintReadWrite)
 	bool isShooting = false;
 
@@ -129,6 +132,8 @@ public:
 	int32 shotgunBulletCount = 3;
 
 	FTimerHandle timerHandleShoot;
+
+	FTimerHandle timerHandleTouchMonster;
 
 	bool axeCanDamage = false;
 
@@ -322,6 +327,9 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Stamina")
 		UCurveFloat* restTimeCurveFloat;
 
+	UPROPERTY(EditAnywhere, Category = "Controls")
+		float mouseSensitivity;
+
 	void MoveForward(float  val);
 	void MoveRight(float  val);
 	void Turn(float  val);
@@ -385,4 +393,7 @@ private:
 
 	void AimIn();
 	void AimOut();
+
+	UFUNCTION()
+	void CapsuleHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
 };

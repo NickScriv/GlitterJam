@@ -22,7 +22,7 @@ class GLITTERGOLD_API ATriggerVolume_LightShort : public ATriggerVolume
 	UPROPERTY(EditAnywhere)
 		TArray<class ACeilingLight*> lights;
 
-	FOnAkPostEventCallback turnOffLights;
+	///FOnAkPostEventCallback turnOffLights;
 
 	UPROPERTY(EditAnywhere)
 		float lightFlickerTime;

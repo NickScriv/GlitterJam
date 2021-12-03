@@ -109,6 +109,7 @@ void ADrawer::OpenCloseDrawer()
 	if (open)
 	{
 		FAkAudioDevice::Get()->PostEvent("Drawers_Open", this);
+		//FAkAudioDevice::Get()->PostEventAtLocation(FString("Drawers_Open"), GetActorLocation(), GetActorRotation(), GetWorld());
 		openCloseTimeline.PlayFromStart();
 	}
 	else

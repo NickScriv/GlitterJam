@@ -79,6 +79,7 @@ public:
 	virtual void Deactivate() override;
 
 private:
-	class AMainCharacter* character; 
+	UPROPERTY()
+		class AMainCharacter* character; 
 	
 };

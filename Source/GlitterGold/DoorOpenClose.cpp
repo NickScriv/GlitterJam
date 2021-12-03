@@ -57,7 +57,7 @@ void UDoorOpenClose::BeginPlay()
 
 	if ((portal = Cast<UAkPortalComponent>(GetOwner()->GetComponentByClass(UAkPortalComponent::StaticClass()))) == nullptr)
 	{
-		//UE_LOG(LogTemp, Error, TEXT("DoorOpenClose: Portal is null!!!"));
+		UE_LOG(LogTemp, Error, TEXT("DoorOpenClose: Portal is null!!!"));
 	}
 	
 	if(portal)
@@ -65,7 +65,7 @@ void UDoorOpenClose::BeginPlay()
 		portal->ClosePortal();
 	}
 
-	TArray<UActorComponent*> boxes;
+	/*TArray<UActorComponent*> boxes;
 	GetOwner()->GetComponents(UBoxComponent::StaticClass(), boxes);
 	
 	for(UActorComponent* item : boxes)
@@ -78,7 +78,7 @@ void UDoorOpenClose::BeginPlay()
 				box->SetWorldLocationAndRotation(mesh->GetComponentLocation(), mesh->GetComponentRotation());
 			}
 		}
-	}
+	}*/
 
 	if (interaction)
 	{	
@@ -228,7 +228,9 @@ void UDoorOpenClose::InteractDoor(class AMainCharacter* character)
 		FAkAudioDevice::Get()->PostEvent("Locked_Door", character);
 		return;	
 	}
-	else if(playerHasKey && locked)
+	
+	
+	if(playerHasKey && locked)
 	{
 		FAkAudioDevice::Get()->PostEvent("Stop_Door_Unlocking", character);
 		UnlockDoor();
@@ -342,8 +344,8 @@ void UDoorOpenClose::MonsterReachedNavLink(AActor* MovingActor, const FVector& D
 
 void UDoorOpenClose::UnlockNavMesh()
 {
-	navLinkProxyEnter->SetSmartLinkEnabled(true);
-	navLinkProxyExit->SetSmartLinkEnabled(true);
+	/*navLinkProxyEnter->SetSmartLinkEnabled(true);
+	navLinkProxyExit->SetSmartLinkEnabled(true);*/
 }
 
 void UDoorOpenClose::ChangeMonsterPath()
@@ -356,19 +358,16 @@ void UDoorOpenClose::ChangeMonsterPath()
 		if (AMonster* monst = Cast<AMonster>(actor))
 		{
 			const int32 index = FMath::RandRange(0, possibleMonsterPaths.Num() - 1);
-
+			UE_LOG(LogTemp, Warning, TEXT("CHANGE PATHSHSH"));
 			monst->ChangeCurrentPath(possibleMonsterPaths[index].pathPoints);
 		}
 	}
-	
-	
-
 }
 
 void UDoorOpenClose::UnlockDoor()
 {
 	locked = false;
-	ChangeMonsterPath();
+	
 	interaction->interactionTime = 0.f;
 	if (navMeshToBlock && navMeshToBlock->Tags.Num() > 0)
 	{
@@ -380,6 +379,8 @@ void UDoorOpenClose::UnlockDoor()
 		actorToDestroyWhenUnlocked->Destroy();
 	}
 
+	//GetWorld()->GetTimerManager().SetTimer(timerHandleChangeMonsterPath, this, &UDoorOpenClose::ChangeMonsterPath, 5.0f, false);
+	ChangeMonsterPath();
 }
 
 void UDoorOpenClose::PlayerPickedUpKey()

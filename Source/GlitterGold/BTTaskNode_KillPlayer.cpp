@@ -7,7 +7,6 @@
 #include "MainCharacter.h"
 #include "Kismet/GameplayStatics.h"
 #include "Engine/World.h"
-#include "DrawDebugHelpers.h"
 #include "Components/CapsuleComponent.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
@@ -51,7 +50,15 @@ EBTNodeResult::Type UBTTaskNode_KillPlayer::ExecuteTask(class UBehaviorTreeCompo
 
 			if (monsterController && !monsterController->isScreaming)
 			{
-				monster->KillPlayer();
+				monster->KillPlayer(player);
+
+				/*float distDelta = killDistance - hit.Distance;
+
+				if (distDelta >= 5.f)
+				{
+					FVector move = monster->GetActorForwardVector() * -distDelta;
+					monster->SetActorLocation(monster->GetActorLocation() + move);
+				}*/
 			}
 		}
 	}

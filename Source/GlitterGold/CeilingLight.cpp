@@ -18,10 +18,3 @@ void ACeilingLight::BeginPlay()
 	
 }
 
-// Called every frame
-void ACeilingLight::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
-}
-

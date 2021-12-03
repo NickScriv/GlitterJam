@@ -58,7 +58,7 @@ void UAnimNotify_AxeCanDamage::Notify(USkeletalMeshComponent* MeshComp, UAnimSeq
 					FAkAudioDevice::Get()->PostEvent("Axe_Hit_Enemy", MeshComp->GetOwner());
 
 					// Play blood hit effect
-					//UGameplayStatics::SpawnEmitterAtLocation(player, monsterHit, hit.Location, UKismetMathLibrary::MakeRotFromZ(dir), false);
+					UGameplayStatics::SpawnEmitterAtLocation(player, monsterHit, hit.Location, UKismetMathLibrary::MakeRotFromZ(dir), false);
 				}
 
 			}

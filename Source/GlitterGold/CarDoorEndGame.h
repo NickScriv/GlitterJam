@@ -26,12 +26,14 @@ private:
 	UPROPERTY(EditDefaultsOnly)
 		class UInteractionWidgetComponent* interaction;
 
-	class ULevelSequencePlayer* SequencePlayer;
+	UPROPERTY()
+		class ULevelSequencePlayer* SequencePlayer;
 
-	class ALevelSequenceActor* SequenceActor;
+	UPROPERTY()
+		class ALevelSequenceActor* SequenceActor;
 
 	UPROPERTY(EditAnywhere)
-	class ULevelSequence* SequenceGoodEnding;
+		class ULevelSequence* SequenceGoodEnding;
 
 	UPROPERTY(EditAnywhere)
 		class AEndMonster* endMonster;

@@ -8,7 +8,7 @@ EBTNodeResult::Type UBTTaskNode_ExitInvestigation::ExecuteTask(class UBehaviorTr
 {
 	Super::ExecuteTask(OwnerComp, NodeMemory);
 
-	OwnerComp.GetBlackboardComponent()->SetValueAsBool(bbKey_Investigate.SelectedKeyName, false);
+	OwnerComp.GetBlackboardComponent()->SetValueAsInt(bbKey_Investigate.SelectedKeyName, 0);
 	//UE_LOG(LogTemp, Warning, TEXT("Ivestingate false"));
 	return EBTNodeResult::Succeeded;
 

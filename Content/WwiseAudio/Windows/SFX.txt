@@ -15,6 +15,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	979945107	Axe_Hit_Wood			\Default Work Unit\SFX Events\Axe\Axe_Hit_Wood	
 	1047608429	Start_Run			\Default Work Unit\SFX Events\Stamina\Start_Run	
 	1060106358	Play_Indoor_Ambience			\Default Work Unit\SFX Events\Ambience\Play_Indoor_Ambience	
+	1064328332	Player_Spotted			\Default Work Unit\SFX Events\Enemy\Player_Spotted	
 	1126494853	Flashlight_Off			\Default Work Unit\SFX Events\Flashlight\Flashlight_Off	
 	1208240901	UI_Scroll			\Default Work Unit\UI Events\UI_Scroll	
 	1238538214	Play_Ambient_Music			\Default Work Unit\Music Events\Play_Ambient_Music	
@@ -142,6 +143,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	300665773	Axe_Hit_Enemy_1	E:\WwiseGlitter\.cache\Windows\SFX\Axe_Hit_Enemy_1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Axe\Axe Impact Surfaces\Axe Hit Enemy\Axe_Hit_Enemy_1		267276
 	301772476	Key_Acquired_1	E:\WwiseGlitter\.cache\Windows\SFX\Key_Acquired_1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Keys\Keys Acquired\Key_Acquired_1		262336
 	311689646	grass_fs_walk_2	E:\WwiseGlitter\.cache\Windows\SFX\grass_fs_walk_2_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Footsteps\Footstep Movement Type Switch\Crouching Footsteps\Grass Crouch\grass_fs_walk_2		261056
+	320633789	Player_Spotted	E:\WwiseGlitter\.cache\Windows\SFX\Player_Spotted_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemy Sounds\Player_Spotted		618676
 	336853172	Shotgun_Empty_1	E:\WwiseGlitter\.cache\Windows\SFX\Shotgun_Empty_1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Shotgun\Shotgun Fire\Shotgun Empty\Shotgun_Empty_1		262288
 	349922209	Enemy_fs_wood_3	E:\WwiseGlitter\.cache\Windows\SFX\Enemy_fs_wood_3_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemy Sounds\Enemy Footstep Switch\Enemy Wood Footsteps\Enemy_fs_wood_3		496340
 	361019455	Enemy_fs_tile_4	E:\WwiseGlitter\.cache\Windows\SFX\Enemy_fs_tile_5_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemy Sounds\Enemy Footstep Switch\Enemy Tile Footsteps\Enemy_fs_tile_4		234148

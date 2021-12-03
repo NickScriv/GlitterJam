@@ -11,7 +11,7 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="393239870" Language="SFX" Hash="2343918232">
+		<SoundBank Id="393239870" Language="SFX" Hash="2579074024">
 			<ObjectPath>\SoundBanks\Default Work Unit\SFX</ObjectPath>
 			<ShortName>SFX</ShortName>
 			<Path>SFX.bnk</Path>
@@ -757,6 +757,14 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
+				<Event Id="1064328332" Name="Player_Spotted" ObjectPath="\Events\Default Work Unit\SFX Events\Enemy\Player_Spotted">
+					<IncludedMemoryFiles>
+						<File Id="320633789" Language="SFX">
+							<ShortName>Player_Spotted.wav</ShortName>
+							<Path>SFX\Player_Spotted_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="3626210482" Name="Put_Down_Note" ObjectPath="\Events\Default Work Unit\SFX Events\Notes\Put_Down_Note">
 					<IncludedMemoryFiles>
 						<File Id="106886479" Language="SFX">
@@ -1065,6 +1073,10 @@
 				<File Id="311689646" Language="SFX">
 					<ShortName>grass_fs_walk_2.wav</ShortName>
 					<Path>SFX\grass_fs_walk_2_10C4C929.wem</Path>
+				</File>
+				<File Id="320633789" Language="SFX">
+					<ShortName>Player_Spotted.wav</ShortName>
+					<Path>SFX\Player_Spotted_10C4C929.wem</Path>
 				</File>
 				<File Id="336853172" Language="SFX">
 					<ShortName>Shotgun_Empty_1.wav</ShortName>
@@ -1509,7 +1521,7 @@
 				<AuxBus Id="2375102103" Name="RvbZone_Outside" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\RvbZone_Outside"/>
 			</IncludedAuxBusses>
 		</SoundBank>
-		<SoundBank Id="3991942870" Language="SFX" Hash="1065787564">
+		<SoundBank Id="3991942870" Language="SFX" Hash="2528443694">
 			<ObjectPath>\SoundBanks\Default Work Unit\Music</ObjectPath>
 			<ShortName>Music</ShortName>
 			<Path>Music.bnk</Path>

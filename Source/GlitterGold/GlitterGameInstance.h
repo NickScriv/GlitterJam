@@ -28,4 +28,7 @@ public:
 
 	UPROPERTY(BlueprintReadWrite)
 	bool gameEnding = false;
+
+	UPROPERTY(BlueprintReadWrite)
+		bool firstPlay = true;
 };

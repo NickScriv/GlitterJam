@@ -10,6 +10,7 @@
 #include "Components/CapsuleComponent.h"
 #include "GlitterGameModeBase.h"
 #include "Perception/AISense_Hearing.h"
+#include "Perception/AISense_Touch.h"
 #include "Monster.h"
 #include "Flashlight.h"
 #include "CrowBar.h"
@@ -19,6 +20,7 @@
 #include "../Plugins/Wwise/Source/AkAudio/Classes/AkGameplayStatics.h"
 #include "../Plugins/Wwise/Source/AkAudio/Classes/AkComponent.h"
 #include "GlitterGameInstance.h"
+#include "GameFramework/PlayerInput.h"
 
 // Sets default values
 AMainCharacter::AMainCharacter()
@@ -58,7 +60,7 @@ void AMainCharacter::BeginPlay()
 
 		footStepTimeWalk = footStepTimeWalk + (footStepTimeWalk * footStepTimeMultiplier);
 		footStepTimeSprint = footStepTimeSprint + (footStepTimeSprint * footStepTimeMultiplier);
-
+		GetMesh()->SetVisibility(false);
 		FAkAudioDevice::Get()->SetRTPCValue(*FString("Footsteps_Movement_Type"), 2, 200, this);
 		FAkAudioDevice::Get()->PostEvent("Play_Outdoor_Ambience", this);
 	}
@@ -73,6 +75,8 @@ void AMainCharacter::BeginPlay()
 		FAkAudioDevice::Get()->PostEvent("Play_Indoor_Ambience", this);
 		// TODO: Remember to take this out
 		//gameInstance->monsterKilled = true;
+
+		capsuleColl->OnComponentHit.AddUniqueDynamic(this, &AMainCharacter::CapsuleHit);
 	}
 
 	UAkComponent* comp = FAkAudioDevice::Get()->GetAkComponent(GetRootComponent(), FName(), NULL, EAttachLocation::KeepRelativeOffset);
@@ -118,6 +122,8 @@ void AMainCharacter::BeginPlay()
 
 	
 	FAkAudioDevice::Get()->PostEvent("STAMINA_START_ON_LOAD", this);
+
+	Cast<APlayerController>(GetController())->PlayerInput->SetMouseSensitivity(mouseSensitivity);
 }
 
 // Called every frame
@@ -299,13 +305,18 @@ void AMainCharacter::NotTest()
 
 void AMainCharacter::Died(AMonster* monster)
 {
-	if ((movement == EMovement::Crouching))
-	{
-		monsterOffsetLookAt = 0;
-	}
+	
 
 	FVector monsterLookAt = monster->GetActorLocation();
-	monsterLookAt = FVector(monsterLookAt.X, monsterLookAt.Y, monsterLookAt.Z + monsterOffsetLookAt);
+	if ((movement == EMovement::Crouching))
+	{
+		monsterLookAt = FVector(monsterLookAt.X, monsterLookAt.Y, monsterLookAt.Z + monsterOffsetLookAtCrouch);
+	}
+	else
+	{
+		monsterLookAt = FVector(monsterLookAt.X, monsterLookAt.Y, monsterLookAt.Z + monsterOffsetLookAt);
+	}
+
 	rotateDeath = UKismetMathLibrary::FindLookAtRotation(cameraComponent->GetComponentLocation(), monsterLookAt);
 	DisablePlayer();
 	died = true;
@@ -602,7 +613,6 @@ void AMainCharacter::Attack()
 		else if (crowBar && currentHandSlot == 3 && !isSwinging)
 		{
 			isSwinging = true;
-			crowBar->SwingAttack();
 		}
 		else if (flashlight && currentHandSlot == 1)
 		{
@@ -980,6 +990,21 @@ void AMainCharacter::AimOut()
 
 	if (gameMode)
 		gameMode->ReticleUI(true);
+}
+
+void AMainCharacter::CapsuleHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
+{
+	if (OtherActor && !GetWorldTimerManager().IsTimerActive(timerHandleTouchMonster))
+	{
+		//UE_LOG(LogTemp, Warning, TEXT("Hit Soemthing"));
+
+		if (AMonster* monster = Cast<AMonster>(OtherActor))
+		{
+			GetWorldTimerManager().SetTimer(timerHandleTouchMonster, monsterTouchTimer, false);
+			UAISense_Touch::ReportTouchEvent(this, monster->GetController(), this, GetActorLocation());
+			
+		}
+	}
 }
 
 

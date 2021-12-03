@@ -4,7 +4,6 @@
 #include "TriggerVolume_StairMusicChange.h"
 
 #include "AkAudioDevice.h"
-#include "DrawDebugHelpers.h"
 #include "MainCharacter.h"
 
 ATriggerVolume_StairMusicChange::ATriggerVolume_StairMusicChange()

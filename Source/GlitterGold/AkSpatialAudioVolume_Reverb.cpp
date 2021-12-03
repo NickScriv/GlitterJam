@@ -30,46 +30,42 @@ void AAkSpatialAudioVolume_Reverb::OnOverlapBegin(AActor* overlappedActor, AActo
 {
 	if (otherActor && otherActor != this)
 	{
-		if (APointInMonster* pointInMonster = Cast<APointInMonster>(otherActor))
+		APointInPlayer* point = Cast<APointInPlayer>(otherActor);
+		if (point)
 		{
-			// Monster stepped in
-			//UE_LOG(LogTemp, Warning, TEXT("PointInMonster detected!"));
-			FAkAudioDevice::Get()->SetRTPCValue(*FString("Enemy_Footsteps_Surface_Type"), footStepSurface, 0, pointInMonster->GetParentActor());
-
-		}
-		else if (APointInPlayer* pointInPlayer = Cast<APointInPlayer>(otherActor))
-		{
-			
-			// Player stepped in
-			AMainCharacter* player = Cast<AMainCharacter>(pointInPlayer->GetParentActor());
-
-			if (!player)
+			if (AMonster* monster = Cast<AMonster>(point->GetParentActor()))
 			{
-				//UE_LOG(LogTemp, Warning, TEXT("Reverb Spatial Volume: Player actor not found"));
-				return;
+				// Monster stepped in
+				UE_LOG(LogTemp, Warning, TEXT("PointInMonster detected!"));
+				FAkAudioDevice::Get()->SetRTPCValue(*FString("Enemy_Footsteps_Surface_Type"), footStepSurface, 0, monster);
+
 			}
-
-			if (IsValid(lightBlocker))
+			else if (AMainCharacter* player = Cast<AMainCharacter>(point->GetParentActor()))
 			{
-				lightBlocker->Destroy();
-				lightBlocker = nullptr;
+
+				if (IsValid(lightBlocker))
+				{
+					lightBlocker->Destroy();
+					lightBlocker = nullptr;
+				}
+
+				AGlitterGameModeBase* gameMode = Cast<AGlitterGameModeBase>(UGameplayStatics::GetGameMode(this));
+				gameMode->queuedMusic = musicName;
+				//UE_LOG(LogTemp, Warning, TEXT("Change footstep surface: %i"), footStepSurface);
+				FAkAudioDevice::Get()->SetRTPCValue(*FString("Footsteps_Surface_Type"), footStepSurface, 0, player);
+				//UE_LOG(LogTemp, Warning, TEXT("PointInPlayer detected!"));
+
+				if (FMath::IsNearlyEqual(gameMode->monsterInCaution, 0.0f, 0.2f))
+				{
+					FAkAudioDevice::Get()->PostEvent(gameMode->queuedMusic, player);
+				}
 			}
-
-			AGlitterGameModeBase* gameMode = Cast<AGlitterGameModeBase>(UGameplayStatics::GetGameMode(this));
-			gameMode->queuedMusic = musicName;
-			//UE_LOG(LogTemp, Warning, TEXT("Change footstep surface: %i"), footStepSurface);
-			FAkAudioDevice::Get()->SetRTPCValue(*FString("Footsteps_Surface_Type"), footStepSurface, 0, player);
-			//UE_LOG(LogTemp, Warning, TEXT("PointInPlayer detected!"));
-
-			if (FMath::IsNearlyEqual(gameMode->monsterInCaution, 0.0f, 0.2f))
+			else
 			{
-				FAkAudioDevice::Get()->PostEvent(gameMode->queuedMusic, player);
+				//UE_LOG(LogTemp, Warning, TEXT("Player nor monster entered the reverb trigger %s"), *otherActor->GetName());
 			}
 		}
-		else
-		{
-			//UE_LOG(LogTemp, Warning, TEXT("Player nor monster entered the reverb trigger %s"), *otherActor->GetName());
-		}
+		
 	}
 	
 }

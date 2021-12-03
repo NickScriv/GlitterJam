@@ -86,13 +86,17 @@ private:
 	UPROPERTY()
 	class AGlitterGameModeBase* gameMode;
 
+	FTimerHandle timerHandleChangeMonsterPath;
+
 	FAIRequestID currentMove;
 	
 	bool checkClosed = false;
 
-	class AMonsterAIController* monsterController = nullptr;
+	UPROPERTY()
+		class AMonsterAIController* monsterController = nullptr;
 
-	class AMonster* monster = nullptr;
+	UPROPERTY()
+		class AMonster* monster = nullptr;
 
 	UPROPERTY()
 		class UInteractionWidgetComponent* interaction = nullptr;
@@ -129,6 +133,7 @@ private:
 
 	void UnlockNavMesh();
 
+	UFUNCTION()
 	void ChangeMonsterPath();
 
 	void UnlockDoor();
