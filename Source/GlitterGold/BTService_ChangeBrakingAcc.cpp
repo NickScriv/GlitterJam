@@ -9,6 +9,7 @@
 UBTService_ChangeBrakingAcc::UBTService_ChangeBrakingAcc()
 {
 	bNotifyBecomeRelevant = 1;
+	bNotifyTick = false;
 }
 
 void UBTService_ChangeBrakingAcc::OnBecomeRelevant(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)

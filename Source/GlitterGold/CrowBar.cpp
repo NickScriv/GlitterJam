@@ -19,7 +19,8 @@ ACrowBar::ACrowBar()
 	PrimaryActorTick.bCanEverTick = false;
 
 	crowBarMesh = CreateDefaultSubobject<USkeletalMeshComponent>("CrowBar Mesh");
-	crowBarMesh->SetupAttachment(RootComponent);
+	//crowBarMesh->SetupAttachment(RootComponent);
+	SetRootComponent(crowBarMesh);
 
 }
 

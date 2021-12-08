@@ -11,6 +11,7 @@
 UBTService_CheckMonsterMovement::UBTService_CheckMonsterMovement()
 {
 	bNotifyBecomeRelevant = 1;
+	bNotifyTick = false;
 }
 
 void UBTService_CheckMonsterMovement::OnBecomeRelevant(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)

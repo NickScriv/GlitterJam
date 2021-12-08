@@ -13,6 +13,7 @@
 UBTService_ChangeMusic::UBTService_ChangeMusic()
 {
 	bNotifyBecomeRelevant = 1;
+	bNotifyTick = false;
 }
 
 void UBTService_ChangeMusic::OnBecomeRelevant(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)

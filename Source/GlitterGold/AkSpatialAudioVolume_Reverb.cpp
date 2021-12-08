@@ -36,7 +36,7 @@ void AAkSpatialAudioVolume_Reverb::OnOverlapBegin(AActor* overlappedActor, AActo
 			if (AMonster* monster = Cast<AMonster>(point->GetParentActor()))
 			{
 				// Monster stepped in
-				UE_LOG(LogTemp, Warning, TEXT("PointInMonster detected!"));
+				//UE_LOG(LogTemp, Warning, TEXT("PointInMonster detected!"));
 				FAkAudioDevice::Get()->SetRTPCValue(*FString("Enemy_Footsteps_Surface_Type"), footStepSurface, 0, monster);
 
 			}

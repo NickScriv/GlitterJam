@@ -18,23 +18,5 @@ void UAnimNotify_ToggleMonsterPhysics::Notify(USkeletalMeshComponent* MeshComp, 
 		return;
 	}
 
-	if (physicsOn)
-	{
-		monster->GetMesh()->SetAllBodiesBelowPhysicsBlendWeight(FName("pelvis"), monster->blendPhysics, false, false);
-
-		/*AGlitterGameModeBase* gameMode = Cast<AGlitterGameModeBase>(UGameplayStatics::GetGameMode(monster));
-
-		if (!gameMode)
-		{
-			UE_LOG(LogTemp, Error, TEXT("UBTTask_RandomLocation: No game mode found!"));
-			return;
-		}
-
-		gameMode->monsterInCaution = 0.f;*/
-	}
-	else
-	{
-		monster->GetMesh()->SetAllBodiesBelowPhysicsBlendWeight(FName("pelvis"), blend, false, false);
-	}
-
+	monster->TogglePhysics(physicsOn);
 }

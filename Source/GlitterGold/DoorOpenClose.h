@@ -38,9 +38,6 @@ private:
 	UPROPERTY(EditAnywhere, meta = (EditCondition = locked))
 		class ANavModifierVolume* navMeshToBlock;
 
-	UPROPERTY(EditAnywhere, meta = (EditCondition = locked))
-		TSubclassOf<UNavArea> defaultNavAreaClass;
-
 	UPROPERTY(EditAnywhere)
 	float openAngle;
 
@@ -61,6 +58,12 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	class ANavLinkProxy* navLinkProxyExit;
+
+	UPROPERTY()
+	class UBoxComponent* navMeshBox = nullptr;
+
+	UPROPERTY(EditAnywhere, meta = (EditCondition = locked))
+		TSubclassOf<UNavArea> doorNavAreaClass;
 
 	float initialYaw;
 	float currentYaw;
@@ -86,7 +89,7 @@ private:
 	UPROPERTY()
 	class AGlitterGameModeBase* gameMode;
 
-	FTimerHandle timerHandleChangeMonsterPath;
+	FTimerHandle timerHandleNavLinks;
 
 	FAIRequestID currentMove;
 	

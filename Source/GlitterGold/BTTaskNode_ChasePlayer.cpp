@@ -9,6 +9,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "NavigationSystem.h"
 #include "NavMesh/RecastNavMesh.h"
+//#include "DrawDebugHelpers.h"
 
 EBTNodeResult::Type UBTTaskNode_ChasePlayer::ExecuteTask(class UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
 {
@@ -17,6 +18,8 @@ EBTNodeResult::Type UBTTaskNode_ChasePlayer::ExecuteTask(class UBehaviorTreeComp
 	
 	if (!OwnerComp.GetAIOwner())
 		return EBTNodeResult::Failed;
+
+	//DrawDebugSphere(GetWorld(), OwnerComp.GetBlackboardComponent()->GetValueAsVector(bbKey_Loc.SelectedKeyName), 50, 26, FColor(181, 181, 181), false, 0.2, 0, 2);
 
 	UAIBlueprintHelperLibrary::SimpleMoveToLocation(OwnerComp.GetAIOwner(), OwnerComp.GetBlackboardComponent()->GetValueAsVector(bbKey_Loc.SelectedKeyName));
 

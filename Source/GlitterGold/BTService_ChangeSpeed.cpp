@@ -9,6 +9,7 @@
 UBTService_ChangeSpeed::UBTService_ChangeSpeed()
 {
 	bNotifyBecomeRelevant = 1;
+	bNotifyTick = false;
 }
 
 

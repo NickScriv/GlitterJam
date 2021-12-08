@@ -14,7 +14,7 @@ AFlashlight::AFlashlight()
 	PrimaryActorTick.bCanEverTick = false;
 
 	mesh = CreateDefaultSubobject<USkeletalMeshComponent>("Flashlight Mesh");
-	mesh->SetupAttachment(RootComponent);
+	SetRootComponent(mesh);
 	
 	spotLight = CreateDefaultSubobject<USpotLightComponent>("Light");
 	spotLight->SetupAttachment(mesh);

@@ -18,7 +18,7 @@ void UAnimNotify_DetachItemMesh::Notify(USkeletalMeshComponent* MeshComp, UAnimS
 		return;
 	}
 
-	if (meshToDetach == 1)
+	/*if (meshToDetach == 1)
 	{
 		player->HideFlashlight();
 		//UE_LOG(LogTemp, Warning, TEXT("Hide Flashlight"));
@@ -36,7 +36,12 @@ void UAnimNotify_DetachItemMesh::Notify(USkeletalMeshComponent* MeshComp, UAnimS
 	else
 	{
 		//UE_LOG(LogTemp, Warning, TEXT("Wrong mesh value for detach mesh"));
-	}
+	}*/
+
+	player->HideCrowBar();
+	player->HideFlashlight();
+	player->HideShotgun();
+
 
 	if (player->currentHandSlot == 0)
 	{

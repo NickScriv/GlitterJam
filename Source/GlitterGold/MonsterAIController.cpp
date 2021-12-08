@@ -106,7 +106,7 @@ void AMonsterAIController::perceptionUpdated(AActor* Actor, FAIStimulus Stimulus
 			}
 		}
 	}
-	else if (senseName == TEXT("AISense_Damage"))
+	else if (senseName == TEXT("AISense_Damage") && blackboardComp->GetValueAsEnum(FName("MonsterStatus")) != (uint8)MonsterStatus::Chasing)
 	{
 
 		//UE_LOG(LogTemp, Warning, TEXT("Damage AI at: %f, %f, %f"), Stimulus.StimulusLocation.X, Stimulus.StimulusLocation.Y, Stimulus.StimulusLocation.Z);
@@ -257,7 +257,7 @@ void AMonsterAIController::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	
-	UE_LOG(LogTemp, Error, TEXT("%f"), currentSightAngle);
+	//UE_LOG(LogTemp, Error, TEXT("%f"), currentSightAngle);
 	if (blackboardComp->GetValueAsEnum(FName("MonsterStatus")) == (uint8)MonsterStatus::Chasing)
 	{
 		if (inSightCone && !PlayerLineCheck(true))
@@ -308,6 +308,9 @@ void AMonsterAIController::StartMonsterBehavior()
 void AMonsterAIController::TriggerPatrolAbort()
 {
 	// Just need to trigger abort without conditional
+	if(blackboardComp->GetValueAsEnum(FName("MonsterStatus")) == (uint8)MonsterStatus::Patrolling)
+		StopMovement();
+
 	if (changePathValue)
 	{
 		blackboardComp->SetValueAsInt(FName("ChangePath"), blackboardComp->GetValueAsInt(FName("ChanePath")) + 1);

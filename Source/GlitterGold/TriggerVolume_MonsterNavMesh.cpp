@@ -83,8 +83,9 @@ void ATriggerVolume_MonsterNavMesh::OnOverlapNavEnd(AActor* overlappedActor, AAc
 			// Upstairs, so disable down stair navmeshes
 			for (ANavModifierVolume* navMod : downStairMeshVolumes)
 			{
-
 				navMod->SetAreaClass(nullNavAreaClass);
+
+				//navMod->SetAreaClass(nullNavAreaClass);
 				//UE_LOG(LogTemp, Warning, TEXT("Set null nav modifier"));
 				
 			}

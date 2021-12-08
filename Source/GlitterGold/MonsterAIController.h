@@ -103,7 +103,6 @@ private:
 
 	bool chasing = false;
 
-
 	UPROPERTY(EditAnywhere)
 		float predictionTime;
 

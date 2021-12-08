@@ -91,8 +91,8 @@ public:
 	UPROPERTY(EditAnywhere)
 		float VelocityStrength;
 
-	UPROPERTY(EditAnywhere)
-		float blendPhysics;
+	UPROPERTY(BlueprintReadOnly)
+		bool isPhysicsOn = false;
 
 	UPROPERTY()
 	class UPhysicalAnimationComponent* physicsComponent;
@@ -112,6 +112,9 @@ public:
 	void SetFlashlight();
 
 	void ChangeCurrentPath(TArray<APathPoint*> path);
+
+	UFUNCTION(BlueprintCallable)
+	void TogglePhysics(bool physicsOn);
 
 	UFUNCTION(BlueprintImplementableEvent)
 		void TracePath();
@@ -191,6 +194,12 @@ private:
 	FTimerDelegate killTimerDel;
 
 	FTimerHandle killTimerHandle;
+
+	UPROPERTY(EditAnywhere)
+		float blendPhysics;
+
+	UPROPERTY(EditAnywhere)
+		float blendPhysicsLight;
 
 	UFUNCTION()
 	void TriggerFirstEvent(class AActor* overlappedActor, class AActor* otherActor);

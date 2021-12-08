@@ -9,6 +9,7 @@
 #include "MainCharacter.h"
 #include "GlitterGameInstance.h"
 #include "Monster.h"
+#include "../Plugins/Wwise/Source/AkAudio/Classes/AkComponent.h"
 
 // Sets default values
 AFinalDoor::AFinalDoor()
@@ -68,6 +69,10 @@ void AFinalDoor::TriggerEnd(AMainCharacter* character)
 		if (monster)
 			monster->DetachFromControllerPendingDestroy();
 	}
+
+	FAkAudioDevice::Get()->PostEvent("Play_Ambient_Music", character);
+	FAkAudioDevice::Get()->SetRTPCValue(*FString("Num_of_Keys"), 0, 0, character);
+	FAkAudioDevice::Get()->SetRTPCValue(*FString("Danger_Warning"), 0.f, 0, character);
 }
 
 void AFinalDoor::InitInteraction()

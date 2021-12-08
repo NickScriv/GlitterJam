@@ -8,6 +8,7 @@
 UBTService_MonsterSounds::UBTService_MonsterSounds()
 {
 	bNotifyBecomeRelevant = 1;
+	bNotifyTick = false;
 }
 
 void UBTService_MonsterSounds::OnBecomeRelevant(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)

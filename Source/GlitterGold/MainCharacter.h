@@ -381,6 +381,8 @@ private:
 
 	bool canStep = false;
 
+	FVector monsterLookAt;
+
 #pragma endregion
 
 	void FlashlightToggle();

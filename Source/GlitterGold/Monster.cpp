@@ -260,6 +260,23 @@ void AMonster::ChangeCurrentPath(TArray<APathPoint*> path)
 	}
 }
 
+void AMonster::TogglePhysics(bool physicsOn)
+{
+	isPhysicsOn = physicsOn;
+	if (physicsOn)
+	{
+		GetMesh()->SetAllBodiesBelowPhysicsBlendWeight(FName("pelvis"), blendPhysics, false, false);
+		//UE_LOG(LogTemp, Warning, TEXT("Physics on"));
+	}
+	else
+	{
+		GetMesh()->SetAllBodiesBelowPhysicsBlendWeight(FName("pelvis"), blendPhysicsLight, false, false);
+		//UE_LOG(LogTemp, Warning, TEXT("Physics off"));
+	}
+
+	
+}
+
 bool AMonster::ShouldHappen(int32 percentage)
 {
 	return (FMath::RandRange(1, 100 / percentage) == 1 ? true : false);

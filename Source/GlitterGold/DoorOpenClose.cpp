@@ -65,20 +65,17 @@ void UDoorOpenClose::BeginPlay()
 		portal->ClosePortal();
 	}
 
-	/*TArray<UActorComponent*> boxes;
+	TArray<UActorComponent*> boxes;
 	GetOwner()->GetComponents(UBoxComponent::StaticClass(), boxes);
 	
 	for(UActorComponent* item : boxes)
 	{
 		UBoxComponent* box = Cast<UBoxComponent>(item);
-		if(box->GetName() == "BoxPortal")
+		if(box->GetName() == "NavModBox")
 		{
-			if (UStaticMeshComponent* mesh = Cast<UStaticMeshComponent>(GetOwner()->GetComponentByClass(UStaticMeshComponent::StaticClass())))
-			{
-				box->SetWorldLocationAndRotation(mesh->GetComponentLocation(), mesh->GetComponentRotation());
-			}
+			navMeshBox = box;
 		}
-	}*/
+	}
 
 	if (interaction)
 	{	
@@ -188,8 +185,12 @@ void UDoorOpenClose::OpenDoor()
 		}
 		
 		if (portal)
+		{
+			//UE_LOG(LogTemp, Warning, TEXT("Close protal"));
 			portal->ClosePortal();
-
+		}
+			
+		//GetWorld()->GetTimerManager().SetTimer(timerHandleNavLinks, this, &UDoorOpenClose::EnableNavLinks, 0.75f, false);
 		navLinkProxyEnter->SetSmartLinkEnabled(true);
 		navLinkProxyExit->SetSmartLinkEnabled(true);
 	}
@@ -208,9 +209,14 @@ void UDoorOpenClose::OpenDoor()
 		}*/
 
 		if(portal)
+		{
+			//UE_LOG(LogTemp, Warning, TEXT("open protal"));
 			portal->OpenPortal();
+		}
 		navLinkProxyEnter->SetSmartLinkEnabled(false);
 		navLinkProxyExit->SetSmartLinkEnabled(false);
+
+		//GetWorld()->GetTimerManager().SetTimer(timerHandleNavLinks, this, &UDoorOpenClose::DisableNavLinks, 0.75f, false);
 	}
 	open = !open;
 	BeginFocusDoor(nullptr);
@@ -358,7 +364,7 @@ void UDoorOpenClose::ChangeMonsterPath()
 		if (AMonster* monst = Cast<AMonster>(actor))
 		{
 			const int32 index = FMath::RandRange(0, possibleMonsterPaths.Num() - 1);
-			UE_LOG(LogTemp, Warning, TEXT("CHANGE PATHSHSH"));
+			//UE_LOG(LogTemp, Warning, TEXT("CHANGE PATHSHSH"));
 			monst->ChangeCurrentPath(possibleMonsterPaths[index].pathPoints);
 		}
 	}
@@ -369,15 +375,13 @@ void UDoorOpenClose::UnlockDoor()
 	locked = false;
 	
 	interaction->interactionTime = 0.f;
-	if (navMeshToBlock && navMeshToBlock->Tags.Num() > 0)
-	{
-		UnlockNavMesh();
-	}
 
 	if (actorToDestroyWhenUnlocked)
 	{
 		actorToDestroyWhenUnlocked->Destroy();
 	}
+
+	navMeshBox->AreaClass = doorNavAreaClass;
 
 	//GetWorld()->GetTimerManager().SetTimer(timerHandleChangeMonsterPath, this, &UDoorOpenClose::ChangeMonsterPath, 5.0f, false);
 	ChangeMonsterPath();

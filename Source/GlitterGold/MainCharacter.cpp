@@ -162,6 +162,7 @@ void AMainCharacter::Tick(float DeltaTime)
 
 	if (died)
 	{
+		rotateDeath = UKismetMathLibrary::FindLookAtRotation(cameraComponent->GetComponentLocation(), monsterLookAt);
 		FRotator res = FMath::RInterpTo(cameraComponent->GetComponentRotation(), rotateDeath, DeltaTime, deathRotTime);
 
 		cameraComponent->SetWorldRotation(res);
@@ -307,7 +308,7 @@ void AMainCharacter::Died(AMonster* monster)
 {
 	
 
-	FVector monsterLookAt = monster->GetActorLocation();
+	monsterLookAt = monster->GetActorLocation();
 	if ((movement == EMovement::Crouching))
 	{
 		monsterLookAt = FVector(monsterLookAt.X, monsterLookAt.Y, monsterLookAt.Z + monsterOffsetLookAtCrouch);
@@ -317,13 +318,14 @@ void AMainCharacter::Died(AMonster* monster)
 		monsterLookAt = FVector(monsterLookAt.X, monsterLookAt.Y, monsterLookAt.Z + monsterOffsetLookAt);
 	}
 
-	rotateDeath = UKismetMathLibrary::FindLookAtRotation(cameraComponent->GetComponentLocation(), monsterLookAt);
+	
 	DisablePlayer();
 	died = true;
 }
 
 void AMainCharacter::DiedEnding(FVector lookAtLoc)
 {
+	monsterLookAt = lookAtLoc;
 	rotateDeath = UKismetMathLibrary::FindLookAtRotation(cameraComponent->GetComponentLocation(), lookAtLoc);
 	DisablePlayer();
 	died = true;
