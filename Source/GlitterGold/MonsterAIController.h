@@ -40,8 +40,7 @@ public:
 		AActor* predictNavHelper = nullptr;
 
 	UPROPERTY()
-		AActor* predictNavHelperTrace = nullptr;
-
+		AActor* playerPredictNavHelper = nullptr;
 
 	bool inSightCone = false;
 

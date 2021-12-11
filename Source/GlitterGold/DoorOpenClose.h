@@ -59,6 +59,9 @@ private:
 	UPROPERTY(EditAnywhere)
 	class ANavLinkProxy* navLinkProxyExit;
 
+	UPROPERTY(EditAnywhere)
+		class AAkAcousticPortal* portal = nullptr;
+
 	UPROPERTY()
 	class UBoxComponent* navMeshBox = nullptr;
 
@@ -103,9 +106,6 @@ private:
 
 	UPROPERTY()
 		class UInteractionWidgetComponent* interaction = nullptr;
-
-	UPROPERTY()
-		class UAkPortalComponent* portal = nullptr;
 
 	UFUNCTION()
 		void InteractDoor(class AMainCharacter* character);

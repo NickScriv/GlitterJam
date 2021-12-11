@@ -70,6 +70,7 @@ void AMonster::BeginPlay()
 	physicsComponent->ApplyPhysicalAnimationSettingsBelow(FName("pelvis"), data, false);
 	SetPhysicsAnimation(FName("clavicle_l"));
 	SetPhysicsAnimation(FName("clavicle_r"));
+	GetMesh()->SetAllBodiesBelowPhysicsBlendWeight(FName("pelvis"), 0.f, false, false);
 	//SetPhysicsAnimation(FName("neck_01"));
 
 	const int32 index = FMath::RandRange(0, possibleStartPaths.Num() - 1);

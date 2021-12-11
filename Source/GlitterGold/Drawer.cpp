@@ -87,7 +87,7 @@ void ADrawer::TimelineProgressOpenClose(float val)
 	
 	/*if(AMainCharacter* player = Cast<AMainCharacter>(hit.Actor))
 	{
-		//UE_LOG(LogTemp, Warning, TEXT("Trace start: %f, %f, %f"), hit.TraceStart.X, hit.TraceStart.Y, hit.TraceStart.Z);
+		//
 		FVector unitDirection = (hit.TraceEnd - hit.TraceStart).GetSafeNormal();
 		float dist = FVector::Distance(hit.TraceEnd, hit.TraceStart) - hit.Distance;
 		unitDirection *= dist;
@@ -108,13 +108,16 @@ void ADrawer::OpenCloseDrawer()
 	opening = true;
 	if (open)
 	{
-		FAkAudioDevice::Get()->PostEvent("Drawers_Open", this);
-		//FAkAudioDevice::Get()->PostEventAtLocation(FString("Drawers_Open"), GetActorLocation(), GetActorRotation(), GetWorld());
+		//FAkAudioDevice::Get()->PostEvent("Drawers_Open", this);
+		//UE_LOG(LogTemp, Warning, TEXT("Open Sound"));
+		FAkAudioDevice::Get()->PostEventAtLocation(FString("Drawers_Open"), GetActorLocation(), GetActorRotation(), GetWorld());
 		openCloseTimeline.PlayFromStart();
 	}
 	else
 	{
-		FAkAudioDevice::Get()->PostEvent("Drawers_Close", this);
+		//UE_LOG(LogTemp, Warning, TEXT("Close Sound"));
+		//FAkAudioDevice::Get()->PostEvent("Drawers_Close", this);
+		FAkAudioDevice::Get()->PostEventAtLocation(FString("Drawers_Close"), GetActorLocation(), GetActorRotation(), GetWorld());
 		openCloseTimeline.Reverse();
 	}
 

@@ -55,16 +55,6 @@ void UDoorOpenClose::BeginPlay()
 		//UE_LOG(LogTemp, Error, TEXT("DoorOpenClose: Interaction is null for %s"), *GetOwner()->GetName());
 	}
 
-	if ((portal = Cast<UAkPortalComponent>(GetOwner()->GetComponentByClass(UAkPortalComponent::StaticClass()))) == nullptr)
-	{
-		UE_LOG(LogTemp, Error, TEXT("DoorOpenClose: Portal is null!!!"));
-	}
-	
-	if(portal)
-	{
-		portal->ClosePortal();
-	}
-
 	TArray<UActorComponent*> boxes;
 	GetOwner()->GetComponents(UBoxComponent::StaticClass(), boxes);
 	
@@ -148,6 +138,15 @@ void UDoorOpenClose::TickComponent(float DeltaTime, ELevelTick TickType, FActorC
 
 	if (openTime < 1)
 	{
+		/*if (portal->GetCurrentState() == AkAcousticPortalState::Open)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Portal is Open"));
+		}
+		else if (portal->GetCurrentState() == AkAcousticPortalState::Closed)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Portal is closed"));
+		}*/
+
 		openTime += DeltaTime * doorSpeed;
 
 		if(openTime > 0.9 && checkClosed)
@@ -170,6 +169,8 @@ void UDoorOpenClose::TickComponent(float DeltaTime, ELevelTick TickType, FActorC
 	FRotator newRot = FRotator(0.0, FMath::Lerp(currentYaw, initialYaw + (open ? openAngle : 0.0f), openTime), 0.0);
 
 	this->SetRelativeRotation(newRot);
+
+	
 	
 }
 
@@ -185,9 +186,8 @@ void UDoorOpenClose::OpenDoor()
 		}
 		
 		if (portal)
-		{
-			//UE_LOG(LogTemp, Warning, TEXT("Close protal"));
-			portal->ClosePortal();
+		{		
+			portal->ClosePortal();		
 		}
 			
 		//GetWorld()->GetTimerManager().SetTimer(timerHandleNavLinks, this, &UDoorOpenClose::EnableNavLinks, 0.75f, false);
@@ -201,17 +201,11 @@ void UDoorOpenClose::OpenDoor()
 		{
 			parent->PlayOpenCloseSound(in_pEventOpen);
 		}
-		
-		/*id = FAkAudioDevice::Get()->PostEvent("Door_Open", this->GetOwner());
-		if (this->GetOwner())
-		{
-			//UE_LOG(LogTemp, Warning, TEXT("Door open: %i, name: %s"), id, *this->GetOwner()->GetName());
-		}*/
 
 		if(portal)
 		{
-			//UE_LOG(LogTemp, Warning, TEXT("open protal"));
 			portal->OpenPortal();
+
 		}
 		navLinkProxyEnter->SetSmartLinkEnabled(false);
 		navLinkProxyExit->SetSmartLinkEnabled(false);

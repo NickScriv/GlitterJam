@@ -61,7 +61,7 @@ void AMonsterAIController::BeginPlay()
 	blackboardComp->SetValueAsEnum(FName("MonsterStatus"), (uint8)MonsterStatus::Patrolling); 
 
 	predictNavHelper = GetWorld()->SpawnActor<AActor>(predictNavClass);
-	predictNavHelperTrace = GetWorld()->SpawnActor<AActor>(predictNavClass);
+	playerPredictNavHelper = GetWorld()->SpawnActor<AActor>(predictNavClass);
 
 	currentSightRange = sightRange;
 	currentLoseSightRange = loseSightRange;
@@ -124,9 +124,9 @@ void AMonsterAIController::perceptionUpdated(AActor* Actor, FAIStimulus Stimulus
 		//UE_LOG(LogTemp, Warning, TEXT("AI Predict!!"));
 		predictLoc = Stimulus.StimulusLocation;
 		predictNavHelper->SetActorLocation(Stimulus.StimulusLocation);
-		predictNavHelperTrace->SetActorLocation(player->GetActorLocation());
+		playerPredictNavHelper->SetActorLocation(player->GetActorLocation());
 	}
-	else if (senseName == TEXT("AISense_Touch") && blackboardComp->GetValueAsEnum(FName("MonsterStatus")) != (uint8)MonsterStatus::Chasing)
+	else if (senseName == TEXT("AISense_Touch") && blackboardComp->GetValueAsEnum(FName("MonsterStatus")) != (uint8)MonsterStatus::Chasing && !isScreaming)
 	{
 		//UE_LOG(LogTemp, Warning, TEXT("Sensed player touch"));
 		if (Stimulus.WasSuccessfullySensed())
@@ -229,7 +229,8 @@ void AMonsterAIController::HandleSight(bool successfullySensed)
 		{
 			blackboardComp->SetValueAsBool(FName("IsScreaming"), true);
 			isScreaming = true;
-			FAkAudioDevice::Get()->PostEvent("Player_Spotted", monster);
+			//FAkAudioDevice::Get()->PostEventAtLocation("Player_Spotted", monster);
+			FAkAudioDevice::Get()->PostEventAtLocation("Player_Spotted", monster->GetActorLocation(), monster->GetActorRotation(), GetWorld());
 			monster->GetCharacterMovement()->Deactivate();
 			currentSightAngle = screamingSightHalfAngleDegrees;
 		}
@@ -257,9 +258,9 @@ void AMonsterAIController::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	
+
 	//UE_LOG(LogTemp, Error, TEXT("%f"), currentSightAngle);
-	if (blackboardComp->GetValueAsEnum(FName("MonsterStatus")) == (uint8)MonsterStatus::Chasing)
-	{
+
 		if (inSightCone && !PlayerLineCheck(true))
 		{
 			// Lost player
@@ -269,10 +270,9 @@ void AMonsterAIController::Tick(float DeltaTime)
 			detectRange = currentSightRange;
 			HandleSight(false);
 		}
-	}
-	else
-	{
-		if (!inSightCone && PlayerLineCheck(true))
+	
+
+		else if (!inSightCone && PlayerLineCheck(true))
 		{
 			// See Player
 			inSightCone = true;
@@ -281,7 +281,7 @@ void AMonsterAIController::Tick(float DeltaTime)
 			detectRange = currentLoseSightRange;
 			HandleSight(true);
 		}
-	}
+
 	//UE_LOG(LogTemp, Error, TEXT("sight angle: %f"), currentSightAngle);
 }
 
