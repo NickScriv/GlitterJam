@@ -195,18 +195,21 @@ void AMonster::SetKeys()
 	if (firstKeySpawnLocations.Num() > 0)
 	{
 		const int32 index = FMath::RandRange(0, firstKeySpawnLocations.Num() - 1);
+
 		firstKey->SetActorTransform(firstKeySpawnLocations[index]);
 	}
 
 	if (secondKeySpawnLocations.Num() > 0)
 	{
 		const int32 index = FMath::RandRange(0, secondKeySpawnLocations.Num() - 1);
+
 		secondKey->SetActorTransform(secondKeySpawnLocations[index]);
 	}
 
 	if (thirdKeySpawnLocations.Num() > 0)
 	{
 		const int32 index = FMath::RandRange(0, thirdKeySpawnLocations.Num() - 1);
+
 		thirdKey->SetActorTransform(thirdKeySpawnLocations[index]);
 	}
 }

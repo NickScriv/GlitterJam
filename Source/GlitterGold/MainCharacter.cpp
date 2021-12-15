@@ -586,41 +586,46 @@ void AMainCharacter::ShowCrowBar()
 
 void AMainCharacter::Attack()
 {
-	if (canSwitch && GetMovementComponent()->Velocity.Size() <= walkSpeed + 0.05f)
+	if (canSwitch)
 	{
-		if (shotgun && currentHandSlot == 2 && !isShooting)
+		if (GetMovementComponent()->Velocity.Size() <= walkSpeed + 0.05f)
 		{
-
-			if (gameMode && gameMode->playerKilled)
+			if (shotgun && currentHandSlot == 2 && !isShooting)
 			{
-				return;
+
+				if (gameMode && gameMode->playerKilled)
+				{
+					return;
+				}
+
+				if (shotgunBulletCount > 0)
+				{
+					// shoot
+					FAkAudioDevice::Get()->PostEvent("Shotgun_Fire", this);
+					isShooting = true;
+					shotgun->Shoot();
+
+					shotgunBulletCount--;
+					gameMode->AmmoUI(true, shotgunBulletCount);
+
+				}
+				else
+				{
+					FAkAudioDevice::Get()->PostEvent("Shotgun_Empty", this);
+				}
 			}
-
-			if (shotgunBulletCount > 0)
+			else if (crowBar && currentHandSlot == 3 && !isSwinging)
 			{
-				// shoot
-				FAkAudioDevice::Get()->PostEvent("Shotgun_Fire", this);
-				isShooting = true;
-				shotgun->Shoot();
-
-				shotgunBulletCount--;
-				gameMode->AmmoUI(true, shotgunBulletCount);
-
-			}
-			else
-			{
-				FAkAudioDevice::Get()->PostEvent("Shotgun_Empty", this);
+				isSwinging = true;
 			}
 		}
-		else if (crowBar && currentHandSlot == 3 && !isSwinging)
-		{
-			isSwinging = true;
-		}
-		else if (flashlight && currentHandSlot == 1)
+		// flashlight should turn on/off while running
+		if (flashlight && currentHandSlot == 1)
 		{
 			flashlight->Toggle();
 		}
 	}
+
 	
 }
 
