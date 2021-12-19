@@ -236,6 +236,7 @@ void AMonsterAIController::HandleSight(bool successfullySensed)
 		}
 		blackboardComp->SetValueAsEnum(FName("MonsterStatus"), (uint8)MonsterStatus::Chasing);
 		blackboardComp->SetValueAsInt(FName("IsInvestigating"), 0);
+
 		//UE_LOG(LogTemp, Warning, TEXT("Monster sight sensed"));
 		chasing = true;
 	}
@@ -259,7 +260,7 @@ void AMonsterAIController::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 	
 
-	//UE_LOG(LogTemp, Error, TEXT("%f"), currentSightAngle);
+	//UE_LOG(LogTemp, Warning, TEXT("Tick!!!"));
 
 		if (inSightCone && !PlayerLineCheck(true))
 		{
@@ -270,8 +271,6 @@ void AMonsterAIController::Tick(float DeltaTime)
 			detectRange = currentSightRange;
 			HandleSight(false);
 		}
-	
-
 		else if (!inSightCone && PlayerLineCheck(true))
 		{
 			// See Player
@@ -302,6 +301,7 @@ void AMonsterAIController::StartMonsterBehavior()
 	RunBehaviorTree(AIBehavior);
 
 	SetActorTickEnabled(true);
+	//SetActorTickInterval(0.05);
 	GetWorld()->GetTimerManager().SetTimer(timerHandleFirstSeen, this, &AMonsterAIController::SetToDefaultPerception, ChangePerceptionTime, false);
 }
 

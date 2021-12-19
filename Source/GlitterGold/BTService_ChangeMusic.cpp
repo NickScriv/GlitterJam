@@ -47,6 +47,7 @@ void UBTService_ChangeMusic::OnBecomeRelevant(UBehaviorTreeComponent& OwnerComp,
 	{
 		FAkAudioDevice::Get()->PostEvent(*musicChange, player);
 	}
+	//UE_LOG(LogTemp, Warning, TEXT("Change music!!"));
 }
 
 
